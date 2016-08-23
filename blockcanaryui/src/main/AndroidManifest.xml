@@ -10,10 +10,10 @@
             android:label="@string/__display_activity_label"
             android:taskAffinity="me.chunyu.yuriel.kotdebugtool"
             android:theme="@style/__block_canary_BlockCanary.Base">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
     </application>
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="__AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/__colorPrimary</item>
-        <item name="colorPrimaryDark">@color/__colorPrimaryDark</item>
-        <item name="colorAccent">@color/__colorAccentRed</item>
+    <style name="__AppTheme.Base" parent="android:Theme">
+        <!--<item name="colorPrimary">@color/__colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/__colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/__colorAccentRed</item>-->
     </style>
 </resources>

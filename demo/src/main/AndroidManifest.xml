@@ -4,18 +4,28 @@
     <application
         android:name=".DemoApplication"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/__DemoAppTheme">
+        android:label="@string/app_name">
 
         <activity
             android:name=".DemoActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/__DemoAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="me.chunyu.yuriel.kotdebugtool.components.injector.__InjectorActivity"
+            android:theme="@style/__DemoAppActionBarTheme"/>
+
+        <activity android:name="me.chunyu.yuriel.kotdebugtool.components.spviewer.__SPViewerActivity"
+            android:theme="@style/__DemoAppActionBarTheme"/>
+
+        <activity android:name="me.chunyu.yuriel.kotdebugtool.components.__SettingsActivity"
+            android:theme="@style/__DemoAppActionBarTheme"/>
 
     </application>
 

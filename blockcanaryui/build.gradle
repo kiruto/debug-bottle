@@ -1,13 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+def libs = rootProject.ext.libraries
+
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -25,9 +27,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':core')
-    testCompile 'junit:junit:4.12'
-    provided 'com.android.support:appcompat-v7:24.+'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile "junit:junit:${libs.junit}"
+    provided "com.android.support:appcompat-v7:${libs.support}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${libs.kotlin}"
 }
 repositories {
     mavenCentral()

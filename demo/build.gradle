@@ -1,14 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+def libs = rootProject.ext.libraries
+
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "me.chunyu.dev.yuriel.kotdebugtool"
-        minSdkVersion 18
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -26,12 +28,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     debugCompile project(':components')
-    testCompile 'junit:junit:4.12'
-    compile 'us.feras.mdv:markdownview:1.1.0'
-    compile 'com.android.support:appcompat-v7:24.+'
-    compile 'com.android.support:design:24.+'
-    compile 'com.android.support:appcompat-v7:24.+'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile "junit:junit:${libs.junit}"
+    compile "us.feras.mdv:markdownview:${libs.markdownview}"
+    compile "com.android.support:appcompat-v7:${libs.support}"
+    compile "com.android.support:design:${libs.support}"
+    compile "com.android.support:appcompat-v7:${libs.support}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${libs.kotlin}"
 }
 repositories {
     mavenCentral()

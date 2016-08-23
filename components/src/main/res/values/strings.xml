@@ -72,4 +72,5 @@
     <string name="__save">save</string>
     <string name="__true">true</string>
     <string name="__false">false</string>
+    <string name="__dt_block_threshold">block threshold (default: 500ms)</string>
 </resources>

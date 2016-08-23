@@ -124,14 +124,14 @@ class __DisplayBlockActivity : Activity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val block = getBlock(mBlockStartTime)
         if (block != null) {
-            menu.add(R.string.__block_canary_share_leak).setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener {
+            menu.add(R.string.__block_canary_share_leak).setOnMenuItemClickListener {
                 shareBlock(block)
                 true
-            })
-            menu.add(R.string.__block_canary_share_stack_dump).setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener {
+            }
+            menu.add(R.string.__block_canary_share_stack_dump).setOnMenuItemClickListener {
                 shareHeapDump(block)
                 true
-            })
+            }
             return true
         }
         return false

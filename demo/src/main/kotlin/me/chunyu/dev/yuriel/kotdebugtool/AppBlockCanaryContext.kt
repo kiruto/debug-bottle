@@ -41,4 +41,5 @@ class AppBlockCanaryContext(context: Context) : BlockCanaryContext(context) {
 
     override val isNeedDisplay: Boolean = BuildConfig.DEBUG
 
+    override val logPath: String = "/ktdebugtools/blocks"
 }

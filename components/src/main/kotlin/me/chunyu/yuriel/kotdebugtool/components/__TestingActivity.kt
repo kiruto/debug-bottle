@@ -7,51 +7,48 @@ import android.view.View
 import android.widget.Button
 import com.squareup.leakcanary.internal.DisplayLeakActivity
 import me.chunyu.yuriel.kotdebugtool.components.injector.__InjectorActivity
+import me.chunyu.yuriel.kotdebugtool.ui.layout.__DisplayBlockActivity
 
 /**
  * Created by yuriel on 8/11/16.
  */
-class __TestingActivity : Activity(), View.OnClickListener {
+class __TestingActivity : Activity() {
     val button1 by lazy {
-        val result = findViewById(R.id.button1) as Button
-        result.setOnClickListener(this)
+        val result = findViewById(R.id.__dt_button1) as Button
+        result.setOnClickListener { startActivity(Intent(this, __ExampleActivity::class.java)) }
         result
     }
 
     val button2 by lazy {
-        val result = findViewById(R.id.button2) as Button
-        result.setOnClickListener(this)
+        val result = findViewById(R.id.__dt_button2) as Button
+        result.setOnClickListener {
+            val intent = Intent(this, __InjectorActivity::class.java)
+            intent.putExtra(__InjectorActivity.TYPE, __InjectorActivity.TYPE_ALL_ACTIVITIES)
+            startActivity(intent)
+        }
         result
     }
 
     val button3 by lazy {
-        val result = findViewById(R.id.button3) as Button
-        result.setOnClickListener(this)
+        val result = findViewById(R.id.__dt_button3) as Button
+        result.setOnClickListener {
+            val intent = Intent(this, DisplayLeakActivity::class.java)
+            startActivity(intent)
+        }
         result
+    }
+
+    val button4 by lazy {
+        val result = findViewById(R.id.__dt_button4) as Button
+        result.setOnClickListener {
+            val intent = Intent(this, __DisplayBlockActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.__activity_testing)
-        button1
-        button2
-        button3
-    }
-
-    override fun onClick(v: View) {
-        when(v.id) {
-            R.id.button1 -> {
-                startActivity(Intent(this, __SettingsActivity::class.java))
-            }
-            R.id.button2 -> {
-                val intent = Intent(this, __InjectorActivity::class.java)
-                intent.putExtra(__InjectorActivity.TYPE, __InjectorActivity.TYPE_ALL_ACTIVITIES)
-                startActivity(intent)
-            }
-            R.id.button3 -> {
-                val intent = Intent(this, DisplayLeakActivity::class.java)
-                startActivity(intent)
-            }
-        }
+        button1; button2; button3; button4
     }
 }

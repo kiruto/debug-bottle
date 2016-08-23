@@ -6,20 +6,26 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="b1"
-        android:id="@+id/button1"/>
+        android:text="example activity"
+        android:id="@+id/__dt_button1"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="b2"
-        android:id="@+id/button2"/>
+        android:text="activities"
+        android:id="@+id/__dt_button2"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="leak"
-        android:id="@+id/button3"/>
+        android:id="@+id/__dt_button3"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="block"
+        android:id="@+id/__dt_button4"/>
 
 
 </LinearLayout>

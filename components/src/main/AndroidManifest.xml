@@ -4,15 +4,17 @@
 
     <application android:label="@string/app_name">
         <activity
-            android:name=".__SettingsActivity"
+            android:name=".__ExampleActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/__AppTheme" />
         <activity
             android:name=".__TestingActivity"
             android:theme="@style/__AppTheme" />
-        <activity android:name=".injector.__InjectorActivity"
+        <activity
+            android:name=".injector.__InjectorActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".spviewer.__SPViewerActivity" />
+        <activity android:name=".__SettingsActivity" />
     </application>
 
 </manifest>

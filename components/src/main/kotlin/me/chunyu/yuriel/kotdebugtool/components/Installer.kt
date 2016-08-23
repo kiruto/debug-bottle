@@ -1,7 +1,9 @@
 package me.chunyu.yuriel.kotdebugtool.components
 
 import android.app.*
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import com.squareup.leakcanary.LeakCanary
 import me.chunyu.yuriel.kotdebugtool.ui.BlockCanary
 import me.chunyu.yuriel.kotdebugtool.ui.BlockCanaryContext
@@ -126,5 +128,9 @@ object Installer {
 
     fun kill() {
         Process.killProcess(Process.myPid())
+    }
+
+    internal fun getSP(fileName: String): SharedPreferences? {
+        return app?.getSharedPreferences(fileName, Context.MODE_PRIVATE)
     }
 }
