@@ -9,7 +9,7 @@ import android.view.View
 /**
  * Created by yuriel on 8/9/16.
  */
-class __MoreDetailsView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+internal class __MoreDetailsView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private val mIconPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var mFolding = true

@@ -9,11 +9,13 @@ import android.widget.SeekBar
 import android.widget.TextView
 import me.chunyu.yuriel.kotdebugtool.core.DEFAULT_BLOCK_THRESHOLD
 
-class __SettingsActivity : AppCompatActivity() {
+internal class __SettingsActivity : __DTBaseActivity() {
 
     private val MIN: Int = 100
     private val MAX: Int = 5000
     private val DEFAULT: Int = 500
+
+    override val actionbarTitle: String by lazy { getString(R.string.__dt_setting_title) }
 
     private val seekBar: SeekBar by lazy {
         val result = findViewById(R.id.__dt_seek_bar) as SeekBar

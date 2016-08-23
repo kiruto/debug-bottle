@@ -13,7 +13,7 @@ import java.util.*
 /**
  * Created by yuriel on 8/18/16.
  */
-class __DebugToolEditText : EditText {
+internal class __DebugToolEditText : EditText {
 
     private var backListener: (() -> Unit)? = null
     private var spaceListener: (() -> Unit)? = null

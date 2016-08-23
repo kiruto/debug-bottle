@@ -16,7 +16,7 @@ import android.os.Build.VERSION_CODES.JELLY_BEAN
 /**
  * Created by yuriel on 8/9/16.
  */
-class __Notifier : OnBlockEventInterceptor {
+internal class __Notifier : OnBlockEventInterceptor {
 
     override fun onBlockEvent(context: Context, timeStart: String) {
         val intent = Intent(context, __DisplayBlockActivity::class.java)
@@ -50,7 +50,7 @@ class __Notifier : OnBlockEventInterceptor {
                     .setContentIntent(pendingIntent)
                     .setDefaults(Notification.DEFAULT_SOUND)
             if (SDK_INT < JELLY_BEAN) {
-                notification = builder.getNotification()
+                notification = builder.notification
             } else {
                 notification = builder.build()
             }

@@ -23,19 +23,19 @@ internal class BlockDetailAdapter : BaseAdapter() {
     private var mBlock: Block? = null
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-        var convertView = convertView
+        var view = convertView
         val context = parent.context
         if (getItemViewType(position) == TOP_ROW) {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.__block_canary_ref_top_row, parent, false)
+            if (view == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.__block_canary_ref_top_row, parent, false)
             }
-            val textView = convertView!!.findViewById(R.id.__leak_canary_row_text) as TextView
+            val textView = view!!.findViewById(R.id.__leak_canary_row_text) as TextView
             textView.text = context.packageName
         } else {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.__block_canary_ref_row, parent, false)
+            if (view == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.__block_canary_ref_row, parent, false)
             }
-            val textView = convertView!!.findViewById(R.id.__leak_canary_row_text) as TextView
+            val textView = view!!.findViewById(R.id.__leak_canary_row_text) as TextView
 
             val isThreadStackEntry = position == POSITION_THREAD_STACK + 1
             val element = getItem(position)
@@ -45,14 +45,14 @@ internal class BlockDetailAdapter : BaseAdapter() {
             }
             textView.text = Html.fromHtml(htmlString)
 
-            val connectorView = convertView.findViewById(R.id.__leak_canary_row_connector) as __DisplayLeakConnectorView
+            val connectorView = view.findViewById(R.id.__leak_canary_row_connector) as __DisplayLeakConnectorView
             connectorView.setType(connectorViewType(position))
 
-            val moreDetailsView = convertView.findViewById(R.id.__leak_canary_row_more) as __MoreDetailsView
+            val moreDetailsView = view.findViewById(R.id.__leak_canary_row_more) as __MoreDetailsView
             moreDetailsView.setFolding(mFoldings[position])
         }
 
-        return convertView
+        return view
     }
 
     private fun connectorViewType(position: Int): __DisplayLeakConnectorView.Type {

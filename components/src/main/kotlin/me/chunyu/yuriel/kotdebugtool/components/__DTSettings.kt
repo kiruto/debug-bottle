@@ -8,7 +8,7 @@ import me.chunyu.yuriel.kotdebugtool.core.DT_SETTING_STORE_FILE
 /**
  * Created by yuriel on 8/22/16.
  */
-object __DTSettings {
+internal object __DTSettings {
 
     private fun getSP() = Installer.getSP(DT_SETTING_STORE_FILE)
 

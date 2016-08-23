@@ -29,7 +29,7 @@ import android.view.MenuItem
    * Android Design: Settings](http://developer.android.com/design/patterns/settings.html) for design guidelines and the [Settings
    * API Guide](http://developer.android.com/guide/topics/ui/settings.html) for more information on developing a Settings UI.
  */
-class __ExampleActivity : __AppCompatPreferenceActivity() {
+internal class __ExampleActivity : __AppCompatPreferenceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

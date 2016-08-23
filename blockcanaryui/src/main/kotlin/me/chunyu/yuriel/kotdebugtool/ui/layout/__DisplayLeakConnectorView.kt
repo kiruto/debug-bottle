@@ -13,7 +13,7 @@ import android.graphics.Bitmap.Config.ARGB_8888
 /**
  * Created by yuriel on 8/9/16.
  */
-class __DisplayLeakConnectorView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+internal class __DisplayLeakConnectorView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     enum class Type {
         START, NODE, END

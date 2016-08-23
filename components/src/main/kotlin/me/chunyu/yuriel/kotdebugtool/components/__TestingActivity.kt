@@ -12,7 +12,7 @@ import me.chunyu.yuriel.kotdebugtool.ui.layout.__DisplayBlockActivity
 /**
  * Created by yuriel on 8/11/16.
  */
-class __TestingActivity : Activity() {
+internal class __TestingActivity : Activity() {
     val button1 by lazy {
         val result = findViewById(R.id.__dt_button1) as Button
         result.setOnClickListener { startActivity(Intent(this, __ExampleActivity::class.java)) }

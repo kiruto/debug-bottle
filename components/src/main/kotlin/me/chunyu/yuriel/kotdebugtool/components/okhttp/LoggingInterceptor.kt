@@ -33,16 +33,16 @@ internal class LoggingInterceptor : Interceptor {
         val time: Double = (t2 - t1) / 1e6
 
         when(request.method()) {
-            "GET" -> println(String.format("GET ${F_REQUEST_WITHOUT_BODY}${F_RESPONSE_WITH_BODY}",
+            "GET" -> println(String.format("GET ${F_REQUEST_WITHOUT_BODY + F_RESPONSE_WITH_BODY}",
                     request.url(), time, request.headers(),
                     response.code(), response.headers(), stringifyResponseBody(bodyString!!)))
-            "POST" -> println(String.format("POST ${F_REQUEST_WITH_BODY}${F_RESPONSE_WITH_BODY}",
+            "POST" -> println(String.format("POST ${F_REQUEST_WITH_BODY + F_RESPONSE_WITH_BODY}",
                     request.url(), time, request.headers(), stringifyRequestBody(request),
                     response.code(), response.headers(), stringifyResponseBody(bodyString!!)))
-            "PUT" -> println(String.format("PUT ${F_REQUEST_WITH_BODY}${F_RESPONSE_WITH_BODY}",
+            "PUT" -> println(String.format("PUT ${F_REQUEST_WITH_BODY + F_RESPONSE_WITH_BODY}",
                     request.url(), time, request.headers(), request.body().toString(),
                     response.code(), response.headers(), stringifyResponseBody(bodyString!!)))
-            "DELETE" -> println(String.format("DELETE ${F_REQUEST_WITHOUT_BODY}${F_RESPONSE_WITHOUT_BODY}",
+            "DELETE" -> println(String.format("DELETE ${F_REQUEST_WITHOUT_BODY + F_RESPONSE_WITHOUT_BODY}",
                     request.url(), time, request.headers(),
                     response.code(), response.headers()))
         }

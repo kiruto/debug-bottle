@@ -12,13 +12,16 @@ import android.widget.SimpleExpandableListAdapter
 import android.widget.TextView
 import me.chunyu.yuriel.kotdebugtool.components.DialogsCollection
 import me.chunyu.yuriel.kotdebugtool.components.R
+import me.chunyu.yuriel.kotdebugtool.components.__DTBaseActivity
 import java.util.zip.Inflater
 
-class __SPViewerActivity : AppCompatActivity(), DialogsCollection.SPDialogAction {
+internal class __SPViewerActivity : __DTBaseActivity(), DialogsCollection.SPDialogAction {
 
     private val listView by lazy { findViewById(R.id.list_view) as ExpandableListView }
     private var adapter: ListAdapter? = null
     private val groupList by lazy { mutableMapOf<String, SharedPreferences>() }
+
+    override val actionbarTitle: String by lazy { getString(R.string.__dt_sp_title) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

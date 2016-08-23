@@ -56,14 +56,13 @@ class __DisplayBlockActivity : Activity() {
         }
     }
 
-    // null until it's been first loaded.
     private val mBlockEntries: MutableList<Block> by lazy { ArrayList<Block>() }
     private var mBlockStartTime: String? = null
 
-    private var mListView: ListView? = null
-    private var mFailureView: TextView? = null
-    private var mActionButton: Button? = null
-    private var mMaxStoredBlockCount: Int = 0
+    private val mListView by lazy { findViewById(R.id.__leak_canary_display_leak_list) as ListView }
+    private val mFailureView by lazy { findViewById(R.id.__leak_canary_display_leak_failure) as TextView }
+    private val mActionButton by lazy { findViewById(R.id.__leak_canary_action) as Button }
+    private val mMaxStoredBlockCount by lazy { resources.getInteger(R.integer.__block_canary_max_stored_count) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,18 +75,7 @@ class __DisplayBlockActivity : Activity() {
                 mBlockStartTime = intent.getStringExtra(SHOW_BLOCK_EXTRA)
             }
         }
-
-        //noinspection unchecked
-        //        mBlockEntries = (List<Block>) getLastNonConfigurationInstance();
-
         setContentView(R.layout.__block_canary_display_leak)
-
-        mListView = findViewById(R.id.__leak_canary_display_leak_list) as ListView
-        mFailureView = findViewById(R.id.__leak_canary_display_leak_failure) as TextView
-        mActionButton = findViewById(R.id.__leak_canary_action) as Button
-
-        mMaxStoredBlockCount = resources.getInteger(R.integer.__block_canary_max_stored_count)
-
         updateUi()
     }
 
@@ -181,8 +169,8 @@ class __DisplayBlockActivity : Activity() {
         }
 
         // Reset to defaults
-        mListView!!.visibility = VISIBLE
-        mFailureView!!.visibility = GONE
+        mListView.visibility = VISIBLE
+        mFailureView.visibility = GONE
 
         if (block != null) {
             renderBlockDetail(block)
@@ -192,13 +180,13 @@ class __DisplayBlockActivity : Activity() {
     }
 
     private fun renderBlockList() {
-        val listAdapter = mListView!!.adapter
+        val listAdapter = mListView.adapter
         if (listAdapter is BlockListAdapter) {
             listAdapter.notifyDataSetChanged()
         } else {
             val adapter = BlockListAdapter()
-            mListView!!.adapter = adapter
-            mListView!!.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            mListView.adapter = adapter
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
                 mBlockStartTime = mBlockEntries[position].timeStart
                 updateUi()
             }
@@ -208,33 +196,33 @@ class __DisplayBlockActivity : Activity() {
                 actionBar?.setDisplayHomeAsUpEnabled(false)
             }
             title = getString(R.string.__block_canary_block_list_title, packageName)
-            mActionButton!!.setText(R.string.__block_canary_delete_all)
-            mActionButton!!.setOnClickListener {
+            mActionButton.setText(R.string.__block_canary_delete_all)
+            mActionButton.setOnClickListener {
                 LogWriter.deleteLogFiles()
                 mBlockEntries.clear()
                 updateUi()
             }
         }
-        mActionButton!!.visibility = if (mBlockEntries.isEmpty()) GONE else VISIBLE
+        mActionButton.visibility = if (mBlockEntries.isEmpty()) GONE else VISIBLE
     }
 
     private fun renderBlockDetail(block: Block?) {
-        val listAdapter = mListView!!.adapter
+        val listAdapter = mListView.adapter
         val adapter: BlockDetailAdapter
         if (listAdapter is BlockDetailAdapter) {
             adapter = listAdapter
         } else {
             adapter = BlockDetailAdapter()
-            mListView!!.adapter = adapter
-            mListView!!.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> adapter.toggleRow(position) }
+            mListView.adapter = adapter
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> adapter.toggleRow(position) }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 invalidateOptionsMenu()
                 val actionBar = actionBar
                 actionBar?.setDisplayHomeAsUpEnabled(true)
             }
-            mActionButton!!.visibility = VISIBLE
-            mActionButton!!.setText(R.string.__block_canary_delete)
-            mActionButton!!.setOnClickListener {
+            mActionButton.visibility = VISIBLE
+            mActionButton.setText(R.string.__block_canary_delete)
+            mActionButton.setOnClickListener {
                 if (block != null) {
                     block.logFile?.delete()
                     mBlockStartTime = null
