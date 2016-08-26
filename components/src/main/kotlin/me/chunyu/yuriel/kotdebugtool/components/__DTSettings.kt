@@ -18,4 +18,5 @@ internal object __DTSettings {
 
     fun getBlockThreshold() = getSP()?.getLong(BLOCK_THRESHOLD, DEFAULT_BLOCK_THRESHOLD)?: DEFAULT_BLOCK_THRESHOLD
 
+    fun getHttpFileStorPath() = "/ktdebugtools/http"
 }

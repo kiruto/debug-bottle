@@ -3,7 +3,6 @@ package me.chunyu.yuriel.kotdebugtool.components
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import com.squareup.leakcanary.internal.DisplayLeakActivity
 import me.chunyu.yuriel.kotdebugtool.components.injector.__InjectorActivity

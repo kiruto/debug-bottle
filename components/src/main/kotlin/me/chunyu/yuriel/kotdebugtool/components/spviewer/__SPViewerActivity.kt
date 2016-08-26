@@ -43,7 +43,7 @@ internal class __SPViewerActivity : __DTBaseActivity(), DialogsCollection.SPDial
 
     inner class ListAdapter: BaseExpandableListAdapter() {
 
-        private val onClickListenenr = View.OnClickListener { v ->
+        private val clickListener = View.OnClickListener { v ->
             val p = v.tag as ChildHolder
             if (null == p.position) return@OnClickListener
             val sp = getGroup(p.position!!.first)?.second?: return@OnClickListener
@@ -72,7 +72,7 @@ internal class __SPViewerActivity : __DTBaseActivity(), DialogsCollection.SPDial
             holder.contentView?.text = content?.second.toString()
             holder.position = Pair(groupPosition, childPosition)
 
-            v?.setOnClickListener(onClickListenenr)
+            v?.setOnClickListener(clickListener)
 
             return v
         }

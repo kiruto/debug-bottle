@@ -2,6 +2,7 @@ package me.chunyu.yuriel.kotdebugtool.components
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 
@@ -14,9 +15,7 @@ internal abstract class __DTBaseActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = actionbarTitle
+        initActionBar(supportActionBar)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -27,5 +26,12 @@ internal abstract class __DTBaseActivity: AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun initActionBar(actionBar: ActionBar?) {
+        actionBar?.setHomeButtonEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setDisplayShowTitleEnabled(true)
+        actionBar?.title = actionbarTitle
     }
 }

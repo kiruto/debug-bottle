@@ -142,42 +142,42 @@ class Block private constructor() {
 
             var reader: BufferedReader? = null
             try {
-                val `in` = InputStreamReader(FileInputStream(file), "UTF-8")
+                val input = InputStreamReader(FileInputStream(file), "UTF-8")
 
-                reader = BufferedReader(`in`)
+                reader = BufferedReader(input)
                 var line: String? = reader.readLine()
                 while (line != null) {
                     if (line.startsWith(KEY_QUA)) {
-                        block.qualifier = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.qualifier = line.getValue()
                     } else if (line.startsWith(KEY_MODEL)) {
-                        block.model = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.model = line.getValue()
                     } else if (line.startsWith(KEY_API)) {
-                        block.apiLevel = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.apiLevel = line.getValue()
                     } else if (line.startsWith(KEY_IMEI)) {
-                        block.imei = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.imei = line.getValue()
                     } else if (line.startsWith(KEY_UID)) {
-                        block.uid = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.uid = line.getValue()
                     } else if (line.startsWith(KEY_CPU_CORE)) {
-                        block.cpuCoreNum = Integer.valueOf(line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1])!!
+                        block.cpuCoreNum = Integer.valueOf(line.getValue())!!
                     } else if (line.startsWith(KEY_PROCESS_NAME)) {
-                        block.processName = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.processName = line.getValue()
                     } else if (line.startsWith(KEY_VERSION_NAME)) {
-                        block.versionName = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.versionName = line.getValue()
                     } else if (line.startsWith(KEY_VERSION_CODE)) {
-                        block.versionCode = Integer.valueOf(line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1])!!
+                        block.versionCode = Integer.valueOf(line.getValue())!!
                     } else if (line.startsWith(KEY_NETWORK)) {
-                        block.network = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.network = line.getValue()
                     } else if (line.startsWith(KEY_TOTAL_MEMORY)) {
-                        block.totalMemory = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.totalMemory = line.getValue()
                     } else if (line.startsWith(KEY_FREE_MEMORY)) {
-                        block.freeMemory = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.freeMemory = line.getValue()
                     } else if (line.startsWith(KEY_CPU_BUSY)) {
-                        block.cpuBusy = java.lang.Boolean.valueOf(line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1])!!
+                        block.cpuBusy = java.lang.Boolean.valueOf(line.getValue())!!
                     } else if (line.startsWith(KEY_CPU_RATE)) {
                         val split = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                         if (split.size > 1) {
                             val cpuRateSb = StringBuilder(split[1])
-                            cpuRateSb.append(line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]).append(SEPARATOR)
+                            cpuRateSb.append(line.getValue()).append(SEPARATOR)
                             line = reader.readLine()
 
                             // read until SEPARATOR appears
@@ -193,15 +193,15 @@ class Block private constructor() {
                         }
 
                     } else if (line.startsWith(KEY_TIME_COST_START)) {
-                        block.timeStart = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.timeStart = line.getValue()
                     } else if (line.startsWith(KEY_TIME_COST_END)) {
-                        block.timeEnd = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+                        block.timeEnd = line.getValue()
                     } else if (line.startsWith(KEY_TIME_COST)) {
-                        block.timeCost = java.lang.Long.valueOf(line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1])!!
+                        block.timeCost = java.lang.Long.valueOf(line.getValue())!!
                     } else if (line.startsWith(KEY_THREAD_TIME_COST)) {
-                        block.threadTimeCost = java.lang.Long.valueOf(line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1])!!
+                        block.threadTimeCost = java.lang.Long.valueOf(line.getValue())!!
                     } else if (line.startsWith(KEY_STACK)) {
-                        var stackSb = StringBuilder(line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1])
+                        var stackSb = StringBuilder(line.getValue())
                         line = reader.readLine()
 
                         // read until file ends
@@ -236,6 +236,10 @@ class Block private constructor() {
             block.flushString()
             return block
         }
+
+        private fun String.getValue(): String {
+            return this.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+        }
     }
 
     fun setCpuBusyFlag(busy: Boolean): Block {
@@ -262,35 +266,34 @@ class Block private constructor() {
     }
 
     fun flushString(): Block {
-        val separator = SEPARATOR
-        basicSb.append(KEY_QUA).append(KV).append(qualifier).append(separator)
-        basicSb.append(KEY_VERSION_NAME).append(KV).append(versionName).append(separator)
-        basicSb.append(KEY_VERSION_CODE).append(KV).append(versionCode).append(separator)
-        basicSb.append(KEY_IMEI).append(KV).append(imei).append(separator)
-        basicSb.append(KEY_UID).append(KV).append(uid).append(separator)
-        basicSb.append(KEY_NETWORK).append(KV).append(network).append(separator)
-        basicSb.append(KEY_MODEL).append(KV).append(Build.MODEL).append(separator)
-        basicSb.append(KEY_API).append(KV).append(apiLevel).append(separator)
-        basicSb.append(KEY_CPU_CORE).append(KV).append(cpuCoreNum).append(separator)
-        basicSb.append(KEY_PROCESS_NAME).append(KV).append(processName).append(separator)
-        basicSb.append(KEY_FREE_MEMORY).append(KV).append(freeMemory).append(separator)
-        basicSb.append(KEY_TOTAL_MEMORY).append(KV).append(totalMemory).append(separator)
+        basicSb + KEY_QUA + KV + qualifier + SEPARATOR
+        basicSb + KEY_VERSION_NAME + KV + versionName + SEPARATOR
+        basicSb + KEY_VERSION_CODE + KV + versionCode + SEPARATOR
+        basicSb + KEY_IMEI + KV + imei + SEPARATOR
+        basicSb + KEY_UID + KV + uid + SEPARATOR
+        basicSb + KEY_NETWORK + KV + network + SEPARATOR
+        basicSb + KEY_MODEL + KV + Build.MODEL + SEPARATOR
+        basicSb + KEY_API + KV + apiLevel + SEPARATOR
+        basicSb + KEY_CPU_CORE + KV + cpuCoreNum + SEPARATOR
+        basicSb + KEY_PROCESS_NAME + KV + processName + SEPARATOR
+        basicSb + KEY_FREE_MEMORY + KV + freeMemory + SEPARATOR
+        basicSb + KEY_TOTAL_MEMORY + KV + totalMemory + SEPARATOR
 
-        timeSb.append(KEY_TIME_COST).append(KV).append(timeCost).append(separator)
-        timeSb.append(KEY_THREAD_TIME_COST).append(KV).append(threadTimeCost).append(separator)
-        timeSb.append(KEY_TIME_COST_START).append(KV).append(timeStart).append(separator)
-        timeSb.append(KEY_TIME_COST_END).append(KV).append(timeEnd).append(separator)
+        timeSb + KEY_TIME_COST + KV + timeCost + SEPARATOR
+        timeSb + KEY_THREAD_TIME_COST + KV + threadTimeCost + SEPARATOR
+        timeSb + KEY_TIME_COST_START + KV + timeStart + SEPARATOR
+        timeSb + KEY_TIME_COST_END + KV + timeEnd + SEPARATOR
 
-        cpuSb.append(KEY_CPU_BUSY).append(KV).append(cpuBusy).append(separator)
-        cpuSb.append(KEY_CPU_RATE).append(KV).append(cpuRateInfo).append(separator)
+        cpuSb + KEY_CPU_BUSY + KV + cpuBusy + SEPARATOR
+        cpuSb + KEY_CPU_RATE + KV + cpuRateInfo + SEPARATOR
 
         if (threadStackEntries != null && !threadStackEntries!!.isEmpty()) {
             val temp = StringBuilder()
             for (s in threadStackEntries!!) {
-                temp.append(s)
-                temp.append(separator)
+                temp + s
+                temp + SEPARATOR
             }
-            stackSb.append(KEY_STACK).append(KV).append(temp.toString()).append(separator)
+            stackSb + KEY_STACK + KV + temp.toString() + SEPARATOR
         }
         return this
     }
@@ -325,4 +328,7 @@ class Block private constructor() {
     override fun toString(): String {
         return basicSb.toString() + timeSb + cpuSb + stackSb
     }
+
+    private operator fun StringBuilder.plus(any: Any?): StringBuilder = this.append(any?: "")
+
 }

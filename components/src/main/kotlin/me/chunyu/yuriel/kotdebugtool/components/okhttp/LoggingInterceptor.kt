@@ -69,10 +69,22 @@ internal class LoggingInterceptor : Interceptor {
         private val F_BODY = "body: %s"
 
         private val F_BREAKER = F_BREAK + "-------------------------------------------" + F_BREAK
-        private val F_REQUEST_WITHOUT_BODY = F_URL + F_TIME + F_BREAK + F_HEADERS
-        private val F_RESPONSE_WITHOUT_BODY = F_RESPONSE + F_BREAK + F_HEADERS + F_BREAKER
-        private val F_REQUEST_WITH_BODY = F_URL + F_TIME + F_BREAK + F_HEADERS + F_BODY + F_BREAK
-        private val F_RESPONSE_WITH_BODY = F_RESPONSE + F_BREAK + F_HEADERS + F_BODY + F_BREAK + F_BREAKER
+
+        private val F_REQUEST_WITHOUT_BODY =
+                F_URL + F_TIME + F_BREAK +
+                F_HEADERS
+
+        private val F_RESPONSE_WITHOUT_BODY = F_RESPONSE + F_BREAK +
+                F_HEADERS + F_BREAKER
+
+        private val F_REQUEST_WITH_BODY =
+                F_URL + F_TIME + F_BREAK +
+                F_HEADERS + F_BODY + F_BREAK
+
+        private val F_RESPONSE_WITH_BODY =
+                F_RESPONSE + F_BREAK +
+                F_HEADERS + F_BODY + F_BREAK +
+                F_BREAKER
 
 
         private fun stringifyRequestBody(request: Request): String {

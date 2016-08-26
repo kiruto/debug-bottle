@@ -15,6 +15,11 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".spviewer.__SPViewerActivity" />
         <activity android:name=".__SettingsActivity" />
+
+        <activity
+            android:name=".okhttp.__DisplayHttpBlockActivity"
+            android:theme="@style/__dt_canary_BlockCanary.Base">
+        </activity>
     </application>
 
 </manifest>

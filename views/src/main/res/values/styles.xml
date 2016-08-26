@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="__DTDialog">
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="__DTDialog.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="__DTDialog.IntentContent">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="__DTList">
+
+    </style>
+
+    <style name="__DTList.Item">
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="__DTList.Item.Text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="__DTList.Item.SubText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="__DTList.Header">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#323232</item>
+    </style>
+
+    <style name="__DTList.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">#999999</item>
+    </style>
+</resources>
