@@ -9,6 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.squareup.okhttp.MediaType
+import com.squareup.okhttp.OkHttpClient
+import com.squareup.okhttp.Request
+import com.squareup.okhttp.RequestBody
 import java.io.FileInputStream
 import java.io.IOException
 
@@ -31,11 +35,13 @@ class DemoFragment : Fragment(), View.OnClickListener {
         val button2 = view.findViewById(R.id.button2) as Button
         val button3 = view.findViewById(R.id.button3) as Button
         val button4 = view.findViewById(R.id.button4) as Button
+        val button5 = view.findViewById(R.id.button5) as Button
 
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
         button4.setOnClickListener(this)
+        button5.setOnClickListener(this)
     }
 
     override fun onDestroyView() {
@@ -48,12 +54,13 @@ class DemoFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.button1 -> try {
-                Thread.sleep(2000)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-                Log.e(DEMO_FRAGMENT, "onClick of R.id.button1: ", e)
-            }
+            R.id.button1 ->
+                try {
+                    Thread.sleep(2000)
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                    Log.e(DEMO_FRAGMENT, "onClick of R.id.button1: ", e)
+                }
 
             R.id.button2 -> for (i in 0..99) {
                 readFile()
@@ -65,6 +72,9 @@ class DemoFragment : Fragment(), View.OnClickListener {
             R.id.button4 -> {
                 startAsyncTask()
                 activity.finish()
+            }
+            R.id.button5 -> {
+                sendRequest()
             }
             else -> {
             }
@@ -80,6 +90,23 @@ class DemoFragment : Fragment(), View.OnClickListener {
                 // Do some slow work in background
                 SystemClock.sleep(20000)
                 return null
+            }
+        }.execute()
+    }
+
+    fun sendRequest() {
+
+        object: AsyncTask<Void, Void, Any?>() {
+            override fun doInBackground(vararg params: Void): Any? {
+                val request = Request.Builder()
+                        .url("http://dev.exyui.com/")
+                        .get()
+                        .addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001")
+                        .addHeader("cache-control", "no-cache")
+                        .addHeader("postman-token", "1fe7c430-c1d8-d59c-2145-5ac4df753f37")
+                        .build()
+
+                return DemoApplication.httpClient.newCall(request).execute()
             }
         }.execute()
     }

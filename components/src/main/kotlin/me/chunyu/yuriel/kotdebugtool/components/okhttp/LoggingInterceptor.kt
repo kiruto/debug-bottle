@@ -30,23 +30,41 @@ internal class LoggingInterceptor : Interceptor {
             bodyString = response.body().string()
         }
 
+        var requestBody = ""
+        var responseBody = ""
         val time: Double = (t2 - t1) / 1e6
 
         when(request.method()) {
-            "GET" -> println(String.format("GET ${F_REQUEST_WITHOUT_BODY + F_RESPONSE_WITH_BODY}",
-                    request.url(), time, request.headers(),
-                    response.code(), response.headers(), stringifyResponseBody(bodyString!!)))
-            "POST" -> println(String.format("POST ${F_REQUEST_WITH_BODY + F_RESPONSE_WITH_BODY}",
-                    request.url(), time, request.headers(), stringifyRequestBody(request),
-                    response.code(), response.headers(), stringifyResponseBody(bodyString!!)))
-            "PUT" -> println(String.format("PUT ${F_REQUEST_WITH_BODY + F_RESPONSE_WITH_BODY}",
-                    request.url(), time, request.headers(), request.body().toString(),
-                    response.code(), response.headers(), stringifyResponseBody(bodyString!!)))
-            "DELETE" -> println(String.format("DELETE ${F_REQUEST_WITHOUT_BODY + F_RESPONSE_WITHOUT_BODY}",
-                    request.url(), time, request.headers(),
-                    response.code(), response.headers()))
+            "GET" -> {
+                responseBody = stringifyResponseBody(bodyString!!)
+                println(String.format("GET ${F_REQUEST_WITHOUT_BODY + F_RESPONSE_WITH_BODY}",
+                        request.url(), time, request.headers(),
+                        response.code(), response.headers(), responseBody))
+
+            }
+            "POST" -> {
+                requestBody = stringifyRequestBody(request)
+                responseBody = stringifyResponseBody(bodyString!!)
+                println(String.format("POST ${F_REQUEST_WITH_BODY + F_RESPONSE_WITH_BODY}",
+                        request.url(), time, request.headers(), requestBody,
+                        response.code(), response.headers(), responseBody))
+            }
+            "PUT" -> {
+                requestBody = request.body().toString()
+                responseBody = stringifyResponseBody(bodyString!!)
+                println(String.format("PUT ${F_REQUEST_WITH_BODY + F_RESPONSE_WITH_BODY}",
+                        request.url(), time, request.headers(), requestBody,
+                        response.code(), response.headers(), responseBody))
+            }
+            "DELETE" -> {
+                println(String.format("DELETE ${F_REQUEST_WITHOUT_BODY + F_RESPONSE_WITHOUT_BODY}",
+                        request.url(), time, request.headers(),
+                        response.code(), response.headers()))
+            }
         }
 
+        val block = HttpBlock.newInstance(request, response, t1, t2, requestBody, responseBody)
+        HttpBlockFileMgr.saveHttpLog(block.toString())
         if (response.body() != null) {
             val body = ResponseBody.create(contentType, bodyString)
             return response.newBuilder().body(body).build()

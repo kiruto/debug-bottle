@@ -91,7 +91,7 @@ internal object HttpBlockFileMgr {
      * *
      * @return log file path
      */
-    fun saveLooperLog(str: String): String {
+    fun saveHttpLog(str: String): String {
         var path: String = ""
         synchronized(SAVE_DELETE_LOCK) {
             path = saveLogToSDCard("http", str)

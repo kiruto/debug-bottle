@@ -13,4 +13,7 @@
     <string name="__computation_code">fun&#160;compute():&#160;Double&#160;{\n&#160;&#160;&#160;&#160;var&#160;result&#160;=&#160;0.0\n&#160;&#160;&#160;&#160;for&#160;(i&#160;in&#160;0..999999)&#160;{\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;result&#160;+=&#160;Math.acos(Math.cos(i.toDouble()))\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;result&#160;-=&#160;Math.asin(Math.sin(i.toDouble()))\n&#160;&#160;&#160;&#160;}\n&#160;&#160;&#160;&#160;return&#160;result\n}</string>
     <string name="__object_leak">object leak</string>
     <string name="__object_leak_code">object&#160;:&#160;AsyncTask&lt;\Void,&#160;Void,&#160;Void>()&#160;{\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;override&#160;fun&#160;doInBackground(vararg&#160;params:&#160;Void):&#160;Void?&#160;{\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;//&#160;Do&#160;some&#160;slow&#160;work&#160;in&#160;background\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;SystemClock.sleep(20000)\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;return&#160;null\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}.execute()</string>
+
+    <string name="__send_request">send request</string>
+    <string name="__send_request_to_host">send a request to host: http://dev.exyui.com</string>
 </resources>

@@ -2,6 +2,7 @@ package me.chunyu.dev.yuriel.kotdebugtool
 
 import android.app.Application
 import android.content.Context
+import com.squareup.okhttp.OkHttpClient
 import me.chunyu.yuriel.kotdebugtool.components.Installer
 
 /**
@@ -14,11 +15,13 @@ class DemoApplication : Application() {
         appContext = this
         Installer.install(this)
                 .setBlockCanary(AppBlockCanaryContext(this))
+                .setOkHttpClient(httpClient)
                 //.setPackageName("me.chunyu")
                 .run()
     }
 
     companion object {
+        val httpClient by lazy { OkHttpClient() }
         var appContext: Context? = null
             private set
     }

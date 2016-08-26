@@ -74,17 +74,22 @@ internal data class HttpBlock(
         internal val KEY_RESPONSE_HEADER = "responseHeader"
         internal val KEY_RESPONSE_BODY = "responseBody"
 
-        fun newInstance(request: Request, response: Response, timeStart: Long, timeEnd: Long): HttpBlock {
+        fun newInstance(request: Request,
+                        response: Response,
+                        timeStart: Long,
+                        timeEnd: Long,
+                        requestBody: String = "",
+                        responseBody: String = ""): HttpBlock {
             val result = HttpBlock(
                     url = request.url().toString(),
                     method = request.method(),
                     timeStart = timeStart,
                     timeEnd = timeEnd,
                     requestHeader = request.headers()?.toString()?: "",
-                    requestBody = stringifyRequestBody(request),
+                    requestBody = requestBody,
                     responseCode = response.code().toString(),
                     responseHeader = response.headers()?.toString()?: "",
-                    responseBody = stringifyResponseBody(response.body()?.string()?: "")
+                    responseBody = responseBody
             )
             result.flushString()
             return result
@@ -193,7 +198,7 @@ internal data class HttpBlock(
             try {
                 val copy = request.newBuilder().build()
                 val buffer = Buffer()
-                copy.body().writeTo(buffer)
+                copy.body()?.writeTo(buffer)
                 return buffer.readUtf8()
             } catch (e: IOException) {
                 return "did not work"

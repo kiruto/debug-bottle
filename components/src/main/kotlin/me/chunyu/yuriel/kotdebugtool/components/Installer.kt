@@ -42,7 +42,7 @@ object Installer {
         }
     private var httpClient: OkHttpClient? = null
         set(value) {
-            if (!installed) field = httpClient
+            if (!installed) field = value
         }
 
     fun install(app: Application): Installer {
@@ -103,6 +103,12 @@ object Installer {
         if (SDK_INT >= GINGERBREAD) {
             StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
                     .detectAll()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build())
+            StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
                     .penaltyLog()
                     .penaltyDeath()
                     .build())
