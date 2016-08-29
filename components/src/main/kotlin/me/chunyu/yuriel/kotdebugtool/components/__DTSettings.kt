@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import me.chunyu.yuriel.kotdebugtool.core.BLOCK_THRESHOLD
 import me.chunyu.yuriel.kotdebugtool.core.DEFAULT_BLOCK_THRESHOLD
 import me.chunyu.yuriel.kotdebugtool.core.DT_SETTING_STORE_FILE
+import me.chunyu.yuriel.kotdebugtool.core.STRICT_MODE
 
 /**
  * Created by yuriel on 8/22/16.
@@ -19,4 +20,10 @@ internal object __DTSettings {
     fun getBlockThreshold() = getSP()?.getLong(BLOCK_THRESHOLD, DEFAULT_BLOCK_THRESHOLD)?: DEFAULT_BLOCK_THRESHOLD
 
     fun getHttpFileStorPath() = "/ktdebugtools/http"
+
+    fun setStrictMode(strictMode: Boolean) {
+        getSP()?.edit()?.putBoolean(STRICT_MODE, strictMode)?.apply()
+    }
+
+    fun getStrictMode() = getSP()?.getBoolean(STRICT_MODE, false)?: false
 }

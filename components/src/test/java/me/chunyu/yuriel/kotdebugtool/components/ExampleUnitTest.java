@@ -1,4 +1,4 @@
-package me.chunyu.yurielkotdebugtool.components;
+package me.chunyu.yuriel.kotdebugtool.components;
 
 import org.junit.Test;
 

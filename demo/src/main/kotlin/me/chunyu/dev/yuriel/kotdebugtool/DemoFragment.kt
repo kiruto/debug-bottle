@@ -103,7 +103,6 @@ class DemoFragment : Fragment(), View.OnClickListener {
                         .get()
                         .addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001")
                         .addHeader("cache-control", "no-cache")
-                        .addHeader("postman-token", "1fe7c430-c1d8-d59c-2145-5ac4df753f37")
                         .build()
 
                 return DemoApplication.httpClient.newCall(request).execute()

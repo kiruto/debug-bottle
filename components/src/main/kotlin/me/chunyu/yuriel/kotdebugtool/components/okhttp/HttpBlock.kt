@@ -23,6 +23,7 @@ internal data class HttpBlock(
         val file: File? = null) {
 
     private val overviewSb = StringBuilder()
+    private val timeSb = StringBuilder()
     private val requestSb = StringBuilder()
     private val responseSb = StringBuilder()
 
@@ -35,15 +36,21 @@ internal data class HttpBlock(
     val responseString: String
         get() = responseSb.toString()
 
+    val time: Double
+        get() = (timeEnd - timeStart) / 1e6
+
     private fun flushString() {
-        val time = (timeEnd - timeStart).toString()
+        val t = this.time.toString()
 
         overviewSb + KEY_METHOD + KV + method + SEPARATOR
         overviewSb + KEY_URL + KV + url + SEPARATOR
-        overviewSb + KEY_TIME + KV + time +  SEPARATOR
+        overviewSb + KEY_TIME + KV + t + "ms" +  SEPARATOR
 
-        requestSb + KEY_REQUEST_HEADER + KV + requestHeader + SEPARATOR + SEPARATOR
-        requestSb + KEY_REQUEST_BODY + KV + requestBody
+        timeSb + KEY_TIME_START + KV + timeStart + SEPARATOR
+        timeSb + KEY_TIME_END + KV + timeEnd + SEPARATOR
+
+        requestSb + KEY_REQUEST_HEADER + KV + requestHeader + SEPARATOR
+        requestSb + KEY_REQUEST_BODY + KV + requestBody + SEPARATOR
 
         responseSb + KEY_RESPONSE_CODE + KV + responseCode + SEPARATOR
         responseSb + KEY_RESPONSE_HEADER + KV + responseHeader + SEPARATOR + SEPARATOR
@@ -53,7 +60,7 @@ internal data class HttpBlock(
     private operator fun StringBuilder.plus(any: Any): StringBuilder = this.append(any)
 
     override fun toString(): String {
-        return overviewSb.toString() + requestSb + responseSb
+        return overviewSb.toString() + timeSb + requestSb + responseSb
     }
 
     companion object {
@@ -122,7 +129,7 @@ internal data class HttpBlock(
                     val split = line!!.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     if (split.size > 1) {
                         val sb = StringBuilder(split[1])
-                        sb.append(line!!.getValue()).append(SEPARATOR)
+                        sb/*.append(line!!.getValue())*/.append(SEPARATOR)
                         line = reader!!.readLine()
 
                         // read until SEPARATOR appears

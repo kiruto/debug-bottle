@@ -2,6 +2,7 @@ package me.chunyu.yuriel.kotdebugtool.components
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.SwitchCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
@@ -66,10 +67,19 @@ internal class __SettingsActivity : __DTBaseActivity() {
         result
     }
 
+    private val strictSwitcher by lazy {
+        val result = findViewById(R.id.__dt_strict_switcher) as SwitchCompat
+        result.isChecked = __DTSettings.getStrictMode()
+        result.setOnCheckedChangeListener { view, isChecked ->
+            __DTSettings.setStrictMode(isChecked)
+        }
+        result
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.__activity_settings)
-        seekBar; valueText
+        seekBar; valueText; strictSwitcher
     }
 
     override fun onStop() {

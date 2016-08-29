@@ -36,14 +36,14 @@ internal class HttpBlockDetailAdapter: BaseAdapter() {
             val textView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
 
             val element = getItem(position)
-            val htmlString = elementToHtmlString(element, position, mFoldings[position])
+            val htmlString = elementToHtmlString(element, position, mFoldings[position - 1])
             textView.text = Html.fromHtml(htmlString)
 
             val connectorView = view.findViewById(R.id.__dt_canary_row_connector) as __DisplayLeakConnectorView
             connectorView.setType(connectorViewType(position))
 
             val moreDetailsView = view.findViewById(R.id.__dt_canary_row_more) as __MoreDetailsView
-            moreDetailsView.setFolding(mFoldings[position])
+            moreDetailsView.setFolding(mFoldings[position - 1])
         }
 
         return view
@@ -91,7 +91,8 @@ internal class HttpBlockDetailAdapter: BaseAdapter() {
     }
 
     fun toggleRow(position: Int) {
-        mFoldings[position] = !mFoldings[position]
+        if(position == 0) return
+        mFoldings[position - 1] = !mFoldings[position - 1]
         notifyDataSetChanged()
     }
 
@@ -99,7 +100,7 @@ internal class HttpBlockDetailAdapter: BaseAdapter() {
         if (mBlock == null) {
             return 0
         }
-        return POSITION_RESPONSE
+        return POSITION_RESPONSE + 1
     }
 
     override fun getItem(position: Int): String? {

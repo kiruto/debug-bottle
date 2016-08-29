@@ -86,7 +86,9 @@ object Installer {
             BlockCanary.install(blockCanary!!).start()
         }
         if (null != app) {
-            enableStrictMode()
+            if (__DTSettings.getStrictMode()) {
+                enableStrictMode()
+            }
             LeakCanary.install(app)
             showNotification(app!!)
         }

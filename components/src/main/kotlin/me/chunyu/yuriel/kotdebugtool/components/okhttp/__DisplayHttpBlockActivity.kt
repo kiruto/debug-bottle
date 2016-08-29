@@ -205,7 +205,9 @@ internal class __DisplayHttpBlockActivity : Activity() {
         } else {
             adapter = HttpBlockDetailAdapter()
             mListView.adapter = adapter
-            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> adapter.toggleRow(position) }
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                adapter.toggleRow(position)
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 invalidateOptionsMenu()
                 val actionBar = actionBar
@@ -231,7 +233,7 @@ internal class __DisplayHttpBlockActivity : Activity() {
             return null
         }
         for (block in mBlockEntries) {
-            if (block.timeStart.equals(startTime)) {
+            if (block.timeStart.toString() == startTime) {
                 return block
             }
         }
@@ -270,9 +272,7 @@ internal class __DisplayHttpBlockActivity : Activity() {
 
             val title = index + block.method + " " + block.url
             titleView.text = title
-            val time = DateUtils.formatDateTime(this@__DisplayHttpBlockActivity,
-                    block.file?.lastModified()?: 0L, DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_SHOW_DATE)
-            timeView.text = time
+            timeView.text = String.format("%.1f", block.time) + "ms"
             return convertView
         }
     }

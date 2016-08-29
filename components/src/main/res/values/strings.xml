@@ -77,4 +77,6 @@
     <string name="__dt_okhttp_listener_switcher">okhttp listener switcher</string>
     <string name="__dt_sp_title">Shared Preferences Editor</string>
     <string name="__dt_setting_title">Debug Tools Setting</string>
+    <string name="__dt_strict_mode">Strict Mode</string>
+    <string name="__dt_strict_mode_switcher">Using Android Strict Mode when startup</string>
 </resources>
