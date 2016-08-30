@@ -1,6 +1,9 @@
 package me.chunyu.yuriel.kotdebugtool.ui
 
 import android.content.Context
+import me.chunyu.yuriel.kotdebugtool.core.BLOCK_THRESHOLD
+import me.chunyu.yuriel.kotdebugtool.core.DEFAULT_BLOCK_THRESHOLD
+import me.chunyu.yuriel.kotdebugtool.core.DT_SETTING_STORE_FILE
 import me.chunyu.yuriel.kotdebugtool.core.IBlockCanaryContext
 import java.io.File
 
@@ -44,7 +47,11 @@ open class BlockCanaryContext(override val context: Context) : IBlockCanaryConte
 
      * @return threshold in mills
      */
-    override val configBlockThreshold: Long = 1000L
+    override val configBlockThreshold: Long
+        get() {
+            return context.getSharedPreferences(DT_SETTING_STORE_FILE, Context.MODE_PRIVATE)
+                    ?.getLong(BLOCK_THRESHOLD, DEFAULT_BLOCK_THRESHOLD) ?: DEFAULT_BLOCK_THRESHOLD
+        }
 
     /**
      * If need notification and block ui
@@ -58,7 +65,7 @@ open class BlockCanaryContext(override val context: Context) : IBlockCanaryConte
 
      * @return path of log files
      */
-    override val logPath: String = "/blockcanary/performance"
+    override val logPath: String = "/ktdebugtools/performance"
 
     /**
      * Zip log file

@@ -12,7 +12,7 @@ import me.chunyu.yuriel.kotdebugtool.core.DEFAULT_BLOCK_THRESHOLD
 
 internal class __SettingsActivity : __DTBaseActivity() {
 
-    private val MIN: Int = 100
+    private val MIN: Int = 15
     private val MAX: Int = 5000
     private val DEFAULT: Int = 500
 
@@ -67,6 +67,15 @@ internal class __SettingsActivity : __DTBaseActivity() {
         result
     }
 
+    private val networkSwitcher by lazy {
+        val result = findViewById(R.id.__dt_network_switcher) as SwitchCompat
+        result.isChecked = __DTSettings.getNetworkSniff()
+        result.setOnCheckedChangeListener { view, isChecked ->
+            __DTSettings.setNetworkSniff(isChecked)
+        }
+        result
+    }
+
     private val strictSwitcher by lazy {
         val result = findViewById(R.id.__dt_strict_switcher) as SwitchCompat
         result.isChecked = __DTSettings.getStrictMode()
@@ -79,7 +88,7 @@ internal class __SettingsActivity : __DTBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.__activity_settings)
-        seekBar; valueText; strictSwitcher
+        seekBar; valueText; networkSwitcher; strictSwitcher
     }
 
     override fun onStop() {

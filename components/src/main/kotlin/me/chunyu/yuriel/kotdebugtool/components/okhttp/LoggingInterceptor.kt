@@ -5,6 +5,7 @@ import com.squareup.okhttp.MediaType
 import com.squareup.okhttp.Request
 import com.squareup.okhttp.Response
 import com.squareup.okhttp.ResponseBody
+import me.chunyu.yuriel.kotdebugtool.components.__DTSettings
 
 import java.io.IOException
 
@@ -64,7 +65,9 @@ internal class LoggingInterceptor : Interceptor {
         }
 
         val block = HttpBlock.newInstance(request, response, t1, t2, requestBody, responseBody)
-        HttpBlockFileMgr.saveHttpLog(block.toString())
+        if (__DTSettings.getNetworkSniff()) {
+            HttpBlockFileMgr.saveHttpLog(block.toString())
+        }
         if (response.body() != null) {
             val body = ResponseBody.create(contentType, bodyString)
             return response.newBuilder().body(body).build()

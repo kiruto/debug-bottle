@@ -78,6 +78,7 @@
                     android:text="@string/__dt_okhttp_listener_switcher" />
 
                 <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/__dt_network_switcher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>

@@ -12,17 +12,17 @@ import android.view.Window
  */
 class DemoActivity : AppCompatActivity() {
 
+    private val TAG = "DemoActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         supportActionBar?.hide()
         setContentView(R.layout.__activity_demo)
-        supportFragmentManager.beginTransaction()
-                .add(R.id.container, DemoFragment.newInstance())
-                .commit()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-
+        if (null == supportFragmentManager.findFragmentByTag(TAG)) {
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.container, DemoFragment.newInstance(), TAG)
+                    .commit()
+        }
     }
 }

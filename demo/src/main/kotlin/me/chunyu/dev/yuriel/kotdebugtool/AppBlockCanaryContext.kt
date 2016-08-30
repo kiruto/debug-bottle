@@ -37,8 +37,6 @@ class AppBlockCanaryContext(context: Context) : BlockCanaryContext(context) {
 
     override val configDuration: Int = 9999
 
-    override val configBlockThreshold: Long = 500
-
     override val isNeedDisplay: Boolean = BuildConfig.DEBUG
 
     override val logPath: String = "/ktdebugtools/blocks"
