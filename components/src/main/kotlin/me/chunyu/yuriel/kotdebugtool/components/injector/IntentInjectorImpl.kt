@@ -10,7 +10,7 @@ import java.util.*
 /**
  * Created by yuriel on 8/15/16.
  */
-internal open class IntentInjectorImpl: Injectable<Intent> {
+open class IntentInjectorImpl: Injectable<Intent> {
 
     override val model: LinkedHashMap<String, Intent> = LinkedHashMap()
 

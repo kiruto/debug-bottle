@@ -57,7 +57,7 @@ internal object DialogsCollection {
                         intent!!.putExtra(k, v.toString())
                     }
                 }
-                PendingIntent.getActivity(activity, 0, intent, 0).send()
+                activity.startActivity(intent)
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.__cancel) { dialog, view ->
