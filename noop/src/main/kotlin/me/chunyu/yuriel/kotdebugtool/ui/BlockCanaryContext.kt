@@ -6,7 +6,7 @@ import java.io.File
 /**
  * Created by yuriel on 8/30/16.
  */
-open class BlockCanaryContext {
+open class BlockCanaryContext(any: Any) {
 
     open val configDuration: Int = 99999
 

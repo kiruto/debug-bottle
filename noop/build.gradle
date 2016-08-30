@@ -26,9 +26,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':core')
     testCompile "junit:junit:${libs.junit}"
-    provided "com.android.support:appcompat-v7:${libs.support}"
     compile "org.jetbrains.kotlin:kotlin-stdlib:${libs.kotlin}"
 }
 repositories {

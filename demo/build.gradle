@@ -6,7 +6,25 @@ def libs = rootProject.libraries
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
-
+    if(project.hasProperty("RELEASE_STORE_FILE")) {
+        signingConfigs {
+            release {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
+    } else {
+        signingConfigs {
+            release {
+                storeFile file("debug.jks")
+                storePassword "password"
+                keyAlias "debug"
+                keyPassword "password"
+            }
+        }
+    }
     defaultConfig {
         applicationId "me.chunyu.dev.yuriel.kotdebugtool"
         minSdkVersion rootProject.minSdkVersion
@@ -28,8 +46,10 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     debugCompile project(':components')
+    releaseCompile project(':noop')
     testCompile "junit:junit:${libs.junit}"
     compile "us.feras.mdv:markdownview:${libs.markdownview}"
+    compile "com.squareup.okhttp:okhttp:${libs.okhttp}"
     compile "com.android.support:appcompat-v7:${libs.support}"
     compile "com.android.support:design:${libs.support}"
     compile "com.android.support:appcompat-v7:${libs.support}"
