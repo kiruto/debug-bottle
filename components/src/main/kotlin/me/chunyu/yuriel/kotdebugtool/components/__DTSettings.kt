@@ -29,4 +29,16 @@ internal object __DTSettings {
     }
 
     fun getStrictMode() = getSP()?.getBoolean(STRICT_MODE, false)?: false
+
+    fun setLeakCanaryEnable(enable: Boolean) {
+        getSP()?.edit()?.putBoolean(LEAK_CANARY_ENABLE, enable)?.apply()
+    }
+
+    fun getLeakCanaryEnable() = getSP()?.getBoolean(LEAK_CANARY_ENABLE, false)?: false
+
+    fun setBlockCanaryEnable(enable: Boolean) {
+        getSP()?.edit()?.putBoolean(BLOCK_CANARY_ENABLE, enable)?.apply()
+    }
+
+    fun getBlockCanaryEnable() = getSP()?.getBoolean(BLOCK_CANARY_ENABLE, false)?: false
 }

@@ -84,13 +84,20 @@ object Installer {
     fun run() {
         installed = true
         if (null != blockCanary) {
-            BlockCanary.install(blockCanary!!).start()
+            val blockCanary = BlockCanary.install(blockCanary!!)
+            if (__DTSettings.getBlockCanaryEnable()) {
+                blockCanary.start()
+            } else {
+                blockCanary.stop()
+            }
         }
         if (null != app) {
             if (__DTSettings.getStrictMode()) {
                 enableStrictMode()
             }
-            LeakCanary.install(app)
+            if (__DTSettings.getLeakCanaryEnable()) {
+                LeakCanary.install(app)
+            }
             showNotification(app!!)
             registerActivityLifecycleCallbacks(app!!)
         }

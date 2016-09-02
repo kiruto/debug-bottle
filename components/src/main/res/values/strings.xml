@@ -74,11 +74,15 @@
     <string name="__false">false</string>
     <string name="__dt_block_threshold">Block Threshold (default: 500ms)</string>
     <string name="__dt_network_listener">Network Listener</string>
-    <string name="__dt_okhttp_listener_switcher">okhttp listener switcher</string>
+    <string name="__dt_okhttp_listener_switcher">Okhttp listener switcher</string>
     <string name="__dt_sp_title">Shared Preferences Editor</string>
     <string name="__dt_setting_title">Debug Tools Setting</string>
     <string name="__dt_strict_mode">Strict Mode</string>
     <string name="__dt_strict_mode_switcher">Using Android Strict Mode when startup</string>
     <string name="__dt_3d_window">3D View Controller</string>
     <string name="__dt_3d_window_switcher">Show 3D window</string>
+    <string name="__dt_leak_canary">Leak Canary</string>
+    <string name="__dt_leak_canary_switcher">Enable Leak Canary (need restart application)</string>
+    <string name="__dt_block_canary_switcher">Enable Block Canary</string>
+    <string name="__dt_block_canary">Block Canary</string>
 </resources>

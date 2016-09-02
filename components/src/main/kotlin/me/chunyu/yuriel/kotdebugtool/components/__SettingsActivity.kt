@@ -15,6 +15,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
 import me.chunyu.yuriel.kotdebugtool.core.DEFAULT_BLOCK_THRESHOLD
+import me.chunyu.yuriel.kotdebugtool.ui.BlockCanary
 
 internal class __SettingsActivity : __DTBaseActivity() {
 
@@ -105,10 +106,38 @@ internal class __SettingsActivity : __DTBaseActivity() {
         result
     }
 
+    private val leakCanarySwitcher by lazy {
+        val result = findViewById(R.id.__dt_leak_canary_switcher) as SwitchCompat
+        result.isChecked = __DTSettings.getLeakCanaryEnable()
+        result.setOnCheckedChangeListener { view, isChecked ->
+            __DTSettings.setLeakCanaryEnable(isChecked)
+        }
+        result
+    }
+
+    private val blockCanarySwitcher by lazy {
+        val result = findViewById(R.id.__dt_block_canary_switcher) as SwitchCompat
+        result.isChecked = __DTSettings.getBlockCanaryEnable()
+        result.setOnCheckedChangeListener { view, isChecked ->
+            __DTSettings.setBlockCanaryEnable(isChecked)
+            try {
+                if (isChecked) {
+                    BlockCanary.get().start()
+                } else {
+                    BlockCanary.get().stop()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        result
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.__activity_settings)
         seekBar; valueText; networkSwitcher; strictSwitcher; view3DSwitcher
+        leakCanarySwitcher; blockCanarySwitcher
     }
 
     override fun onStop() {
