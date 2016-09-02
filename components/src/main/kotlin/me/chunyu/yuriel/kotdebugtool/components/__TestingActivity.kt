@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import com.squareup.leakcanary.internal.DisplayLeakActivity
+import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
 import me.chunyu.yuriel.kotdebugtool.components.injector.__InjectorActivity
 import me.chunyu.yuriel.kotdebugtool.ui.layout.__DisplayBlockActivity
 
@@ -43,11 +44,21 @@ internal class __TestingActivity : Activity() {
             val intent = Intent(this, __DisplayBlockActivity::class.java)
             startActivity(intent)
         }
+        result
+    }
+
+    val button5 by lazy {
+        val result = findViewById(R.id.__dt_button5) as Button
+        result.setOnClickListener {
+            val intent = Intent(this, __FloatingService::class.java)
+            startService(intent)
+        }
+        result
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.__activity_testing)
-        button1; button2; button3; button4
+        button1; button2; button3; button4; button5
     }
 }

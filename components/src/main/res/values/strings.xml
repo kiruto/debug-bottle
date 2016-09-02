@@ -79,4 +79,6 @@
     <string name="__dt_setting_title">Debug Tools Setting</string>
     <string name="__dt_strict_mode">Strict Mode</string>
     <string name="__dt_strict_mode_switcher">Using Android Strict Mode when startup</string>
+    <string name="__dt_3d_window">3D View Controller</string>
+    <string name="__dt_3d_window_switcher">Show 3D window</string>
 </resources>

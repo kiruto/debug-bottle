@@ -1,13 +1,19 @@
 package me.chunyu.yuriel.kotdebugtool.components
 
+import android.app.ActivityManager
+import android.content.ComponentName
+import android.content.Intent
+import android.content.ServiceConnection
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.IBinder
 import android.support.v7.widget.SwitchCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.TextView
+import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
 import me.chunyu.yuriel.kotdebugtool.core.DEFAULT_BLOCK_THRESHOLD
 
 internal class __SettingsActivity : __DTBaseActivity() {
@@ -20,7 +26,7 @@ internal class __SettingsActivity : __DTBaseActivity() {
 
     private val seekBar: SeekBar by lazy {
         val result = findViewById(R.id.__dt_seek_bar) as SeekBar
-        result.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+        result.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(v: SeekBar?) {
 
             }
@@ -42,7 +48,7 @@ internal class __SettingsActivity : __DTBaseActivity() {
 
     private val valueText: EditText by lazy {
         val result = findViewById(R.id.__dt_seek_value) as EditText
-        result.addTextChangedListener(object: TextWatcher {
+        result.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 try {
                     var num: Int = s.toString().toInt()
@@ -85,10 +91,24 @@ internal class __SettingsActivity : __DTBaseActivity() {
         result
     }
 
+    private val view3DSwitcher by lazy {
+        val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
+        result.isChecked = isFloatingWindowRunning()
+        result.setOnCheckedChangeListener { view, isChecked ->
+            val intent = Intent(this, __FloatingService::class.java)
+            if (isChecked) {
+                startService(intent)
+            } else {
+                stopService(intent)
+            }
+        }
+        result
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.__activity_settings)
-        seekBar; valueText; networkSwitcher; strictSwitcher
+        seekBar; valueText; networkSwitcher; strictSwitcher; view3DSwitcher
     }
 
     override fun onStop() {
@@ -98,5 +118,21 @@ internal class __SettingsActivity : __DTBaseActivity() {
 
     private fun save() {
         __DTSettings.setBlockThreshold(seekBar.progress.toLong())
+    }
+
+    private fun isFloatingWindowRunning(): Boolean {
+        val activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        val serviceList = activityManager.getRunningServices(30)
+
+        if (serviceList.size <= 0) {
+            return false
+        }
+
+        for (i in 0..serviceList.size - 1) {
+            if (serviceList[i].service.className.equals(__FloatingService::class.java.name) == true) {
+                return true
+            }
+        }
+        return false
     }
 }

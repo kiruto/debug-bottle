@@ -10,6 +10,7 @@ import me.chunyu.yuriel.kotdebugtool.ui.BlockCanaryContext
 
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.GINGERBREAD
+import android.os.Bundle
 import android.os.Process
 import android.os.StrictMode
 import android.util.Log
@@ -91,6 +92,7 @@ object Installer {
             }
             LeakCanary.install(app)
             showNotification(app!!)
+            registerActivityLifecycleCallbacks(app!!)
         }
         if (null != injector) {
             injector?.inject()
@@ -132,6 +134,38 @@ object Installer {
         val mNotifyMgr = app.getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager
         mNotifyMgr.notify(12030, notify)
         Log.d(javaClass.simpleName, "started")
+    }
+
+    private fun registerActivityLifecycleCallbacks(app: Application) {
+        app.registerActivityLifecycleCallbacks(object: Application.ActivityLifecycleCallbacks {
+            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+
+            }
+
+            override fun onActivityStarted(activity: Activity) {
+
+            }
+
+            override fun onActivityResumed(activity: Activity) {
+                DTActivityManager.topActivity = activity
+            }
+
+            override fun onActivityPaused(activity: Activity) {
+
+            }
+
+            override fun onActivityStopped(activity: Activity) {
+
+            }
+
+            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
+
+            }
+
+            override fun onActivityDestroyed(activity: Activity) {
+
+            }
+        })
     }
 
     fun kill() {
