@@ -2,6 +2,7 @@
 <resources>
     <string-array name="__dt_drawer_items">
         <item>@string/__dt_all_activities</item>
+        <item>@string/__dt_sp_viewer</item>
         <item>@string/__dt_leaks</item>
         <item>@string/__dt_blocks</item>
         <item>@string/__dt_network_traffics</item>

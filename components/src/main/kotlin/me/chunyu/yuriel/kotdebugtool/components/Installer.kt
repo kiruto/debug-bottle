@@ -157,7 +157,7 @@ object Installer: Application.ActivityLifecycleCallbacks {
     private fun showNotification(app: Application) {
         //val view = RemoteViews(app.packageName, R.layout.__notification_main)
         //view.setTextViewText(R.id.notify_title, "start")
-        val pi = PendingIntent.getActivity(app, 0, Intent(app, __TestingActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+        val pi = PendingIntent.getActivity(app, 0, Intent(app, __DTDrawerActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
         val notification: Notification
         val notify = Notification.Builder(app)
                 .setSmallIcon(R.drawable.__dt_notification_bt)

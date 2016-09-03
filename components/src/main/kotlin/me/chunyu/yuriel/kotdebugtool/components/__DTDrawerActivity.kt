@@ -1,6 +1,7 @@
 package me.chunyu.yuriel.kotdebugtool.components
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
@@ -13,14 +14,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import me.chunyu.yuriel.kotdebugtool.components.fragments.__ContentFragment
-import me.chunyu.yuriel.kotdebugtool.components.fragments.__DisplayHttpBlockFragment
-import me.chunyu.yuriel.kotdebugtool.components.fragments.__SettingsFragment
+import com.squareup.leakcanary.internal.DisplayLeakActivity
+import me.chunyu.yuriel.kotdebugtool.components.fragments.*
 
 /**
  * Created by yuriel on 9/3/16.
  */
-internal class __DTDrawerActivity: AppCompatActivity() {
+internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDialogAction {
 
     private var contentFragment: __ContentFragment? = null
 
@@ -89,6 +89,11 @@ internal class __DTDrawerActivity: AppCompatActivity() {
         if (!(contentFragment?.onBackPressed()?: false)) super.onBackPressed()
     }
 
+    override fun updateSPViews() {
+        val f = supportFragmentManager.findFragmentByTag(__SPViewerFragment.TAG) as __SPViewerFragment?
+        f?.updateSPViews()
+    }
+
     private fun selectItem(position: Int) {
 
         var fragment: __ContentFragment? = null
@@ -96,8 +101,35 @@ internal class __DTDrawerActivity: AppCompatActivity() {
         fun s(@IdRes id: Int): String = resources.getString(id)
 
         when (titles[position]) {
+
+            s(R.string.__dt_all_activities) -> {
+                fragment = __InjectorFragment.newInstance(__InjectorFragment.TYPE_ALL_ACTIVITIES)
+            }
+
+            s(R.string.__dt_intents) -> {
+                fragment =  __InjectorFragment.newInstance(__InjectorFragment.TYPE_INTENT)
+            }
+
+            s(R.string.__dt_runnable) -> {
+                fragment = __InjectorFragment.newInstance(__InjectorFragment.TYPE_RUNNABLE)
+            }
+
+            s(R.string.__dt_sp_viewer) -> {
+                fragment = __SPViewerFragment()
+            }
+
+            s(R.string.__dt_blocks) -> {
+                fragment = __DisplayBlockFragment()
+            }
+
             s(R.string.__dt_network_traffics) -> {
                 fragment = __DisplayHttpBlockFragment()
+            }
+
+            s(R.string.__dt_leaks) -> {
+                val intent = Intent(this, DisplayLeakActivity::class.java)
+                startActivity(intent)
+                return
             }
 
             s(R.string.__dt_settings) -> {
@@ -111,7 +143,7 @@ internal class __DTDrawerActivity: AppCompatActivity() {
 
         if (null != fragment) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.__dt_content_frame, fragment)
+                    .replace(R.id.__dt_content_frame, fragment, fragment.TAG)
                     .commit()
             contentFragment = fragment
         }

@@ -1,6 +1,5 @@
 package me.chunyu.yuriel.kotdebugtool.components.fragments
 
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -28,7 +27,6 @@ import java.util.concurrent.Executors
  */
 class __DisplayHttpBlockFragment: __ContentFragment() {
     private var rootView: ViewGroup? = null
-    private var context: Activity? = null
     private val mBlockEntries: MutableList<HttpBlock> by lazy { ArrayList<HttpBlock>() }
     private var mBlockStartTime: String? = null
 
@@ -36,21 +34,6 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
     private val mFailureView by lazy { findViewById(R.id.__dt_canary_display_leak_failure) as TextView }
     private val mActionButton by lazy { findViewById(R.id.__dt_canary_action) as Button }
     private val mMaxStoredBlockCount by lazy { resources.getInteger(R.integer.__block_canary_max_stored_count) }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        if (savedInstanceState != null) {
-//            mBlockStartTime = savedInstanceState.getString(SHOW_BLOCK_EXTRA_KEY)
-//        } else {
-//            val intent = intent
-//            if (intent.hasExtra(SHOW_BLOCK_EXTRA)) {
-//                mBlockStartTime = intent.getStringExtra(SHOW_BLOCK_EXTRA)
-//            }
-//        }
-//        setContentView(R.layout.__dt_canary_display_leak)
-//        updateUi()
-//    }
 
     companion object {
 
@@ -86,7 +69,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
             }
         }
 
-        val rootView = inflater.inflate(R.layout.__dt_canary_display_leak, container, false)
+        val rootView = inflater.inflate(R.layout.__dt_canary_display_leak_light, container, false)
         this.rootView = rootView as ViewGroup
         setHasOptionsMenu(true)
         updateUi()
@@ -98,11 +81,6 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
 //        return mBlockEntries as Any
 //    }
 
-    override fun onAttach(activity: Activity?) {
-        super.onAttach(activity)
-        context = activity
-    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(SHOW_BLOCK_EXTRA_KEY, mBlockStartTime)
@@ -112,16 +90,6 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
         super.onResume()
         LoadBlocks.load(this)
     }
-
-//    override fun setTheme(resid: Int) {
-//        // We don't want this to be called with an incompatible theme.
-//        // This could happen if you implement runtime switching of themes
-//        // using ActivityLifecycleCallbacks.
-//        if (resid != R.style.__dt_canary_BlockCanary_Base) {
-//            return
-//        }
-//        super.setTheme(resid)
-//    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -90,6 +90,7 @@
     <string name="__dt_drawer_close">__dt_drawer_close</string>
 
     <string name="__dt_all_activities">All Activities</string>
+    <string name="__dt_sp_viewer">Shared Preferences Editor</string>
     <string name="__dt_leaks">Leaks</string>
     <string name="__dt_blocks">Blocks</string>
     <string name="__dt_network_traffics">Network Traffics</string>

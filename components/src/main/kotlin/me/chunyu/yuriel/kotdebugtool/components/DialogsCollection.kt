@@ -266,7 +266,7 @@ internal object DialogsCollection {
             builder.setNeutralButton(R.string.__delete) { dialog, view ->
                 sp?.edit()?.remove(key)
                 dialog.dismiss()
-                action?.update()
+                action?.updateSPViews()
             }
             .setNegativeButton(R.string.__cancel) { dialog, view ->
                 dialog.dismiss()
@@ -288,7 +288,7 @@ internal object DialogsCollection {
                     e.printStackTrace()
                 }
                 dialog.dismiss()
-                action?.update()
+                action?.updateSPViews()
             }
             return builder.create()
         }
@@ -300,6 +300,6 @@ internal object DialogsCollection {
     }
 
     interface SPDialogAction {
-        fun update()
+        fun updateSPViews()
     }
 }

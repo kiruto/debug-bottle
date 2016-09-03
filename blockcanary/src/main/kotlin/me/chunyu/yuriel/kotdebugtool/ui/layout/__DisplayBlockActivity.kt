@@ -208,11 +208,11 @@ class __DisplayBlockActivity : Activity() {
 
     private fun renderBlockDetail(block: Block?) {
         val listAdapter = mListView.adapter
-        val adapter: BlockDetailAdapter
-        if (listAdapter is BlockDetailAdapter) {
+        val adapter: __BlockDetailAdapter
+        if (listAdapter is __BlockDetailAdapter) {
             adapter = listAdapter
         } else {
-            adapter = BlockDetailAdapter()
+            adapter = __BlockDetailAdapter()
             mListView.adapter = adapter
             mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> adapter.toggleRow(position) }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

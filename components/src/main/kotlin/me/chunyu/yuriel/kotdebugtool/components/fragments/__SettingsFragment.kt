@@ -25,7 +25,6 @@ import me.chunyu.yuriel.kotdebugtool.ui.BlockCanary
  */
 class __SettingsFragment: __ContentFragment() {
     private var rootView: View? = null
-    private var context: Activity? = null
 
     private val MIN: Int = 15
     private val MAX: Int = 5000
@@ -145,11 +144,6 @@ class __SettingsFragment: __ContentFragment() {
         seekBar; valueText; networkSwitcher; strictSwitcher; view3DSwitcher
         leakCanarySwitcher; blockCanarySwitcher
         return rootView
-    }
-
-    override fun onAttach(activity: Activity?) {
-        super.onAttach(activity)
-        context = activity
     }
 
     private fun findViewById(@IdRes id: Int) = rootView?.findViewById(id)

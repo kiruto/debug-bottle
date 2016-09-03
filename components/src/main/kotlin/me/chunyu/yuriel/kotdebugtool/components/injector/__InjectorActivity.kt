@@ -63,7 +63,6 @@ class __InjectorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.__activity_injector)
-        list
-        editText
+        list; editText
     }
 }

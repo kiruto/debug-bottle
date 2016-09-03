@@ -17,7 +17,7 @@ import java.util.*
 /**
  * Created by yuriel on 8/9/16.
  */
-internal class BlockDetailAdapter : BaseAdapter() {
+internal class __BlockDetailAdapter : BaseAdapter() {
 
     private var mFoldings = BooleanArray(0)
 
