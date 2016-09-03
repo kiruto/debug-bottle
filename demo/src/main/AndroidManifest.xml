@@ -29,6 +29,9 @@
         <activity android:name="me.chunyu.yuriel.kotdebugtool.components.__SettingsActivity"
             android:theme="@style/__DemoAppActionBarTheme"/>
 
+        <activity android:name="me.chunyu.yuriel.kotdebugtool.components.__DTDrawerActivity"
+            android:theme="@style/__DemoAppActionBarTheme"/>
+
     </application>
 
 </manifest>

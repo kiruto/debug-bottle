@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="__dt_drawer_items">
+        <item>@string/__dt_all_activities</item>
+        <item>@string/__dt_leaks</item>
+        <item>@string/__dt_blocks</item>
+        <item>@string/__dt_network_traffics</item>
+        <item>@string/__dt_crashes</item>
+        <item>@string/__dt_intents</item>
+        <item>@string/__dt_runnable</item>
+        <item>@string/__dt_settings</item>
+    </string-array>
+</resources>

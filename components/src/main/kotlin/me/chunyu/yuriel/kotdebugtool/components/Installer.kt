@@ -4,6 +4,7 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import com.squareup.leakcanary.LeakCanary
 import me.chunyu.yuriel.kotdebugtool.ui.BlockCanary
 import me.chunyu.yuriel.kotdebugtool.ui.BlockCanaryContext
@@ -15,14 +16,13 @@ import android.os.Process
 import android.os.StrictMode
 import android.util.Log
 import com.squareup.okhttp.OkHttpClient
-import me.chunyu.yuriel.kotdebugtool.ui.R
 import me.chunyu.yuriel.kotdebugtool.components.injector.Injector
 import me.chunyu.yuriel.kotdebugtool.components.okhttp.LoggingInterceptor
 
 /**
  * Created by yuriel on 8/10/16.
  */
-object Installer {
+object Installer: Application.ActivityLifecycleCallbacks {
 
     private var installed: Boolean = false
     private var blockCanary: BlockCanaryContext? = null
@@ -45,6 +45,34 @@ object Installer {
         set(value) {
             if (!installed) field = value
         }
+
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+
+    }
+
+    override fun onActivityStarted(activity: Activity) {
+
+    }
+
+    override fun onActivityResumed(activity: Activity) {
+        DTActivityManager.topActivity = activity
+    }
+
+    override fun onActivityPaused(activity: Activity) {
+
+    }
+
+    override fun onActivityStopped(activity: Activity) {
+
+    }
+
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
+
+    }
+
+    override fun onActivityDestroyed(activity: Activity) {
+
+    }
 
     fun install(app: Application): Installer {
         this.app = app
@@ -130,49 +158,27 @@ object Installer {
         //val view = RemoteViews(app.packageName, R.layout.__notification_main)
         //view.setTextViewText(R.id.notify_title, "start")
         val pi = PendingIntent.getActivity(app, 0, Intent(app, __TestingActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+        val notification: Notification
         val notify = Notification.Builder(app)
-                .setSmallIcon(R.drawable.__block_canary_notification)
+                .setSmallIcon(R.drawable.__dt_notification_bt)
                 .setTicker("debug tool")
                 .setContentIntent(pi)
                 .setContentTitle("title")
                 .setContentText("test")
                 .setOngoing(true)
-                .build()
+        if (SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            notification = notify.notification
+        } else {
+            notification = notify.build()
+        }
+
         val mNotifyMgr = app.getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager
-        mNotifyMgr.notify(12030, notify)
+        mNotifyMgr.notify(12030, notification)
         Log.d(javaClass.simpleName, "started")
     }
 
     private fun registerActivityLifecycleCallbacks(app: Application) {
-        app.registerActivityLifecycleCallbacks(object: Application.ActivityLifecycleCallbacks {
-            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-
-            }
-
-            override fun onActivityStarted(activity: Activity) {
-
-            }
-
-            override fun onActivityResumed(activity: Activity) {
-                DTActivityManager.topActivity = activity
-            }
-
-            override fun onActivityPaused(activity: Activity) {
-
-            }
-
-            override fun onActivityStopped(activity: Activity) {
-
-            }
-
-            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
-
-            }
-
-            override fun onActivityDestroyed(activity: Activity) {
-
-            }
-        })
+        app.registerActivityLifecycleCallbacks(this)
     }
 
     fun kill() {

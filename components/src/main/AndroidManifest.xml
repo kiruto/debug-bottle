@@ -3,6 +3,7 @@
     package="me.chunyu.yuriel.kotdebugtool.components">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application android:label="@string/app_name">
         <activity
             android:name=".__ExampleActivity"

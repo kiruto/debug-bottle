@@ -36,6 +36,8 @@
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/__dt_network_switcher"
+                    android:textOn="On"
+                    android:textOff="Off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
@@ -71,6 +73,8 @@
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/__dt_strict_switcher"
+                    android:textOn="On"
+                    android:textOff="Off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
@@ -106,6 +110,8 @@
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/__dt_3d_switcher"
+                    android:textOn="On"
+                    android:textOff="Off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
@@ -141,6 +147,8 @@
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/__dt_leak_canary_switcher"
+                    android:textOn="On"
+                    android:textOff="Off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
@@ -176,6 +184,8 @@
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/__dt_block_canary_switcher"
+                    android:textOn="On"
+                    android:textOff="Off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
