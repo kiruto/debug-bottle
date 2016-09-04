@@ -49,7 +49,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
     }
 
     private val drawerToggle by lazy {
-        object: ActionBarDrawerToggle(this, drawerLayout, R.string.__dt_drawer_open, R.string.__dt_drawer_close) {
+        val result = object: ActionBarDrawerToggle(this, drawerLayout, R.string.__dt_drawer_open, R.string.__dt_drawer_close) {
             override fun onDrawerOpened(drawerView: View?) {
                 super.onDrawerOpened(drawerView)
                 invalidateOptionsMenu() // creates call to onPrepareOptionsMenu()
@@ -60,7 +60,8 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
                 invalidateOptionsMenu() // creates call to onPrepareOptionsMenu()
             }
         }
-
+        result.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
+        result
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +70,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         drawerLayout.addDrawerListener(drawerToggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
         drawerListView
         selectItem(0)
     }

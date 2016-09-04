@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.os.Process
 import android.support.annotation.IdRes
 import android.support.v4.app.ActivityCompat
@@ -17,8 +18,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import me.chunyu.yuriel.kotdebugtool.components.Installer
 import me.chunyu.yuriel.kotdebugtool.components.R
+import me.chunyu.yuriel.kotdebugtool.components.Installer.RunningFeatureMgr
 import me.chunyu.yuriel.kotdebugtool.components.floating.FloatingViewMgr
 import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
+import org.w3c.dom.Text
 
 /**
  * Created by yuriel on 9/3/16.
@@ -96,12 +99,65 @@ class __StatusFragment: __ContentFragment() {
         result
     }
 
+    private val bottleStatusText by lazy { findViewById(R.id.__dt_bottle_feature) as TextView }
+    private val networkStatusText by lazy { findViewById(R.id.__dt_net_work_feature) as TextView }
+    private val strictStatusText by lazy { findViewById(R.id.__dt_strict_mode_feature) as TextView }
+    private val view3DStatusText by lazy { findViewById(R.id.__dt_3d_feature) as TextView }
+    private val leakStatusText by lazy { findViewById(R.id.__dt_leak_canary_feature) as TextView }
+    private val blockStatusText by lazy { findViewById(R.id.__dt_block_canary_feature) as TextView }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.__fragment_status, container, false)
         this.rootView = rootView
         updatePermissionStatus()
+        checkupStatus()
         permissionRequestBtn; view3DHelperText; view3DSwitcher; procText; procBtn; finishBtn
+        cycle()
         return rootView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        rootView?: return
+        cycle()
+    }
+
+    fun checkupStatus() {
+        if (RunningFeatureMgr.has(RunningFeatureMgr.DEBUG_BOTTLE)) {
+            bottleStatusText.running()
+        } else {
+            bottleStatusText.stopped()
+        }
+
+        if (RunningFeatureMgr.has(RunningFeatureMgr.NETWORK_LISTENER)) {
+            networkStatusText.running()
+        } else {
+            networkStatusText.stopped()
+        }
+
+        if (RunningFeatureMgr.has(RunningFeatureMgr.STRICT_MODE)) {
+            strictStatusText.running()
+        } else {
+            strictStatusText.stopped()
+        }
+
+        if (RunningFeatureMgr.has(RunningFeatureMgr.VIEW_3D_WINDOW)) {
+            view3DStatusText.running()
+        } else {
+            view3DStatusText.stopped()
+        }
+
+        if (RunningFeatureMgr.has(RunningFeatureMgr.LEAK_CANARY)) {
+            leakStatusText.running()
+        } else {
+            leakStatusText.stopped()
+        }
+
+        if (RunningFeatureMgr.has(RunningFeatureMgr.BLOCK_CANARY)) {
+            blockStatusText.running()
+        } else {
+            blockStatusText.stopped()
+        }
     }
 
     /**
@@ -120,6 +176,29 @@ class __StatusFragment: __ContentFragment() {
             permissionText.setTextColor(Color.GREEN)
             permissionRequestBtn?.visibility = View.INVISIBLE
         }
+    }
+
+    private var isRunning = false
+    private fun cycle() {
+        Handler().postDelayed({
+            if (isVisible) {
+                isRunning = true
+                cycle()
+            } else {
+                isRunning = false
+            }
+        }, 1000L)
+        updatePermissionStatus()
+    }
+
+    private fun TextView.running() {
+        setText(R.string.__dt_running)
+        setTextColor(Color.GREEN)
+    }
+
+    private fun TextView.stopped() {
+        setText(R.string.__dt_stopped)
+        setTextColor(Color.RED)
     }
 
     private fun ensurePermission(): Boolean {

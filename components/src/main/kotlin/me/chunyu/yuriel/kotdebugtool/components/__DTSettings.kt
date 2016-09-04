@@ -28,7 +28,15 @@ internal object __DTSettings {
         getSP()?.edit()?.putBoolean(NETWORK_SNIFF, sniff)?.apply()
     }
 
-    fun getNetworkSniff() = getSP()?.getBoolean(NETWORK_SNIFF, false)?: false
+    fun getNetworkSniff(): Boolean {
+        val result = getSP()?.getBoolean(NETWORK_SNIFF, false)?: false
+        if (result) {
+            Installer.RunningFeatureMgr.add(Installer.RunningFeatureMgr.NETWORK_LISTENER)
+        } else {
+            Installer.RunningFeatureMgr.remove(Installer.RunningFeatureMgr.NETWORK_LISTENER)
+        }
+        return result
+    }
 
     fun setStrictMode(strictMode: Boolean) {
         getSP()?.edit()?.putBoolean(STRICT_MODE, strictMode)?.apply()

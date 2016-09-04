@@ -115,4 +115,13 @@
     <string name="__dt_bottle">Debug Bottle</string>
     <string name="__dt_bottle_version">version 1.0.0EAP</string>
     <string name="__dt_finish">Close</string>
+    <string name="__dt_running_feature">Running Services Status</string>
+    <string name="__dt_bottle_feature">Debug Bottle</string>
+    <string name="__dt_net_work_feature">Network Reporting</string>
+    <string name="__dt_strict_mode_feature">Strict Mode</string>
+    <string name="__dt_3d_feature">3D Controller Window</string>
+    <string name="__dt_leak_canary_feature">Leak Canary</string>
+    <string name="__dt_block_canary_feature">Block Canary</string>
+    <string name="__dt_running">Running</string>
+    <string name="__dt_stopped">Stopped</string>
 </resources>

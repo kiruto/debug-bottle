@@ -112,24 +112,36 @@ object Installer: Application.ActivityLifecycleCallbacks {
     }
 
     fun run() {
+        RunningFeatureMgr.clear()
         if(!__DTSettings.getBottleEnable())
             return
+        RunningFeatureMgr.add(RunningFeatureMgr.DEBUG_BOTTLE)
         installed = true
         if (null != blockCanary) {
             val blockCanary = BlockCanary.install(blockCanary!!)
             if (__DTSettings.getBlockCanaryEnable()) {
                 blockCanary.start()
+                RunningFeatureMgr.add(RunningFeatureMgr.BLOCK_CANARY)
             } else {
                 blockCanary.stop()
+                RunningFeatureMgr.remove(RunningFeatureMgr.BLOCK_CANARY)
             }
         }
         if (null != app) {
             if (__DTSettings.getStrictMode()) {
                 enableStrictMode()
+                RunningFeatureMgr.add(RunningFeatureMgr.STRICT_MODE)
+            } else {
+                RunningFeatureMgr.remove(RunningFeatureMgr.STRICT_MODE)
             }
+
             if (__DTSettings.getLeakCanaryEnable()) {
                 LeakCanary.install(app)
+                RunningFeatureMgr.add(RunningFeatureMgr.LEAK_CANARY)
+            } else {
+                RunningFeatureMgr.remove(RunningFeatureMgr.LEAK_CANARY)
             }
+
             showNotification(app!!)
             registerActivityLifecycleCallbacks(app!!)
         }
@@ -138,6 +150,7 @@ object Installer: Application.ActivityLifecycleCallbacks {
         }
         if (null != httpClient) {
             httpClient!!.interceptors().add(LoggingInterceptor())
+            __DTSettings.getNetworkSniff()
         }
         app = null
     }
@@ -186,10 +199,44 @@ object Installer: Application.ActivityLifecycleCallbacks {
     }
 
     fun kill() {
+        val intent = Intent()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        try {
+            DTActivityManager.topActivity?.startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         Process.killProcess(Process.myPid())
     }
 
     internal fun getSP(fileName: String): SharedPreferences? {
         return app?.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+    }
+
+    internal object RunningFeatureMgr {
+        val DEBUG_BOTTLE = 1 shl 0
+        val NETWORK_LISTENER = 1 shl 1
+        val STRICT_MODE = 1 shl 2
+        val VIEW_3D_WINDOW = 1 shl 3
+        val LEAK_CANARY = 1 shl 4
+        val BLOCK_CANARY = 1 shl 5
+        val CRASH_HANDELER = 1 shl 6
+
+        private var flags = 0
+
+        fun clear() {
+            flags = 0
+        }
+
+        fun add(flag: Int) {
+            flags = (flags or flag)
+        }
+
+        fun remove(flag: Int) {
+            flags = (flag and flag.inv())
+        }
+
+        fun has(flag: Int) = (flags and flag) == flag
+
     }
 }
