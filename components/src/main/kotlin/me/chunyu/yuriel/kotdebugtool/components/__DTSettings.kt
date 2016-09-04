@@ -12,6 +12,7 @@ internal object __DTSettings {
 
     fun setBottleEnable(enable: Boolean) {
         getSP()?.edit()?.putBoolean(BOTTLE_ENABLE, enable)?.apply()
+        Installer.setNotificationDisplay(enable)
     }
 
     fun getBottleEnable() = getSP()?.getBoolean(BOTTLE_ENABLE, false)?: false

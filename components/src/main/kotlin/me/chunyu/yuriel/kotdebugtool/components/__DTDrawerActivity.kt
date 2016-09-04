@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import com.squareup.leakcanary.internal.DisplayLeakActivity
 import me.chunyu.yuriel.kotdebugtool.components.fragments.*
 
@@ -150,8 +151,12 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
             }
 
             s(R.string.__dt_leaks) -> {
-                val intent = Intent(this, DisplayLeakActivity::class.java)
-                startActivity(intent)
+                if (RunningFeatureMgr.has(RunningFeatureMgr.LEAK_CANARY)) {
+                    val intent = Intent(this, DisplayLeakActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "You should enable leak canary first!", Toast.LENGTH_SHORT).show()
+                }
                 return
             }
 

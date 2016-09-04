@@ -25,6 +25,8 @@ import me.chunyu.yuriel.kotdebugtool.components.okhttp.LoggingInterceptor
 object Installer: Application.ActivityLifecycleCallbacks {
 
     private var installed: Boolean = false
+    //private var notification: Notification? = null
+    private val NOTIFICATION_ID = 12030
     private var blockCanary: BlockCanaryContext? = null
         set(value) {
             if (!installed) field = value
@@ -149,12 +151,26 @@ object Installer: Application.ActivityLifecycleCallbacks {
             httpClient!!.interceptors().add(LoggingInterceptor())
             __DTSettings.getNetworkSniff()
         }
-        app = null
     }
 
-    internal fun startInject() {
+    internal fun startInject(): Boolean {
         if (null != injector) {
-            injector?.inject()
+            try {
+                injector?.inject()
+                return true
+            } catch(e: Exception) {
+                return false
+            }
+        }
+        return true
+    }
+
+    internal fun setNotificationDisplay(display: Boolean) {
+        if (display) {
+            showNotification(app!!)
+        } else {
+            val mNotifyMgr = app?.getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager
+            mNotifyMgr.cancel(NOTIFICATION_ID)
         }
     }
 
@@ -193,7 +209,7 @@ object Installer: Application.ActivityLifecycleCallbacks {
         }
 
         val mNotifyMgr = app.getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager
-        mNotifyMgr.notify(12030, notification)
+        mNotifyMgr.notify(NOTIFICATION_ID, notification)
         Log.d(javaClass.simpleName, "started")
     }
 

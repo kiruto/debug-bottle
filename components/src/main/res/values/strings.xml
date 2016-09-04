@@ -101,7 +101,7 @@
     <string name="__dt_settings">Settings</string>
     <string name="__dt_submit">submit</string>
     <string name="__dt_put">put</string>
-    <string name="__dt_enable_switcher">Enable Debug Bottle Notifications</string>
+    <string name="__dt_enable_switcher">Enable Debug Bottle Notifications(need restart)</string>
     <string name="__dt_bottle_enable">Debug Bottle Report</string>
     <string name="__dt_permissions">Permissions</string>
     <string name="__dt_permission_request">request</string>
