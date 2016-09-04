@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
+import me.chunyu.yuriel.kotdebugtool.components.injector.IntentInjector
 
 /**
  * Created by yuriel on 8/9/16.

@@ -1,4 +1,4 @@
-package me.chunyu.yuriel.kotdebugtool.components
+package me.chunyu.yuriel.kotdebugtool.components.injector
 
 import android.content.Intent
 import android.util.Log
@@ -13,7 +13,7 @@ object IntentInjector {
         Log.d(TAG, "setActivity")
     }
 
-    fun add(vararg any: Any) {
+    fun put(a: Any?, b: Any?) {
         Log.d(TAG, "add")
     }
 

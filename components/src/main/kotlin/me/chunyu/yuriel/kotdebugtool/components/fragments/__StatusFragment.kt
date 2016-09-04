@@ -7,21 +7,24 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Message
 import android.os.Process
 import android.support.annotation.IdRes
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.SwitchCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import me.chunyu.yuriel.kotdebugtool.components.Installer
 import me.chunyu.yuriel.kotdebugtool.components.R
-import me.chunyu.yuriel.kotdebugtool.components.Installer.RunningFeatureMgr
+import me.chunyu.yuriel.kotdebugtool.components.RunningFeatureMgr
 import me.chunyu.yuriel.kotdebugtool.components.floating.FloatingViewMgr
 import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
 import org.w3c.dom.Text
+import java.util.*
 
 /**
  * Created by yuriel on 9/3/16.
@@ -99,6 +102,12 @@ class __StatusFragment: __ContentFragment() {
         result
     }
 
+    private val refreshView by lazy {
+        val result = findViewById(R.id.__dt_refresh)
+        result?.setOnClickListener { checkupStatus() }
+        result!!
+    }
+
     private val bottleStatusText by lazy { findViewById(R.id.__dt_bottle_feature) as TextView }
     private val networkStatusText by lazy { findViewById(R.id.__dt_net_work_feature) as TextView }
     private val strictStatusText by lazy { findViewById(R.id.__dt_strict_mode_feature) as TextView }
@@ -111,15 +120,9 @@ class __StatusFragment: __ContentFragment() {
         this.rootView = rootView
         updatePermissionStatus()
         checkupStatus()
-        permissionRequestBtn; view3DHelperText; view3DSwitcher; procText; procBtn; finishBtn
-        cycle()
+        permissionRequestBtn; view3DHelperText; view3DSwitcher;
+        procText; procBtn; finishBtn; refreshView
         return rootView
-    }
-
-    override fun onResume() {
-        super.onResume()
-        rootView?: return
-        cycle()
     }
 
     fun checkupStatus() {
@@ -176,19 +179,6 @@ class __StatusFragment: __ContentFragment() {
             permissionText.setTextColor(Color.GREEN)
             permissionRequestBtn?.visibility = View.INVISIBLE
         }
-    }
-
-    private var isRunning = false
-    private fun cycle() {
-        Handler().postDelayed({
-            if (isVisible) {
-                isRunning = true
-                cycle()
-            } else {
-                isRunning = false
-            }
-        }, 1000L)
-        updatePermissionStatus()
     }
 
     private fun TextView.running() {

@@ -8,6 +8,7 @@ import android.os.Binder
 import android.os.IBinder
 import me.chunyu.yuriel.kotdebugtool.components.DTActivityManager
 import me.chunyu.yuriel.kotdebugtool.components.Installer
+import me.chunyu.yuriel.kotdebugtool.components.RunningFeatureMgr
 import java.lang.reflect.InvocationTargetException
 
 /**
@@ -29,14 +30,14 @@ internal class __FloatingService : Service() {
     private fun createView() {
         FloatingViewMgr.setupWith(this)
         FloatingViewMgr.show3DViewFloating()
-        Installer.RunningFeatureMgr.add(Installer.RunningFeatureMgr.VIEW_3D_WINDOW)
+        RunningFeatureMgr.add(RunningFeatureMgr.VIEW_3D_WINDOW)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         FloatingViewMgr.release3DView()
         FloatingViewMgr.releaseContext(this)
-        Installer.RunningFeatureMgr.remove(Installer.RunningFeatureMgr.VIEW_3D_WINDOW)
+        RunningFeatureMgr.remove(RunningFeatureMgr.VIEW_3D_WINDOW)
     }
 
     fun getForegroundActivity(): Activity? = DTActivityManager.topActivity

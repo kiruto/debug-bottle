@@ -4,7 +4,7 @@
 
     <header
         android:fragment="me.chunyu.yuriel.kotdebugtool.components.__ExampleActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
+        android:icon="@drawable/__dt_ic_info_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
@@ -14,7 +14,7 @@
 
     <header
         android:fragment="me.chunyu.yuriel.kotdebugtool.components.__ExampleActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
+        android:icon="@drawable/__dt_ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
 
 </preference-headers>

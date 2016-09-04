@@ -10,7 +10,7 @@ import java.util.*
 /**
  * Created by yuriel on 8/15/16.
  */
-open class IntentInjectorImpl: Injectable<Intent> {
+open class __IntentInjectorImpl : Injectable<Intent> {
 
     override val model: LinkedHashMap<String, Intent> = LinkedHashMap()
 
@@ -21,7 +21,7 @@ open class IntentInjectorImpl: Injectable<Intent> {
         activityWrapper = WeakReference(activity)
     }
 
-    override fun add(name: String, t: Intent) {
+    override fun put(name: String, t: Intent) {
         model.put(name, t)
     }
 

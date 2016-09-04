@@ -26,14 +26,19 @@ internal object __DTSettings {
 
     fun setNetworkSniff(sniff: Boolean) {
         getSP()?.edit()?.putBoolean(NETWORK_SNIFF, sniff)?.apply()
+        if (sniff) {
+            RunningFeatureMgr.add(RunningFeatureMgr.NETWORK_LISTENER)
+        } else {
+            RunningFeatureMgr.remove(RunningFeatureMgr.NETWORK_LISTENER)
+        }
     }
 
     fun getNetworkSniff(): Boolean {
         val result = getSP()?.getBoolean(NETWORK_SNIFF, false)?: false
         if (result) {
-            Installer.RunningFeatureMgr.add(Installer.RunningFeatureMgr.NETWORK_LISTENER)
+            RunningFeatureMgr.add(RunningFeatureMgr.NETWORK_LISTENER)
         } else {
-            Installer.RunningFeatureMgr.remove(Installer.RunningFeatureMgr.NETWORK_LISTENER)
+            RunningFeatureMgr.remove(RunningFeatureMgr.NETWORK_LISTENER)
         }
         return result
     }

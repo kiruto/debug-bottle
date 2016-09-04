@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import me.chunyu.yuriel.kotdebugtool.components.Installer
-import me.chunyu.yuriel.kotdebugtool.components.injector.IntentInjectorImpl
+import me.chunyu.yuriel.kotdebugtool.components.injector.__IntentInjectorImpl
 
 /**
  * Created by yuriel on 8/15/16.
  */
-internal class AllActivities(activity: Activity): IntentInjectorImpl() {
+internal class AllActivities(activity: Activity): __IntentInjectorImpl() {
     init {
         setActivity(activity)
         try {
@@ -20,7 +20,7 @@ internal class AllActivities(activity: Activity): IntentInjectorImpl() {
             val list = info.activities
             for (a in list) {
                 val clazz = Class.forName(a.name)
-                add(clazz.simpleName, Intent(activity, clazz))
+                put(clazz.simpleName, Intent(activity, clazz))
             }
         } catch (e: Exception) {
             e.printStackTrace()

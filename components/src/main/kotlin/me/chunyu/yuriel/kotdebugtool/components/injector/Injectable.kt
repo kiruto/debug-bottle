@@ -7,7 +7,7 @@ import java.util.*
  */
 internal interface Injectable<T> {
     val model: LinkedHashMap<String, T>
-    fun add(name: String, t: T)
+    fun put(name: String, t: T)
     operator fun get(name: String): T?
     fun run(t: T?)
     fun run(name: String)

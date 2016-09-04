@@ -9,6 +9,6 @@ import java.util.*
 /**
  * Created by yuriel on 8/10/16.
  */
-internal object IntentInjector: IntentInjectorImpl() {
+object IntentInjector: __IntentInjectorImpl() {
     override val model: LinkedHashMap<String, Intent> = LinkedHashMap()
 }

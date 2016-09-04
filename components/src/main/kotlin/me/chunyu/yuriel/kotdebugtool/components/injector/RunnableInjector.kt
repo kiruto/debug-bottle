@@ -5,11 +5,11 @@ import java.util.*
 /**
  * Created by yuriel on 8/15/16.
  */
-internal object RunnableInjector: Injectable<Runnable> {
+object RunnableInjector: Injectable<Runnable> {
 
     override val model: LinkedHashMap<String, Runnable> = LinkedHashMap()
 
-    override fun add(name: String, t: Runnable) {
+    override fun put(name: String, t: Runnable) {
         model.put(name, t)
     }
 

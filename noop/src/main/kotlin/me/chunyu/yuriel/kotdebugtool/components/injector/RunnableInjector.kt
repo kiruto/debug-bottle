@@ -1,4 +1,4 @@
-package me.chunyu.yuriel.kotdebugtool.components
+package me.chunyu.yuriel.kotdebugtool.components.injector
 
 import android.util.Log
 
@@ -8,7 +8,7 @@ import android.util.Log
 object RunnableInjector {
     private val TAG = "FakeRunnableInjector"
 
-    fun add(vararg any: Any) {
+    fun put(a: Any?, b: Any?) {
         Log.d(TAG, "add")
     }
 

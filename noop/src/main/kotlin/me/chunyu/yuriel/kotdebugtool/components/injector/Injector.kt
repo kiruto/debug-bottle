@@ -7,7 +7,7 @@ import android.util.Log
  */
 abstract class Injector {
     private val TAG = "FakeInjector"
-    protected fun add(vararg any: Any?) {
+    protected fun put(a: Any?, b: Any?) {
         Log.d(TAG, "add")
     }
 

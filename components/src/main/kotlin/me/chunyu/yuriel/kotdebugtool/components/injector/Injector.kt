@@ -10,11 +10,11 @@ abstract class Injector {
     private val runnableInjector = RunnableInjector
 
     protected fun add(intent: Intent, name: String = intent.toString()) {
-        intentInjector.add(name, intent)
+        intentInjector.put(name, intent)
     }
 
     protected fun add(runnable: Runnable, name: String = runnable.toString()) {
-        runnableInjector.add(name, runnable)
+        runnableInjector.put(name, runnable)
     }
 
     abstract fun inject()
