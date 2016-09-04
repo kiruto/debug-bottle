@@ -27,7 +27,7 @@ internal object HttpBlockFileMgr {
     internal val path: String
         get() {
             val state = Environment.getExternalStorageState()
-            val logPath = __DTSettings.getHttpFileStorPath()
+            val logPath = __DTSettings.getHttpFileStorePath()
 
             if (Environment.MEDIA_MOUNTED == state && Environment.getExternalStorageDirectory().canWrite()) {
                 return Environment.getExternalStorageDirectory().path + logPath

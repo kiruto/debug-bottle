@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -75,6 +76,7 @@ internal object DialogsCollection {
             val key = findViewById(R.id.__dt_intent_key) as TextView
             val et = findViewById(R.id.__dt_edit_text) as __DebugToolEditText
             val title = findViewById(R.id.__dt_title) as TextView
+            val putBtn = findViewById(R.id.__dt_edit_submit) as Button
             nameView.text = intent!!.component.className
             title.text = getString(R.string.__run_activity_with_intent)
 
@@ -112,7 +114,7 @@ internal object DialogsCollection {
                 et.setText("")
             }
 
-            et.onEnterPressed {
+            fun putExtra() {
                 if (!key.text.isEmpty() && !et.text.isEmpty()) {
                     val valueResult: String = et.text.toString()
                     if (valueResult.equals("true", true) || valueResult.equals("false", true)) {
@@ -129,6 +131,12 @@ internal object DialogsCollection {
                     updateContentGroup(content)
                 }
             }
+
+            et.onEnterPressed {
+                putExtra()
+            }
+
+            putBtn.setOnClickListener { putExtra() }
         }
 
         private fun updateContentGroup(parent: ViewGroup) {

@@ -1,6 +1,7 @@
 package me.chunyu.yuriel.kotdebugtool.components.floating
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.Service
 import android.content.Context
 import android.graphics.PixelFormat
@@ -87,6 +88,22 @@ internal object FloatingViewMgr {
         if (context === this.context) {
             this.context = null
         }
+    }
+
+    fun isFloatingWindowRunning(): Boolean {
+        val activityManager = context?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val serviceList = activityManager.getRunningServices(30)
+
+        if (serviceList.size <= 0) {
+            return false
+        }
+
+        for (i in 0..serviceList.size - 1) {
+            if (serviceList[i].service.className.equals(__FloatingService::class.java.name) == true) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun attachActivityTo3DView(activity: Activity) {

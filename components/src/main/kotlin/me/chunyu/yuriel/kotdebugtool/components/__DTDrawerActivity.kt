@@ -2,6 +2,7 @@ package me.chunyu.yuriel.kotdebugtool.components
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
@@ -69,6 +70,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         drawerListView
+        selectItem(0)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -94,6 +96,21 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         f?.updateSPViews()
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode > -1 && requestCode < __StatusFragment.permissions.size) {
+            val permission = __StatusFragment.permissions[requestCode]
+            updatePermissionStatus()
+            return
+        } else
+            return
+    }
+
+    private fun updatePermissionStatus() {
+        val f = supportFragmentManager.findFragmentByTag(__StatusFragment.TAG) as __StatusFragment?
+        f?: return
+        f.updatePermissionStatus()
+    }
+
     private fun selectItem(position: Int) {
 
         var fragment: __ContentFragment? = null
@@ -101,6 +118,10 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         fun s(@IdRes id: Int): String = resources.getString(id)
 
         when (titles[position]) {
+
+            s(R.string.__dt_status) -> {
+                fragment = __StatusFragment()
+            }
 
             s(R.string.__dt_all_activities) -> {
                 fragment = __InjectorFragment.newInstance(__InjectorFragment.TYPE_ALL_ACTIVITIES)

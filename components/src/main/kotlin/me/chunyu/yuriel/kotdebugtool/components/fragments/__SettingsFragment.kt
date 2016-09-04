@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.SeekBar
 import me.chunyu.yuriel.kotdebugtool.components.R
 import me.chunyu.yuriel.kotdebugtool.components.__DTSettings
+import me.chunyu.yuriel.kotdebugtool.components.floating.FloatingViewMgr
 import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
 import me.chunyu.yuriel.kotdebugtool.ui.BlockCanary
 
@@ -99,7 +100,7 @@ class __SettingsFragment: __ContentFragment() {
 
     private val view3DSwitcher by lazy {
         val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
-        result.isChecked = isFloatingWindowRunning()
+        result.isChecked = FloatingViewMgr.isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
             val intent = Intent(context, __FloatingService::class.java)
             if (isChecked) {
@@ -138,29 +139,24 @@ class __SettingsFragment: __ContentFragment() {
         result
     }
 
+    private val bottleSwitch by lazy {
+        val result = findViewById(R.id.__dt_enable_switcher) as SwitchCompat
+        result.isChecked = __DTSettings.getBottleEnable()
+        result.setOnCheckedChangeListener { view, isChecked ->
+            __DTSettings.setBottleEnable(isChecked)
+        }
+        result
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.__activity_settings, container, false)
         this.rootView = rootView
         seekBar; valueText; networkSwitcher; strictSwitcher; view3DSwitcher
-        leakCanarySwitcher; blockCanarySwitcher
+        leakCanarySwitcher; blockCanarySwitcher; bottleSwitch
         return rootView
     }
 
     private fun findViewById(@IdRes id: Int) = rootView?.findViewById(id)
 
-    private fun isFloatingWindowRunning(): Boolean {
-        val activityManager = activity.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val serviceList = activityManager.getRunningServices(30)
 
-        if (serviceList.size <= 0) {
-            return false
-        }
-
-        for (i in 0..serviceList.size - 1) {
-            if (serviceList[i].service.className.equals(__FloatingService::class.java.name) == true) {
-                return true
-            }
-        }
-        return false
-    }
 }

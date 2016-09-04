@@ -89,13 +89,30 @@
     <string name="__dt_drawer_open">__dt_drawer_open</string>
     <string name="__dt_drawer_close">__dt_drawer_close</string>
 
+    <string name="__dt_status">Debug Bottle Status</string>
     <string name="__dt_all_activities">All Activities</string>
     <string name="__dt_sp_viewer">Shared Preferences Editor</string>
-    <string name="__dt_leaks">Leaks</string>
-    <string name="__dt_blocks">Blocks</string>
-    <string name="__dt_network_traffics">Network Traffics</string>
-    <string name="__dt_crashes">Crashes</string>
-    <string name="__dt_intents">Intents</string>
-    <string name="__dt_runnable">Runnable</string>
+    <string name="__dt_leaks">Leak Reports</string>
+    <string name="__dt_blocks">Block Reports</string>
+    <string name="__dt_network_traffics">Network Traffics Reports</string>
+    <string name="__dt_crashes">Crash Reports</string>
+    <string name="__dt_intents">Intent Entries</string>
+    <string name="__dt_runnable">Runnable Entries</string>
     <string name="__dt_settings">Settings</string>
+    <string name="__dt_submit">submit</string>
+    <string name="__dt_put">put</string>
+    <string name="__dt_enable_switcher">Enable Debug Bottle Notifications</string>
+    <string name="__dt_bottle_enable">Debug Bottle Report</string>
+    <string name="__dt_permissions">Permissions</string>
+    <string name="__dt_permission_request">request</string>
+
+    <string name="__dt_granted">Granted</string>
+    <string name="__dt_denied">Denied</string>
+    <string name="__dt_on_off">on / off</string>
+    <string name="__dt_if_crashes_see_this">If your app starts crashing when enable this, click me to help you solve this problem.</string>
+    <string name="__dt_application_process">App Progress</string>
+    <string name="__dt_kill_process">Kill proc</string>
+    <string name="__dt_bottle">Debug Bottle</string>
+    <string name="__dt_bottle_version">version 1.0.0EAP</string>
+    <string name="__dt_finish">Close</string>
 </resources>

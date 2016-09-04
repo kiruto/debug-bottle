@@ -23,6 +23,16 @@
             android:theme="@style/__dt_canary_BlockCanary.Base">
         </activity>
 
+        <activity
+            android:name=".__DTDrawerActivity"
+            android:icon="@drawable/__dt_ic_bottle_64dp"
+            android:label="DebugTools">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <service android:name=".floating.__FloatingService" />
     </application>
 

@@ -59,7 +59,9 @@ object Installer: Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityPaused(activity: Activity) {
-
+        if (DTActivityManager.topActivity === activity) {
+            DTActivityManager.topActivity = null
+        }
     }
 
     override fun onActivityStopped(activity: Activity) {
@@ -110,6 +112,8 @@ object Installer: Application.ActivityLifecycleCallbacks {
     }
 
     fun run() {
+        if(!__DTSettings.getBottleEnable())
+            return
         installed = true
         if (null != blockCanary) {
             val blockCanary = BlockCanary.install(blockCanary!!)

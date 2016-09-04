@@ -10,13 +10,19 @@ internal object __DTSettings {
 
     private fun getSP() = Installer.getSP(DT_SETTING_STORE_FILE)
 
+    fun setBottleEnable(enable: Boolean) {
+        getSP()?.edit()?.putBoolean(BOTTLE_ENABLE, enable)?.apply()
+    }
+
+    fun getBottleEnable() = getSP()?.getBoolean(BOTTLE_ENABLE, false)?: false
+
     fun setBlockThreshold(threshold: Long) {
         getSP()?.edit()?.putLong(BLOCK_THRESHOLD, threshold)?.apply()
     }
 
     fun getBlockThreshold() = getSP()?.getLong(BLOCK_THRESHOLD, DEFAULT_BLOCK_THRESHOLD)?: DEFAULT_BLOCK_THRESHOLD
 
-    fun getHttpFileStorPath() = "/ktdebugtools/http"
+    fun getHttpFileStorePath() = "/ktdebugtools/http"
 
     fun setNetworkSniff(sniff: Boolean) {
         getSP()?.edit()?.putBoolean(NETWORK_SNIFF, sniff)?.apply()
