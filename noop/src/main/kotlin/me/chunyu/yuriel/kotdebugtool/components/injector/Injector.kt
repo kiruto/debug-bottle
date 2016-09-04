@@ -1,5 +1,6 @@
 package me.chunyu.yuriel.kotdebugtool.components.injector
 
+import android.app.Activity
 import android.util.Log
 
 /**
@@ -7,6 +8,7 @@ import android.util.Log
  */
 abstract class Injector {
     private val TAG = "FakeInjector"
+    protected val activity: Activity? = null
     protected fun put(a: Any?, b: Any?) {
         Log.d(TAG, "add")
     }

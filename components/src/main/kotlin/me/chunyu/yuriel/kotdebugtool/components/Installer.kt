@@ -145,14 +145,17 @@ object Installer: Application.ActivityLifecycleCallbacks {
             showNotification(app!!)
             registerActivityLifecycleCallbacks(app!!)
         }
-        if (null != injector) {
-            injector?.inject()
-        }
         if (null != httpClient) {
             httpClient!!.interceptors().add(LoggingInterceptor())
             __DTSettings.getNetworkSniff()
         }
         app = null
+    }
+
+    internal fun startInject() {
+        if (null != injector) {
+            injector?.inject()
+        }
     }
 
     private fun enableStrictMode() {
@@ -180,8 +183,8 @@ object Installer: Application.ActivityLifecycleCallbacks {
                 .setSmallIcon(R.drawable.__dt_notification_bt)
                 .setTicker("debug tool")
                 .setContentIntent(pi)
-                .setContentTitle("title")
-                .setContentText("test")
+                .setContentTitle("Debug Bottle")
+                .setContentText("Debug Bottle is running correctly")
                 .setOngoing(true)
         if (SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             notification = notify.notification
