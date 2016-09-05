@@ -124,4 +124,7 @@
     <string name="__dt_block_canary_feature">Block Canary</string>
     <string name="__dt_running">Running</string>
     <string name="__dt_stopped">Stopped</string>
+    <string name="__dt_write_external_storage">write external storage</string>
+    <string name="__dt_read_phone_state">read phone state</string>
+    <string name="__dt_system_alert_window">system alert window</string>
 </resources>

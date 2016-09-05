@@ -1,14 +1,14 @@
 package me.chunyu.yuriel.kotdebugtool.components.fragments
 
 import android.Manifest
+import android.annotation.TargetApi
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
-import android.os.Bundle
-import android.os.Handler
-import android.os.Message
-import android.os.Process
+import android.os.*
+import android.provider.Settings
 import android.support.annotation.IdRes
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -43,10 +43,10 @@ class __StatusFragment: __ContentFragment() {
         )
     }
 
-    private val permissionText by lazy {
-        val result = findViewById(R.id.__dt_status_permissions) as TextView
-        result
-    }
+//    private val permissionText by lazy {
+//        val result = findViewById(R.id.__dt_status_permissions) as TextView
+//        result
+//    }
 
     private val permissionRequestBtn by lazy {
         val result = findViewById(R.id.__dt_permission_request)
@@ -62,7 +62,6 @@ class __StatusFragment: __ContentFragment() {
         result.setOnClickListener {
             val url = "http://stackoverflow.com/questions/36016369/system-alert-window-how-to-get-this-permission-automatically-on-android-6-0-an"
             val intent = Intent(Intent.ACTION_VIEW)
-            android.provider.Settings.ACTION_APPLICATION_SETTINGS
             intent.data = Uri.parse(url)
             startActivity(intent)
         }
@@ -109,6 +108,9 @@ class __StatusFragment: __ContentFragment() {
         result!!
     }
 
+    private val rwPermissionText by lazy { findViewById(R.id.__dt_write_external_storage) as TextView }
+    private val phonePermissionText by lazy { findViewById(R.id.__dt_read_phone_state) as TextView }
+    private val windowPermissionText by lazy { findViewById(R.id.__dt_system_alert_window) as TextView }
     private val bottleStatusText by lazy { findViewById(R.id.__dt_bottle_feature) as TextView }
     private val networkStatusText by lazy { findViewById(R.id.__dt_net_work_feature) as TextView }
     private val strictStatusText by lazy { findViewById(R.id.__dt_strict_mode_feature) as TextView }
@@ -124,6 +126,27 @@ class __StatusFragment: __ContentFragment() {
         permissionRequestBtn; view3DHelperText; view3DSwitcher;
         procText; procBtn; finishBtn; refreshView
         return rootView
+    }
+
+    fun checkupPermission() {
+
+        if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            rwPermissionText.granted()
+        } else {
+            rwPermissionText.denied()
+        }
+
+        if (hasPermission(Manifest.permission.READ_PHONE_STATE)) {
+            phonePermissionText.granted()
+        } else {
+            phonePermissionText.denied()
+        }
+
+        if (isSystemAlertPermissionGranted(context!!)) {
+            windowPermissionText.granted()
+        } else {
+            windowPermissionText.denied()
+        }
     }
 
     fun checkupStatus() {
@@ -172,14 +195,24 @@ class __StatusFragment: __ContentFragment() {
      */
     fun updatePermissionStatus() {
         if (!ensurePermission()) {
-            permissionText.setText(R.string.__dt_denied)
-            permissionText.setTextColor(Color.RED)
+//            permissionText.setText(R.string.__dt_denied)
+//            permissionText.setTextColor(Color.RED)
             permissionRequestBtn?.visibility = View.VISIBLE
         } else {
-            permissionText.setText(R.string.__dt_granted)
-            permissionText.setTextColor(Color.GREEN)
+//            permissionText.setText(R.string.__dt_granted)
+//            permissionText.setTextColor(Color.GREEN)
             permissionRequestBtn?.visibility = View.INVISIBLE
         }
+    }
+
+    private fun TextView.granted() {
+        setText(R.string.__dt_granted)
+        setTextColor(Color.GREEN)
+    }
+
+    private fun TextView.denied() {
+        setText(R.string.__dt_denied)
+        setTextColor(Color.RED)
     }
 
     private fun TextView.running() {
@@ -192,13 +225,22 @@ class __StatusFragment: __ContentFragment() {
         setTextColor(Color.RED)
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    fun isSystemAlertPermissionGranted(context: Context): Boolean {
+        val result = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(context)
+        return result
+    }
+
+    private fun hasPermission(permission: String) = PackageManager.PERMISSION_DENIED != ContextCompat.checkSelfPermission(context!!, permission)
+
     private fun ensurePermission(): Boolean {
         context?: return false
 
         for (p in permissions) {
-            if (PackageManager.PERMISSION_DENIED == ContextCompat.checkSelfPermission(context!!, p))
+            if (!hasPermission(p))
                 return false
         }
+        checkupPermission()
         return true
     }
 

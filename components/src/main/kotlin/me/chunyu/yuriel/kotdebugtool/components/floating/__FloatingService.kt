@@ -2,6 +2,7 @@ package me.chunyu.yuriel.kotdebugtool.components.floating
 
 import android.app.Service
 import android.content.Intent
+import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
 import android.provider.Settings
@@ -31,7 +32,7 @@ internal class __FloatingService : Service() {
         fun requestingPermission(msg: String?) {
             val str = msg?:  "Permission denied for this action. You need to manually grant the permission in Settings -> Apps -> Draw over other apps."
             Toast.makeText(this, str, Toast.LENGTH_LONG).show()
-            val intent = Intent(Settings.ACTION_APPLICATION_SETTINGS)
+            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + packageName))
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
