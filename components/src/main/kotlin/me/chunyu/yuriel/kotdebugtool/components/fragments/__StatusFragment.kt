@@ -128,7 +128,7 @@ class __StatusFragment: __ContentFragment() {
         return rootView
     }
 
-    fun checkupPermission() {
+    private fun checkupPermission() {
 
         if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             rwPermissionText.granted()
@@ -149,7 +149,7 @@ class __StatusFragment: __ContentFragment() {
         }
     }
 
-    fun checkupStatus() {
+    private fun checkupStatus() {
         if (RunningFeatureMgr.has(RunningFeatureMgr.DEBUG_BOTTLE)) {
             bottleStatusText.running()
         } else {
@@ -235,12 +235,12 @@ class __StatusFragment: __ContentFragment() {
 
     private fun ensurePermission(): Boolean {
         context?: return false
+        checkupPermission()
 
         for (p in permissions) {
             if (!hasPermission(p))
                 return false
         }
-        checkupPermission()
         return true
     }
 
