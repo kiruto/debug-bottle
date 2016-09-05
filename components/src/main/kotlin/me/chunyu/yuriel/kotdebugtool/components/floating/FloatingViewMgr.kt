@@ -2,13 +2,12 @@ package me.chunyu.yuriel.kotdebugtool.components.floating
 
 import android.app.Activity
 import android.app.ActivityManager
-import android.app.Service
 import android.content.Context
+import android.content.Intent
 import android.graphics.PixelFormat
-import android.util.Log
+import android.provider.Settings
 import android.view.*
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.Toast
 import me.chunyu.yuriel.kotdebugtool.components.DTActivityManager
 import me.chunyu.yuriel.kotdebugtool.components.R

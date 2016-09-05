@@ -62,6 +62,7 @@ class __StatusFragment: __ContentFragment() {
         result.setOnClickListener {
             val url = "http://stackoverflow.com/questions/36016369/system-alert-window-how-to-get-this-permission-automatically-on-android-6-0-an"
             val intent = Intent(Intent.ACTION_VIEW)
+            android.provider.Settings.ACTION_APPLICATION_SETTINGS
             intent.data = Uri.parse(url)
             startActivity(intent)
         }
