@@ -3,12 +3,9 @@ package me.chunyu.yuriel.kotdebugtool.components.floating
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
-import android.content.Intent
 import android.graphics.PixelFormat
-import android.provider.Settings
 import android.view.*
 import android.widget.Button
-import android.widget.Toast
 import me.chunyu.yuriel.kotdebugtool.components.DTActivityManager
 import me.chunyu.yuriel.kotdebugtool.components.R
 import me.chunyu.yuriel.kotdebugtool.components.widgets.__ScalpelFrameLayout
@@ -59,7 +56,7 @@ internal object FloatingViewMgr {
             wmParams.x = (event.rawX - action.measuredWidth / 2).toInt()
             //Log.i(TAG, "RawX" + event.rawX)
             //Log.i(TAG, "X" + event.rawX)
-            wmParams.y = (event.rawY - action.measuredHeight / 2 - 100).toInt()
+            wmParams.y = (event.rawY - action.measuredHeight / 2 - 200).toInt()
             //Log.i(TAG, "RawY" + event.rawX)
             //Log.i(TAG, "Y" + event.rawY)
             //刷新

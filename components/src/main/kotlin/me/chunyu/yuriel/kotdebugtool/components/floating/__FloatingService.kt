@@ -1,7 +1,5 @@
 package me.chunyu.yuriel.kotdebugtool.components.floating
 
-import android.app.Activity
-import android.app.ActivityManager
 import android.app.Service
 import android.content.Intent
 import android.os.Binder
@@ -9,10 +7,7 @@ import android.os.IBinder
 import android.provider.Settings
 import android.view.WindowManager
 import android.widget.Toast
-import me.chunyu.yuriel.kotdebugtool.components.DTActivityManager
-import me.chunyu.yuriel.kotdebugtool.components.Installer
 import me.chunyu.yuriel.kotdebugtool.components.RunningFeatureMgr
-import java.lang.reflect.InvocationTargetException
 
 /**
  * Created by yuriel on 9/1/16.
@@ -32,13 +27,21 @@ internal class __FloatingService : Service() {
 
     private fun createView() {
         FloatingViewMgr.setupWith(this)
-        try {
-            FloatingViewMgr.show3DViewFloating()
-        } catch (e: WindowManager.BadTokenException) {
-            Toast.makeText(this, "Permission denied for this action. You need to manually grant the permission in Settings -> Apps -> Draw over other apps.", Toast.LENGTH_LONG).show()
+
+        fun requestingPermission(msg: String?) {
+            val str = msg?:  "Permission denied for this action. You need to manually grant the permission in Settings -> Apps -> Draw over other apps."
+            Toast.makeText(this, str, Toast.LENGTH_LONG).show()
             val intent = Intent(Settings.ACTION_APPLICATION_SETTINGS)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+        }
+        try {
+            FloatingViewMgr.show3DViewFloating()
+        } catch (e: WindowManager.BadTokenException) {
+            requestingPermission(null)
+            return
+        } catch (e: SecurityException) {
+            requestingPermission(e.message)
             return
         } catch (e: Exception) {
             e.printStackTrace()
