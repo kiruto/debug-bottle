@@ -13,7 +13,6 @@ import android.support.annotation.IdRes
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.SwitchCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,8 +22,6 @@ import me.chunyu.yuriel.kotdebugtool.components.R
 import me.chunyu.yuriel.kotdebugtool.components.RunningFeatureMgr
 import me.chunyu.yuriel.kotdebugtool.components.floating.FloatingViewMgr
 import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
-import org.w3c.dom.Text
-import java.util.*
 
 /**
  * Created by yuriel on 9/3/16.
@@ -42,11 +39,6 @@ class __StatusFragment: __ContentFragment() {
                 Manifest.permission.READ_PHONE_STATE
         )
     }
-
-//    private val permissionText by lazy {
-//        val result = findViewById(R.id.__dt_status_permissions) as TextView
-//        result
-//    }
 
     private val permissionRequestBtn by lazy {
         val result = findViewById(R.id.__dt_permission_request)
@@ -195,12 +187,8 @@ class __StatusFragment: __ContentFragment() {
      */
     fun updatePermissionStatus() {
         if (!ensurePermission()) {
-//            permissionText.setText(R.string.__dt_denied)
-//            permissionText.setTextColor(Color.RED)
             permissionRequestBtn?.visibility = View.VISIBLE
         } else {
-//            permissionText.setText(R.string.__dt_granted)
-//            permissionText.setTextColor(Color.GREEN)
             permissionRequestBtn?.visibility = View.INVISIBLE
         }
     }
@@ -226,7 +214,7 @@ class __StatusFragment: __ContentFragment() {
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    fun isSystemAlertPermissionGranted(context: Context): Boolean {
+    private fun isSystemAlertPermissionGranted(context: Context): Boolean {
         val result = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(context)
         return result
     }

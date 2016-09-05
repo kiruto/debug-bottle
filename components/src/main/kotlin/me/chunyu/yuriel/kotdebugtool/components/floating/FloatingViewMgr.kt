@@ -87,7 +87,12 @@ internal object FloatingViewMgr {
     }
 
     fun isFloatingWindowRunning(): Boolean {
-        val activityManager = context?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val activityManager: ActivityManager
+        try {
+            activityManager = context?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        } catch (e: Exception) {
+            return false
+        }
         val serviceList = activityManager.getRunningServices(30)
 
         if (serviceList.size <= 0) {
