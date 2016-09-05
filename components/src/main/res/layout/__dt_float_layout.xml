@@ -6,17 +6,17 @@
     android:background="#3300ddff">
 
     <Button
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:id="@+id/__dt_drag"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/__dt_ic_drag_black_24dp"/>
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="55dp"
         android:id="@+id/__dt_float_obj"
         android:text="3D"/>
+
+    <Button
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/__dt_drag"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/__dt_ic_drag_black_24dp"/>
 
 </LinearLayout>

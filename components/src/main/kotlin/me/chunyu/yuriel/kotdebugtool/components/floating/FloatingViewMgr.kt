@@ -60,7 +60,7 @@ internal object FloatingViewMgr {
             wmParams.x = (event.rawX - action.measuredWidth / 2).toInt()
             //Log.i(TAG, "RawX" + event.rawX)
             //Log.i(TAG, "X" + event.rawX)
-            wmParams.y = (event.rawY - action.measuredHeight / 2 - 25).toInt()
+            wmParams.y = (event.rawY - action.measuredHeight / 2 - 100).toInt()
             //Log.i(TAG, "RawY" + event.rawX)
             //Log.i(TAG, "Y" + event.rawY)
             //刷新
@@ -70,7 +70,7 @@ internal object FloatingViewMgr {
 
         action.setOnClickListener { v ->
             val activity = DTActivityManager.topActivity
-            if (null == activity) return@setOnClickListener
+            activity?: return@setOnClickListener
             attachActivityTo3DView(activity)
         }
 

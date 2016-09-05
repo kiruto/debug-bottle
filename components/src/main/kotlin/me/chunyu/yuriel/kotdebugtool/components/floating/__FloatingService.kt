@@ -40,8 +40,6 @@ internal class __FloatingService : Service() {
         RunningFeatureMgr.remove(RunningFeatureMgr.VIEW_3D_WINDOW)
     }
 
-    fun getForegroundActivity(): Activity? = DTActivityManager.topActivity
-
     inner class FloatingBinder: Binder() {
         fun getService(): __FloatingService {
             return this@__FloatingService
