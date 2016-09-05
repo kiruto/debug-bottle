@@ -3,17 +3,17 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="me.chunyu.yuriel.kotdebugtool.components.__ExampleActivity$GeneralPreferenceFragment"
+        android:fragment="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity$GeneralPreferenceFragment"
         android:icon="@drawable/__dt_ic_info_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="me.chunyu.yuriel.kotdebugtool.components.__ExampleActivity$NotificationPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:fragment="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity$NotificationPreferenceFragment"
+        android:icon="@drawable/__dt_ic_notifications_black_24dp"
         android:title="@string/pref_header_notifications" />
 
     <header
-        android:fragment="me.chunyu.yuriel.kotdebugtool.components.__ExampleActivity$DataSyncPreferenceFragment"
+        android:fragment="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/__dt_ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
 

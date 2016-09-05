@@ -1,4 +1,4 @@
-package me.chunyu.yuriel.kotdebugtool.components
+package me.chunyu.dev.yuriel.kotdebugtool
 
 
 import android.annotation.TargetApi
@@ -29,11 +29,10 @@ import android.view.MenuItem
    * Android Design: Settings](http://developer.android.com/design/patterns/settings.html) for design guidelines and the [Settings
    * API Guide](http://developer.android.com/guide/topics/ui/settings.html) for more information on developing a Settings UI.
  */
-internal class __ExampleActivity : __AppCompatPreferenceActivity() {
+class ExampleActivity : AppCompatPreferenceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.__AppTheme)
         setupActionBar()
     }
 
@@ -93,7 +92,7 @@ internal class __ExampleActivity : __AppCompatPreferenceActivity() {
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home) {
-                startActivity(Intent(activity, __ExampleActivity::class.java))
+                startActivity(Intent(activity, ExampleActivity::class.java))
                 return true
             }
             return super.onOptionsItemSelected(item)
@@ -121,7 +120,7 @@ internal class __ExampleActivity : __AppCompatPreferenceActivity() {
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home) {
-                startActivity(Intent(activity, __ExampleActivity::class.java))
+                startActivity(Intent(activity, ExampleActivity::class.java))
                 return true
             }
             return super.onOptionsItemSelected(item)
@@ -149,7 +148,7 @@ internal class __ExampleActivity : __AppCompatPreferenceActivity() {
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
             if (id == android.R.id.home) {
-                startActivity(Intent(activity, __ExampleActivity::class.java))
+                startActivity(Intent(activity, ExampleActivity::class.java))
                 return true
             }
             return super.onOptionsItemSelected(item)

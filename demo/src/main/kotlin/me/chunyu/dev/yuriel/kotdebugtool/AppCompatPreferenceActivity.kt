@@ -1,4 +1,4 @@
-package me.chunyu.yuriel.kotdebugtool.components
+package me.chunyu.dev.yuriel.kotdebugtool
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -15,7 +15,7 @@ import android.view.ViewGroup
  * A [android.preference.PreferenceActivity] which implements and proxies the necessary calls
  * to be used with AppCompat.
  */
-internal abstract class __AppCompatPreferenceActivity : PreferenceActivity() {
+abstract class AppCompatPreferenceActivity : PreferenceActivity() {
 
     private var mDelegate: AppCompatDelegate? = null
 

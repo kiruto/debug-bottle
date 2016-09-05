@@ -20,6 +20,11 @@
         </activity>
 
         <activity
+            android:name="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.AppCompat" />
+
+        <activity
             android:name="me.chunyu.yuriel.kotdebugtool.components.injector.__InjectorActivity"
             android:theme="@style/__DemoAppActionBarTheme"/>
 
