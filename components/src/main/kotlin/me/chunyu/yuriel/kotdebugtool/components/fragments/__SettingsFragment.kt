@@ -156,7 +156,14 @@ class __SettingsFragment: __ContentFragment() {
         return rootView
     }
 
+    override fun onPause() {
+        super.onPause()
+        save()
+    }
+
     private fun findViewById(@IdRes id: Int) = rootView?.findViewById(id)
 
-
+    private fun save() {
+        __DTSettings.setBlockThreshold(seekBar.progress.toLong())
+    }
 }
