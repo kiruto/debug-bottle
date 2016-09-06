@@ -22,6 +22,7 @@
         <activity
             android:name=".__DTDrawerActivity"
             android:icon="@drawable/__dt_ic_bottle_64dp"
+            android:screenOrientation="portrait"
             android:label="DebugTools">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

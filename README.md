@@ -2,7 +2,11 @@
 # 🍼Debug Bottle
 An Android debug / develop tools written using Kotlin language.
 
-### What can I do with Debug Bottle?
+<img src="screenshots/main-panel.png"/>
+<img src="screenshots/features.png"/>
+<img src="screenshots/features-2.png"/>
+
+## What can I do with Debug Bottle?
 - [Simple OkHttp Sniffer](#okhttp-sniffer)
 - [3D preview an Activity with Scalpel](#scalpel-viewer)
 - [Simple shared preferences editor](#shared-preferences-editor)
@@ -14,14 +18,22 @@ An Android debug / develop tools written using Kotlin language.
 #### OkHttp Sniffer
 Enable "Network Listener" at Settings, then you can see all network traffics what requested by your app.
 
+<img src="screenshots/network-sniffer-1.png"/>
+<img src="screenshots/network-sniffer-2.png"/>
+
 #### Scalpel Viewer
 Enable "3D View", then you can view your Activity. When interaction is enabled the following gestures are supported:
 * Single touch: Controls the rotation of the model.
 * Two finger vertical pinch: Adjust zoom.
 * Two finger horizontal pinch: Adjust layer spacing.
 
+<img src="screenshots/scalpel-view.png"/>
+
 #### Shared Preferences editor
 Preview and edit the Shared Preferences of app more simply.
+
+<img src="screenshots/shared-preferences-editor-1.png"/>
+<img src="screenshots/shared-preferences-editor-2.png"/>
 
 #### Strict Mode
 Enable or disable Android strict mode at runtime.
@@ -32,13 +44,17 @@ Leak Canary is fully imported. Leak Canary is a memory leak detection library fo
 #### Block Canary
 Detect UI blocks at runtime.
 
+<img src="screenshots/ui-blocks.png"/>
+
 #### Development Entries
 Launch any Activity with custom Intents, or Runnable you want.
 
-### How do I use it?
+<img src="screenshots/all-activities.png"/>
+
+## How do I use it?
 After installing Debug Bottle Demo app, you'll find there are two app icons appears to launcher. Click bottle icon to run Debug Bottle.
 
-### Setting up
+## Setting up
 
 #### 1. Configure your Gradle project
 Edit and add dependencies in your app module:
@@ -82,13 +98,13 @@ public class MyApplication extends Application{
 }
 ```
 
-### Links
+## Links
 
 * [Leak Canary](https://github.com/square/leakcanary)
 * [Android Performance Monitor](https://github.com/markzhai/AndroidPerformanceMonitor)
 * [Scalpel](https://github.com/JakeWharton/scalpel)
 
-### License
+## License
 
 ###### Debug Bottle
 ```
