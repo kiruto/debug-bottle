@@ -69,7 +69,7 @@ dependencies {
 ```
 
 #### 2. Edit Manifest
-App Debug Bottle main Activity in your Manifest:
+Add Debug Bottle main Activity in your Manifest:
 ```xml
 <activity
     android:name="me.chunyu.yuriel.kotdebugtool.components.__DTDrawerActivity"
