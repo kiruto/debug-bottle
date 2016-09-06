@@ -2,9 +2,9 @@
 # 🍼Debug Bottle
 An Android debug / develop tools written using Kotlin language.
 
-<img src="screenshots/main-panel.png"/>
-<img src="screenshots/features.png"/>
-<img src="screenshots/features-2.png"/>
+[<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
+[<img src="screenshots/features.png"/>](screenshots/raw/features.png)
+[<img src="screenshots/features-2.png"/>](screenshots/raw/features-2.png)
 
 ## What can I do with Debug Bottle?
 - [Simple OkHttp Sniffer](#okhttp-sniffer)
@@ -18,8 +18,8 @@ An Android debug / develop tools written using Kotlin language.
 #### OkHttp Sniffer
 Enable "Network Listener" at Settings, then you can see all network traffics what requested by your app.
 
-<img src="screenshots/network-sniffer-1.png"/>
-<img src="screenshots/network-sniffer-2.png"/>
+[<img src="screenshots/network-sniffer-1.png"/>](screenshots/raw/network-sniffer-1.png)
+[<img src="screenshots/network-sniffer-2.png"/>](screenshots/raw/network-sniffer-2.png)
 
 #### Scalpel Viewer
 Enable "3D View", then you can view your Activity. When interaction is enabled the following gestures are supported:
@@ -27,16 +27,16 @@ Enable "3D View", then you can view your Activity. When interaction is enabled t
 * Two finger vertical pinch: Adjust zoom.
 * Two finger horizontal pinch: Adjust layer spacing.
 
-<img src="screenshots/scalpel-view.png"/>
+[<img src="screenshots/scalpel-view.png"/>](screenshots/raw/network-sniffer-2.png)
 
 #### Shared Preferences editor
 Preview and edit the Shared Preferences of app more simply.
 
-<img src="screenshots/shared-preferences-editor-1.png"/>
-<img src="screenshots/shared-preferences-editor-2.png"/>
+[<img src="screenshots/shared-preferences-editor-1.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/shared-preferences-editor-2.png"/>](screenshots/raw/network-sniffer-2.png)
 
 #### Strict Mode
-Enable or disable Android strict mode at runtime.
+Enable or disable Android strict mode at runtime. StrictMode is a developer tool which detects things you might be doing by accident and brings them to your attention so you can fix them. StrictMode is most commonly used to catch accidental disk or network access on the application's main thread, where UI operations are received and animations take place. For more information, see [Android Developers](https://developer.android.com/reference/android/os/StrictMode.html).
 
 #### Leak Canary
 Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Block Canary by visiting [Leak Canary wiki](https://github.com/square/leakcanary/wiki/FAQ).
@@ -44,12 +44,13 @@ Leak Canary is fully imported. Leak Canary is a memory leak detection library fo
 #### Block Canary
 Detect UI blocks at runtime.
 
-<img src="screenshots/ui-blocks.png"/>
+[<img src="screenshots/ui-blocks.png"/>](screenshots/raw/network-sniffer-2.png)
 
 #### Development Entries
 Launch any Activity with custom Intents, or Runnable you want.
 
-<img src="screenshots/all-activities.png"/>
+[<img src="screenshots/all-activities.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/run-activity-with-intent.gif" width="225" height="400" />](screenshots/raw/run-activity-with-intent.gif)
 
 ## How do I use it?
 After installing Debug Bottle Demo app, you'll find there are two app icons appears to launcher. Click bottle icon to run Debug Bottle.
@@ -139,6 +140,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+###### Leak Canary
+```
+Copyright 2015 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
 ###### Scalpel
 ```
 Copyright 2014 Jake Wharton
