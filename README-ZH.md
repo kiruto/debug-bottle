@@ -1,4 +1,4 @@
-[🇨🇳 中文](README-ZH.md) / [🇬🇧 English](README.md)
+[🇨🇳 中文](README-ZH.md) / [🇯🇵日本語](README-JP.md) / [🇬🇧 English](README.md)
 # 🍼Debug Bottle
 Android Java / Kotlin 程序员开发调试工具
 

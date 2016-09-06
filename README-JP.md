@@ -1,64 +1,62 @@
 [🇨🇳 中文](README-ZH.md) / [🇯🇵日本語](README-JP.md) / [🇬🇧 English](README.md)
-# 🍼Debug Bottle
-An Android debug / develop tools written using Kotlin language.
+# 🍼デバッグボットル
+アンドロイド Java / Kotlin 開発者ツール
 
 [<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
 [<img src="screenshots/features.png"/>](screenshots/raw/features.png)
 [<img src="screenshots/features-2.png"/>](screenshots/raw/features-2.png)
 
-## What can I do with Debug Bottle?
-- [Simple OkHttp Sniffer](#okhttp-sniffer)
-- [3D preview an Activity with Scalpel](#scalpel-viewer)
-- [Simple shared preferences editor](#shared-preferences-editor)
-- [Open strict mode any time](#strict-mode)
-- [Find leaks by using Leak Canary](#leak-canary)
-- [Find UI Blocks by using Block Canary](#block-canary)
-- [Mock Activity or function entries in developing](#development-entries)
+## 実装されている機能
 
-#### OkHttp Sniffer
-Enable "Network Listener" at Settings, then you can see all network traffics what requested by your app.
+- [便利なHTTPスニファ](#アプリのネットワークトラフィックを記録)
+- [実装されるアクティビティはいつでも３D化できます](#アクティビティを3D化する)
+- [SharedPreferencesをランタイム時に簡単的に編集できます](#SharedPreferencesを編集する)
+- [ランタイム時にStrictモードをオン・オブにするのを可能とさせてます](#Strictモードで開発)
+- [早くメモリリークを発見できて、そして回避できます](#leak-canaryを使用する)
+- [UIスレッドのフリーズを起こすコードを見つけます](#uiフリーズを排除する)
+- [いずれのアクティビティを簡単にアクセスできます](#アクティビティをいつでも起動する)
+
+#### アプリのネットワークトラフィックを記録
+この機能は、デバッグボットルがHTTPリクエストとリスポンスをログファイルに書き込む。記録されたログファイルはいつでも見えます。
 
 [<img src="screenshots/network-sniffer-1.png"/>](screenshots/raw/network-sniffer-1.png)
 [<img src="screenshots/network-sniffer-2.png"/>](screenshots/raw/network-sniffer-2.png)
 
-#### Scalpel Viewer
-Enable "3D View", then you can view your Activity. When interaction is enabled the following gestures are supported:
-* Single touch: Controls the rotation of the model.
-* Two finger vertical pinch: Adjust zoom.
-* Two finger horizontal pinch: Adjust layer spacing.
+#### アクティビティを3D化する
+View のデバッグ用途として、画面をグリグリすると 3DCG みたいに View のヒエラルキーを見ることができるようになるツールです。
 
 [<img src="screenshots/scalpel-view.png"/>](screenshots/raw/network-sniffer-2.png)
 
-#### Shared Preferences editor
-Preview and edit the Shared Preferences of app more simply.
+#### SharedPreferencesを編集する
+アプリが使ってるすべてのSharedPreferencesをランタイム時に編集する。
 
 [<img src="screenshots/shared-preferences-editor-1.png"/>](screenshots/raw/network-sniffer-2.png)
 [<img src="screenshots/shared-preferences-editor-2.png"/>](screenshots/raw/network-sniffer-2.png)
 
-#### Strict Mode
-Enable or disable Android strict mode at runtime. StrictMode is a developer tool which detects things you might be doing by accident and brings them to your attention so you can fix them. StrictMode is most commonly used to catch accidental disk or network access on the application's main thread, where UI operations are received and animations take place. For more information, see [Android Developers](https://developer.android.com/reference/android/os/StrictMode.html).
+#### Strictモードで開発
+StrictModeはアプリケーションの動作をもっさりさせる原因となる、 ディスクやネットワークへのアクセスを検知するための仕組みです。使う方とかを[オフィシャルサイト](https://developer.android.com/reference/android/os/StrictMode.html)で見えます。
 
-#### Leak Canary
-Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Block Canary by visiting [Leak Canary wiki](https://github.com/square/leakcanary/wiki/FAQ).
+#### Leak Canaryを使用する
+Squareのメモリリークを検出するライブラリ Leak Canary を通じて、メモリリークを調査できます。デバッグボトルはすでにLeak Canaryを含んでいるから、その機能は使えます。もっと詳しくは[こちらで(https://github.com/square/leakcanary/wiki/FAQ)]。
 
-#### Block Canary
-Detect UI blocks at runtime.
+#### UIフリーズを排除する
+一旦UIフリーズが発生となると、デバッグボトルはノティファイで通知して、同じ時にログファイルを作成します。開発者はログファイルで、フリーズの原因を知り、排除するのは可能となります。
 
 [<img src="screenshots/ui-blocks.png"/>](screenshots/raw/network-sniffer-2.png)
 
-#### Development Entries
-Launch any Activity with custom Intents, or Runnable you want.
+#### アクティビティをいつでも起動する
+デバッグボトルはシンプルなエントリーを提供し、アクティビティやRunnableはそのエントリーを通じて起動できます。エントリーは３つあります：
+* すべてのアクティビティエントリー
+* カストマイズインテントエントリー
+* カストマイズRunnableエントリー
 
 [<img src="screenshots/all-activities.png"/>](screenshots/raw/network-sniffer-2.png)
 [<img src="screenshots/run-activity-with-intent.gif" width="225" height="400" />](screenshots/raw/run-activity-with-intent.gif)
 
-## How do I use it?
-After installing Debug Bottle Demo app, you'll find there are two app icons appears to launcher. Click bottle icon to run Debug Bottle.
+## 構築するには
 
-## Setting up
-
-#### 1. Configure your Gradle project
-Edit and add dependencies in your app module:
+#### 1. Gradleプロジェクトファイルを構成する
+アプリのプライマリモジュールによるGradleファイルに依頼環境を導入します。
 
 ```gradle
 dependencies {
@@ -69,21 +67,21 @@ dependencies {
 }
 ```
 
-#### 2. Edit Manifest
-Add Debug Bottle main Activity in your Manifest:
+#### 2. Manifestに加入
+Manifestにデバッグボトルのプライマリアクティビティを加入します。
 ```xml
 <activity
     android:name="me.chunyu.yuriel.kotdebugtool.components.__DTDrawerActivity"
     android:theme="@style/Theme.AppCompat.Light"/>
 ```
 
-#### 3. Inject Debug Bottle into your Application
-First, you may implement Block Canary Context:
+#### 3. Applicationにデバッグボトルを注入
+まずは「BlockCanaryContext」を実装します。
 ```java
 public class AppBlockCanaryContext extends BlockCanaryContext {...}
 ```
 
-Now you could inject Debug Bottle in your Application like:
+そしてデバッグボトルをApplicationに注入します。
 ```java
 public class MyApplication extends Application{
     @Override
@@ -99,8 +97,7 @@ public class MyApplication extends Application{
 }
 ```
 
-## Links
-
+## リンク先
 * [Leak Canary](https://github.com/square/leakcanary)
 * [Android Performance Monitor](https://github.com/markzhai/AndroidPerformanceMonitor)
 * [Scalpel](https://github.com/JakeWharton/scalpel)
