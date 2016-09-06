@@ -43,6 +43,7 @@ Squareのメモリリークを検出するライブラリ Leak Canary を通じ�
 一旦UIフリーズが発生となると、デバッグボトルはノティファイで通知して、同じ時にログファイルを作成します。開発者はログファイルで、フリーズの原因を知り、排除するのは可能となります。
 
 [<img src="screenshots/ui-blocks.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/block-canary-demo.gif" width="225" height="400" />](screenshots/raw/block-canary-demo.gif)
 
 #### アクティビティをいつでも起動する
 デバッグボトルはシンプルなエントリーを提供し、アクティビティやRunnableはそのエントリーを通じて起動できます。エントリーは３つあります：

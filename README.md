@@ -45,6 +45,7 @@ Leak Canary is fully imported. Leak Canary is a memory leak detection library fo
 Detect UI blocks at runtime.
 
 [<img src="screenshots/ui-blocks.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/block-canary-demo.gif" width="225" height="400" />](screenshots/raw/block-canary-demo.gif)
 
 #### Development Entries
 Launch any Activity with custom Intents, or Runnable you want.

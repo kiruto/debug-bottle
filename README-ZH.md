@@ -27,6 +27,7 @@ Android Java / Kotlin 程序员开发调试工具
 本功能支持单点手势旋转，双点手势缩放和位移。
 
 [<img src="screenshots/scalpel-view.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/block-canary-demo.gif" width="225" height="400" />](screenshots/raw/block-canary-demo.gif)
 
 #### Shared Preferences编辑器
 通过Debug Bottle可以简单地编辑App用到的所有Shared Preferences。
