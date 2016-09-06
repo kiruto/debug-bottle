@@ -26,6 +26,7 @@
 View のデバッグ用途として、画面をグリグリすると 3DCG みたいに View のヒエラルキーを見ることができるようになるツールです。
 
 [<img src="screenshots/scalpel-view.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/scalpel-view.gif" width="225" height="400" />](screenshots/raw/scalpel-view.gif)
 
 #### SharedPreferencesを編集する
 アプリが使ってるすべてのSharedPreferencesをランタイム時に編集する。

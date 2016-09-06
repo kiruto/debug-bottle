@@ -27,7 +27,7 @@ Android Java / Kotlin 程序员开发调试工具
 本功能支持单点手势旋转，双点手势缩放和位移。
 
 [<img src="screenshots/scalpel-view.png"/>](screenshots/raw/network-sniffer-2.png)
-[<img src="screenshots/block-canary-demo.gif" width="225" height="400" />](screenshots/raw/block-canary-demo.gif)
+[<img src="screenshots/scalpel-view.gif" width="225" height="400" />](screenshots/raw/scalpel-view.gif)
 
 #### Shared Preferences编辑器
 通过Debug Bottle可以简单地编辑App用到的所有Shared Preferences。
@@ -45,6 +45,7 @@ Debug Bottle中编译进了Leak Canary，所有Leak Canary的功能都可以使�
 加入了支持Kotlin的Block Canary，可以监控UI线程卡死。
 
 [<img src="screenshots/ui-blocks.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/block-canary-demo.gif" width="225" height="400" />](screenshots/raw/block-canary-demo.gif)
 
 #### 进入一切Activity并注入参数
 简单的Activity／Runnable入口。可以随心所欲进入任何一个Activity，使用任何参数，甚至可以向App中注入想要测试的Intent。

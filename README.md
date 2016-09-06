@@ -28,6 +28,7 @@ Enable "3D View", then you can view your Activity. When interaction is enabled t
 * Two finger horizontal pinch: Adjust layer spacing.
 
 [<img src="screenshots/scalpel-view.png"/>](screenshots/raw/network-sniffer-2.png)
+[<img src="screenshots/scalpel-view.gif" width="225" height="400" />](screenshots/raw/scalpel-view.gif)
 
 #### Shared Preferences editor
 Preview and edit the Shared Preferences of app more simply.
