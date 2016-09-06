@@ -3,15 +3,40 @@
 An Android debug / develop tools written using Kotlin language.
 
 ### What can I do with Debug Bottle?
-- Simple OkHttp Sniffer
-- 3D preview an Activity with Scalpel
-- Simple shared preferences editor
-- Open strict mode any time
-- Find leaks by using Leak Canary
-- Find UI Blocks by using Block Canary
-- Mock Activity or function entries in developing
+- [Simple OkHttp Sniffer](#okhttp-sniffer)
+- [3D preview an Activity with Scalpel](#scalpel-viewer)
+- [Simple shared preferences editor](#shared-preferences-editor)
+- [Open strict mode any time](#strict-mode)
+- [Find leaks by using Leak Canary](#leak-canary)
+- [Find UI Blocks by using Block Canary](#block-canary)
+- [Mock Activity or function entries in developing](#development-entries)
+
+#### OkHttp Sniffer
+Enable "Network Listener" at Settings, then you can see all network traffics what requested by your app.
+
+#### Scalpel Viewer
+Enable "3D View", then you can view your Activity. When interaction is enabled the following gestures are supported:
+* Single touch: Controls the rotation of the model.
+* Two finger vertical pinch: Adjust zoom.
+* Two finger horizontal pinch: Adjust layer spacing.
+
+#### Shared Preferences editor
+Preview and edit the Shared Preferences of app more simply.
+
+#### Strict Mode
+Enable or disable Android strict mode at runtime.
+
+#### Leak Canary
+Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Block Canary by visiting [Leak Canary wiki](https://github.com/square/leakcanary/wiki/FAQ).
+
+#### Block Canary
+Detect UI blocks at runtime.
+
+#### Development Entries
+Launch any Activity with custom Intents, or Runnable you want.
 
 ### How do I use it?
+After installing Debug Bottle Demo app, you'll find there are two app icons appears to launcher. Click bottle icon to run Debug Bottle.
 
 ### Setting up
 
