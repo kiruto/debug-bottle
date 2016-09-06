@@ -67,6 +67,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        setTheme(R.style.Theme_AppCompat_Light)
         setContentView(R.layout.__activity_dt_drawer)
         drawerLayout.addDrawerListener(drawerToggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

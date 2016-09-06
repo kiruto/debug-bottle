@@ -56,7 +56,7 @@ dependencies {
     compile "com.squareup.okhttp:okhttp:${libs.okhttp}"
     compile "com.android.support:appcompat-v7:${libs.support}"
     compile "com.android.support:design:${libs.support}"
-    compile "com.android.support:appcompat-v7:${libs.support}"
+    compile "com.android.support:support-v4:${libs.support}"
     compile "org.jetbrains.kotlin:kotlin-stdlib:${libs.kotlin}"
 }
 repositories {

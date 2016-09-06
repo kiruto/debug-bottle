@@ -1,20 +1,14 @@
 package me.chunyu.yuriel.kotdebugtool.components
 
 import android.app.ActivityManager
-import android.content.ComponentName
 import android.content.Intent
-import android.content.ServiceConnection
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.IBinder
 import android.support.v7.widget.SwitchCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.SeekBar
-import android.widget.TextView
 import me.chunyu.yuriel.kotdebugtool.components.floating.__FloatingService
-import me.chunyu.yuriel.kotdebugtool.core.DEFAULT_BLOCK_THRESHOLD
 import me.chunyu.yuriel.kotdebugtool.ui.BlockCanary
 
 internal class __SettingsActivity : __DTBaseActivity() {
