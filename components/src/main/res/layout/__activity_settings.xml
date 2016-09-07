@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="me.chunyu.yuriel.kotdebugtool.components.__SettingsActivity">
+    tools:context="com.exyui.android.debugbottle.components.__SettingsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -91,7 +91,7 @@ class ExampleActivity : AppCompatPreferenceActivity() {
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
-            if (id == android.R.id.home) {
+            if (id == R.id.home) {
                 startActivity(Intent(activity, ExampleActivity::class.java))
                 return true
             }
@@ -119,7 +119,7 @@ class ExampleActivity : AppCompatPreferenceActivity() {
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
-            if (id == android.R.id.home) {
+            if (id == R.id.home) {
                 startActivity(Intent(activity, ExampleActivity::class.java))
                 return true
             }
@@ -147,7 +147,7 @@ class ExampleActivity : AppCompatPreferenceActivity() {
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
-            if (id == android.R.id.home) {
+            if (id == R.id.home) {
                 startActivity(Intent(activity, ExampleActivity::class.java))
                 return true
             }

@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: '../gradle-mvn-push.gradle'
+
+def libs = rootProject.libraries
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile ("com.exyui.android:debug-bottle-components:${libs.debugbottle}@aar")
+    compile ("com.exyui.android:block-canary:${libs.debugbottle}@aar")
+    compile "com.exyui.android:debug-bottle-views:${libs.debugbottle}"
+    compile "com.exyui.android:debug-bottle-core:${libs.debugbottle}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${libs.kotlin}"
+    compile "com.squareup.leakcanary:leakcanary-android:${libs.leakcanary}"
+
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
+    testCompile "junit:junit:${libs.junit}"
+}
+repositories {
+    mavenCentral()
+}

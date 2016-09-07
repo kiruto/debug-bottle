@@ -1,1 +1,1 @@
-include ':demo', ':core', ':blockcanary', ':noop', ':components', ':views'
+include ':demo', ':core', ':blockcanary', ':noop', ':components', ':views', ':runtime'

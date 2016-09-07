@@ -60,14 +60,26 @@ Debug Bottle中编译进了Leak Canary，所有Leak Canary的功能都可以使�
 ## 搭建方法
 
 #### 1. 加入Gradle依赖
-首先在主模块中（Application类所在模块）加入依赖：
+首先在工程Gradle文件中添加snapshot源：
+```gradle
+allprojects {
+    repositories {
+        ...
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+}
+```
+然后在主模块中（Application类所在模块）加入依赖：
 
 ```gradle
 dependencies {
-    debugCompile project(':components')
-    releaseCompile project(':noop')
-    compile "com.android.support:appcompat-v7:23.2.0+"
-    compile "com.android.support:support-v4:23.2.0+"
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+    compile 'com.android.support:appcompat-v7:23.2.0+'
+    compile 'com.android.support:support-v4:23.2.0+'
 }
 ```
 

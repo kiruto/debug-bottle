@@ -15,13 +15,20 @@ buildscript {
                 markdownview: '1.1.0',
                 junit: '4.12',
                 leakcanary: '1.4-beta2',
-                okhttp: '2.4.0'
+                okhttp: '2.4.0',
+                debugbottle: '1.0.0EAP-SNAPSHOT'
         ]
+
+        versionCode = 1
+        versionName = "1.0.0EAP-SNAPSHOT"
     }
 
     repositories {
         mavenCentral()
         jcenter()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${libraries.gradle}"
@@ -39,6 +46,9 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
     }
 }
 

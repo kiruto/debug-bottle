@@ -29,8 +29,8 @@ android {
         applicationId "me.chunyu.dev.yuriel.kotdebugtool"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
     }
     buildTypes {
         release {
@@ -47,11 +47,24 @@ android {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    debugCompile project(':components')
-    releaseCompile project(':noop')
+
+    //debugCompile project(':components')
+    //releaseCompile project(':noop')
+
+    //debugCompile(name: 'components', ext: 'aar')
+    //releaseCompile(name: 'noop', ext: 'aar')
+
+    debugCompile "com.exyui.android:debug-bottle-runtime:${libs.debugbottle}"
+    releaseCompile "com.exyui.android:debug-bottle-noop:${libs.debugbottle}"
+
     testCompile "junit:junit:${libs.junit}"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
     compile "us.feras.mdv:markdownview:${libs.markdownview}"
     compile "com.squareup.okhttp:okhttp:${libs.okhttp}"
     compile "com.android.support:appcompat-v7:${libs.support}"
@@ -61,4 +74,7 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
 }

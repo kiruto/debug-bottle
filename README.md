@@ -60,14 +60,26 @@ After installing Debug Bottle Demo app, you'll find there are two app icons appe
 ## Setting up
 
 #### 1. Configure your Gradle project
+Add snapshot of maven central repository to primary Gradle file:
+```gradle
+allprojects {
+    repositories {
+        ...
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+}
+```
 Edit and add dependencies in your app module:
 
 ```gradle
 dependencies {
-    debugCompile project(':components')
-    releaseCompile project(':noop')
-    compile "com.android.support:appcompat-v7:23.2.0+"
-    compile "com.android.support:support-v4:23.2.0+"
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+    compile 'com.android.support:appcompat-v7:23.2.0+'
+    compile 'com.android.support:support-v4:23.2.0+'
 }
 ```
 
