@@ -33,6 +33,9 @@ buildscript {
 }
 
 allprojects {
+    version = VERSION_NAME
+    group = GROUP
+
     repositories {
         mavenCentral()
         jcenter()

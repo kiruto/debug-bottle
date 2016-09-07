@@ -106,8 +106,9 @@ public class MyApplication extends Application{
 
 ## License
 
-###### Debug Bottle
 ```
+Debug Bottle
+
 Copyright 2016 Yuriel (http://exyui.com).
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -121,10 +122,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-```
 
-###### Android Performance Monitor
-```
+Android Performance Monitor
+
 Copyright (C) 2016 MarkZhai (http://zhaiyifan.cn).
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -138,10 +138,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-```
 
-###### Leak Canary
-```
+Leak Canary
+
 Copyright 2015 Square, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -155,10 +154,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-```
 
-###### Scalpel
-```
+Scalpel
+
 Copyright 2014 Jake Wharton
 
 Licensed under the Apache License, Version 2.0 (the "License");

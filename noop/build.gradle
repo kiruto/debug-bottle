@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply from: '../gradle-mvn-push.gradle'
 
 def libs = rootProject.libraries
 
