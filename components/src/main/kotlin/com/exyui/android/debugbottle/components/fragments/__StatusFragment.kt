@@ -20,6 +20,7 @@ import android.widget.TextView
 import com.exyui.android.debugbottle.components.Installer
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.RunningFeatureMgr
+import com.exyui.android.debugbottle.components.__DT_VERSION_NAME
 import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
 import com.exyui.android.debugbottle.components.floating.__FloatingService
 
@@ -38,6 +39,12 @@ class __StatusFragment: __ContentFragment() {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_PHONE_STATE
         )
+    }
+
+    private val versionText by lazy {
+        val result = findViewById(R.id.__dt_version_text) as TextView
+        result.text = "version: $__DT_VERSION_NAME"
+        result
     }
 
     private val permissionRequestBtn by lazy {
@@ -115,8 +122,8 @@ class __StatusFragment: __ContentFragment() {
         this.rootView = rootView
         updatePermissionStatus()
         checkupStatus()
-        permissionRequestBtn; view3DHelperText; view3DSwitcher;
-        procText; procBtn; finishBtn; refreshView
+        permissionRequestBtn; view3DHelperText; view3DSwitcher
+        versionText; procText; procBtn; finishBtn; refreshView
         return rootView
     }
 
