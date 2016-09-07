@@ -3,7 +3,7 @@ package me.chunyu.dev.yuriel.kotdebugtool
 import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
-import me.chunyu.yuriel.kotdebugtool.ui.BlockCanaryContext
+import com.exyui.android.debugbottle.ui.BlockCanaryContext
 
 /**
  * Created by yuriel on 8/9/16.

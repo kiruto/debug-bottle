@@ -3,7 +3,7 @@ package me.chunyu.dev.yuriel.kotdebugtool
 import android.app.Application
 import android.content.Context
 import com.squareup.okhttp.OkHttpClient
-import me.chunyu.yuriel.kotdebugtool.components.Installer
+import com.exyui.android.debugbottle.components.Installer
 
 /**
  * Created by yuriel on 8/9/16.

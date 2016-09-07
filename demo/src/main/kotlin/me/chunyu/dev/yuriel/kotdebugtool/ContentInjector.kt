@@ -2,7 +2,7 @@ package me.chunyu.dev.yuriel.kotdebugtool
 
 import android.content.Intent
 import android.widget.Toast
-import me.chunyu.yuriel.kotdebugtool.components.injector.Injector
+import com.exyui.android.debugbottle.components.injector.Injector
 
 /**
  * Created by yuriel on 9/4/16.
