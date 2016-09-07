@@ -87,7 +87,7 @@ dependencies {
 Add Debug Bottle main Activity in your Manifest:
 ```xml
 <activity
-    android:name="me.chunyu.yuriel.kotdebugtool.components.__DTDrawerActivity"
+    android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
     android:theme="@style/Theme.AppCompat.Light"/>
 ```
 
