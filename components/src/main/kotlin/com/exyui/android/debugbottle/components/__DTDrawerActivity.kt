@@ -69,7 +69,11 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         super.onCreate(savedInstanceState)
 //        setTheme(R.style.Theme_AppCompat_Light)
         setContentView(R.layout.__activity_dt_drawer)
-        drawerLayout.addDrawerListener(drawerToggle)
+        try {
+            drawerLayout.addDrawerListener(drawerToggle)
+        } catch (e: Exception) {
+            drawerLayout.setDrawerListener(drawerToggle)
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
