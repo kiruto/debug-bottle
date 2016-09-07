@@ -60,8 +60,8 @@ dependencies {
     //debugCompile(name: 'components', ext: 'aar')
     //releaseCompile(name: 'noop', ext: 'aar')
 
-    //debugCompile "com.exyui.android:debug-bottle-runtime:${libs.debugbottle}"
-    //releaseCompile "com.exyui.android:debug-bottle-noop:${libs.debugbottle}"
+    //debugCompile ("com.exyui.android:debug-bottle-runtime:${libs.debugbottle}"){ changing = true }
+    //releaseCompile ("com.exyui.android:debug-bottle-noop:${libs.debugbottle}"){ changing = true }
 
     testCompile "junit:junit:${libs.junit}"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
