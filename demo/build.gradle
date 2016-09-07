@@ -55,7 +55,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     debugCompile project(':components')
-    releaseCompile project(':noop')
+    releaseCompile project(':noop-kotlin')
 
     //debugCompile(name: 'components', ext: 'aar')
     //releaseCompile(name: 'noop', ext: 'aar')

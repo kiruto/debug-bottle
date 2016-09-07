@@ -1,2 +1,2 @@
-feature: rewrite noop use java
+-feature: rewrite noop use java-
 feature: crash handler
