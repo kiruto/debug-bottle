@@ -1,7 +1,6 @@
 package me.chunyu.dev.yuriel.kotdebugtool
 
 
-import android.R
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
