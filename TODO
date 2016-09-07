@@ -1,2 +1,3 @@
 -feature: rewrite noop use java-
 feature: crash handler
+feature: custom icon label

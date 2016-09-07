@@ -76,8 +76,15 @@ allprojects {
 ```gradle
 dependencies {
     debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
-    releaseCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+
+    // 如果你的工程是Java工程,使用此依赖
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
+
+    // 如果你的工程是Kotlin工程,使用此依赖
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
+
     compile 'com.android.support:appcompat-v7:23.2.0+'
     compile 'com.android.support:support-v4:23.2.0+'
 }
@@ -104,13 +111,29 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.install(this)
+        Installer.INSTANCE.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
             .setPackageName("your.package")
+            .enable()
             .run();
     }
+}
+```
+
+或者如果你的工程是Kotlin,你还可以这样写:
+```kotlin
+class MyApplication: Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Installer.install(this)
+            .setBlockCanary(AppBlockCanaryContext(this))
+            .setOkHttpClient(httpClient)
+            .setInjector("your.package.injector.ContentInjector")
+            .setPackageName("me.chunyu")
+            .enable()
+            .run()
 }
 ```
 

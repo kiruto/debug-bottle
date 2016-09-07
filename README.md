@@ -76,8 +76,15 @@ Edit and add dependencies in your app module:
 ```gradle
 dependencies {
     debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
-    releaseCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+
+    // Use this in your Java project
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
+
+    // Use this in your Kotlin project
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
+
     compile 'com.android.support:appcompat-v7:23.2.0+'
     compile 'com.android.support:support-v4:23.2.0+'
 }
@@ -103,13 +110,29 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.install(this)
+        Installer.INSTANCE.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
             .setPackageName("your.package")
+            .enable()
             .run();
     }
+}
+```
+
+Or if you use Kotlin, you can inject like:
+```kotlin
+class MyApplication: Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Installer.install(this)
+            .setBlockCanary(AppBlockCanaryContext(this))
+            .setOkHttpClient(httpClient)
+            .setInjector("your.package.injector.ContentInjector")
+            .setPackageName("me.chunyu")
+            .enable()
+            .run()
 }
 ```
 
