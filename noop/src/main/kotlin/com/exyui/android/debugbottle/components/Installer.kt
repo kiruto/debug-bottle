@@ -33,6 +33,16 @@ object Installer {
         return this
     }
 
+    fun enable(): Installer {
+        Log.d(TAG, "enable")
+        return this
+    }
+
+    fun disable(): Installer {
+        Log.d(TAG, "disable")
+        return this
+    }
+
     fun run() {
         Log.d(TAG, "run")
     }

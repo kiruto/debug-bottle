@@ -58,14 +58,26 @@ Squareのメモリリークを検出するライブラリ Leak Canary を通じ�
 ## 構築するには
 
 #### 1. Gradleプロジェクトファイルを構成する
+まずはスナップショットリポジトリを配置します。
+```gradle
+allprojects {
+    repositories {
+        ...
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+}
+```
 アプリのプライマリモジュールによるGradleファイルに依頼環境を導入します。
 
 ```gradle
 dependencies {
-    debugCompile project(':components')
-    releaseCompile project(':noop')
-    compile "com.android.support:appcompat-v7:23.2.0+"
-    compile "com.android.support:support-v4:23.2.0+"
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop:1.0.0EAP-SNAPSHOT'
+    compile 'com.android.support:appcompat-v7:23.2.0+'
+    compile 'com.android.support:support-v4:23.2.0+'
 }
 ```
 

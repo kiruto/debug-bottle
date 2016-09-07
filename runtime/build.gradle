@@ -31,11 +31,15 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':core')
-    compile project(':views')
-    testCompile "junit:junit:${libs.junit}"
-    provided "com.android.support:appcompat-v7:${libs.support}"
+    compile ("com.exyui.android:debug-bottle-components:${libs.debugbottle}@aar")
+    compile ("com.exyui.android:block-canary:${libs.debugbottle}@aar")
+    compile "com.exyui.android:debug-bottle-views:${libs.debugbottle}"
+    compile "com.exyui.android:debug-bottle-core:${libs.debugbottle}"
     compile "org.jetbrains.kotlin:kotlin-stdlib:${libs.kotlin}"
+    compile "com.squareup.leakcanary:leakcanary-android:${libs.leakcanary}"
+
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
+    testCompile "junit:junit:${libs.junit}"
 }
 repositories {
     mavenCentral()
