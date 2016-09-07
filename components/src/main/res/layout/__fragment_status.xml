@@ -28,6 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/__dt_version_text"
                     android:text="@string/__dt_bottle_version"/>
 
             </LinearLayout>

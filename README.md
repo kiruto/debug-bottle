@@ -1,6 +1,6 @@
 [🇨🇳 中文](README-ZH.md) / [🇯🇵日本語](README-JP.md) / [🇬🇧 English](README.md)
 # 🍼Debug Bottle
-An Android debug / develop tools written using Kotlin language.
+An Android debug / develop tools written using Kotlin language. All the features in Debug bottle are only available on debug build version with your app, it doesn't has an impact on release version.
 
 [<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
 [<img src="screenshots/features.png"/>](screenshots/raw/features.png)
@@ -87,7 +87,7 @@ dependencies {
 Add Debug Bottle main Activity in your Manifest:
 ```xml
 <activity
-    android:name="me.chunyu.yuriel.kotdebugtool.components.__DTDrawerActivity"
+    android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
     android:theme="@style/Theme.AppCompat.Light"/>
 ```
 

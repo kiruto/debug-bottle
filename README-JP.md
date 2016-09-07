@@ -85,7 +85,7 @@ dependencies {
 Manifestにデバッグボトルのプライマリアクティビティを加入します。
 ```xml
 <activity
-    android:name="me.chunyu.yuriel.kotdebugtool.components.__DTDrawerActivity"
+    android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
     android:theme="@style/Theme.AppCompat.Light"/>
 ```
 

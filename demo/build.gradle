@@ -54,14 +54,14 @@ tasks.withType(JavaCompile) {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    //debugCompile project(':components')
-    //releaseCompile project(':noop')
+    debugCompile project(':components')
+    releaseCompile project(':noop')
 
     //debugCompile(name: 'components', ext: 'aar')
     //releaseCompile(name: 'noop', ext: 'aar')
 
-    debugCompile "com.exyui.android:debug-bottle-runtime:${libs.debugbottle}"
-    releaseCompile "com.exyui.android:debug-bottle-noop:${libs.debugbottle}"
+    //debugCompile ("com.exyui.android:debug-bottle-runtime:${libs.debugbottle}"){ changing = true }
+    //releaseCompile ("com.exyui.android:debug-bottle-noop:${libs.debugbottle}"){ changing = true }
 
     testCompile "junit:junit:${libs.junit}"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
@@ -72,6 +72,7 @@ dependencies {
     compile "com.android.support:support-v4:${libs.support}"
     compile "org.jetbrains.kotlin:kotlin-stdlib:${libs.kotlin}"
 }
+
 repositories {
     mavenCentral()
     flatDir {
