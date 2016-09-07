@@ -25,6 +25,7 @@ import me.chunyu.yuriel.kotdebugtool.components.okhttp.LoggingInterceptor
 object Installer: Application.ActivityLifecycleCallbacks {
 
     private var installed: Boolean = false
+    private var enabled = true
     //private var notification: Notification? = null
     private val NOTIFICATION_ID = 12030
     private var blockCanary: BlockCanaryContext? = null
@@ -113,9 +114,19 @@ object Installer: Application.ActivityLifecycleCallbacks {
         return this
     }
 
+    fun enable(): Installer {
+        enabled = true
+        return this
+    }
+
+    fun disable(): Installer {
+        enabled = false
+        return this
+    }
+
     fun run() {
         RunningFeatureMgr.clear()
-        if(!__DTSettings.getBottleEnable())
+        if(!__DTSettings.getBottleEnable() && enabled)
             return
         RunningFeatureMgr.add(RunningFeatureMgr.DEBUG_BOTTLE)
         installed = true

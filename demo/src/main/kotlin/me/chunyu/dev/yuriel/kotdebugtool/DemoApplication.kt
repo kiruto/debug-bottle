@@ -19,6 +19,8 @@ class DemoApplication : Application() {
                 .setOkHttpClient(httpClient)
                 .setInjector("me.chunyu.dev.yuriel.kotdebugtool.ContentInjector")
                 //.setPackageName("me.chunyu")
+                //.disable()
+                .enable()
                 .run()
     }
 
