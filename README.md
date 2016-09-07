@@ -130,9 +130,10 @@ class MyApplication: Application() {
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
-            .setPackageName("me.chunyu")
+            .setPackageName("your.package")
             .enable()
             .run()
+    }
 }
 ```
 
