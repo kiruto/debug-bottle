@@ -1,5 +1,5 @@
 #!/bin/bash
-def upload() {
+upload() {
     ./gradlew clean assemble
     ./gradlew :core:uploadArchives
     ./gradlew :views:uploadArchives
@@ -10,17 +10,17 @@ def upload() {
     ./gradlew :noop-java:uploadArchives
     ./gradlew :noop-kotlin:uploadArchives
 }
-def uploadPrimary() {
+uploadPrimary() {
     git checkout master
-    upload()
+    upload
 }
-def upload100EAP23() {
+upload100EAP23() {
     git checkout v23/1.0.0EAP
-    upload()
+    upload
 }
-def upload100EAP22() {
+upload100EAP22() {
     git checkout v22/1.0.0EAP
-    upload()
+    upload
 }
 uploadPrimary
 upload100EAP22
