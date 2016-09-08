@@ -40,7 +40,7 @@ Preview and edit the Shared Preferences of app more simply.
 Enable or disable Android strict mode at runtime. StrictMode is a developer tool which detects things you might be doing by accident and brings them to your attention so you can fix them. StrictMode is most commonly used to catch accidental disk or network access on the application's main thread, where UI operations are received and animations take place. For more information, see [Android Developers](https://developer.android.com/reference/android/os/StrictMode.html).
 
 #### Leak Canary
-Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Block Canary by visiting [Leak Canary wiki](https://github.com/square/leakcanary/wiki/FAQ).
+Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Leak Canary by visiting [Leak Canary wiki](https://github.com/square/leakcanary/wiki/FAQ).
 
 #### Block Canary
 Detect UI blocks at runtime.
