@@ -54,8 +54,10 @@ tasks.withType(JavaCompile) {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    debugCompile project(':components')
-    releaseCompile project(':noop-kotlin')
+    compile project(':components')
+
+    //debugCompile project(':components')
+    //releaseCompile project(':noop-kotlin')
 
     //debugCompile(name: 'components', ext: 'aar')
     //releaseCompile(name: 'noop', ext: 'aar')
