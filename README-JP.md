@@ -88,6 +88,40 @@ dependencies {
 }
 ```
 
+Specially, Debug Bottle not only support API 23+, but also 22. To support API 22, please add dependencies like this:
+```gradle
+dependencies {
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support22-EAP-SNAPSHOT'
+
+    // Javaの場合はこうして構築します
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
+
+    // Kotlinの場合はこうして構築します
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
+
+    compile 'com.android.support:appcompat-v7:22+'
+}
+```
+
+To support API 23, add dependencies like this:
+```gradle
+dependencies {
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support23-EAP-SNAPSHOT'
+
+    // Javaの場合はこうして構築します
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
+
+    // Kotlinの場合はこうして構築します
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
+
+    compile 'com.android.support:appcompat-v7:23+'
+}
+```
+
 #### 2. Manifestに加入
 Manifestにデバッグボトルのプライマリアクティビティを加入します。
 ```xml
@@ -108,7 +142,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.INSTANCE.install(this)
+        Installer.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")

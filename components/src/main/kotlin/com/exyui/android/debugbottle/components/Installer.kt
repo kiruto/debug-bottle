@@ -79,6 +79,7 @@ object Installer: Application.ActivityLifecycleCallbacks {
 
     }
 
+    @JvmStatic
     fun install(app: Application): Installer {
         this.app = app
         return this
