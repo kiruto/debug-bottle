@@ -7,5 +7,5 @@ package com.exyui.android.debugbottle.components
  */
 
 const val __DT_VERSION_CODE = 1
-const val __DT_VERSION_NAME = "1.0.0EAP-support23-SNAPSHOT"
+const val __DT_VERSION_NAME = "1.0.0EAP-SNAPSHOT"
 const val __DT_BUILD_NUM = 160908
