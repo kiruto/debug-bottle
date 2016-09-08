@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Debug Tool Demo</string>
+    <string name="app_name">Debug Bottle Demo</string>
     <string name="__bad_case">bad case</string>
     <string name="__thread_wait">Thread.wait()</string>
     <string name="__thread_wait_code">

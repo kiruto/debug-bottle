@@ -5,7 +5,7 @@
 
     <application
         android:name="me.chunyu.dev.yuriel.kotdebugtool.DemoApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_opt"
         android:label="@string/app_name">
 
         <activity
