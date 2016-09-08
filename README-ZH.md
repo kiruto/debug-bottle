@@ -2,6 +2,10 @@
 # 🍼Debug Bottle
 Android Java / Kotlin 程序员开发调试工具。Debug Bottle的所有功能均建立在App的debug版本中，不会对release版本产生任何影响。Debug Bottle旨在提高开发效率，把控App质量。
 
+Demo App可在Google Play中下载:
+
+<a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
+
 [<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
 [<img src="screenshots/features.png"/>](screenshots/raw/features.png)
 [<img src="screenshots/features-2.png"/>](screenshots/raw/features-2.png)
