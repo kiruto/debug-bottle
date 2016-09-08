@@ -49,9 +49,9 @@ class __StatusFragment: __ContentFragment() {
 
     private val permissionRequestBtn by lazy {
         val result = findViewById(R.id.__dt_permission_request)
-        result?.setOnClickListener {
-            requestPermission()
-        }
+//        result?.setOnClickListener {
+//            requestPermission()
+//        }
         result
     }
 
@@ -129,23 +129,23 @@ class __StatusFragment: __ContentFragment() {
 
     private fun checkupPermission() {
 
-        if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+//        if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             rwPermissionText.granted()
-        } else {
-            rwPermissionText.denied()
-        }
-
-        if (hasPermission(Manifest.permission.READ_PHONE_STATE)) {
+//        } else {
+//            rwPermissionText.denied()
+//        }
+//
+//        if (hasPermission(Manifest.permission.READ_PHONE_STATE)) {
             phonePermissionText.granted()
-        } else {
-            phonePermissionText.denied()
-        }
-
-        if (isSystemAlertPermissionGranted(context!!)) {
+//        } else {
+//            phonePermissionText.denied()
+//        }
+//
+//        if (isSystemAlertPermissionGranted(context!!)) {
             windowPermissionText.granted()
-        } else {
-            windowPermissionText.denied()
-        }
+//        } else {
+//            windowPermissionText.denied()
+//        }
     }
 
     private fun checkupStatus() {
@@ -220,35 +220,35 @@ class __StatusFragment: __ContentFragment() {
         setTextColor(Color.RED)
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    private fun isSystemAlertPermissionGranted(context: Context): Boolean {
-        val result = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(context)
-        return result
-    }
+//    @TargetApi(Build.VERSION_CODES.M)
+//    private fun isSystemAlertPermissionGranted(context: Context): Boolean {
+//        val result = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(context)
+//        return result
+//    }
 
-    private fun hasPermission(permission: String) = PackageManager.PERMISSION_DENIED != ContextCompat.checkSelfPermission(context!!, permission)
+//    private fun hasPermission(permission: String) = PackageManager.PERMISSION_DENIED != ContextCompat.checkSelfPermission(context!!, permission)
 
     private fun ensurePermission(): Boolean {
-        context?: return false
-        checkupPermission()
-
-        for (p in permissions) {
-            if (!hasPermission(p))
-                return false
-        }
+//        context?: return false
+//        checkupPermission()
+//
+//        for (p in permissions) {
+//            if (!hasPermission(p))
+//                return false
+//        }
         return true
     }
 
-    private fun requestPermission() {
-        context?: return
-
-        for (p in permissions) {
-            // Here, thisActivity is the current activity
-            if (ContextCompat.checkSelfPermission(context!!, p) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(context!!, arrayOf(p), permissions.indexOf(p))
-            }
-        }
-    }
+//    private fun requestPermission() {
+//        context?: return
+//
+//        for (p in permissions) {
+//            // Here, thisActivity is the current activity
+//            if (ContextCompat.checkSelfPermission(context!!, p) != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(context!!, arrayOf(p), permissions.indexOf(p))
+//            }
+//        }
+//    }
 
     private fun findViewById(@IdRes id: Int): View? {
         return rootView?.findViewById(id)
