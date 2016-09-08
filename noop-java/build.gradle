@@ -32,7 +32,7 @@ tasks.withType(JavaCompile) {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile "junit:junit:${libs.junit}"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
+    compile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
 }
 repositories {
