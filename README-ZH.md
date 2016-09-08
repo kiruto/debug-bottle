@@ -71,8 +71,8 @@ allprojects {
     }
 }
 ```
-然后在主模块中（Application类所在模块）加入依赖：
 
+然后在主模块中（Application类所在模块）加入依赖：
 ```gradle
 dependencies {
     debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
@@ -87,6 +87,40 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
     compile 'com.android.support:support-v4:23.2.0+'
+}
+```
+
+Debug Bottle不仅支持API 23+，还可以支持API 22. 若想使用API 22，请按照下面方式加入依赖：
+```gradle
+dependencies {
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support22-EAP-SNAPSHOT'
+
+    // 如果你的工程是Java工程,使用此依赖
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
+
+    // 如果你的工程是Kotlin工程,使用此依赖
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
+
+    compile 'com.android.support:appcompat-v7:22+'
+}
+```
+
+若只需支持API23，请按照下面方式加入依赖:
+```gradle
+dependencies {
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support23-EAP-SNAPSHOT'
+
+    // 如果你的工程是Java工程,使用此依赖
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
+
+    // 如果你的工程是Kotlin工程,使用此依赖
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
+
+    compile 'com.android.support:appcompat-v7:23+'
 }
 ```
 
@@ -111,7 +145,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.INSTANCE.install(this)
+        Installer.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
