@@ -30,7 +30,7 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode rootProject.versionCode
-        versionName rootProject.versionName
+        versionName "${rootProject.versionName} BUILD ${new Date().format('yyMMdd')}"
     }
     buildTypes {
         release {
