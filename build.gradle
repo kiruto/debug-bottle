@@ -5,7 +5,7 @@ buildscript {
         minSdkVersion = 14
         compileSdkVersion = 23
         targetSdkVersion = 22
-        buildToolsVersion = '22.0.0'
+        buildToolsVersion = '22.0.1'
         javaVersion = JavaVersion.VERSION_1_7
 
         versionCode = 2
