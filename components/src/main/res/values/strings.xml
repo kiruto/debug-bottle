@@ -68,4 +68,18 @@
     <string name="__dt_write_external_storage">write external storage</string>
     <string name="__dt_read_phone_state">read phone state</string>
     <string name="__dt_system_alert_window">system alert window</string>
+
+    <string name="__dt_need_permissions">Needs permissions</string>
+    <string name="__dt_permission_message">To work correctly, Debug Bottle needs permissions. You must allow access to at least these permissions. To check permissions now, please click CHECK button.</string>
+    <string name="__dt_check">check</string>
+    <string name="__dt_not_now">not now</string>
+
+    <string name="__dt_need_enable_dt">Enable Debug Bottle now!</string>
+    <string name="__dt_enable_dt_message">Debug Bottle is disabled. Now you can enable Debug Bottle\'s all features. Do you want to enable now? Or you can enable at \"settings\" later.</string>
+    <string name="__dt_enable">enable</string>
+    <string name="__dt_later">later</string>
+
+    <string name="__dt_need_kill_proc">Well done! Now try to kill process to restart Application.</string>
+    <string name="__dt_kill_proc">kill process</string>
+    <string name="__dt_kill_success">Process killed. Click App icon to relaunch.</string>
 </resources>
