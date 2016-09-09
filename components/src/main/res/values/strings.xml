@@ -82,4 +82,6 @@
     <string name="__dt_need_kill_proc">Well done! Now try to kill process to restart Application.</string>
     <string name="__dt_kill_proc">kill process</string>
     <string name="__dt_kill_success">Process killed. Click App icon to relaunch.</string>
+
+    <string name="__dt_need_restart_after_apply">The feature will enable after kill process.</string>
 </resources>

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="48dp">
+    android:minHeight="48dp"
+    android:background="@drawable/__bg_drawer_item">
 
     <ImageView
         android:layout_width="24dp"
