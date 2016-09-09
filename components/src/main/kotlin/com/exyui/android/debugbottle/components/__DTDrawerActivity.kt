@@ -4,18 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
+import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import com.squareup.leakcanary.internal.DisplayLeakActivity
 import com.exyui.android.debugbottle.components.fragments.*
 
@@ -26,7 +27,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
 
     private var contentFragment: __ContentFragment? = null
 
-    private val titles by lazy {
+    private val titles: Array<String> by lazy {
         resources.getStringArray(R.array.__dt_drawer_items)
     }
 
@@ -37,7 +38,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
 
     private val drawerListView by lazy {
         val result = findViewById(R.id.__dt_left_drawer) as ListView
-        result.adapter = ArrayAdapter<String>(this, R.layout.__dt_item_drawer_list, titles)
+        result.adapter = DrawerAdapter(titles)
         result.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
             selectItem(position)
         }
@@ -115,11 +116,11 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         f.updatePermissionStatus()
     }
 
+    private fun s(@IdRes id: Int): String = resources.getString(id)
+
     private fun selectItem(position: Int) {
 
         var fragment: __ContentFragment? = null
-
-        fun s(@IdRes id: Int): String = resources.getString(id)
 
         when (titles[position]) {
 
@@ -181,4 +182,61 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         title = titles[position]
         drawerLayout.closeDrawer(drawerListView)
     }
+
+    internal inner class DrawerAdapter(val titles: Array<String>): BaseAdapter() {
+
+        private val menu by lazy {
+            val result = mutableListOf<DrawerMenuItem>()
+            for (str in titles) {
+                result.add(DrawerMenuItem(str, when (str) {
+                    s(R.string.__dt_status) -> R.drawable.__ic_home_black_24dp
+                    s(R.string.__dt_all_activities) -> R.drawable.__ic_find_in_page_black_24dp
+                    s(R.string.__dt_intents) -> R.drawable.__ic_android_black_24dp
+                    s(R.string.__dt_runnable) -> R.drawable.__ic_clear_all_black_24dp
+                    s(R.string.__dt_sp_viewer) -> R.drawable.__ic_edit_black_24dp
+                    s(R.string.__dt_blocks) -> R.drawable.__ic_block_black_24dp
+                    s(R.string.__dt_network_traffics) -> R.drawable.__ic_network_check_black_24dp
+                    s(R.string.__dt_leaks) -> R.drawable.__ic_bug_report_black_24dp
+                    s(R.string.__dt_settings) -> R.drawable.__ic_settings_black_24dp
+                    s(R.string.__dt_crashes) -> R.drawable.__ic_report_problem_black_24dp
+                    else -> R.drawable.__ic_info_outline_black_24dp
+                }))
+            }
+            result
+        }
+
+        override fun getCount(): Int = titles.size
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+            var view = convertView
+            val holder: ViewHolder
+            val item = menu[position]
+            if (null == view) {
+                view = LayoutInflater.from(this@__DTDrawerActivity).inflate(R.layout.__item_drawer_menu, parent, false)
+                holder = ViewHolder()
+                holder.icon = view.findViewById(R.id.__dt_icon) as ImageView
+                holder.title = view.findViewById(R.id.__dt_item_title) as TextView
+                view.tag = holder
+            } else {
+                holder = view.tag as ViewHolder
+            }
+            holder.icon?.setImageResource(item.icon)
+            holder.title?.text = item.title
+            return view
+        }
+
+        override fun getItem(position: Int): String = titles[position]
+
+        override fun getItemId(position: Int): Long = position.toLong()
+    }
+
+    internal class ViewHolder {
+        var icon: ImageView? = null
+        var title: TextView? =  null
+    }
+
+    internal data class DrawerMenuItem(
+            val title: String,
+            @DrawableRes val icon: Int
+    )
 }

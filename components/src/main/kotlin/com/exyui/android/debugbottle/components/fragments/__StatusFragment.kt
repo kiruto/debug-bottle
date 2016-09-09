@@ -12,15 +12,14 @@ import android.provider.Settings
 import android.support.annotation.IdRes
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.SwitchCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.exyui.android.debugbottle.components.Installer
-import com.exyui.android.debugbottle.components.R
-import com.exyui.android.debugbottle.components.RunningFeatureMgr
-import com.exyui.android.debugbottle.components.__DT_VERSION_NAME
+import android.widget.Toast
+import com.exyui.android.debugbottle.components.*
 import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
 import com.exyui.android.debugbottle.components.floating.__FloatingService
 
@@ -127,6 +126,42 @@ class __StatusFragment: __ContentFragment() {
         return rootView
     }
 
+    private fun showNeedPermissionsDialog() {
+        AlertDialog.Builder(context)
+                .setTitle(R.string.__dt_need_permissions)
+                .setMessage(R.string.__dt_permission_message)
+                .setNegativeButton(R.string.__dt_not_now) { dialog, witch -> }
+                .setPositiveButton(R.string.__dt_check) { dialog, witch ->
+                    requestPermission()
+                }
+                .show()
+    }
+
+    private fun showNeedEnableDialog() {
+        AlertDialog.Builder(context)
+                .setIcon(R.drawable.__dt_ic_bottle_24dp)
+                .setTitle(R.string.__dt_need_enable_dt)
+                .setMessage(R.string.__dt_enable_dt_message)
+                .setNegativeButton(R.string.__dt_later) { dialog, witch ->
+                    context?.finish()
+                }
+                .setPositiveButton(R.string.__dt_enable) { dialog, witch ->
+                    __DTSettings.setBottleEnable(true)
+                    showNeedKillProcDialog()
+                }
+                .show()
+    }
+
+    private fun showNeedKillProcDialog() {
+        AlertDialog.Builder(context)
+                .setMessage(R.string.__dt_need_kill_proc)
+                .setNegativeButton(R.string.__dt_later) { dialog, witch -> }
+                .setPositiveButton(R.string.__dt_kill_process) { dialog, witch ->
+                    Installer.kill()
+                }
+                .show()
+    }
+
     private fun checkupPermission() {
 
 //        if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -195,8 +230,12 @@ class __StatusFragment: __ContentFragment() {
     fun updatePermissionStatus() {
         if (!ensurePermission()) {
             permissionRequestBtn?.visibility = View.VISIBLE
+            showNeedPermissionsDialog()
         } else {
             permissionRequestBtn?.visibility = View.INVISIBLE
+            if (!RunningFeatureMgr.has(RunningFeatureMgr.DEBUG_BOTTLE)) {
+                showNeedEnableDialog()
+            }
         }
     }
 
