@@ -15,6 +15,7 @@ import android.os.Bundle
 import android.os.Process
 import android.os.StrictMode
 import android.util.Log
+import android.widget.Toast
 import com.squareup.okhttp.OkHttpClient
 import com.exyui.android.debugbottle.components.injector.Injector
 import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
@@ -236,6 +237,7 @@ object Installer: Application.ActivityLifecycleCallbacks {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        Toast.makeText(app, R.string.__dt_kill_success, Toast.LENGTH_SHORT).show()
         Process.killProcess(Process.myPid())
     }
 
