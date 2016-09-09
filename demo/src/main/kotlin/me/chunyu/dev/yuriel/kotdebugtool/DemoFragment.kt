@@ -1,5 +1,7 @@
 package me.chunyu.dev.yuriel.kotdebugtool
 
+import android.content.Intent
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.SystemClock
@@ -36,12 +38,15 @@ class DemoFragment : Fragment(), View.OnClickListener {
         val button3 = view.findViewById(R.id.button3) as Button
         val button4 = view.findViewById(R.id.button4) as Button
         val button5 = view.findViewById(R.id.button5) as Button
+        val button6 = view.findViewById(R.id.__read_me) as Button
 
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
         button4.setOnClickListener(this)
         button5.setOnClickListener(this)
+        button6.setOnClickListener(this)
+        view.findViewById(R.id.launch_dt).setOnClickListener(this)
     }
 
     override fun onDestroyView() {
@@ -75,6 +80,15 @@ class DemoFragment : Fragment(), View.OnClickListener {
             }
             R.id.button5 -> {
                 sendRequest()
+            }
+            R.id.__read_me -> {
+                val url = "https://github.com/kiruto/debug-bottle/blob/1.0.0EAP/README.md"
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                startActivity(intent)
+            }
+            R.id.launch_dt -> {
+                startActivity(Intent("com.exyui.android.DEBUG_BOTTLE"))
             }
             else -> {
             }
