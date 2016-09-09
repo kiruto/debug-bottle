@@ -83,5 +83,5 @@
     <string name="__dt_kill_proc">kill process</string>
     <string name="__dt_kill_success">Process killed. Click App icon to relaunch.</string>
 
-    <string name="__dt_need_restart_after_apply">The feature will enable after kill process.</string>
+    <string name="__dt_need_restart_after_apply">The feature setting will apply after kill process.</string>
 </resources>

@@ -95,7 +95,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = __DTSettings.getStrictMode()
         result.setOnCheckedChangeListener { view, isChecked ->
             __DTSettings.setStrictMode(isChecked)
-            if (isChecked) restartHint()
+            restartHint()
         }
         result
     }
@@ -119,7 +119,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = __DTSettings.getLeakCanaryEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
             __DTSettings.setLeakCanaryEnable(isChecked)
-            if (isChecked) restartHint()
+            restartHint()
         }
         result
     }
@@ -147,7 +147,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = __DTSettings.getBottleEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
             __DTSettings.setBottleEnable(isChecked)
-            if (isChecked) restartHint()
+            restartHint()
         }
         result
     }
