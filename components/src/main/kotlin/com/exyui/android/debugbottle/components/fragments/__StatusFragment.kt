@@ -278,7 +278,7 @@ class __StatusFragment: __ContentFragment() {
         return true
     }
 
-//    private fun requestPermission() {
+    private fun requestPermission() {
 //        context?: return
 //
 //        for (p in permissions) {
@@ -287,7 +287,7 @@ class __StatusFragment: __ContentFragment() {
 //                ActivityCompat.requestPermissions(context!!, arrayOf(p), permissions.indexOf(p))
 //            }
 //        }
-//    }
+    }
 
     private fun findViewById(@IdRes id: Int): View? {
         return rootView?.findViewById(id)
