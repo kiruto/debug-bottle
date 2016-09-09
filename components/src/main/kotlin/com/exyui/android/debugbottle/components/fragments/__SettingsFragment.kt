@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.SeekBar
+import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.__DTSettings
 import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
@@ -94,6 +95,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = __DTSettings.getStrictMode()
         result.setOnCheckedChangeListener { view, isChecked ->
             __DTSettings.setStrictMode(isChecked)
+            if (isChecked) restartHint()
         }
         result
     }
@@ -117,6 +119,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = __DTSettings.getLeakCanaryEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
             __DTSettings.setLeakCanaryEnable(isChecked)
+            if (isChecked) restartHint()
         }
         result
     }
@@ -144,6 +147,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = __DTSettings.getBottleEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
             __DTSettings.setBottleEnable(isChecked)
+            if (isChecked) restartHint()
         }
         result
     }
@@ -159,6 +163,10 @@ class __SettingsFragment: __ContentFragment() {
     override fun onPause() {
         super.onPause()
         save()
+    }
+
+    private fun restartHint() {
+        Toast.makeText(context, R.string.__dt_need_restart_after_apply, Toast.LENGTH_LONG).show()
     }
 
     private fun findViewById(@IdRes id: Int) = rootView?.findViewById(id)
