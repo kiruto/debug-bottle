@@ -20,6 +20,7 @@ buildscript {
                 junit: '4.12',
                 leakcanary: '1.4-beta2',
                 okhttp: '2.4.0',
+                appintro: '4.0.0',
                 debugbottle: versionName
         ]
     }

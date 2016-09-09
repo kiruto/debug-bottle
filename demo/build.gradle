@@ -67,7 +67,8 @@ dependencies {
 
     testCompile "junit:junit:${libs.junit}"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanary}"
-    compile "us.feras.mdv:markdownview:${libs.markdownview}"
+    compile "com.github.paolorotolo:appintro:${libs.appintro}"
+    //compile "us.feras.mdv:markdownview:${libs.markdownview}"
     compile "com.squareup.okhttp:okhttp:${libs.okhttp}"
     compile "com.android.support:appcompat-v7:${libs.support}"
     compile "com.android.support:design:${libs.support}"
