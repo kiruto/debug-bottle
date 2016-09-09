@@ -1,11 +1,11 @@
 #!/bin/bash
 upload() {
-    cleanGradleCache
     ./gradlew clean assemble
     ./gradlew :core:uploadArchives
     ./gradlew :views:uploadArchives
     ./gradlew :blockcanary:uploadArchives
     ./gradlew :components:uploadArchives
+    cleanGradleCache
     ./gradlew :runtime:uploadArchives
 
     ./gradlew :noop-java:uploadArchives
