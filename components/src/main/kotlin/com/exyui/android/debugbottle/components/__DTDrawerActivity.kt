@@ -12,10 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import com.squareup.leakcanary.internal.DisplayLeakActivity
 import com.exyui.android.debugbottle.components.fragments.*
@@ -76,6 +73,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         supportActionBar?.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
         drawerListView
         selectItem(0)
+        drawerLayout.openDrawer(Gravity.LEFT)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
