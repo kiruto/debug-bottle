@@ -3,6 +3,7 @@ package com.exyui.android.debugbottle.components
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
@@ -30,6 +31,11 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
 
     private val drawerLayout by lazy {
         val result = findViewById(R.id.__dt_drawer_layout) as DrawerLayout
+        result
+    }
+
+    private val drawerRoot by lazy {
+        val result = findViewById(R.id.__dt_drawer_root) as ViewGroup
         result
     }
 
@@ -63,6 +69,25 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         result
     }
 
+    private val infoLayout by lazy {
+        val result = findViewById(R.id.__dt_info) as ViewGroup
+        result.setOnClickListener {
+            AlertDialog.Builder(this)
+                    .setIcon(R.drawable.__dt_ic_bottle_24dp)
+                    .setTitle(R.string.__dt_info)
+                    .setMessage(R.string.__dt_info_introduction)
+                    .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
+                    .setPositiveButton(R.string.__dt_github) { dialog, witch ->
+                        val url = "https://github.com/kiruto/debug-bottle"
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.data = Uri.parse(url)
+                        startActivity(intent)
+                    }
+                    .show()
+        }
+        result
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setTheme(R.style.Theme_AppCompat_Light)
@@ -71,7 +96,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
-        drawerListView
+        drawerListView; infoLayout
         selectItem(0)
         drawerLayout.openDrawer(Gravity.LEFT)
     }
@@ -178,7 +203,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
 
         drawerListView.setItemChecked(position, true)
         title = titles[position]
-        drawerLayout.closeDrawer(drawerListView)
+        drawerLayout.closeDrawer(drawerRoot)
     }
 
     internal inner class DrawerAdapter(val titles: Array<String>): BaseAdapter() {

@@ -84,4 +84,11 @@
     <string name="__dt_kill_success">Process killed. Click App icon to relaunch.</string>
 
     <string name="__dt_need_restart_after_apply">The feature setting will apply after kill process.</string>
+    <string name="__dt_information">Info</string>
+    <string name="__dt_help">Help</string>
+
+    <string name="__dt_info">Debug Bottle</string>
+    <string name="__dt_info_introduction">An Android debug / develop tools written using Kotlin language. All the features in Debug bottle are only available on debug build version with your app, it doesn\'t has an impact on release version.</string>
+    <string name="__dt_github">github</string>
+    <string name="__dt_close">close</string>
 </resources>
