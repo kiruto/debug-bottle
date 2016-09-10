@@ -134,8 +134,10 @@ Add Debug Bottle main Activity in your Manifest:
 ```xml
 <activity
     android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
-    android:theme="@style/Theme.AppCompat.Light"/>
+    android:theme="@style/Theme.AppCompat.Light"
+    android:label="The Name You Like"/>
 ```
+The value of tag label, will display to your android launch pad.
 
 #### 3. Inject Debug Bottle into your Application
 First, you may implement Block Canary Context:

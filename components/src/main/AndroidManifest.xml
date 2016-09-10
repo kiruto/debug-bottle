@@ -22,8 +22,7 @@
         <activity
             android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
             android:icon="@drawable/__dt_ic_bottle_64dp"
-            android:screenOrientation="portrait"
-            android:label="DebugTools">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.exyui.android.DEBUG_BOTTLE"/>
                 <action android:name="android.intent.action.MAIN"/>

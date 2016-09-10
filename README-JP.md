@@ -131,8 +131,10 @@ Manifestにデバッグボトルのプライマリアクティビティを加入
 ```xml
 <activity
     android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
-    android:theme="@style/Theme.AppCompat.Light"/>
+    android:theme="@style/Theme.AppCompat.Light"
+    android:label="ほげほげツール"/>
 ```
+「ほげほげツール」はこのツールの名前、欲しいネームを付けてよろしい、ただし空きでは行けません。
 
 #### 3. Applicationにデバッグボトルを注入
 まずは「BlockCanaryContext」を実装します。

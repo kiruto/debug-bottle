@@ -133,8 +133,10 @@ dependencies {
 ```xml
 <activity
     android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
-    android:theme="@style/Theme.AppCompat.Light"/>
+    android:theme="@style/Theme.AppCompat.Light"
+    android:label="调试工具"/>
 ```
+"调试工具"是Debug Bottle在Android launch pad中显示的名称, 可以随意命名。
 
 #### 3. 在Application中插入Debug Bottle代码
 
