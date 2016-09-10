@@ -31,6 +31,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".guide.__IntroductionActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.exyui.android.INTRODUCTION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <service android:name="com.exyui.android.debugbottle.components.floating.__FloatingService" />
     </application>
 

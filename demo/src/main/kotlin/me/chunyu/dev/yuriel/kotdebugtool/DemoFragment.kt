@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
         val button4 = view.findViewById(R.id.button4) as Button
         val button5 = view.findViewById(R.id.button5) as Button
         val button6 = view.findViewById(R.id.__read_me) as Button
+        val intro = view.findViewById(R.id.introduction) as Button
 
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
@@ -47,6 +49,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
         button5.setOnClickListener(this)
         button6.setOnClickListener(this)
         view.findViewById(R.id.launch_dt).setOnClickListener(this)
+        intro.setOnClickListener(this)
     }
 
     override fun onDestroyView() {
@@ -89,6 +92,11 @@ class DemoFragment : Fragment(), View.OnClickListener {
             }
             R.id.launch_dt -> {
                 startActivity(Intent("com.exyui.android.DEBUG_BOTTLE"))
+            }
+            R.id.introduction -> {
+                val intent = Intent("com.exyui.android.INTRODUCTION")
+                intent.putExtra("theme", R.style.__DemoAppActionBarTheme)
+                startActivity(intent)
             }
             else -> {
             }

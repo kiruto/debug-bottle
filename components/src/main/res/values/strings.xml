@@ -65,8 +65,8 @@
     <string name="__dt_block_canary_feature">Block Canary</string>
     <string name="__dt_running">Running</string>
     <string name="__dt_stopped">Stopped</string>
-    <string name="__dt_write_external_storage">write external storage</string>
-    <string name="__dt_read_phone_state">read phone state</string>
+    <string name="__dt_write_external_storage">Write external storage</string>
+    <string name="__dt_read_phone_state">Read phone state</string>
     <string name="__dt_system_alert_window">system alert window</string>
 
     <string name="__dt_need_permissions">Needs permissions</string>
@@ -91,4 +91,25 @@
     <string name="__dt_info_introduction">An Android debug / develop tools written using Kotlin language. All the features in Debug bottle are only available on debug build version with your app, it doesn\'t has an impact on release version.</string>
     <string name="__dt_github">github</string>
     <string name="__dt_close">close</string>
+
+    <string name="__dt_intro_title_welcome">Welcome to use Debug Bottle!</string>
+    <string name="__dt_intro_title_check_permission">Checkup permission</string>
+    <string name="__dt_intro_title_enable_features">Enable Debug Bottle</string>
+    <string name="__dt_intro_title_done">Well done!</string>
+    <string name="__dt_intro_content_debug_runtime">Debug codes at Runtime</string>
+    <string name="__dt_intro_content_find_bug">Find bug automatically</string>
+    <string name="__dt_intro_content_view_reports">View reports at any time</string>
+    <string name="__dt_intro_content_more_feature">More amazing features</string>
+    <string name="__dt_next">NEXT</string>
+    <string name="__dt_restart">RESTART</string>
+    <string name="__dt_intro_request_permissions">Click me to allow these permissions now</string>
+    <string name="__dt_intro_permission_done">All permissions allowed</string>
+    <string name="__dt_enable_bottle">Enable Debug Bottle</string>
+    <string name="__dt_enable_strict_mode">Enable strict mode</string>
+    <string name="__dt_enable_leak_canary">Enable detect memory leaks</string>
+    <string name="__dt_enable_block_canary">Enable detect UI blocks</string>
+    <string name="__dt_intro_content_done_1">All configurations is done.</string>
+    <string name="__dt_intro_content_done_2">Now you can use Debug Bottle with your App.</string>
+    <string name="__dt_intro_content_done_3">After restart your app, you\'ll see a notification entry.</string>
+    <string name="__dt_intro_content_done_4">Good luck!</string>
 </resources>

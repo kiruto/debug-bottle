@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView style="@style/__DTIntro.Title"
+        android:id="@+id/__dt_title"/>
+
+    <LinearLayout style="@style/__DTIntro.Content">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TableRow
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="12dp"
+                    android:id="@+id/__dt_read_phone_state"
+                    android:src="@drawable/__ic_security_white_24dp"/>
+
+                <TextView style="@style/__DTIntro.ContentText"
+                    android:text="@string/__dt_read_phone_state"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="12dp"
+                    android:id="@+id/__dt_write_external_storage"
+                    android:src="@drawable/__ic_security_white_24dp"/>
+
+                <TextView style="@style/__DTIntro.ContentText"
+                    android:text="@string/__dt_write_external_storage"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView style="@style/__DTIntro.ContentText"
+            android:id="@+id/__dt_request_permission"
+            android:padding="20dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="@string/__dt_intro_request_permissions"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -17,6 +17,7 @@ import android.view.*
 import android.widget.*
 import com.squareup.leakcanary.internal.DisplayLeakActivity
 import com.exyui.android.debugbottle.components.fragments.*
+import com.exyui.android.debugbottle.components.guide.__IntroductionActivity
 
 /**
  * Created by yuriel on 9/3/16.
@@ -88,6 +89,20 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         result
     }
 
+    private val introLayout by lazy {
+        val result = findViewById(R.id.__dt_helper) as ViewGroup
+        result.setOnClickListener {
+            val intent = Intent(this, __IntroductionActivity::class.java)
+            val clazz = ContextThemeWrapper::class.java
+            val method = clazz.getMethod("getThemeResId")
+            method.isAccessible = true
+            val themeResId = method.invoke(this) as Int
+            intent.putExtra("theme", themeResId)
+            startActivity(intent)
+        }
+        result
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setTheme(R.style.Theme_AppCompat_Light)
@@ -96,7 +111,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
-        drawerListView; infoLayout
+        drawerListView; infoLayout; introLayout
         selectItem(0)
         drawerLayout.openDrawer(Gravity.LEFT)
     }
