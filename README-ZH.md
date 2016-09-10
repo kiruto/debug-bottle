@@ -6,7 +6,7 @@ Demo App可在Google Play中下载:
 
 <a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
 
-[<img src="screenshots/introduction.gif">](screenshots/raw/introduction.gif)
+[<img src="screenshots/introduction.gif" width="225" height="400">](screenshots/raw/introduction.gif)
 [<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
 [<img src="screenshots/features-2.png"/>](screenshots/raw/features-2.png)
 
