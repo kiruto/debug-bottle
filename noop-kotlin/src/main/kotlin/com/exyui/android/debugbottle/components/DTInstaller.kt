@@ -5,40 +5,40 @@ import android.util.Log
 /**
  * Created by yuriel on 8/30/16.
  */
-object Installer {
+object DTInstaller {
     private val TAG = "FakeInstaller"
 
-    fun install(any: Any?): Installer {
+    fun install(any: Any?): DTInstaller {
         Log.d(TAG, "install")
         return this
     }
 
-    fun setBlockCanary(any: Any?): Installer {
+    fun setBlockCanary(any: Any?): DTInstaller {
         Log.d(TAG, "setBlockCanary")
         return this
     }
 
-    fun setInjector(any: Any?): Installer {
+    fun setInjector(any: Any?): DTInstaller {
         Log.d(TAG, "setInjector")
         return this
     }
 
-    fun setPackageName(any: Any?): Installer {
+    fun setPackageName(any: Any?): DTInstaller {
         Log.d(TAG, "setPackageName")
         return this
     }
 
-    fun setOkHttpClient(any: Any): Installer {
+    fun setOkHttpClient(any: Any): DTInstaller {
         Log.d(TAG, "setOkHttpClient")
         return this
     }
 
-    fun enable(): Installer {
+    fun enable(): DTInstaller {
         Log.d(TAG, "enable")
         return this
     }
 
-    fun disable(): Installer {
+    fun disable(): DTInstaller {
         Log.d(TAG, "disable")
         return this
     }

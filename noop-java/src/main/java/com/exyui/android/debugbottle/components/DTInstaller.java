@@ -6,43 +6,43 @@ import android.util.Log;
  * Created by yuriel on 9/7/16.
  */
 
-public class Installer {
+public class DTInstaller {
     private static final String TAG = "FakeInstaller";
-    public static final Installer INSTANCE = new Installer();
+    public static final DTInstaller INSTANCE = new DTInstaller();
 
-    private Installer() {}
+    private DTInstaller() {}
 
-    public Installer install(Object a) {
+    public DTInstaller install(Object a) {
         Log.d(TAG, "install");
         return this;
     }
 
-    public Installer setBlockCanary(Object a) {
+    public DTInstaller setBlockCanary(Object a) {
         Log.d(TAG, "setBlockCanary");
         return this;
     }
 
-    public Installer setInjector(Object a) {
+    public DTInstaller setInjector(Object a) {
         Log.d(TAG, "setInjector");
         return this;
     }
 
-    public Installer setPackageName(Object a) {
+    public DTInstaller setPackageName(Object a) {
         Log.d(TAG, "setPackageName");
         return this;
     }
 
-    public Installer setOkHttpClient(Object a) {
+    public DTInstaller setOkHttpClient(Object a) {
         Log.d(TAG, "setOkHttpClient");
         return this;
     }
 
-    public Installer enable() {
+    public DTInstaller enable() {
         Log.d(TAG, "enable");
         return this;
     }
 
-    public Installer disable() {
+    public DTInstaller disable() {
         Log.d(TAG, "disable");
         return this;
     }

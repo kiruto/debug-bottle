@@ -3,7 +3,7 @@ package com.exyui.android.debugbottle.components.injector
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import com.exyui.android.debugbottle.components.Installer
+import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.injector.__IntentInjectorImpl
 
 /**
@@ -14,7 +14,7 @@ internal class AllActivities(activity: Activity): __IntentInjectorImpl() {
         setActivity(activity)
         try {
             val mgr = activity.packageManager
-            val packageName = Installer.rootPackageName?: activity.packageName
+            val packageName = DTInstaller.rootPackageName?: activity.packageName
             val info = mgr.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
             //val test = info.applicationInfo
             val list = info.activities

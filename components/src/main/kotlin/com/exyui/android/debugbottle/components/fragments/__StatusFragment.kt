@@ -90,7 +90,7 @@ class __StatusFragment: __ContentFragment() {
 
     private val procBtn by lazy {
         val result = findViewById(R.id.__dt_kill_process)
-        result?.setOnClickListener { Installer.kill() }
+        result?.setOnClickListener { DTInstaller.kill() }
         result!!
     }
 
@@ -157,7 +157,7 @@ class __StatusFragment: __ContentFragment() {
                 .setMessage(R.string.__dt_need_kill_proc)
                 .setNegativeButton(R.string.__dt_later) { dialog, witch -> }
                 .setPositiveButton(R.string.__dt_kill_process) { dialog, witch ->
-                    Installer.kill()
+                    DTInstaller.kill()
                 }
                 .show()
     }

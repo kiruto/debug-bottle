@@ -4,6 +4,9 @@
 
 An Android debug / develop tools written using Kotlin language. All the features in Debug bottle are only available on debug build version with your app, it doesn't has an impact on release version.
 
+- [CHANGELOG](CHANGELOG.md)
+- [TODO](TODO.md)
+
 Demo App is now available at Google Play:
 
 <a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
@@ -151,7 +154,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
@@ -167,7 +170,7 @@ Or if you use Kotlin, you can inject like:
 class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")

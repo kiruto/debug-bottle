@@ -2,6 +2,9 @@
 # 🍼Debug Bottle
 Android Java / Kotlin 程序员开发调试工具。Debug Bottle的所有功能均建立在App的debug版本中，不会对release版本产生任何影响。Debug Bottle旨在提高开发效率，把控App质量。
 
+- [CHANGELOG](CHANGELOG.md)
+- [TODO](TODO.md)
+
 Demo App可在Google Play中下载:
 
 <a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
@@ -151,7 +154,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
@@ -167,7 +170,7 @@ public class MyApplication extends Application{
 class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
