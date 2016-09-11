@@ -42,7 +42,7 @@ View のデバッグ用途として、画面をグリグリすると 3DCG みた
 StrictModeはアプリケーションの動作をもっさりさせる原因となる、 ディスクやネットワークへのアクセスを検知するための仕組みです。使う方とかを[オフィシャルサイト](https://developer.android.com/reference/android/os/StrictMode.html)で見えます。
 
 #### Leak Canaryを使用する
-Squareのメモリリークを検出するライブラリ Leak Canary を通じて、メモリリークを調査できます。デバッグボトルはすでにLeak Canaryを含んでいるから、その機能は使えます。もっと詳しくは[こちらで(https://github.com/square/leakcanary/wiki/FAQ)]。
+Squareのメモリリークを検出するライブラリ Leak Canary を通じて、メモリリークを調査できます。デバッグボトルはすでにLeak Canaryを含んでいるから、その機能は使えます。もっと詳しくは[こちらで](https://github.com/square/leakcanary/wiki/FAQ)。
 
 #### UIフリーズを排除する
 一旦UIフリーズが発生となると、デバッグボトルはノティファイで通知して、同じ時にログファイルを作成します。開発者はログファイルで、フリーズの原因を知り、排除するのは可能となります。
