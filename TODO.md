@@ -1,0 +1,6 @@
+- [X] feature: rewrite noop use java
+- [ ] feature: crash handler
+- [X] feature: custom icon label
+- [X] feature: introduction activity
+- [ ] feature: services manager
+- [ ] feature: FPS display
