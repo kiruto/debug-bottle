@@ -1,6 +1,21 @@
-- [X] feature: rewrite noop use java
+# 1.0.0
+- [x] feature: network sniffer
+- [x] feature: entries
+- [x] feature: scalpel
+- [x] feature: sp editor
+- [x] feature: strict mode
+- [x] feature: leak detect
+- [x] feature: block detect
+- [x] feature: rewrite noop use java
 - [ ] feature: crash handler
-- [X] feature: custom icon label
-- [X] feature: introduction activity
+- [x] feature: custom icon label
+- [x] feature: introduction activity
+
+# 1.0.1
 - [ ] feature: services manager
-- [ ] feature: FPS display
+- [ ] feature: display FPS
+- [ ] feature: display intent arguments
+- [ ] feature: content provider manager
+- [ ] feature: SQLite editor
+- [ ] feature: fragment previewer without activity
+- [ ] feature: calculator
