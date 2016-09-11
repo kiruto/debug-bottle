@@ -103,17 +103,17 @@ class __IntroductionFragment: Fragment() {
                 return result
             }
 
-            private fun hasPermission(permission: String) = PackageManager.PERMISSION_DENIED != ContextCompat.checkSelfPermission(context!!, permission)
+            private fun hasPermission(permission: String) = true //PackageManager.PERMISSION_DENIED != ContextCompat.checkSelfPermission(context!!, permission)
 
             private fun requestPermission() {
                 context?: return
 
-                for (p in permissions) {
-                    // Here, thisActivity is the current activity
-                    if (ContextCompat.checkSelfPermission(context!!, p) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(context as Activity, arrayOf(p), 1)
-                    }
-                }
+//                for (p in permissions) {
+//                    // Here, thisActivity is the current activity
+//                    if (ContextCompat.checkSelfPermission(context!!, p) != PackageManager.PERMISSION_GRANTED) {
+//                        ActivityCompat.requestPermissions(context as Activity, arrayOf(p), 1)
+//                    }
+//                }
             }
 
         }
