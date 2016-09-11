@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/__dt_background"/>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/__dt_view_pager"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/__dt_content_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="4"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/launch_dt">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/__dt_icon_bottle"
+                    android:layout_toLeftOf="@+id/__dt_icon_arrow"
+                    android:src="@drawable/__dt_ic_bottle_64dp"/>
+
+                <ImageView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="40dp"
+                    android:id="@+id/__dt_icon_arrow"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/__ic_right_arrow"/>
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/__dt_icon_arrow"
+                    android:id="@+id/__dt_icon_app"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/__dt_intro_text"
+                    android:layout_toRightOf="@id/__dt_icon_bottle"
+                    android:layout_marginLeft="40dp"
+                    android:orientation="vertical">
+
+                    <TextView style="@style/__DTIntro.FeatureContent"
+                        android:text="@string/__dt_intro_content_debug_runtime"/>
+
+                    <TextView style="@style/__DTIntro.FeatureContent"
+                        android:text="@string/__dt_intro_content_find_bug"/>
+
+                    <TextView style="@style/__DTIntro.FeatureContent"
+                        android:text="@string/__dt_intro_content_view_reports"/>
+
+                    <TextView style="@style/__DTIntro.FeatureContent"
+                        android:text="@string/__dt_intro_content_more_feature"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="6"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="right">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#32FFFFFF"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:paddingLeft="32dp"
+                    android:paddingRight="32dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:id="@+id/__dt_intro_next"
+                    android:text="@string/__dt_next"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

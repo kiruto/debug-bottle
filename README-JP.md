@@ -6,7 +6,7 @@ DEMOは今Google Playでダウンロードできます:
 
 <a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
 
-[<img src="screenshots/showcases.png">](screenshots/raw/showcases.png)
+[<img src="screenshots/introduction.gif" width="225" height="400">](screenshots/raw/introduction.gif)
 [<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
 [<img src="screenshots/features-2.png"/>](screenshots/raw/features-2.png)
 
@@ -42,7 +42,7 @@ View のデバッグ用途として、画面をグリグリすると 3DCG みた
 StrictModeはアプリケーションの動作をもっさりさせる原因となる、 ディスクやネットワークへのアクセスを検知するための仕組みです。使う方とかを[オフィシャルサイト](https://developer.android.com/reference/android/os/StrictMode.html)で見えます。
 
 #### Leak Canaryを使用する
-Squareのメモリリークを検出するライブラリ Leak Canary を通じて、メモリリークを調査できます。デバッグボトルはすでにLeak Canaryを含んでいるから、その機能は使えます。もっと詳しくは[こちらで(https://github.com/square/leakcanary/wiki/FAQ)]。
+Squareのメモリリークを検出するライブラリ Leak Canary を通じて、メモリリークを調査できます。デバッグボトルはすでにLeak Canaryを含んでいるから、その機能は使えます。もっと詳しくは[こちらで](https://github.com/square/leakcanary/wiki/FAQ)。
 
 #### UIフリーズを排除する
 一旦UIフリーズが発生となると、デバッグボトルはノティファイで通知して、同じ時にログファイルを作成します。開発者はログファイルで、フリーズの原因を知り、排除するのは可能となります。
@@ -131,8 +131,10 @@ Manifestにデバッグボトルのプライマリアクティビティを加入
 ```xml
 <activity
     android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
-    android:theme="@style/Theme.AppCompat.Light"/>
+    android:theme="@style/Theme.AppCompat.Light"
+    android:label="ほげほげツール"/>
 ```
+「ほげほげツール」はこのツールの名前、欲しいネームを付けてよろしい、ただし空きでは行けません。
 
 #### 3. Applicationにデバッグボトルを注入
 まずは「BlockCanaryContext」を実装します。

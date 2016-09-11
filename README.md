@@ -8,7 +8,7 @@ Demo App is now available at Google Play:
 
 <a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
 
-[<img src="screenshots/showcases.png">](screenshots/raw/showcases.png)
+[<img src="screenshots/introduction.gif" width="225" height="400">](screenshots/introduction.gif)
 [<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
 [<img src="screenshots/features-2.png"/>](screenshots/raw/features-2.png)
 
@@ -134,8 +134,10 @@ Add Debug Bottle main Activity in your Manifest:
 ```xml
 <activity
     android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
-    android:theme="@style/Theme.AppCompat.Light"/>
+    android:theme="@style/Theme.AppCompat.Light"
+    android:label="The Name You Like"/>
 ```
+The value of tag label, will display to your android launch pad.
 
 #### 3. Inject Debug Bottle into your Application
 First, you may implement Block Canary Context:

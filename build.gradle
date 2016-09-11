@@ -8,7 +8,7 @@ buildscript {
         buildToolsVersion = '22.0.1'
         javaVersion = JavaVersion.VERSION_1_7
 
-        versionCode = 2
+        versionCode = 3
         versionName = "1.0.0EAP-support22-SNAPSHOT"
         versionUploaded = "1.0.0EAP-SNAPSHOT"
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView style="@style/__DTIntro.Title"
+        android:id="@+id/__dt_title"/>
+
+    <LinearLayout style="@style/__DTIntro.Content">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center">
+
+            <TableRow>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/__dt_enable_bottle"/>
+
+                <TextView style="@style/__DTIntro.ContentText.Left"
+                    android:text="@string/__dt_enable_bottle"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/__dt_enable_strict_mode"/>
+
+                <TextView style="@style/__DTIntro.ContentText.Left"
+                    android:text="@string/__dt_enable_strict_mode"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/__dt_enable_leak_canary"/>
+
+                <TextView style="@style/__DTIntro.ContentText.Left"
+                    android:text="@string/__dt_enable_leak_canary"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/__dt_enable_block_canary"/>
+
+                <TextView style="@style/__DTIntro.ContentText.Left"
+                    android:text="@string/__dt_enable_block_canary"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

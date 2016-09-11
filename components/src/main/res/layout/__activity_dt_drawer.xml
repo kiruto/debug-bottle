@@ -23,13 +23,81 @@
 
     </LinearLayout>
 
-    <ListView android:id="@+id/__dt_left_drawer"
+    <LinearLayout
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#FFFFFF"/>
+        android:orientation="vertical"
+        android:layout_gravity="left"
+        android:id="@+id/__dt_drawer_root">
+
+        <ListView android:id="@+id/__dt_left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:background="#FFFFFF"/>
+
+        <View style="@style/__DTList.Divider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:background="@android:color/white"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/__dt_info"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/__ic_info_outline"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/__dt_information"
+                    android:layout_marginLeft="32dp"
+                    android:textColor="#DE000000"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/__dt_helper"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/__ic_help_outline"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/__dt_help"
+                    android:layout_marginLeft="32dp"
+                    android:textColor="#DE000000"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </android.support.v4.widget.DrawerLayout>
