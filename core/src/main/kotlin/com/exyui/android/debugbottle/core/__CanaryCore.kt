@@ -3,19 +3,19 @@ package com.exyui.android.debugbottle.core
 import android.os.Looper
 import android.util.Log
 import android.util.Printer
-import com.exyui.android.debugbottle.core.log.Block
+import com.exyui.android.debugbottle.core.log.__Block
 
 /**
  * Created by yuriel on 8/8/16.
  */
-object CanaryCore {
+object __CanaryCore {
 
-    private val context = CanaryCoreMgr.context
+    private val context = __CanaryCoreMgr.context
     internal var mainLooperPrinter: LooperPrinter
     internal var threadStackSampler: ThreadStackSampler?
     internal var cpuSampler: CpuSampler
 
-    var mOnBlockEventInterceptor: OnBlockEventInterceptor? = null
+    var mOnBlockEventInterceptor: __OnBlockEventInterceptor? = null
 
     init {
 
@@ -32,20 +32,20 @@ object CanaryCore {
             val threadStackEntries = threadStackSampler!!.getThreadStackEntries(realTimeStart, realTimeEnd)
             // Log.d("BlockCanary", "threadStackEntries: " + threadStackEntries.size)
             if (!threadStackEntries.isEmpty()) {
-                val block = Block.newInstance()
+                val block = __Block.newInstance()
                         .setMainThreadTimeCost(realTimeStart, realTimeEnd, threadTimeStart, threadTimeEnd)
                         .setCpuBusyFlag(cpuSampler.isCpuBusy(realTimeStart, realTimeEnd))
                         .setRecentCpuRate(cpuSampler.cpuRateInfo)
                         .setThreadStackEntries(threadStackEntries)
                         .flushString()
-                LogWriter.saveLooperLog(block.toString())
+                __LogWriter.saveLooperLog(block.toString())
 
                 if (context?.isNeedDisplay?: false && mOnBlockEventInterceptor != null) {
                     mOnBlockEventInterceptor?.onBlockEvent(context?.context!!, block.timeStart)
                 }
             }
         }
-        LogWriter.cleanOldFiles()
+        __LogWriter.cleanOldFiles()
     }
 
     /**

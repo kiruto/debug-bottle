@@ -43,28 +43,28 @@ internal class LooperPrinter(
         val startTime = mStartTimeMillis
         val startThreadTime = mStartThreadTimeMillis
         val endThreadTime = SystemClock.currentThreadTimeMillis()
-        HandlerThread.writeLogFileThreadHandler.post {
+        __HandlerThread.writeLogFileThreadHandler.post {
             mBlockListener(startTime, endTime, startThreadTime, endThreadTime)
         }
     }
 
     private fun startDump() {
-        if (null != CanaryCoreMgr.get().threadStackSampler) {
-            CanaryCoreMgr.get().threadStackSampler?.start()
+        if (null != __CanaryCoreMgr.get().threadStackSampler) {
+            __CanaryCoreMgr.get().threadStackSampler?.start()
         }
 
-//        if (null != CanaryCoreMgr.get()?.cpuSampler) {
-            CanaryCoreMgr.get().cpuSampler.start()
+//        if (null != __CanaryCoreMgr.get()?.cpuSampler) {
+            __CanaryCoreMgr.get().cpuSampler.start()
 //        }
     }
 
     private fun stopDump() {
-        if (null != CanaryCoreMgr.get().threadStackSampler) {
-            CanaryCoreMgr.get().threadStackSampler?.stop()
+        if (null != __CanaryCoreMgr.get().threadStackSampler) {
+            __CanaryCoreMgr.get().threadStackSampler?.stop()
         }
 
-//        if (null != CanaryCoreMgr.get()?.cpuSampler) {
-            CanaryCoreMgr.get().cpuSampler.stop()
+//        if (null != __CanaryCoreMgr.get()?.cpuSampler) {
+            __CanaryCoreMgr.get().cpuSampler.stop()
 //        }
     }
 

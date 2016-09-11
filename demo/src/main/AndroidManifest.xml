@@ -25,16 +25,16 @@
             android:theme="@style/Theme.AppCompat" />
 
         <activity
-            android:name="com.exyui.android.debugbottle.components.injector.__InjectorActivity"
+            android:name="com.exyui.android.debugbottle.components.injector.InjectorActivity"
             android:theme="@style/__DemoAppActionBarTheme"/>
 
-        <activity android:name="com.exyui.android.debugbottle.components.spviewer.__SPViewerActivity"
+        <activity android:name="com.exyui.android.debugbottle.components.spviewer.SPViewerActivity"
             android:theme="@style/__DemoAppActionBarTheme"/>
 
-        <activity android:name="com.exyui.android.debugbottle.components.__SettingsActivity"
+        <activity android:name="com.exyui.android.debugbottle.components.SettingsActivity"
             android:theme="@style/__DemoAppActionBarTheme"/>
 
-        <activity android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
+        <activity android:name="com.exyui.android.debugbottle.components.DTDrawerActivity"
             android:theme="@style/__DemoAppActionBarTheme"
             android:label="DebugTools"/>
 

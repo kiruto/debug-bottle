@@ -6,21 +6,21 @@
 
     <application android:label="@string/app_name">
         <activity
-            android:name="com.exyui.android.debugbottle.components.__TestingActivity"
+            android:name="com.exyui.android.debugbottle.components.TestingActivity"
             android:theme="@style/__AppTheme" />
         <activity
-            android:name="com.exyui.android.debugbottle.components.injector.__InjectorActivity"
+            android:name="com.exyui.android.debugbottle.components.injector.InjectorActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.exyui.android.debugbottle.components.spviewer.__SPViewerActivity" />
-        <activity android:name="com.exyui.android.debugbottle.components.__SettingsActivity" />
+        <activity android:name="com.exyui.android.debugbottle.components.spviewer.SPViewerActivity" />
+        <activity android:name="com.exyui.android.debugbottle.components.SettingsActivity" />
 
         <activity
-            android:name="com.exyui.android.debugbottle.components.okhttp.__DisplayHttpBlockActivity"
+            android:name="com.exyui.android.debugbottle.components.okhttp.DisplayHttpBlockActivity"
             android:theme="@style/__dt_canary_BlockCanary.Base">
         </activity>
 
         <activity
-            android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
+            android:name="com.exyui.android.debugbottle.components.DTDrawerActivity"
             android:icon="@drawable/__dt_ic_bottle_64dp"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".guide.__IntroductionActivity"
+        <activity android:name=".guide.IntroductionActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.exyui.android.INTRODUCTION" />
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.exyui.android.debugbottle.components.floating.__FloatingService" />
+        <service android:name="com.exyui.android.debugbottle.components.floating.FloatingService" />
     </application>
 
 </manifest>

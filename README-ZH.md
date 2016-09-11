@@ -135,7 +135,7 @@ dependencies {
 加入Debug Bottle的主Activity：
 ```xml
 <activity
-    android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
+    android:name="com.exyui.android.debugbottle.components.DTDrawerActivity"
     android:theme="@style/Theme.AppCompat.Light"
     android:label="调试工具"/>
 ```

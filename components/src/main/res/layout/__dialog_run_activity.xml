@@ -61,7 +61,7 @@
                     android:textStyle="italic"
                     style="@style/__DTDialog.IntentContent"/>
 
-                <com.exyui.android.debugbottle.components.widgets.__DebugToolEditText
+                <com.exyui.android.debugbottle.components.widgets.DebugToolEditText
                     android:id="@+id/__dt_edit_text"
                     android:gravity="top"
                     android:textColor="@android:color/black"

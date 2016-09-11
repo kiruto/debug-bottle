@@ -22,7 +22,7 @@ import java.util.concurrent.Executors
 /**
  * Created by yuriel on 8/24/16.
  */
-internal class __DisplayHttpBlockActivity : Activity() {
+internal class DisplayHttpBlockActivity : Activity() {
 
     companion object {
 
@@ -31,7 +31,7 @@ internal class __DisplayHttpBlockActivity : Activity() {
         val SHOW_BLOCK_EXTRA_KEY = "BlockStartTime"
 
         @JvmOverloads fun createPendingIntent(context: Context, blockStartTime: String? = null): PendingIntent {
-            val intent = Intent(context, __DisplayHttpBlockActivity::class.java)
+            val intent = Intent(context, DisplayHttpBlockActivity::class.java)
             intent.putExtra(SHOW_BLOCK_EXTRA, blockStartTime)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             return PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -257,7 +257,7 @@ internal class __DisplayHttpBlockActivity : Activity() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             var convertView = convertView
             if (convertView == null) {
-                convertView = LayoutInflater.from(this@__DisplayHttpBlockActivity).inflate(R.layout.__dt_canary_block_row, parent, false)
+                convertView = LayoutInflater.from(this@DisplayHttpBlockActivity).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
             val titleView = convertView!!.findViewById(R.id.__dt_canary_row_text) as TextView
             val timeView = convertView.findViewById(R.id.__dt_canary_row_time) as TextView
@@ -277,7 +277,7 @@ internal class __DisplayHttpBlockActivity : Activity() {
         }
     }
 
-    internal class LoadBlocks(private var activityOrNull: __DisplayHttpBlockActivity?) : Runnable {
+    internal class LoadBlocks(private var activityOrNull: DisplayHttpBlockActivity?) : Runnable {
         private val mainHandler: Handler
 
         init {
@@ -318,7 +318,7 @@ internal class __DisplayHttpBlockActivity : Activity() {
             val inFlight: MutableList<LoadBlocks> = ArrayList()
             val backgroundExecutor: Executor = Executors.newSingleThreadExecutor()
 
-            fun load(activity: __DisplayHttpBlockActivity) {
+            fun load(activity: DisplayHttpBlockActivity) {
                 val loadBlocks = LoadBlocks(activity)
                 inFlight.add(loadBlocks)
                 backgroundExecutor.execute(loadBlocks)

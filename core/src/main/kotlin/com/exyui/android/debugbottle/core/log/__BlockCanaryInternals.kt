@@ -1,20 +1,20 @@
 package com.exyui.android.debugbottle.core.log
 
 import android.os.Environment
-import com.exyui.android.debugbottle.core.CanaryCore
-import com.exyui.android.debugbottle.core.CanaryCoreMgr
+import com.exyui.android.debugbottle.core.__CanaryCore
+import com.exyui.android.debugbottle.core.__CanaryCoreMgr
 import java.io.File
 
 /**
  * Created by yuriel on 8/8/16.
  */
-object BlockCanaryInternals {
+object __BlockCanaryInternals {
     private val TYPE = ".txt"
 
     internal val path: String
         get() {
             val state = Environment.getExternalStorageState()
-            val logPath = if (CanaryCoreMgr.context == null) "" else CanaryCoreMgr.context?.logPath
+            val logPath = if (__CanaryCoreMgr.context == null) "" else __CanaryCoreMgr.context?.logPath
 
             if (Environment.MEDIA_MOUNTED == state && Environment.getExternalStorageDirectory().canWrite()) {
                 return Environment.getExternalStorageDirectory().path + logPath

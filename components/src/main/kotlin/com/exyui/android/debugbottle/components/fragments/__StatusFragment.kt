@@ -21,7 +21,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.*
 import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
-import com.exyui.android.debugbottle.components.floating.__FloatingService
+import com.exyui.android.debugbottle.components.floating.FloatingService
 
 /**
  * Created by yuriel on 9/3/16.
@@ -72,7 +72,7 @@ class __StatusFragment: __ContentFragment() {
         FloatingViewMgr.setupWith(context!!.applicationContext)
         result.isChecked = FloatingViewMgr.isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            val intent = Intent(context, __FloatingService::class.java)
+            val intent = Intent(context, FloatingService::class.java)
             if (isChecked) {
                 context?.startService(intent)
             } else {
@@ -146,7 +146,7 @@ class __StatusFragment: __ContentFragment() {
                     context?.finish()
                 }
                 .setPositiveButton(R.string.__dt_enable) { dialog, witch ->
-                    __DTSettings.setBottleEnable(true)
+                    DTSettings.setBottleEnable(true)
                     showNeedKillProcDialog()
                 }
                 .show()

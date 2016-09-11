@@ -50,6 +50,8 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             if (!installed) field = value
         }
 
+    internal var injectorClassName: String? = null
+
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 
     }
@@ -96,6 +98,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     }
 
     fun setInjector(packageName: String): DTInstaller {
+        injectorClassName = packageName
         try {
             val injectorClass = Class.forName(packageName)
             injector = injectorClass.newInstance() as Injector
@@ -127,13 +130,13 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     fun run() {
         RunningFeatureMgr.clear()
-        if(!__DTSettings.getBottleEnable() && enabled)
+        if(!DTSettings.getBottleEnable() && enabled)
             return
         RunningFeatureMgr.add(RunningFeatureMgr.DEBUG_BOTTLE)
         installed = true
         if (null != blockCanary) {
             val blockCanary = BlockCanary.install(blockCanary!!)
-            if (__DTSettings.getBlockCanaryEnable()) {
+            if (DTSettings.getBlockCanaryEnable()) {
                 blockCanary.start()
                 RunningFeatureMgr.add(RunningFeatureMgr.BLOCK_CANARY)
             } else {
@@ -142,14 +145,14 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             }
         }
         if (null != app) {
-            if (__DTSettings.getStrictMode()) {
+            if (DTSettings.getStrictMode()) {
                 enableStrictMode()
                 RunningFeatureMgr.add(RunningFeatureMgr.STRICT_MODE)
             } else {
                 RunningFeatureMgr.remove(RunningFeatureMgr.STRICT_MODE)
             }
 
-            if (__DTSettings.getLeakCanaryEnable()) {
+            if (DTSettings.getLeakCanaryEnable()) {
                 LeakCanary.install(app)
                 RunningFeatureMgr.add(RunningFeatureMgr.LEAK_CANARY)
             } else {
@@ -161,7 +164,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         }
         if (null != httpClient) {
             httpClient!!.interceptors().add(LoggingInterceptor())
-            __DTSettings.getNetworkSniff()
+            DTSettings.getNetworkSniff()
         }
     }
 
@@ -205,7 +208,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     private fun showNotification(app: Application) {
         //val view = RemoteViews(app.packageName, R.layout.__notification_main)
         //view.setTextViewText(R.id.notify_title, "start")
-        val pi = PendingIntent.getActivity(app, 0, Intent(app, __DTDrawerActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+        val pi = PendingIntent.getActivity(app, 0, Intent(app, DTDrawerActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
         val notification: Notification
         val notify = Notification.Builder(app)
                 .setSmallIcon(R.drawable.__dt_notification_bt)

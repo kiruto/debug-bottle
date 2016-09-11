@@ -15,7 +15,7 @@ import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import com.exyui.android.debugbottle.components.widgets.__DebugToolEditText
+import com.exyui.android.debugbottle.components.widgets.DebugToolEditText
 import java.util.regex.Pattern
 
 /**
@@ -74,7 +74,7 @@ internal object DialogsCollection {
             val content = findViewById(R.id.__dt_intent_content) as ViewGroup
             val nameView = findViewById(R.id.__dt_activity_name) as TextView
             val key = findViewById(R.id.__dt_intent_key) as TextView
-            val et = findViewById(R.id.__dt_edit_text) as __DebugToolEditText
+            val et = findViewById(R.id.__dt_edit_text) as DebugToolEditText
             val title = findViewById(R.id.__dt_title) as TextView
             val putBtn = findViewById(R.id.__dt_edit_submit) as Button
             nameView.text = intent!!.component.className
