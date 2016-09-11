@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.exyui.android.debugbottle.components.Installer
+import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.R
 
 /**
@@ -122,7 +122,7 @@ internal class __IntroductionActivity: AppCompatActivity() {
                 textView.alpha = tag.text
                 if (tag.done) {
                     nextView.setText(R.string.__dt_restart)
-                    nextView.setOnClickListener { Installer.kill() }
+                    nextView.setOnClickListener { DTInstaller.kill() }
                 } else {
                     nextView.setText(R.string.__dt_next)
                     nextView.setOnClickListener { pagerView.setCurrentItem(pagerView.currentItem + 1, true) }

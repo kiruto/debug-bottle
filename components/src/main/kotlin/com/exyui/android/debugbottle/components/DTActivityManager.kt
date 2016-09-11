@@ -11,7 +11,7 @@ internal object DTActivityManager {
 
     var topActivity by Delegates.observable<Activity?>(null) { prop, old, new ->
         if (!injected && new != null) {
-            injected = Installer.startInject()
+            injected = DTInstaller.startInject()
         }
     }
 }

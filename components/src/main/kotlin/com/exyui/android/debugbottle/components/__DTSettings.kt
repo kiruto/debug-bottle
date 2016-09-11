@@ -8,11 +8,11 @@ import com.exyui.android.debugbottle.core.*
  */
 internal object __DTSettings {
 
-    private fun getSP() = Installer.getSP(DT_SETTING_STORE_FILE)
+    private fun getSP() = DTInstaller.getSP(DT_SETTING_STORE_FILE)
 
     fun setBottleEnable(enable: Boolean) {
         getSP()?.edit()?.putBoolean(BOTTLE_ENABLE, enable)?.apply()
-        Installer.setNotificationDisplay(enable)
+        DTInstaller.setNotificationDisplay(enable)
     }
 
     fun getBottleEnable() = getSP()?.getBoolean(BOTTLE_ENABLE, false)?: false

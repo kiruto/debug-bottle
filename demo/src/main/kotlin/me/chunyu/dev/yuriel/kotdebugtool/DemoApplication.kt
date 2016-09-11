@@ -3,7 +3,7 @@ package me.chunyu.dev.yuriel.kotdebugtool
 import android.app.Application
 import android.content.Context
 import com.squareup.okhttp.OkHttpClient
-import com.exyui.android.debugbottle.components.Installer
+import com.exyui.android.debugbottle.components.DTInstaller
 
 /**
  * Created by yuriel on 8/9/16.
@@ -14,7 +14,7 @@ class DemoApplication : Application() {
         super.onCreate()
         appContext = this
 
-        Installer.install(this)
+        DTInstaller.install(this)
                 .setBlockCanary(AppBlockCanaryContext(this))
                 .setOkHttpClient(httpClient)
                 .setInjector("me.chunyu.dev.yuriel.kotdebugtool.ContentInjector")

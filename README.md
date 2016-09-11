@@ -154,7 +154,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
@@ -170,7 +170,7 @@ Or if you use Kotlin, you can inject like:
 class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
