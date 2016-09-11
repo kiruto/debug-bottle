@@ -9,7 +9,7 @@ buildscript {
         javaVersion = JavaVersion.VERSION_1_7
 
         versionCode = 3
-        versionName = "1.0.0EAP-SNAPSHOT"
+        versionName = "1.0.0EAP-support23-SNAPSHOT"
         versionUploaded = "1.0.0EAP-SNAPSHOT"
 
         libraries = [
