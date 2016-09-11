@@ -23,7 +23,7 @@ import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
 /**
  * Created by yuriel on 8/10/16.
  */
-object Installer: Application.ActivityLifecycleCallbacks {
+object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     private var installed: Boolean = false
     private var enabled = true
@@ -80,22 +80,22 @@ object Installer: Application.ActivityLifecycleCallbacks {
 
     }
 
-    @JvmStatic fun install(app: Application): Installer {
+    @JvmStatic fun install(app: Application): DTInstaller {
         this.app = app
         return this
     }
 
-    fun setBlockCanary(context: BlockCanaryContext): Installer {
+    fun setBlockCanary(context: BlockCanaryContext): DTInstaller {
         blockCanary = context
         return this
     }
 
-    fun setInjector(injector: Injector): Installer {
+    fun setInjector(injector: Injector): DTInstaller {
         this.injector = injector
         return this
     }
 
-    fun setInjector(packageName: String): Installer {
+    fun setInjector(packageName: String): DTInstaller {
         try {
             val injectorClass = Class.forName(packageName)
             injector = injectorClass.newInstance() as Injector
@@ -105,22 +105,22 @@ object Installer: Application.ActivityLifecycleCallbacks {
         return this
     }
 
-    fun setPackageName(name: String): Installer {
+    fun setPackageName(name: String): DTInstaller {
         rootPackageName = name
         return this
     }
 
-    fun setOkHttpClient(client: OkHttpClient): Installer {
+    fun setOkHttpClient(client: OkHttpClient): DTInstaller {
         httpClient = client
         return this
     }
 
-    fun enable(): Installer {
+    fun enable(): DTInstaller {
         enabled = true
         return this
     }
 
-    fun disable(): Installer {
+    fun disable(): DTInstaller {
         enabled = false
         return this
     }

@@ -1,6 +1,7 @@
 package com.exyui.android.debugbottle.components.guide
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
@@ -9,7 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.exyui.android.debugbottle.components.Installer
+import com.exyui.android.debugbottle.components.BuildConfig
+import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.R
 
 /**
@@ -122,7 +124,7 @@ internal class __IntroductionActivity: AppCompatActivity() {
                 textView.alpha = tag.text
                 if (tag.done) {
                     nextView.setText(R.string.__dt_restart)
-                    nextView.setOnClickListener { Installer.kill() }
+                    nextView.setOnClickListener { DTInstaller.kill() }
                 } else {
                     nextView.setText(R.string.__dt_next)
                     nextView.setOnClickListener { pagerView.setCurrentItem(pagerView.currentItem + 1, true) }
@@ -185,9 +187,11 @@ internal class __IntroductionActivity: AppCompatActivity() {
                 text = 0f
             }
 
-            iconBottle.imageAlpha = bottle.toAlphaInt()
-            iconArrow.imageAlpha = arrow.toAlphaInt()
-            iconApp.imageAlpha = app.toAlphaInt()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                iconBottle.imageAlpha = bottle.toAlphaInt()
+                iconArrow.imageAlpha = arrow.toAlphaInt()
+                iconApp.imageAlpha = app.toAlphaInt()
+            }
             textView.alpha = text
         }
 

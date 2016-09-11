@@ -2,6 +2,9 @@
 # 🍼デバッグボットル
 アンドロイド Java / Kotlin 開発者ツール
 
+- [CHANGELOG](CHANGELOG.md)
+- [TODO](TODO.md)
+
 DEMOは今Google Playでダウンロードできます:
 
 <a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
@@ -148,7 +151,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
@@ -163,7 +166,7 @@ Kotlinを使ってる場合は、以下の方法で注入します。
 class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        Installer.install(this)
+        DTInstaller.install(this)
             .setBlockCanary(AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
