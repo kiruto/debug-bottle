@@ -17,7 +17,7 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.okhttp.HttpBlock
 import com.exyui.android.debugbottle.components.okhttp.HttpBlockDetailAdapter
 import com.exyui.android.debugbottle.components.okhttp.HttpBlockFileMgr
-import com.exyui.android.debugbottle.components.okhttp.__DisplayHttpBlockActivity
+import com.exyui.android.debugbottle.components.okhttp.DisplayHttpBlockActivity
 import java.util.*
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -42,7 +42,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
         val SHOW_BLOCK_EXTRA_KEY = "BlockStartTime"
 
         @JvmOverloads fun createPendingIntent(context: Context, blockStartTime: String? = null): PendingIntent {
-            val intent = Intent(context, __DisplayHttpBlockActivity::class.java)
+            val intent = Intent(context, DisplayHttpBlockActivity::class.java)
             intent.putExtra(SHOW_BLOCK_EXTRA, blockStartTime)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             return PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)

@@ -1,7 +1,7 @@
 package com.exyui.android.debugbottle.core
 
 import android.util.Log
-import com.exyui.android.debugbottle.core.log.Block
+import com.exyui.android.debugbottle.core.log.__Block
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,7 +18,7 @@ internal class ThreadStackSampler(private val mThread: Thread,
         synchronized(mThreadStackEntries) {
             for (entryTime in mThreadStackEntries.keys) {
                 if (startTime < entryTime && entryTime < endTime) {
-                    result.add(dateFormat.format(entryTime) + Block.SEPARATOR + Block.SEPARATOR + mThreadStackEntries[entryTime])
+                    result.add(dateFormat.format(entryTime) + __Block.SEPARATOR + __Block.SEPARATOR + mThreadStackEntries[entryTime])
                 }
             }
         }
@@ -31,7 +31,7 @@ internal class ThreadStackSampler(private val mThread: Thread,
 
         // Fetch thread stack info
         for (stackTraceElement in mThread.stackTrace) {
-            stringBuilder.append(stackTraceElement.toString()).append(Block.SEPARATOR)
+            stringBuilder.append(stackTraceElement.toString()).append(__Block.SEPARATOR)
         }
 
         // Eliminate obsolete entry

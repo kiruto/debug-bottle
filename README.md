@@ -136,7 +136,7 @@ dependencies {
 Add Debug Bottle main Activity in your Manifest:
 ```xml
 <activity
-    android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
+    android:name="com.exyui.android.debugbottle.components.DTDrawerActivity"
     android:theme="@style/Theme.AppCompat.Light"
     android:label="The Name You Like"/>
 ```

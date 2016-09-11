@@ -4,8 +4,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.os.Looper
 import android.preference.PreferenceManager
-import com.exyui.android.debugbottle.core.CanaryCore
-import com.exyui.android.debugbottle.core.UploadMonitorLog
+import com.exyui.android.debugbottle.core.__CanaryCore
+import com.exyui.android.debugbottle.core.__UploadMonitorLog
 import com.exyui.android.debugbottle.ui.layout.__DisplayBlockActivity
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -13,19 +13,19 @@ import java.util.concurrent.Executors
 import android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED
 import android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED
 import android.content.pm.PackageManager.DONT_KILL_APP
-import com.exyui.android.debugbottle.core.CanaryCoreMgr
+import com.exyui.android.debugbottle.core.__CanaryCoreMgr
 import com.exyui.android.debugbottle.ui.layout.__Notifier
 
 /**
  * Created by yuriel on 8/9/16.
  */
 class BlockCanary private constructor() {
-    private val mBlockCanaryCore: CanaryCore
+    private val mBlockCanaryCore: __CanaryCore
     private var mLooperLoggingStarted = false
 
     init {
-        CanaryCoreMgr.context = BlockCanaryContext.get()
-        mBlockCanaryCore = CanaryCoreMgr.get()
+        __CanaryCoreMgr.context = BlockCanaryContext.get()
+        mBlockCanaryCore = __CanaryCoreMgr.get()
         initNotification()
     }
 
@@ -54,7 +54,7 @@ class BlockCanary private constructor() {
      * Zip and upload log files.
      */
     fun upload() {
-        UploadMonitorLog.forceZipLogAndUpload()
+        __UploadMonitorLog.forceZipLogAndUpload()
     }
 
     /**

@@ -4,13 +4,13 @@ import android.content.Context
 import com.exyui.android.debugbottle.core.BLOCK_THRESHOLD
 import com.exyui.android.debugbottle.core.DEFAULT_BLOCK_THRESHOLD
 import com.exyui.android.debugbottle.core.DT_SETTING_STORE_FILE
-import com.exyui.android.debugbottle.core.IBlockCanaryContext
+import com.exyui.android.debugbottle.core.__IBlockCanaryContext
 import java.io.File
 
 /**
  * Created by yuriel on 8/9/16.
  */
-open class BlockCanaryContext(override val context: Context) : IBlockCanaryContext {
+open class BlockCanaryContext(override val context: Context) : __IBlockCanaryContext {
 
     /**
      * qualifier which can specify this installation, like version + flavor

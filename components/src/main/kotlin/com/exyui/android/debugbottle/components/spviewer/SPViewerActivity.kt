@@ -12,10 +12,10 @@ import android.widget.SimpleExpandableListAdapter
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.DialogsCollection
 import com.exyui.android.debugbottle.components.R
-import com.exyui.android.debugbottle.components.__DTBaseActivity
+import com.exyui.android.debugbottle.components.DTBaseActivity
 import java.util.zip.Inflater
 
-internal class __SPViewerActivity : __DTBaseActivity(), DialogsCollection.SPDialogAction {
+internal class SPViewerActivity : DTBaseActivity(), DialogsCollection.SPDialogAction {
 
     private val listView by lazy { findViewById(R.id.list_view) as ExpandableListView }
     private var adapter: ListAdapter? = null
@@ -58,7 +58,7 @@ internal class __SPViewerActivity : __DTBaseActivity(), DialogsCollection.SPDial
             var v = convertView
             val holder: ChildHolder
             if (null == v) {
-                v = LayoutInflater.from(this@__SPViewerActivity).inflate(R.layout.__child_sp_values, parent, false)
+                v = LayoutInflater.from(this@SPViewerActivity).inflate(R.layout.__child_sp_values, parent, false)
                 holder = ChildHolder()
                 holder.titleView = v.findViewById(R.id.__child_title) as TextView
                 holder.contentView = v.findViewById(R.id.__child_content) as TextView
@@ -83,7 +83,7 @@ internal class __SPViewerActivity : __DTBaseActivity(), DialogsCollection.SPDial
             var v = convertView
             val holder: GroupHolder
             if (null == v) {
-                v = LayoutInflater.from(this@__SPViewerActivity).inflate(R.layout.__group_sp_files, parent, false)
+                v = LayoutInflater.from(this@SPViewerActivity).inflate(R.layout.__group_sp_files, parent, false)
                 holder = GroupHolder()
                 holder.titleView = v.findViewById(R.id.group_title) as TextView
                 v.tag = holder

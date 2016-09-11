@@ -2,13 +2,13 @@ package com.exyui.android.debugbottle.core.log
 
 import android.app.ActivityManager
 import android.content.Context
-import com.exyui.android.debugbottle.core.CanaryCore
-import com.exyui.android.debugbottle.core.CanaryCoreMgr
+import com.exyui.android.debugbottle.core.__CanaryCore
+import com.exyui.android.debugbottle.core.__CanaryCoreMgr
 
 /**
  * Created by yuriel on 8/8/16.
  */
-object ProcessUtils {
+object __ProcessUtils {
 
     @Volatile private var sProcessName: String? = null
     private val sNameLock = Any()
@@ -21,7 +21,7 @@ object ProcessUtils {
             if (sProcessName?.isNotEmpty()?: false) {
                 return sProcessName?: ""
             }
-            sProcessName = obtainProcessName(CanaryCoreMgr.context?.context!!)
+            sProcessName = obtainProcessName(__CanaryCoreMgr.context?.context!!)
             return sProcessName?: ""
         }
     }

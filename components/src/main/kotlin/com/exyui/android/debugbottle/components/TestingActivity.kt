@@ -5,14 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import com.squareup.leakcanary.internal.DisplayLeakActivity
-import com.exyui.android.debugbottle.components.floating.__FloatingService
-import com.exyui.android.debugbottle.components.injector.__InjectorActivity
+import com.exyui.android.debugbottle.components.floating.FloatingService
+import com.exyui.android.debugbottle.components.injector.InjectorActivity
 import com.exyui.android.debugbottle.ui.layout.__DisplayBlockActivity
 
 /**
  * Created by yuriel on 8/11/16.
  */
-internal class __TestingActivity : Activity() {
+internal class TestingActivity : Activity() {
     val button1 by lazy {
         val result = findViewById(R.id.__dt_button1) as Button
         //result.setOnClickListener { startActivity(Intent(this, __ExampleActivity::class.java)) }
@@ -22,8 +22,8 @@ internal class __TestingActivity : Activity() {
     val button2 by lazy {
         val result = findViewById(R.id.__dt_button2) as Button
         result.setOnClickListener {
-            val intent = Intent(this, __InjectorActivity::class.java)
-            intent.putExtra(__InjectorActivity.TYPE, __InjectorActivity.TYPE_ALL_ACTIVITIES)
+            val intent = Intent(this, InjectorActivity::class.java)
+            intent.putExtra(InjectorActivity.TYPE, InjectorActivity.TYPE_ALL_ACTIVITIES)
             startActivity(intent)
         }
         result
@@ -50,7 +50,7 @@ internal class __TestingActivity : Activity() {
     val button5 by lazy {
         val result = findViewById(R.id.__dt_button5) as Button
         result.setOnClickListener {
-            val intent = Intent(this, __FloatingService::class.java)
+            val intent = Intent(this, FloatingService::class.java)
             startService(intent)
         }
         result

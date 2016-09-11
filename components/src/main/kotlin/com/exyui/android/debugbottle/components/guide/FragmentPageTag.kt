@@ -3,7 +3,7 @@ package com.exyui.android.debugbottle.components.guide
 /**
  * Created by yuriel on 9/10/16.
  */
-internal data class __FragmentPageTag(
+internal data class FragmentPageTag(
         val page: Int,
         val color: Int,
         val iconAppAlpha: Float,

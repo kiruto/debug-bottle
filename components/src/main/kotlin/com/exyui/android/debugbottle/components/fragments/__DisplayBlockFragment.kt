@@ -16,11 +16,11 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import com.exyui.android.debugbottle.components.R
-import com.exyui.android.debugbottle.core.CanaryCoreMgr
-import com.exyui.android.debugbottle.core.LogWriter
-import com.exyui.android.debugbottle.core.log.Block
-import com.exyui.android.debugbottle.core.log.BlockCanaryInternals
-import com.exyui.android.debugbottle.core.log.ProcessUtils
+import com.exyui.android.debugbottle.core.__CanaryCoreMgr
+import com.exyui.android.debugbottle.core.__LogWriter
+import com.exyui.android.debugbottle.core.log.__Block
+import com.exyui.android.debugbottle.core.log.__BlockCanaryInternals
+import com.exyui.android.debugbottle.core.log.__ProcessUtils
 import com.exyui.android.debugbottle.ui.layout.__DisplayBlockActivity
 import com.exyui.android.debugbottle.views.__DisplayLeakConnectorView
 import com.exyui.android.debugbottle.views.__MoreDetailsView
@@ -56,7 +56,7 @@ class __DisplayBlockFragment: __ContentFragment() {
     }
 
     private var rootView: ViewGroup? = null
-    private val mBlockEntries: MutableList<Block> by lazy { ArrayList<Block>() }
+    private val mBlockEntries: MutableList<__Block> by lazy { ArrayList<__Block>() }
     private var mBlockStartTime: String? = null
 
     private val mListView by lazy { findViewById(R.id.__dt_canary_display_leak_list) as ListView }
@@ -144,7 +144,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         }
     }
 
-    private fun shareBlock(block: Block) {
+    private fun shareBlock(block: __Block) {
         val leakInfo = block.toString()
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
@@ -152,7 +152,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         startActivity(Intent.createChooser(intent, getString(R.string.__block_canary_share_with)))
     }
 
-    private fun shareHeapDump(block: Block) {
+    private fun shareHeapDump(block: __Block) {
         val heapDumpFile = block.logFile
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
@@ -200,7 +200,7 @@ class __DisplayBlockFragment: __ContentFragment() {
             //title = getString(R.string.__block_canary_block_list_title, packageName)
             mActionButton.setText(R.string.__block_canary_delete_all)
             mActionButton.setOnClickListener {
-                LogWriter.deleteLogFiles()
+                __LogWriter.deleteLogFiles()
                 mBlockEntries.clear()
                 updateUi()
             }
@@ -208,7 +208,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         mActionButton.visibility = if (mBlockEntries.isEmpty()) View.GONE else View.VISIBLE
     }
 
-    private fun renderBlockDetail(block: Block?) {
+    private fun renderBlockDetail(block: __Block?) {
         val listAdapter = mListView.adapter
         val adapter: __BlockDetailAdapter
         if (listAdapter is __BlockDetailAdapter) {
@@ -237,7 +237,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         //title = getString(R.string.__block_canary_class_has_blocked, block!!.timeCost)
     }
 
-    private fun getBlock(startTime: String?): Block? {
+    private fun getBlock(startTime: String?): __Block? {
         if (mBlockEntries == null || TextUtils.isEmpty(startTime)) {
             return null
         }
@@ -259,7 +259,7 @@ class __DisplayBlockFragment: __ContentFragment() {
             return mBlockEntries.size
         }
 
-        override fun getItem(position: Int): Block {
+        override fun getItem(position: Int): __Block {
             return mBlockEntries[position]
         }
 
@@ -302,12 +302,12 @@ class __DisplayBlockFragment: __ContentFragment() {
         }
 
         override fun run() {
-            val blocks = ArrayList<Block>()
-            val files = BlockCanaryInternals.logFiles
+            val blocks = ArrayList<__Block>()
+            val files = __BlockCanaryInternals.logFiles
             if (files != null) {
                 for (blockFile in files) {
                     try {
-                        blocks.add(Block.newInstance(blockFile))
+                        blocks.add(__Block.newInstance(blockFile))
                     } catch (e: Exception) {
                         // Likely a format change in the blockFile
                         blockFile.delete()
@@ -355,7 +355,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         private var mFoldings = BooleanArray(0)
 
         private var mStackFoldPrefix: String? = null
-        private var mBlock: Block? = null
+        private var mBlock: __Block? = null
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
             var view = convertView
@@ -401,18 +401,18 @@ class __DisplayBlockFragment: __ContentFragment() {
         }
 
         private fun elementToHtmlString(element: String?, position: Int, folding: Boolean): String {
-            var htmlString = element?.replace(Block.SEPARATOR.toRegex(), "<br>")
+            var htmlString = element?.replace(__Block.SEPARATOR.toRegex(), "<br>")
 
             when (position) {
                 POSITION_BASIC -> {
                     if (folding) {
-                        htmlString = htmlString?.substring(htmlString.indexOf(Block.KEY_CPU_CORE))
+                        htmlString = htmlString?.substring(htmlString.indexOf(__Block.KEY_CPU_CORE))
                     }
                     htmlString = String.format("<font color='#c48a47'>%s</font> ", htmlString)
                 }
                 POSITION_TIME -> {
                     if (folding) {
-                        htmlString = htmlString?.substring(0, htmlString.indexOf(Block.KEY_TIME_COST_START))
+                        htmlString = htmlString?.substring(0, htmlString.indexOf(__Block.KEY_TIME_COST_START))
                     }
                     htmlString = String.format("<font color='#f3cf83'>%s</font> ", htmlString)
                 }
@@ -420,7 +420,7 @@ class __DisplayBlockFragment: __ContentFragment() {
                     // FIXME Figure out why sometimes \r\n cannot replace completely
                     htmlString = element
                     if (folding) {
-                        htmlString = htmlString?.substring(0, htmlString.indexOf(Block.KEY_CPU_RATE))
+                        htmlString = htmlString?.substring(0, htmlString.indexOf(__Block.KEY_CPU_RATE))
                     }
                     htmlString = htmlString?.replace("cpurate = ", "<br>cpurate<br/>")
                     htmlString = String.format("<font color='#998bb5'>%s</font> ", htmlString)
@@ -440,7 +440,7 @@ class __DisplayBlockFragment: __ContentFragment() {
             return htmlString
         }
 
-        fun update(block: Block?) {
+        fun update(block: __Block?) {
             if (mBlock != null && block?.timeStart.equals(mBlock!!.timeStart)) {
                 // Same data, nothing to change.
                 return
@@ -494,8 +494,8 @@ class __DisplayBlockFragment: __ContentFragment() {
         private val stackFoldPrefix: String
             get() {
                 if (mStackFoldPrefix == null) {
-                    val prefix = CanaryCoreMgr.context?.stackFoldPrefix
-                    mStackFoldPrefix = prefix?: ProcessUtils.myProcessName()
+                    val prefix = __CanaryCoreMgr.context?.stackFoldPrefix
+                    mStackFoldPrefix = prefix?: __ProcessUtils.myProcessName()
                 }
                 return mStackFoldPrefix!!
             }

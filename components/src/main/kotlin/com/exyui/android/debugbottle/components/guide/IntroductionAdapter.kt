@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter
 /**
  * Created by yuriel on 9/10/16.
  */
-internal class __IntroductionAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
+internal class IntroductionAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         val color = when(position) {
             0 -> "#607D8B"

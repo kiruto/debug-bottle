@@ -1,7 +1,7 @@
 package com.exyui.android.debugbottle.core
 
 import android.util.Log
-import com.exyui.android.debugbottle.core.log.Block
+import com.exyui.android.debugbottle.core.log.__Block
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.IOException
@@ -48,7 +48,7 @@ internal class CpuSampler(sampleIntervalMillis: Long) : Sampler(sampleIntervalMi
             val dateFormat = SimpleDateFormat("MM-dd HH:mm:ss.SSS")
             synchronized(mCpuInfoEntries) {
                 for ((time, value) in mCpuInfoEntries) {
-                    sb.append(dateFormat.format(time)).append(' ').append(value).append(Block.SEPARATOR)
+                    sb.append(dateFormat.format(time)).append(' ').append(value).append(__Block.SEPARATOR)
                 }
             }
             return sb.toString()

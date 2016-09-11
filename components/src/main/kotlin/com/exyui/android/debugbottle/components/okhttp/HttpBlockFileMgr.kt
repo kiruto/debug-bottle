@@ -4,7 +4,7 @@ import android.os.Environment
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Log
-import com.exyui.android.debugbottle.components.__DTSettings
+import com.exyui.android.debugbottle.components.DTSettings
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileOutputStream
@@ -27,7 +27,7 @@ internal object HttpBlockFileMgr {
     internal val path: String
         get() {
             val state = Environment.getExternalStorageState()
-            val logPath = __DTSettings.getHttpFileStorePath()
+            val logPath = DTSettings.getHttpFileStorePath()
 
             if (Environment.MEDIA_MOUNTED == state && Environment.getExternalStorageDirectory().canWrite()) {
                 return Environment.getExternalStorageDirectory().path + logPath

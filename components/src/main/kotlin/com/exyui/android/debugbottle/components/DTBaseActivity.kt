@@ -9,7 +9,7 @@ import android.view.MenuItem
 /**
  * Created by yuriel on 8/23/16.
  */
-internal abstract class __DTBaseActivity: AppCompatActivity() {
+internal abstract class DTBaseActivity : AppCompatActivity() {
 
     protected abstract val actionbarTitle: String
 
