@@ -6,7 +6,7 @@ Demo App可在Google Play中下载:
 
 <a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
 
-[<img src="screenshots/showcases.png">](screenshots/raw/showcases.png)
+[<img src="screenshots/introduction.gif" width="225" height="400">](screenshots/raw/introduction.gif)
 [<img src="screenshots/main-panel.png"/>](screenshots/raw/main-panel.png)
 [<img src="screenshots/features-2.png"/>](screenshots/raw/features-2.png)
 
@@ -133,8 +133,10 @@ dependencies {
 ```xml
 <activity
     android:name="com.exyui.android.debugbottle.components.__DTDrawerActivity"
-    android:theme="@style/Theme.AppCompat.Light"/>
+    android:theme="@style/Theme.AppCompat.Light"
+    android:label="调试工具"/>
 ```
+"调试工具"是Debug Bottle在Android launch pad中显示的名称, 可以随意命名。
 
 #### 3. 在Application中插入Debug Bottle代码
 

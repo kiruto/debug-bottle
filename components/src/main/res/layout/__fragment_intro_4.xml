@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView style="@style/__DTIntro.Title"
+        android:id="@+id/__dt_title"/>
+
+    <LinearLayout style="@style/__DTIntro.Content">
+
+        <TextView style="@style/__DTIntro.ContentText.Message"
+            android:text="@string/__dt_intro_content_done_1"/>
+
+        <TextView style="@style/__DTIntro.ContentText.Message"
+            android:text="@string/__dt_intro_content_done_2"/>
+
+        <TextView style="@style/__DTIntro.ContentText.Message"
+            android:text="@string/__dt_intro_content_done_3"/>
+
+        <TextView style="@style/__DTIntro.ContentText.Message"
+            android:text="@string/__dt_intro_content_done_4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

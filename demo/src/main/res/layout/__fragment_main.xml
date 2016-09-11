@@ -44,7 +44,7 @@
                     android:layout_width="54dp"
                     android:layout_height="54dp"
                     android:layout_margin="40dp"
-                    android:src="@drawable/right_arrow"/>
+                    android:src="@drawable/__ic_right_arrow"/>
 
                 <ImageView
                     android:layout_width="48dp"
@@ -59,6 +59,16 @@
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:text="@string/app_intro"/>
+
+            <Button
+                android:id="@+id/introduction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/__ic_help_outline"
+                android:textColor="@android:color/black"
+                android:text="@string/see_introduction" />
 
             <LinearLayout
                 android:layout_width="match_parent"

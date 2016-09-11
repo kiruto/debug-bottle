@@ -5,4 +5,50 @@
         <!--<item name="colorPrimaryDark">@color/__colorPrimaryDark</item>-->
         <!--<item name="colorAccent">@color/__colorAccentRed</item>-->
     </style>
+
+    <style name="__DTIntro" />
+
+    <style name="__DTIntro.Title">
+        <item name="android:layout_marginTop">100dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="__DTIntro.FeatureContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="__DTIntro.Content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_marginBottom">48dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="__DTIntro.ContentText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="__DTIntro.ContentText.Left" parent="__DTIntro.ContentText">
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="__DTIntro.ContentText.Message" parent="__DTIntro.ContentText">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
 </resources>
