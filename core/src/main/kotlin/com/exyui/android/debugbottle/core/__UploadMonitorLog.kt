@@ -1,7 +1,7 @@
 package com.exyui.android.debugbottle.core
 
 import android.util.Log
-import com.exyui.android.debugbottle.core.log.BlockCanaryInternals
+import com.exyui.android.debugbottle.core.log.__BlockCanaryInternals
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -9,8 +9,8 @@ import java.util.*
 /**
  * Created by yuriel on 8/8/16.
  */
-object UploadMonitorLog {
-    private val TAG = "UploadMonitorLog"
+object __UploadMonitorLog {
+    private val TAG = "__UploadMonitorLog"
     private val FORMAT = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault())
 
     private fun zipFile(): File {
@@ -21,17 +21,17 @@ object UploadMonitorLog {
             Log.e(TAG, "zipFile: ", e)
         }
 
-        val zippedFile = LogWriter.generateTempZipFile("Monitor_looper_" + timeString)
-        CanaryCoreMgr.context?.zipLogFile(BlockCanaryInternals.logFiles, zippedFile)
-        LogWriter.deleteLogFiles()
+        val zippedFile = __LogWriter.generateTempZipFile("Monitor_looper_" + timeString)
+        __CanaryCoreMgr.context?.zipLogFile(__BlockCanaryInternals.logFiles, zippedFile)
+        __LogWriter.deleteLogFiles()
         return zippedFile
     }
 
     fun forceZipLogAndUpload() {
-        HandlerThread.writeLogFileThreadHandler.post {
+        __HandlerThread.writeLogFileThreadHandler.post {
             val file = zipFile()
             if (file.exists()) {
-                CanaryCoreMgr.context?.uploadLogFile(file)
+                __CanaryCoreMgr.context?.uploadLogFile(file)
             }
         }
     }

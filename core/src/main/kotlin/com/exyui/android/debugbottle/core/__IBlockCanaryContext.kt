@@ -6,7 +6,7 @@ import java.io.File
 /**
  * Created by yuriel on 8/8/16.
  */
-interface IBlockCanaryContext {
+interface __IBlockCanaryContext {
 
     val configBlockThreshold: Long
 

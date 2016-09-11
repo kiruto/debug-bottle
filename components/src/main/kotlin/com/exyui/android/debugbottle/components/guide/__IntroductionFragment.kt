@@ -16,7 +16,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.R
-import com.exyui.android.debugbottle.components.__DTSettings
+import com.exyui.android.debugbottle.components.DTSettings
 
 /**
  * Created by yuriel on 9/10/16.
@@ -134,19 +134,19 @@ class __IntroductionFragment: Fragment() {
                 val block = v(R.id.__dt_enable_block_canary) as AppCompatCheckBox
 
                 bottle.setOnCheckedChangeListener { compoundButton, b ->
-                    __DTSettings.setBottleEnable(b)
+                    DTSettings.setBottleEnable(b)
                 }
 
                 strict.setOnCheckedChangeListener { compoundButton, b ->
-                    __DTSettings.setStrictMode(b)
+                    DTSettings.setStrictMode(b)
                 }
 
                 leak.setOnCheckedChangeListener { compoundButton, b ->
-                    __DTSettings.setLeakCanaryEnable(b)
+                    DTSettings.setLeakCanaryEnable(b)
                 }
 
                 block.setOnCheckedChangeListener { compoundButton, b ->
-                    __DTSettings.setBlockCanaryEnable(b)
+                    DTSettings.setBlockCanaryEnable(b)
                 }
             }
         }
@@ -193,7 +193,7 @@ class __IntroductionFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = binder.getView(inflater, container, savedInstanceState)
-        view?.tag = __FragmentPageTag(page!!, getColor(), binder.iconAppAlpha,
+        view?.tag = FragmentPageTag(page!!, getColor(), binder.iconAppAlpha,
                 binder.iconArrowAlpha, binder.iconBottleAlpha, binder.textAlpha, binder.done)
         return view
     }

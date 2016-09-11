@@ -6,7 +6,7 @@ import com.exyui.android.debugbottle.core.*
 /**
  * Created by yuriel on 8/22/16.
  */
-internal object __DTSettings {
+internal object DTSettings {
 
     private fun getSP() = DTInstaller.getSP(DT_SETTING_STORE_FILE)
 

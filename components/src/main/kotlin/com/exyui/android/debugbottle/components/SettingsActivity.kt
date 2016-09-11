@@ -8,10 +8,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.SeekBar
-import com.exyui.android.debugbottle.components.floating.__FloatingService
+import com.exyui.android.debugbottle.components.floating.FloatingService
 import com.exyui.android.debugbottle.ui.BlockCanary
 
-internal class __SettingsActivity : __DTBaseActivity() {
+internal class SettingsActivity : DTBaseActivity() {
 
     private val MIN: Int = 15
     private val MAX: Int = 5000
@@ -37,7 +37,7 @@ internal class __SettingsActivity : __DTBaseActivity() {
             }
         })
         result.max = MAX - MIN
-        result.progress = __DTSettings.getBlockThreshold().toInt() - MIN
+        result.progress = DTSettings.getBlockThreshold().toInt() - MIN
         result
     }
 
@@ -70,18 +70,18 @@ internal class __SettingsActivity : __DTBaseActivity() {
 
     private val networkSwitcher by lazy {
         val result = findViewById(R.id.__dt_network_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getNetworkSniff()
+        result.isChecked = DTSettings.getNetworkSniff()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setNetworkSniff(isChecked)
+            DTSettings.setNetworkSniff(isChecked)
         }
         result
     }
 
     private val strictSwitcher by lazy {
         val result = findViewById(R.id.__dt_strict_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getStrictMode()
+        result.isChecked = DTSettings.getStrictMode()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setStrictMode(isChecked)
+            DTSettings.setStrictMode(isChecked)
         }
         result
     }
@@ -90,7 +90,7 @@ internal class __SettingsActivity : __DTBaseActivity() {
         val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
         result.isChecked = isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            val intent = Intent(this, __FloatingService::class.java)
+            val intent = Intent(this, FloatingService::class.java)
             if (isChecked) {
                 startService(intent)
             } else {
@@ -102,18 +102,18 @@ internal class __SettingsActivity : __DTBaseActivity() {
 
     private val leakCanarySwitcher by lazy {
         val result = findViewById(R.id.__dt_leak_canary_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getLeakCanaryEnable()
+        result.isChecked = DTSettings.getLeakCanaryEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setLeakCanaryEnable(isChecked)
+            DTSettings.setLeakCanaryEnable(isChecked)
         }
         result
     }
 
     private val blockCanarySwitcher by lazy {
         val result = findViewById(R.id.__dt_block_canary_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getBlockCanaryEnable()
+        result.isChecked = DTSettings.getBlockCanaryEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setBlockCanaryEnable(isChecked)
+            DTSettings.setBlockCanaryEnable(isChecked)
             try {
                 if (isChecked) {
                     BlockCanary.get().start()
@@ -140,7 +140,7 @@ internal class __SettingsActivity : __DTBaseActivity() {
     }
 
     private fun save() {
-        __DTSettings.setBlockThreshold(seekBar.progress.toLong())
+        DTSettings.setBlockThreshold(seekBar.progress.toLong())
     }
 
     private fun isFloatingWindowRunning(): Boolean {
@@ -152,7 +152,7 @@ internal class __SettingsActivity : __DTBaseActivity() {
         }
 
         for (i in 0..serviceList.size - 1) {
-            if (serviceList[i].service.className.equals(__FloatingService::class.java.name) == true) {
+            if (serviceList[i].service.className.equals(FloatingService::class.java.name) == true) {
                 return true
             }
         }

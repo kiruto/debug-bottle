@@ -14,7 +14,7 @@ import android.text.format.DateUtils
 import android.util.Log
 import android.view.*
 import android.widget.*
-import com.exyui.android.debugbottle.core.log.Block
+import com.exyui.android.debugbottle.core.log.__Block
 import java.util.*
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -24,8 +24,8 @@ import android.text.format.DateUtils.FORMAT_SHOW_DATE
 import android.text.format.DateUtils.FORMAT_SHOW_TIME
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import com.exyui.android.debugbottle.core.LogWriter
-import com.exyui.android.debugbottle.core.log.BlockCanaryInternals
+import com.exyui.android.debugbottle.core.__LogWriter
+import com.exyui.android.debugbottle.core.log.__BlockCanaryInternals
 import com.exyui.android.debugbottle.ui.R
 
 /**
@@ -56,7 +56,7 @@ class __DisplayBlockActivity : Activity() {
         }
     }
 
-    private val mBlockEntries: MutableList<Block> by lazy { ArrayList<Block>() }
+    private val mBlockEntries: MutableList<__Block> by lazy { ArrayList<__Block>() }
     private var mBlockStartTime: String? = null
 
     private val mListView by lazy { findViewById(R.id.__dt_canary_display_leak_list) as ListView }
@@ -142,7 +142,7 @@ class __DisplayBlockActivity : Activity() {
         }
     }
 
-    private fun shareBlock(block: Block) {
+    private fun shareBlock(block: __Block) {
         val leakInfo = block.toString()
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
@@ -150,7 +150,7 @@ class __DisplayBlockActivity : Activity() {
         startActivity(Intent.createChooser(intent, getString(R.string.__block_canary_share_with)))
     }
 
-    private fun shareHeapDump(block: Block) {
+    private fun shareHeapDump(block: __Block) {
         val heapDumpFile = block.logFile
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
@@ -198,7 +198,7 @@ class __DisplayBlockActivity : Activity() {
             title = getString(R.string.__block_canary_block_list_title, packageName)
             mActionButton.setText(R.string.__block_canary_delete_all)
             mActionButton.setOnClickListener {
-                LogWriter.deleteLogFiles()
+                __LogWriter.deleteLogFiles()
                 mBlockEntries.clear()
                 updateUi()
             }
@@ -206,7 +206,7 @@ class __DisplayBlockActivity : Activity() {
         mActionButton.visibility = if (mBlockEntries.isEmpty()) GONE else VISIBLE
     }
 
-    private fun renderBlockDetail(block: Block?) {
+    private fun renderBlockDetail(block: __Block?) {
         val listAdapter = mListView.adapter
         val adapter: __BlockDetailAdapter
         if (listAdapter is __BlockDetailAdapter) {
@@ -235,7 +235,7 @@ class __DisplayBlockActivity : Activity() {
         title = getString(R.string.__block_canary_class_has_blocked, block!!.timeCost)
     }
 
-    private fun getBlock(startTime: String?): Block? {
+    private fun getBlock(startTime: String?): __Block? {
         if (mBlockEntries == null || TextUtils.isEmpty(startTime)) {
             return null
         }
@@ -253,7 +253,7 @@ class __DisplayBlockActivity : Activity() {
             return mBlockEntries.size
         }
 
-        override fun getItem(position: Int): Block {
+        override fun getItem(position: Int): __Block {
             return mBlockEntries[position]
         }
 
@@ -295,12 +295,12 @@ class __DisplayBlockActivity : Activity() {
         }
 
         override fun run() {
-            val blocks = ArrayList<Block>()
-            val files = BlockCanaryInternals.logFiles
+            val blocks = ArrayList<__Block>()
+            val files = __BlockCanaryInternals.logFiles
             if (files != null) {
                 for (blockFile in files) {
                     try {
-                        blocks.add(Block.newInstance(blockFile))
+                        blocks.add(__Block.newInstance(blockFile))
                     } catch (e: Exception) {
                         // Likely a format change in the blockFile
                         blockFile.delete()

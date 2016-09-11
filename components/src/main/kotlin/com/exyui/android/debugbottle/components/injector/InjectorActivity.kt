@@ -10,7 +10,7 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.SearchableListViewHelper
 import com.exyui.android.debugbottle.components.injector.*
 
-class __InjectorActivity : AppCompatActivity() {
+internal class InjectorActivity : AppCompatActivity() {
 
     companion object {
         val TYPE = "type"

@@ -4,8 +4,8 @@ import android.content.Context
 import android.os.Build
 import android.telephony.TelephonyManager
 import android.util.Log
-import com.exyui.android.debugbottle.core.CanaryCore
-import com.exyui.android.debugbottle.core.CanaryCoreMgr
+import com.exyui.android.debugbottle.core.__CanaryCore
+import com.exyui.android.debugbottle.core.__CanaryCoreMgr
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileInputStream
@@ -16,7 +16,7 @@ import java.util.*
 /**
  * Created by yuriel on 8/8/16.
  */
-class Block private constructor() {
+class __Block private constructor() {
 
     var qualifier: String = ""
         private set
@@ -66,7 +66,7 @@ class Block private constructor() {
 
     companion object {
 
-        private val TAG = "Block"
+        private val TAG = "__Block"
 
         val SEPARATOR = "\r\n"
         val KV = " = "
@@ -94,9 +94,9 @@ class Block private constructor() {
         private val TIME_FORMATTER = SimpleDateFormat("MM-dd HH:mm:ss.SSS", Locale.getDefault())
         private val EMPTY_IMEI = "empty_imei"
 
-        fun newInstance(): Block {
-            val block = Block()
-            val context = CanaryCoreMgr.context?.context
+        fun newInstance(): __Block {
+            val block = __Block()
+            val context = __CanaryCoreMgr.context?.context
             if (block.versionName == null || block.versionName!!.length == 0) {
                 try {
                     val info = context?.packageManager?.getPackageInfo(context.packageName, 0)
@@ -117,13 +117,13 @@ class Block private constructor() {
                 }
 
             }
-            block.qualifier = CanaryCoreMgr.context?.qualifier?: ""
+            block.qualifier = __CanaryCoreMgr.context?.qualifier?: ""
             block.apiLevel = "${Build.VERSION.SDK_INT} ${Build.VERSION.RELEASE}"
             block.model = Build.MODEL
-            block.uid = CanaryCoreMgr.context?.uid?: ""
+            block.uid = __CanaryCoreMgr.context?.uid?: ""
             block.cpuCoreNum = PerformanceUtils.numCores
-            block.processName = ProcessUtils.myProcessName()
-            block.network = CanaryCoreMgr.context?.networkType?: ""
+            block.processName = __ProcessUtils.myProcessName()
+            block.network = __CanaryCoreMgr.context?.networkType?: ""
             block.freeMemory = PerformanceUtils.freeMemory.toString()
             block.totalMemory = PerformanceUtils.totalMemory.toString()
             return block
@@ -136,8 +136,8 @@ class Block private constructor() {
          * *
          * @return LooperLog created from log file
          */
-        fun newInstance(file: File): Block {
-            val block = Block()
+        fun newInstance(file: File): __Block {
+            val block = __Block()
             block.logFile = file
 
             var reader: BufferedReader? = null
@@ -242,22 +242,22 @@ class Block private constructor() {
         }
     }
 
-    fun setCpuBusyFlag(busy: Boolean): Block {
+    fun setCpuBusyFlag(busy: Boolean): __Block {
         cpuBusy = busy
         return this
     }
 
-    fun setRecentCpuRate(info: String): Block {
+    fun setRecentCpuRate(info: String): __Block {
         cpuRateInfo = info
         return this
     }
 
-    fun setThreadStackEntries(threadStackEntries: ArrayList<String>): Block {
+    fun setThreadStackEntries(threadStackEntries: ArrayList<String>): __Block {
         this.threadStackEntries = threadStackEntries
         return this
     }
 
-    fun setMainThreadTimeCost(realTimeStart: Long, realTimeEnd: Long, threadTimeStart: Long, threadTimeEnd: Long): Block {
+    fun setMainThreadTimeCost(realTimeStart: Long, realTimeEnd: Long, threadTimeStart: Long, threadTimeEnd: Long): __Block {
         timeCost = realTimeEnd - realTimeStart
         threadTimeCost = threadTimeEnd - threadTimeStart
         timeStart = TIME_FORMATTER.format(realTimeStart)
@@ -265,7 +265,7 @@ class Block private constructor() {
         return this
     }
 
-    fun flushString(): Block {
+    fun flushString(): __Block {
         basicSb + KEY_QUA + KV + qualifier + SEPARATOR
         basicSb + KEY_VERSION_NAME + KV + versionName + SEPARATOR
         basicSb + KEY_VERSION_CODE + KV + versionCode + SEPARATOR
@@ -313,7 +313,7 @@ class Block private constructor() {
             for (stackEntry in threadStackEntries!!) {
 
                 if (Character.isLetter(stackEntry[0])) {
-                    val lines = stackEntry.split(Block.SEPARATOR.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                    val lines = stackEntry.split(__Block.SEPARATOR.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     for (line in lines) {
                         if (!line.startsWith("com.android") && !line.startsWith("java") && !line.startsWith("android")) {
                             result = line.substring(line.indexOf('(') + 1, line.indexOf(')'))

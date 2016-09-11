@@ -13,7 +13,7 @@ import com.exyui.android.debugbottle.components.RunningFeatureMgr
 /**
  * Created by yuriel on 9/1/16.
  */
-internal class __FloatingService : Service() {
+internal class FloatingService : Service() {
 
     private var binder: Binder? = null
 
@@ -59,8 +59,8 @@ internal class __FloatingService : Service() {
     }
 
     inner class FloatingBinder: Binder() {
-        fun getService(): __FloatingService {
-            return this@__FloatingService
+        fun getService(): FloatingService {
+            return this@FloatingService
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.exyui.android.debugbottle.core
 
 import android.util.Log
-import com.exyui.android.debugbottle.core.log.BlockCanaryInternals
+import com.exyui.android.debugbottle.core.log.__BlockCanaryInternals
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileOutputStream
@@ -12,9 +12,9 @@ import java.util.*
 /**
  * Created by yuriel on 8/8/16.
  */
-object LogWriter {
+object __LogWriter {
 
-    private val TAG = "LogWriter"
+    private val TAG = "__LogWriter"
 
     private val SAVE_DELETE_LOCK = Any()
     private val FILE_NAME_FORMATTER = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss.SSS", Locale.getDefault())
@@ -40,9 +40,9 @@ object LogWriter {
      * Delete obsolete log files，see also `OBSOLETE_DURATION`
      */
     fun cleanOldFiles() {
-        HandlerThread.writeLogFileThreadHandler?.post {
+        __HandlerThread.writeLogFileThreadHandler?.post {
             val now = System.currentTimeMillis()
-            val f = BlockCanaryInternals.logFiles
+            val f = __BlockCanaryInternals.logFiles
             synchronized(SAVE_DELETE_LOCK) {
                 for (aF in f?: return@synchronized) {
                     if (now - aF.lastModified() > OBSOLETE_DURATION) {
@@ -59,7 +59,7 @@ object LogWriter {
     fun deleteLogFiles() {
         synchronized(SAVE_DELETE_LOCK) {
             try {
-                val f = BlockCanaryInternals.logFiles
+                val f = __BlockCanaryInternals.logFiles
                 for (aF in f?: return) {
                     aF.delete()
                 }
@@ -74,7 +74,7 @@ object LogWriter {
         var path = ""
         var writer: BufferedWriter? = null
         try {
-            val file = BlockCanaryInternals.detectedBlockDirectory()
+            val file = __BlockCanaryInternals.detectedBlockDirectory()
             val time = System.currentTimeMillis()
             path = file.absolutePath + "/" + logFileName + "-" + FILE_NAME_FORMATTER.format(time) + ".txt"
             val out = OutputStreamWriter(FileOutputStream(path, true), "UTF-8")
@@ -106,7 +106,7 @@ object LogWriter {
     }
 
     fun generateTempZipFile(filename: String): File {
-        return File(BlockCanaryInternals.path + "/" + filename + ".log.zip")
+        return File(__BlockCanaryInternals.path + "/" + filename + ".log.zip")
     }
 }
 

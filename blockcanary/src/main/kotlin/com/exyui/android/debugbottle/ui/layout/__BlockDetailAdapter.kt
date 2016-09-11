@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.exyui.android.debugbottle.core.CanaryCoreMgr
-import com.exyui.android.debugbottle.core.log.Block
-import com.exyui.android.debugbottle.core.log.ProcessUtils
+import com.exyui.android.debugbottle.core.__CanaryCoreMgr
+import com.exyui.android.debugbottle.core.log.__Block
+import com.exyui.android.debugbottle.core.log.__ProcessUtils
 import com.exyui.android.debugbottle.ui.R
 import com.exyui.android.debugbottle.views.__DisplayLeakConnectorView
 import com.exyui.android.debugbottle.views.__MoreDetailsView
@@ -22,7 +22,7 @@ internal class __BlockDetailAdapter : BaseAdapter() {
     private var mFoldings = BooleanArray(0)
 
     private var mStackFoldPrefix: String? = null
-    private var mBlock: Block? = null
+    private var mBlock: __Block? = null
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         var view = convertView
@@ -68,18 +68,18 @@ internal class __BlockDetailAdapter : BaseAdapter() {
     }
 
     private fun elementToHtmlString(element: String?, position: Int, folding: Boolean): String {
-        var htmlString = element?.replace(Block.SEPARATOR.toRegex(), "<br>")
+        var htmlString = element?.replace(__Block.SEPARATOR.toRegex(), "<br>")
 
         when (position) {
             POSITION_BASIC -> {
                 if (folding) {
-                    htmlString = htmlString?.substring(htmlString.indexOf(Block.KEY_CPU_CORE))
+                    htmlString = htmlString?.substring(htmlString.indexOf(__Block.KEY_CPU_CORE))
                 }
                 htmlString = String.format("<font color='#c48a47'>%s</font> ", htmlString)
             }
             POSITION_TIME -> {
                 if (folding) {
-                    htmlString = htmlString?.substring(0, htmlString.indexOf(Block.KEY_TIME_COST_START))
+                    htmlString = htmlString?.substring(0, htmlString.indexOf(__Block.KEY_TIME_COST_START))
                 }
                 htmlString = String.format("<font color='#f3cf83'>%s</font> ", htmlString)
             }
@@ -87,7 +87,7 @@ internal class __BlockDetailAdapter : BaseAdapter() {
                 // FIXME Figure out why sometimes \r\n cannot replace completely
                 htmlString = element
                 if (folding) {
-                    htmlString = htmlString?.substring(0, htmlString.indexOf(Block.KEY_CPU_RATE))
+                    htmlString = htmlString?.substring(0, htmlString.indexOf(__Block.KEY_CPU_RATE))
                 }
                 htmlString = htmlString?.replace("cpurate = ", "<br>cpurate<br/>")
                 htmlString = String.format("<font color='#998bb5'>%s</font> ", htmlString)
@@ -107,7 +107,7 @@ internal class __BlockDetailAdapter : BaseAdapter() {
         return htmlString
     }
 
-    fun update(block: Block?) {
+    fun update(block: __Block?) {
         if (mBlock != null && block?.timeStart.equals(mBlock!!.timeStart)) {
             // Same data, nothing to change.
             return
@@ -161,8 +161,8 @@ internal class __BlockDetailAdapter : BaseAdapter() {
     private val stackFoldPrefix: String
         get() {
             if (mStackFoldPrefix == null) {
-                val prefix = CanaryCoreMgr.context?.stackFoldPrefix
-                mStackFoldPrefix = prefix?: ProcessUtils.myProcessName()
+                val prefix = __CanaryCoreMgr.context?.stackFoldPrefix
+                mStackFoldPrefix = prefix?: __ProcessUtils.myProcessName()
             }
             return mStackFoldPrefix!!
         }

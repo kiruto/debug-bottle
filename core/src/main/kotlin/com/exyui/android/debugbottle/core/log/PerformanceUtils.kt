@@ -3,8 +3,8 @@ package com.exyui.android.debugbottle.core.log
 import android.app.ActivityManager
 import android.content.Context
 import android.util.Log
-import com.exyui.android.debugbottle.core.CanaryCore
-import com.exyui.android.debugbottle.core.CanaryCoreMgr
+import com.exyui.android.debugbottle.core.__CanaryCore
+import com.exyui.android.debugbottle.core.__CanaryCoreMgr
 import java.io.*
 import java.util.regex.Pattern
 
@@ -51,7 +51,7 @@ internal object PerformanceUtils {
         get() {
             val mi = ActivityManager.MemoryInfo()
             try {
-                (CanaryCoreMgr.context?.context?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?)?.getMemoryInfo(mi)
+                (__CanaryCoreMgr.context?.context?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?)?.getMemoryInfo(mi)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

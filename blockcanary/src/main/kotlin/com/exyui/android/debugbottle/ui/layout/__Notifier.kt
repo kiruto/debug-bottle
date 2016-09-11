@@ -6,7 +6,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.exyui.android.debugbottle.core.OnBlockEventInterceptor
+import com.exyui.android.debugbottle.core.__OnBlockEventInterceptor
 import com.exyui.android.debugbottle.ui.R
 
 import android.app.PendingIntent.FLAG_UPDATE_CURRENT
@@ -16,7 +16,7 @@ import android.os.Build.VERSION_CODES.JELLY_BEAN
 /**
  * Created by yuriel on 8/9/16.
  */
-internal class __Notifier : OnBlockEventInterceptor {
+internal class __Notifier : __OnBlockEventInterceptor {
 
     override fun onBlockEvent(context: Context, timeStart: String) {
         val intent = Intent(context, __DisplayBlockActivity::class.java)

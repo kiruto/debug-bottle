@@ -17,13 +17,13 @@ import com.exyui.android.debugbottle.components.R
 /**
  * Created by yuriel on 9/10/16.
  */
-internal class __IntroductionActivity: AppCompatActivity() {
+internal class IntroductionActivity : AppCompatActivity() {
 
     private var theme: Int? = null
 
     private val pagerView by lazy {
         val result = findViewById(R.id.__dt_view_pager) as ViewPager
-        result.adapter = __IntroductionAdapter(supportFragmentManager)
+        result.adapter = IntroductionAdapter(supportFragmentManager)
         result.setPageTransformer(false, IntroductionTransformer())
         result
     }
@@ -114,7 +114,7 @@ internal class __IntroductionActivity: AppCompatActivity() {
                 // The page is selected. This is a good time to reset Views
                 // after animations as you can't always count on the PageTransformer
                 // callbacks to match up perfectly.
-                val tag = view?.tag as __FragmentPageTag?
+                val tag = view?.tag as FragmentPageTag?
                 tag ?: return
                 backgroundView.setBackgroundColor(tag.color)
 
@@ -135,7 +135,7 @@ internal class __IntroductionActivity: AppCompatActivity() {
 
             } else {
 
-                val tag = view?.tag as __FragmentPageTag?
+                val tag = view?.tag as FragmentPageTag?
                 tag?: return
                 if (position < 0) {
                     start = tag.color

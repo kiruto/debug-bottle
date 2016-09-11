@@ -17,9 +17,9 @@ import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
-import com.exyui.android.debugbottle.components.__DTSettings
+import com.exyui.android.debugbottle.components.DTSettings
 import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
-import com.exyui.android.debugbottle.components.floating.__FloatingService
+import com.exyui.android.debugbottle.components.floating.FloatingService
 import com.exyui.android.debugbottle.ui.BlockCanary
 
 /**
@@ -50,7 +50,7 @@ class __SettingsFragment: __ContentFragment() {
             }
         })
         result.max = MAX - MIN
-        result.progress = __DTSettings.getBlockThreshold().toInt() - MIN
+        result.progress = DTSettings.getBlockThreshold().toInt() - MIN
         result
     }
 
@@ -83,18 +83,18 @@ class __SettingsFragment: __ContentFragment() {
 
     private val networkSwitcher by lazy {
         val result = findViewById(R.id.__dt_network_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getNetworkSniff()
+        result.isChecked = DTSettings.getNetworkSniff()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setNetworkSniff(isChecked)
+            DTSettings.setNetworkSniff(isChecked)
         }
         result
     }
 
     private val strictSwitcher by lazy {
         val result = findViewById(R.id.__dt_strict_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getStrictMode()
+        result.isChecked = DTSettings.getStrictMode()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setStrictMode(isChecked)
+            DTSettings.setStrictMode(isChecked)
             restartHint()
         }
         result
@@ -104,7 +104,7 @@ class __SettingsFragment: __ContentFragment() {
         val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
         result.isChecked = FloatingViewMgr.isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            val intent = Intent(context, __FloatingService::class.java)
+            val intent = Intent(context, FloatingService::class.java)
             if (isChecked) {
                 context?.startService(intent)
             } else {
@@ -116,9 +116,9 @@ class __SettingsFragment: __ContentFragment() {
 
     private val leakCanarySwitcher by lazy {
         val result = findViewById(R.id.__dt_leak_canary_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getLeakCanaryEnable()
+        result.isChecked = DTSettings.getLeakCanaryEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setLeakCanaryEnable(isChecked)
+            DTSettings.setLeakCanaryEnable(isChecked)
             restartHint()
         }
         result
@@ -126,9 +126,9 @@ class __SettingsFragment: __ContentFragment() {
 
     private val blockCanarySwitcher by lazy {
         val result = findViewById(R.id.__dt_block_canary_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getBlockCanaryEnable()
+        result.isChecked = DTSettings.getBlockCanaryEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setBlockCanaryEnable(isChecked)
+            DTSettings.setBlockCanaryEnable(isChecked)
             try {
                 if (isChecked) {
                     BlockCanary.get().start()
@@ -144,9 +144,9 @@ class __SettingsFragment: __ContentFragment() {
 
     private val bottleSwitch by lazy {
         val result = findViewById(R.id.__dt_enable_switcher) as SwitchCompat
-        result.isChecked = __DTSettings.getBottleEnable()
+        result.isChecked = DTSettings.getBottleEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
-            __DTSettings.setBottleEnable(isChecked)
+            DTSettings.setBottleEnable(isChecked)
             restartHint()
         }
         result
@@ -172,6 +172,6 @@ class __SettingsFragment: __ContentFragment() {
     private fun findViewById(@IdRes id: Int) = rootView?.findViewById(id)
 
     private fun save() {
-        __DTSettings.setBlockThreshold(seekBar.progress.toLong())
+        DTSettings.setBlockThreshold(seekBar.progress.toLong())
     }
 }

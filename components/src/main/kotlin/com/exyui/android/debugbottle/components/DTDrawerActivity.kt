@@ -17,12 +17,12 @@ import android.view.*
 import android.widget.*
 import com.squareup.leakcanary.internal.DisplayLeakActivity
 import com.exyui.android.debugbottle.components.fragments.*
-import com.exyui.android.debugbottle.components.guide.__IntroductionActivity
+import com.exyui.android.debugbottle.components.guide.IntroductionActivity
 
 /**
  * Created by yuriel on 9/3/16.
  */
-internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDialogAction {
+internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialogAction {
 
     private var contentFragment: __ContentFragment? = null
 
@@ -92,7 +92,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
     private val introLayout by lazy {
         val result = findViewById(R.id.__dt_helper) as ViewGroup
         result.setOnClickListener {
-            val intent = Intent(this, __IntroductionActivity::class.java)
+            val intent = Intent(this, IntroductionActivity::class.java)
             val clazz = ContextThemeWrapper::class.java
             val method = clazz.getMethod("getThemeResId")
             method.isAccessible = true
@@ -250,7 +250,7 @@ internal class __DTDrawerActivity: AppCompatActivity(), DialogsCollection.SPDial
             val holder: ViewHolder
             val item = menu[position]
             if (null == view) {
-                view = LayoutInflater.from(this@__DTDrawerActivity).inflate(R.layout.__item_drawer_menu, parent, false)
+                view = LayoutInflater.from(this@DTDrawerActivity).inflate(R.layout.__item_drawer_menu, parent, false)
                 holder = ViewHolder()
                 holder.icon = view.findViewById(R.id.__dt_icon) as ImageView
                 holder.title = view.findViewById(R.id.__dt_item_title) as TextView

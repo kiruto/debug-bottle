@@ -5,7 +5,7 @@ import android.os.Handler
 /**
  * Created by yuriel on 8/8/16.
  */
-object HandlerThread {
+object __HandlerThread {
     /**
      * Get handler of looper thread
      */

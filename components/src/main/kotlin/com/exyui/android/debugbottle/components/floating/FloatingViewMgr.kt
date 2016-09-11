@@ -100,7 +100,7 @@ internal object FloatingViewMgr {
         }
 
         for (i in 0..serviceList.size - 1) {
-            if (serviceList[i].service.className.equals(__FloatingService::class.java.name) == true) {
+            if (serviceList[i].service.className.equals(FloatingService::class.java.name) == true) {
                 return true
             }
         }

@@ -5,7 +5,7 @@ import com.squareup.okhttp.MediaType
 import com.squareup.okhttp.Request
 import com.squareup.okhttp.Response
 import com.squareup.okhttp.ResponseBody
-import com.exyui.android.debugbottle.components.__DTSettings
+import com.exyui.android.debugbottle.components.DTSettings
 
 import java.io.IOException
 
@@ -65,7 +65,7 @@ internal class LoggingInterceptor : Interceptor {
         }
 
         val block = HttpBlock.newInstance(request, response, t1, t2, requestBody, responseBody)
-        if (__DTSettings.getNetworkSniff()) {
+        if (DTSettings.getNetworkSniff()) {
             HttpBlockFileMgr.saveHttpLog(block.toString())
         }
         if (response.body() != null) {

@@ -17,7 +17,7 @@ internal abstract class Sampler(sampleIntervalMillis: Long) {
 
             // If non-stop, doSample again after mSampleIntervalMillis elapses.
             if (mIsDumping.get()) {
-                HandlerThread.timerThreadHandler.postDelayed(mRunnable,
+                __HandlerThread.timerThreadHandler.postDelayed(mRunnable,
                         mSampleIntervalMillis)
             }
         }
@@ -41,9 +41,9 @@ internal abstract class Sampler(sampleIntervalMillis: Long) {
         }
         mIsDumping.set(true)
 
-        HandlerThread.timerThreadHandler.removeCallbacks(mRunnable)
-        HandlerThread.timerThreadHandler.postDelayed(mRunnable,
-                CanaryCoreMgr.get().sampleDelay)
+        __HandlerThread.timerThreadHandler.removeCallbacks(mRunnable)
+        __HandlerThread.timerThreadHandler.postDelayed(mRunnable,
+                __CanaryCoreMgr.get().sampleDelay)
     }
 
     /**
@@ -55,7 +55,7 @@ internal abstract class Sampler(sampleIntervalMillis: Long) {
             return
         }
         mIsDumping.set(false)
-        HandlerThread.timerThreadHandler.removeCallbacks(mRunnable)
+        __HandlerThread.timerThreadHandler.removeCallbacks(mRunnable)
     }
 
     internal abstract fun doSample()
