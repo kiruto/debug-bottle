@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Debug Bottle Demo</string>
     <string name="__bad_case">Showcases</string>
-    <string name="app_intro">Debug Bottle\'s feature is NOT here. Please finish this Activity, and find the 🍼 icon in your android launch pad. To quick access Debug Bottle, you also could click icons above.</string>
+    <string name="app_intro">Debug Bottle\'s feature is NOT here. Please finish this Activity, and find the Bottle icon in your android launch pad. To quick access Debug Bottle, you also could click icons above.</string>
     <string name="__introduction">This is Debug Bottle Demo Application.\nThis Activity is NOT Debug Bottle\'s main Activity, it\'s just a demo page for showing bad cases.\nIf this is the first time you have ever installed Debug bottle, please click button below to see how to use it.</string>
     <string name="__read_me">Readme</string>
     <string name="__thread_wait">Thread.wait()</string>
