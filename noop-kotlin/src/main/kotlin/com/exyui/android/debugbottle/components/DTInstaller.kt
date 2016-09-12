@@ -23,11 +23,6 @@ object DTInstaller {
         return this
     }
 
-    fun setPackageName(any: Any?): DTInstaller {
-        Log.d(TAG, "setPackageName")
-        return this
-    }
-
     fun setOkHttpClient(any: Any): DTInstaller {
         Log.d(TAG, "setOkHttpClient")
         return this
