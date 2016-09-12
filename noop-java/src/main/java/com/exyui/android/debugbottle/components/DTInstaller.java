@@ -27,11 +27,6 @@ public class DTInstaller {
         return this;
     }
 
-    public DTInstaller setPackageName(Object a) {
-        Log.d(TAG, "setPackageName");
-        return this;
-    }
-
     public DTInstaller setOkHttpClient(Object a) {
         Log.d(TAG, "setOkHttpClient");
         return this;

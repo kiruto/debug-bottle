@@ -5,6 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.injector.__IntentInjectorImpl
@@ -15,22 +16,19 @@ import com.exyui.android.debugbottle.components.injector.__IntentInjectorImpl
 internal class AllActivities(activity: Activity): __IntentInjectorImpl() {
     init {
         setActivity(activity)
-        try {
-            val mgr = activity.packageManager
-            val packageName = DTInstaller.rootPackageName?: activity.application.packageName
-            val info = mgr.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
-            val list = info.activities
-            for (a in list) {
-                val clazz = Class.forName(a.name)
-                put(clazz.simpleName, Intent(activity, clazz))
-            }
+        val mgr = activity.packageManager
+        val packageName = activity.application.packageName
+        val info: PackageInfo = mgr.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
+        val list = info.activities
+        for (a in list) {
+            val intent = Intent()
+            intent.setClassName(a.packageName, a.name)
+            put(a.name.split(".").last(), intent)
+        }
 //            for (info in getActivities(activity.applicationContext)) {
 //                val content = getIntent2(info)
 //                put (content.first, content.second)
 //            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 
 //    private fun getActivities(context: Context): List<ActivityInfo> {

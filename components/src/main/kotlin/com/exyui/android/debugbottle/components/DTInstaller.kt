@@ -41,10 +41,6 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         set(value) {
             if (!installed) field = value
         }
-    internal var rootPackageName: String? = null
-        set(value) {
-            if (!installed) field = value
-        }
     private var httpClient: OkHttpClient? = null
         set(value) {
             if (!installed) field = value
@@ -105,11 +101,6 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        return this
-    }
-
-    fun setPackageName(name: String): DTInstaller {
-        rootPackageName = name
         return this
     }
 
