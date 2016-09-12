@@ -19,3 +19,4 @@
 - [ ] feature: SQLite editor
 - [ ] feature: fragment previewer without activity
 - [ ] feature: calculator
+- [ ] annotation: observe a member of an activity
