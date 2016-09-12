@@ -25,6 +25,7 @@
             android:launchMode="singleInstance"
             android:screenOrientation="portrait">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.exyui.android.DEBUG_BOTTLE"/>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER"/>
