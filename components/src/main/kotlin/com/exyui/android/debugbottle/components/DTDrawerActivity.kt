@@ -78,7 +78,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                     .setTitle(R.string.__dt_info)
                     .setMessage(R.string.__dt_info_introduction)
                     .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
-                    .setPositiveButton(R.string.__dt_github) { dialog, witch ->
+                    .setNeutralButton(R.string.__dt_github) { dialog, witch ->
                         val url = "https://github.com/kiruto/debug-bottle"
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.data = Uri.parse(url)
@@ -105,7 +105,6 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setTheme(R.style.Theme_AppCompat_Light)
         setContentView(R.layout.__activity_dt_drawer)
         drawerLayout.addDrawerListener(drawerToggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -200,6 +199,14 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                 return
             }
 
+            s(R.string.__dt_feedback) -> {
+                fragment = __WebViewFragment.newInstance("https://github.com/kiruto/debug-bottle/issues")
+            }
+
+            s(R.string.__dt_project) -> {
+                fragment = __WebViewFragment.newInstance("https://github.com/kiruto/debug-bottle")
+            }
+
             s(R.string.__dt_settings) -> {
                 fragment = __SettingsFragment()
             }
@@ -226,6 +233,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         private val menu by lazy {
             val result = mutableListOf<DrawerMenuItem>()
             for (str in titles) {
+                // Icon color is #8A000000
                 result.add(DrawerMenuItem(str, when (str) {
                     s(R.string.__dt_status) -> R.drawable.__ic_home_black_24dp
                     s(R.string.__dt_all_activities) -> R.drawable.__ic_find_in_page_black_24dp
@@ -237,6 +245,8 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                     s(R.string.__dt_leaks) -> R.drawable.__ic_bug_report_black_24dp
                     s(R.string.__dt_settings) -> R.drawable.__ic_settings_black_24dp
                     s(R.string.__dt_crashes) -> R.drawable.__ic_report_problem_black_24dp
+                    s(R.string.__dt_feedback) -> R.drawable.__ic_feedback_black_24dp
+                    s(R.string.__dt_project) -> R.drawable.__ic_code_black_24dp
                     else -> R.drawable.__ic_info_outline_black_24dp
                 }))
             }

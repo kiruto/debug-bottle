@@ -37,6 +37,8 @@
     <string name="__dt_blocks">Block Reports</string>
     <string name="__dt_network_traffics">Network Traffics Reports</string>
     <string name="__dt_crashes">Crash Reports</string>
+    <string name="__dt_feedback">Feedback</string>
+    <string name="__dt_project">Open source project</string>
     <string name="__dt_intents">Intent Entries</string>
     <string name="__dt_runnable">Runnable Entries</string>
     <string name="__dt_settings">Settings</string>
@@ -88,9 +90,13 @@
     <string name="__dt_help">Help</string>
 
     <string name="__dt_info">Debug Bottle</string>
-    <string name="__dt_info_introduction">An Android debug / develop tools written using Kotlin language. All the features in Debug bottle are only available on debug build version with your app, it doesn\'t has an impact on release version.</string>
+    <string name="__dt_info_introduction">An Android debug / develop tools written using Kotlin language.\nIf you like my work, please star this open source project on Github.</string>
     <string name="__dt_github">github</string>
     <string name="__dt_close">close</string>
+    <string name="__dt_full_url">FULL URL</string>
+    <string name="__dt_copy">copy</string>
+    <string name="__dt_open_in_browser">open in browser</string>
+    <string name="__dt_copied">URL has copied to your clipboard.</string>
 
     <string name="__dt_intro_title_welcome">Welcome to use Debug Bottle!</string>
     <string name="__dt_intro_title_check_permission">Checkup permission</string>
