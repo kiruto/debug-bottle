@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <WebView
+        android:id="@+id/__dt_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#CCFFFFFF">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__ic_arrow_back_black_24dp"
+            android:background="?android:selectableItemBackground"
+            android:padding="12dp"
+            android:id="@+id/__dt_back"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__ic_refresh_black_24dp"
+            android:background="?android:selectableItemBackground"
+            android:padding="12dp"
+            android:id="@+id/__dt_refresh"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:textColor="#DE2962FF"
+            android:background="?android:selectableItemBackground"
+            android:singleLine="true"
+            android:textStyle="italic"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:id="@+id/__dt_address"/>
+
+    </LinearLayout>
+
+</FrameLayout>
