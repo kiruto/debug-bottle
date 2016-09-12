@@ -1,7 +1,10 @@
 package com.exyui.android.debugbottle.components.injector
 
 import android.app.Activity
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.injector.__IntentInjectorImpl
@@ -14,16 +17,46 @@ internal class AllActivities(activity: Activity): __IntentInjectorImpl() {
         setActivity(activity)
         try {
             val mgr = activity.packageManager
-            val packageName = DTInstaller.rootPackageName?: activity.packageName
+            val packageName = DTInstaller.rootPackageName?: activity.application.packageName
             val info = mgr.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
-            //val test = info.applicationInfo
             val list = info.activities
             for (a in list) {
                 val clazz = Class.forName(a.name)
                 put(clazz.simpleName, Intent(activity, clazz))
             }
+//            for (info in getActivities(activity.applicationContext)) {
+//                val content = getIntent2(info)
+//                put (content.first, content.second)
+//            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
+
+//    private fun getActivities(context: Context): List<ActivityInfo> {
+//        val result = mutableListOf<ActivityInfo>()
+//        val intent = Intent(Intent.ACTION_MAIN, null)
+//        intent.`package` = context.packageName
+//        for (info in context.packageManager.queryIntentActivities(intent, 0)) {
+//            result.add(info.activityInfo)
+//        }
+//        return result
+//    }
+//
+//    private fun getIntent(info: ActivityInfo): Pair<String, Intent> {
+//        val name = info.name.split(".").last()
+//        val componentName = ComponentName(info.applicationInfo.packageName, info.name)
+//        val result = Intent(Intent.ACTION_MAIN)
+//        result.addCategory(Intent.CATEGORY_LAUNCHER)
+//        result.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
+//        result.component = componentName
+//        return Pair(name, result)
+//    }
+//
+//    private fun getIntent2(info: ActivityInfo): Pair<String, Intent> {
+//        val name = info.name.split(".").last()
+//        val intent = Intent()
+//        intent.setClassName(info.applicationInfo.packageName, info.name)
+//        return Pair(name, intent)
+//    }
 }
