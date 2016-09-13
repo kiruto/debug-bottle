@@ -195,7 +195,8 @@ internal data class HttpBlock(
                     requestBody = requestBody?: "",
                     responseCode = responseCode?: "",
                     responseHeader = responseHeader?: "",
-                    responseBody = responseBody?: ""
+                    responseBody = responseBody?: "",
+                    file = file
             )
             result.flushString()
             return result
