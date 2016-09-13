@@ -58,6 +58,7 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
         refreshView?.setOnClickListener(this)
 
         webView?.setWebViewClient(DTWebViewClient())
+        webView?.settings?.javaScriptEnabled = true
         webView?.load(url)
         return result
     }
@@ -115,6 +116,9 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
 
     private inner class DTWebViewClient : WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+            if (!url.startsWith("http://github.com/") || !url.startsWith("https://github.com/")) {
+                view.settings.javaScriptEnabled = false
+            }
             view.load(url)
             return true
         }

@@ -3,6 +3,7 @@ package com.exyui.android.debugbottle.components.fragments
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -271,9 +272,18 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
                 index = "${mBlockEntries.size - position}. "
             }
 
-            val title = index + block.method + " " + block.url
+            val title = "${block.responseCode}. ${block.method} ${block.url.split("?")[0].replace("http://", "").replace("https://", "")}"
             titleView.text = title
             timeView.text = String.format("%.1f", block.time) + "ms"
+
+            if (block.responseCode.startsWith("2")) {
+                titleView.setTextColor(Color.parseColor("#DE1B5E20"))
+            } else if (block.responseCode.startsWith("4") || block.responseCode.startsWith("5")) {
+                titleView.setTextColor(Color.parseColor("#DED50000"))
+            } else if (block.responseCode.startsWith("3")) {
+                titleView.setTextColor(Color.parseColor("#DEFF6D00"))
+            }
+
             return convertView
         }
     }
