@@ -2,15 +2,19 @@
 
 buildscript {
     ext {
+        // May cause merge file conflicts
+        versionUploaded = "1.0.0EAP-SNAPSHOT"
+        versionName = "1.0.0EAP-SNAPSHOT"
+
+
         minSdkVersion = 14
         compileSdkVersion = 23
         targetSdkVersion = compileSdkVersion
         buildToolsVersion = '23.0.2'
         javaVersion = JavaVersion.VERSION_1_7
 
+        // Version of Demo App in Google Play
         versionCode = 4
-        versionName = "1.0.0EAP-SNAPSHOT"
-        versionUploaded = "1.0.0EAP-SNAPSHOT"
 
         libraries = [
                 gradle: '2.1.3',

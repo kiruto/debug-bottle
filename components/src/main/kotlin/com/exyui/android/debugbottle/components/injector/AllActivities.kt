@@ -25,36 +25,5 @@ internal class AllActivities(activity: Activity): __IntentInjectorImpl() {
             intent.setClassName(a.packageName, a.name)
             put(a.name.split(".").last(), intent)
         }
-//            for (info in getActivities(activity.applicationContext)) {
-//                val content = getIntent2(info)
-//                put (content.first, content.second)
-//            }
     }
-
-//    private fun getActivities(context: Context): List<ActivityInfo> {
-//        val result = mutableListOf<ActivityInfo>()
-//        val intent = Intent(Intent.ACTION_MAIN, null)
-//        intent.`package` = context.packageName
-//        for (info in context.packageManager.queryIntentActivities(intent, 0)) {
-//            result.add(info.activityInfo)
-//        }
-//        return result
-//    }
-//
-//    private fun getIntent(info: ActivityInfo): Pair<String, Intent> {
-//        val name = info.name.split(".").last()
-//        val componentName = ComponentName(info.applicationInfo.packageName, info.name)
-//        val result = Intent(Intent.ACTION_MAIN)
-//        result.addCategory(Intent.CATEGORY_LAUNCHER)
-//        result.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
-//        result.component = componentName
-//        return Pair(name, result)
-//    }
-//
-//    private fun getIntent2(info: ActivityInfo): Pair<String, Intent> {
-//        val name = info.name.split(".").last()
-//        val intent = Intent()
-//        intent.setClassName(info.applicationInfo.packageName, info.name)
-//        return Pair(name, intent)
-//    }
 }
