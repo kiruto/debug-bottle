@@ -44,6 +44,8 @@ internal object DTSettings {
         return result
     }
 
+    fun getCrashFileStorePath() = "/ktdebugtools/crash"
+
     fun setStrictMode(strictMode: Boolean) {
         getSP()?.edit()?.putBoolean(STRICT_MODE, strictMode)?.apply()
     }

@@ -1,10 +1,8 @@
 package com.exyui.android.debugbottle.components.okhttp
 
 import android.util.Log
-import com.squareup.okhttp.MediaType
 import com.squareup.okhttp.Request
 import com.squareup.okhttp.Response
-import okio.Buffer
 import java.io.*
 
 /**
@@ -38,6 +36,10 @@ internal data class HttpBlock(
 
     val time: Double
         get() = (timeEnd - timeStart) / 1e6
+
+    init {
+        flushString()
+    }
 
     private fun flushString() {
         val t = this.time.toString()
@@ -81,6 +83,7 @@ internal data class HttpBlock(
         internal val KEY_RESPONSE_HEADER = "responseHeader"
         internal val KEY_RESPONSE_BODY = "responseBody"
 
+        // Use for write to file
         fun newInstance(request: Request,
                         response: Response,
                         timeStart: Long,
@@ -98,17 +101,17 @@ internal data class HttpBlock(
                     responseHeader = response.headers()?.toString()?: "",
                     responseBody = responseBody
             )
-            result.flushString()
+//            result.flushString()
             return result
         }
 
+        // Use for read data from file
         fun newInstance(file: File): HttpBlock {
             val result: HttpBlock
             var reader: BufferedReader? = null
 
             var url: String? = null
             var method: String? = null
-            //var time: String? = null
             var timeStart: String? = "0"
             var timeEnd: String? = "0"
             var requestHeader: String? = null
@@ -198,27 +201,32 @@ internal data class HttpBlock(
                     responseBody = responseBody?: "",
                     file = file
             )
-            result.flushString()
+//            result.flushString()
             return result
         }
 
-        private fun stringifyRequestBody(request: Request): String {
-            try {
-                val copy = request.newBuilder().build()
-                val buffer = Buffer()
-                copy.body()?.writeTo(buffer)
-                return buffer.readUtf8()
-            } catch (e: IOException) {
-                return "did not work"
-            }
-        }
+//        private fun stringifyRequestBody(request: Request): String {
+//            try {
+//                val copy = request.newBuilder().build()
+//                val buffer = Buffer()
+//                copy.body()?.writeTo(buffer)
+//                return buffer.readUtf8()
+//            } catch (e: IOException) {
+//                return "did not work"
+//            }
+//        }
         
         private fun String.getValue(): String {
-            return this.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+            val result = this.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            if (result.size > 1) {
+                return result[1]
+            } else {
+                return ""
+            }
         }
 
-        fun stringifyResponseBody(responseBody: String): String {
-            return responseBody
-        }
+//        fun stringifyResponseBody(responseBody: String): String {
+//            return responseBody
+//        }
     }
 }

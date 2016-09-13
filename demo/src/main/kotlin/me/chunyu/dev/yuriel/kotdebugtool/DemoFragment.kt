@@ -40,6 +40,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
         val button4 = view.findViewById(R.id.button4) as Button
         val button5 = view.findViewById(R.id.button5) as Button
         val button6 = view.findViewById(R.id.__read_me) as Button
+        val crashButton = view.findViewById(R.id.crash_button) as Button
         val intro = view.findViewById(R.id.introduction) as Button
 
         button1.setOnClickListener(this)
@@ -48,6 +49,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
         button4.setOnClickListener(this)
         button5.setOnClickListener(this)
         button6.setOnClickListener(this)
+        crashButton.setOnClickListener(this)
         view.findViewById(R.id.launch_dt).setOnClickListener(this)
         intro.setOnClickListener(this)
     }
@@ -97,6 +99,9 @@ class DemoFragment : Fragment(), View.OnClickListener {
                 val intent = Intent("com.exyui.android.INTRODUCTION")
                 intent.putExtra("theme", R.style.__DemoAppActionBarTheme)
                 startActivity(intent)
+            }
+            R.id.crash_button -> {
+                (null as List<Any>).last()
             }
             else -> {
             }
