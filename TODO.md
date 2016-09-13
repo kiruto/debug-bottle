@@ -7,7 +7,7 @@
 - [x] feature: leak detect
 - [x] feature: block detect
 - [x] feature: rewrite noop use java
-- [ ] feature: crash handler
+- [x] feature: crash handler
 - [x] feature: custom icon label
 - [x] feature: introduction activity
 
