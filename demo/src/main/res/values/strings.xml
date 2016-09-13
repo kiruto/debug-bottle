@@ -79,4 +79,6 @@
 
     <string name="__pref_title_vibrate">Vibrate</string>
     <string name="see_introduction">Debug Bottle Introduction</string>
+    <string name="crash_code">Crash code</string>
+    <string name="crash_code_content">(null as List&lt;Any>).last()</string>
 </resources>
