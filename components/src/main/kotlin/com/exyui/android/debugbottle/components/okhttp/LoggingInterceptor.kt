@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components.okhttp
 
+import android.util.Log
 import com.squareup.okhttp.Interceptor
 import com.squareup.okhttp.MediaType
 import com.squareup.okhttp.Request
@@ -66,7 +67,7 @@ internal class LoggingInterceptor : Interceptor {
 
         val block = HttpBlock.newInstance(request, response, t1, t2, requestBody, responseBody)
         if (DTSettings.getNetworkSniff()) {
-            HttpBlockFileMgr.saveHttpLog(block.toString())
+            HttpBlockFileMgr.saveLog(block.toString())
         }
         if (response.body() != null) {
             val body = ResponseBody.create(contentType, bodyString)
@@ -78,6 +79,10 @@ internal class LoggingInterceptor : Interceptor {
 
     fun stringifyResponseBody(responseBody: String): String {
         return responseBody
+    }
+
+    private fun println(line: String) {
+        Log.d("DEBUG-BOTTLE", line)
     }
 
     companion object {

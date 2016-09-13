@@ -199,6 +199,10 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                 return
             }
 
+            s(R.string.__dt_crashes) -> {
+                fragment = __DisplayCrashBlockFragment()
+            }
+
             s(R.string.__dt_feedback) -> {
                 fragment = __WebViewFragment.newInstance("https://github.com/kiruto/debug-bottle/issues")
             }

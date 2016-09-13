@@ -16,6 +16,7 @@ import android.os.Process
 import android.os.StrictMode
 import android.util.Log
 import android.widget.Toast
+import com.exyui.android.debugbottle.components.crash.DTCrashHandler
 import com.squareup.okhttp.OkHttpClient
 import com.exyui.android.debugbottle.components.injector.Injector
 import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
@@ -157,6 +158,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             httpClient!!.interceptors().add(LoggingInterceptor())
             DTSettings.getNetworkSniff()
         }
+        DTCrashHandler.install()
     }
 
     internal fun startInject(): Boolean {
