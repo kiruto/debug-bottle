@@ -130,7 +130,13 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
     }
 
     override fun onBackPressed() {
-        if (!(contentFragment?.onBackPressed()?: false)) super.onBackPressed()
+        if (!(contentFragment?.onBackPressed()?: false)) {
+            if (!(contentFragment?.isHome?: false)) {
+                selectItem(0)
+            } else {
+                super.onBackPressed()
+            }
+        }
     }
 
     override fun updateSPViews() {
