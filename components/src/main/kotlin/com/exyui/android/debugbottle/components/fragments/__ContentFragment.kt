@@ -12,6 +12,8 @@ open class __ContentFragment: Fragment() {
 
     open protected var context: Activity? = null
 
+    open val isHome = false
+
     open fun onBackPressed(): Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

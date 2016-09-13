@@ -31,6 +31,8 @@ class __StatusFragment: __ContentFragment() {
 
     override val TAG = __StatusFragment.TAG
 
+    override val isHome = true
+
     companion object {
         val TAG = "__StatusFragment"
         internal val permissions = listOf(
