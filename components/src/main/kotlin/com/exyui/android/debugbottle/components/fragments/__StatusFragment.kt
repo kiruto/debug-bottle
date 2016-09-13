@@ -14,11 +14,8 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.SwitchCompat
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
-import android.widget.Toast
 import com.exyui.android.debugbottle.components.*
 import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
 import com.exyui.android.debugbottle.components.floating.FloatingService
@@ -96,10 +93,21 @@ class __StatusFragment: __ContentFragment() {
         result!!
     }
 
-    private val finishBtn by lazy {
-        val result = findViewById(R.id.__dt_finish_btn)
-        result?.setOnClickListener { context?.finish() }
-        result
+//    private val finishBtn by lazy {
+//        val result = findViewById(R.id.__dt_finish_btn)
+//        result?.setOnClickListener { context?.finish() }
+//        result
+//    }
+
+    private val sourceBtn by lazy {
+        val result = findViewById(R.id.__dt_source_site)
+        result?.setOnClickListener {
+            val url = "https://github.com/kiruto/debug-bottle"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
+        }
+        result!!
     }
 
     private val refreshView by lazy {
@@ -124,8 +132,19 @@ class __StatusFragment: __ContentFragment() {
         updatePermissionStatus()
         checkupStatus()
         permissionRequestBtn; view3DHelperText; view3DSwitcher
-        versionText; procText; procBtn; finishBtn; refreshView
+        versionText; procText; procBtn; sourceBtn; refreshView
+        setHasOptionsMenu(true)
         return rootView
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
+        menu.add(R.string.__dt_close)
+                .setIcon(R.drawable.__ic_close_black_24dp)
+                .setOnMenuItemClickListener {
+                    activity.finish()
+                    true
+                }
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
     }
 
     private fun showNeedPermissionsDialog() {

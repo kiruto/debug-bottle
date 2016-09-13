@@ -69,7 +69,7 @@
     <string name="__dt_stopped">Stopped</string>
     <string name="__dt_write_external_storage">Write external storage</string>
     <string name="__dt_read_phone_state">Read phone state</string>
-    <string name="__dt_system_alert_window">system alert window</string>
+    <string name="__dt_system_alert_window">System alert window</string>
 
     <string name="__dt_need_permissions">Needs permissions</string>
     <string name="__dt_permission_message">To work correctly, Debug Bottle needs permissions. You must allow access to at least these permissions. To check permissions now, please click CHECK button.</string>
@@ -88,9 +88,10 @@
     <string name="__dt_need_restart_after_apply">The feature setting will apply after kill process.</string>
     <string name="__dt_information">Info</string>
     <string name="__dt_help">Help</string>
+    <string name="__dt_share">Share</string>
 
     <string name="__dt_info">Debug Bottle</string>
-    <string name="__dt_info_introduction">An Android debug / develop tools written using Kotlin language.\nIf you like my work, please star this open source project on Github.</string>
+    <string name="__dt_info_introduction">An Android debug / develop tools written using Kotlin language.\n\nIf you like my work, please star this open source project on Github.</string>
     <string name="__dt_github">github</string>
     <string name="__dt_close">close</string>
     <string name="__dt_full_url">FULL URL</string>
@@ -118,4 +119,13 @@
     <string name="__dt_intro_content_done_2">Now you can use Debug Bottle with your App.</string>
     <string name="__dt_intro_content_done_3">After restart your app, you\'ll see a notification entry.</string>
     <string name="__dt_intro_content_done_4">Good luck!</string>
+
+    <string name="__dt_how_to_use">How to use</string>
+    <string name="__dt_injector_help">What\'s this?</string>
+    <string name="__dt_intent_injector_introduction">Injector is a feature of Debug Bottle.\n\nThis feature provide you with a way to quick access an Activity with your Intent here.\n\nTo use this, you need follow below steps.</string>
+    <string name="__dt_runnable_injector_introduction">Injector is a feature of Debug Bottle.\n\nThis feature provide you with a simple way to run your code here.\n\nTo use this, you need follow below steps.</string>
+    <string name="__dt_step_one">Tips</string>
+    <string name="__dt_injector_step_one_no_package_message">Create a class extends Injector, implement function inject().\n\nPut Intents and Runnable at function inject().\n\nIntent can be create with getActivity() function.</string>
+    <string name="__dt_injector_step_one_message">Find the class %s, put Intents and Runnable at function inject().\n\nIntent can be create with getActivity() function.</string>
+
 </resources>
