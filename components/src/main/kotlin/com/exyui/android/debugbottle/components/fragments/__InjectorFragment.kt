@@ -1,14 +1,14 @@
 package com.exyui.android.debugbottle.components.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.ListView
+import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.SearchableListViewHelper
 import com.exyui.android.debugbottle.components.injector.AllActivities
@@ -85,12 +85,53 @@ class __InjectorFragment: __ContentFragment() {
         val rootView = inflater.inflate(R.layout.__activity_injector, container, false)
         this.rootView = rootView
         list; editText
+        if (type != TYPE_ALL_ACTIVITIES) {
+            setHasOptionsMenu(true)
+        }
         return rootView
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
+        menu.add(R.string.__dt_how_to_use)
+                .setIcon(R.drawable.__ic_lightbulb_outline_black_24dp)
+                .setOnMenuItemClickListener {
+                    showHelper()
+                    true
+                }
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+    }
+
+    private fun showHelper() {
+        val builder = AlertDialog.Builder(activity)
+                .setIcon(R.drawable.__ic_lightbulb_outline_black_24dp)
+                .setTitle(R.string.__dt_injector_help)
+        when(type) {
+            TYPE_INTENT -> builder.setMessage(R.string.__dt_intent_injector_introduction)
+            TYPE_RUNNABLE -> builder.setMessage(R.string.__dt_runnable_injector_introduction)
+            else -> builder
+        }
+                .setPositiveButton(R.string.__dt_next) { dialog, witch ->
+                    showStepOne()
+                }
+                .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
+                .show()
+    }
+
+    private fun showStepOne() {
+        val packageName = DTInstaller.injectorClassName
+        val builder = AlertDialog.Builder(activity)
+                .setIcon(R.drawable.__ic_lightbulb_outline_black_24dp)
+                .setTitle(R.string.__dt_step_one)
+        if (null == packageName) {
+            builder.setMessage(R.string.__dt_injector_step_one_no_package_message)
+        } else {
+            builder.setMessage(getString(R.string.__dt_injector_step_one_message, packageName))
+        }
+                .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
+                .show()
     }
 
     private fun findViewById(@IdRes id: Int): View? {
         return rootView?.findViewById(id)
     }
-
-
 }

@@ -7,12 +7,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AlphaAnimation
+import android.view.animation.AnimationSet
+import android.view.animation.DecelerateInterpolator
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
@@ -27,6 +28,7 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
     private var backView: View? = null
     private var refreshView: View? = null
     private var url: String? = null
+    private var urlBar: ViewGroup? = null
 
     companion object {
         private val TAG = "__WebViewFragment"
@@ -52,6 +54,7 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
         addressView = result.findViewById(R.id.__dt_address) as TextView
         backView = result.findViewById(R.id.__dt_back)
         refreshView = result.findViewById(R.id.__dt_refresh)
+        urlBar = result.findViewById(R.id.__dt_url_bar) as ViewGroup
 
         addressView?.setOnClickListener(this)
         backView?.setOnClickListener(this)
@@ -60,7 +63,22 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
         webView?.setWebViewClient(DTWebViewClient())
         webView?.settings?.javaScriptEnabled = true
         webView?.load(url)
+
+        setHasOptionsMenu(true)
         return result
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
+        menu.add(R.string.__dt_share)
+                .setIcon(R.drawable.__ic_share_black_24dp)
+                .setOnMenuItemClickListener {
+                    val intent = Intent(Intent.ACTION_SEND)
+                    intent.type = "text/plain"
+                    intent.putExtra(Intent.EXTRA_TEXT, url)
+                    startActivity(Intent.createChooser(intent, getString(R.string.__block_canary_share_with)))
+                    true
+                }
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
     }
 
     override fun onBackPressed(): Boolean {
@@ -122,5 +140,25 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
             view.load(url)
             return true
         }
+    }
+
+    private fun ViewGroup.fadeIn() {
+        val fadeIn = AlphaAnimation(0f, 1f)
+        fadeIn.interpolator = DecelerateInterpolator()
+        fadeIn.duration = 1000
+
+        val animation = AnimationSet(false)
+        animation.addAnimation(fadeIn)
+
+    }
+
+    private fun ViewGroup.fadeOut() {
+        val fadeOut = AlphaAnimation(1f, 0f)
+        fadeOut.interpolator = AccelerateInterpolator()
+        fadeOut.startOffset = 1000
+        fadeOut.duration = 1000
+
+        val animation = AnimationSet(false)
+        animation.addAnimation(fadeOut)
     }
 }
