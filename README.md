@@ -52,6 +52,8 @@ Enable or disable Android strict mode at runtime. StrictMode is a developer tool
 #### Crash Log
 List all crash stacktrace logs.
 
+[<img src="screenshots/crash.gif" width="225" height="400">](screenshots/raw/crash.gif)
+
 #### Leak Canary
 Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Leak Canary by visiting [Leak Canary wiki](https://github.com/square/leakcanary/wiki/FAQ).
 

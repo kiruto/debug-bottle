@@ -49,6 +49,8 @@ Debug Bottle可以在运行时启用或禁用Strict Mode。StrictMode最常用�
 #### 崩溃日志
 收集所有崩溃的信息，存储成日志文件。
 
+[<img src="screenshots/crash.gif" width="225" height="400">](screenshots/raw/crash.gif)
+
 #### 使用Leak Canary
 Debug Bottle中编译进了Leak Canary，所有Leak Canary的功能都可以使用了，并且可以通过Debug Bottle来控制开关。Leak Canary的使用方法请参考[官方Wiki](https://github.com/square/leakcanary/wiki/FAQ)。
 

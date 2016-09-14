@@ -48,6 +48,8 @@ StrictModeはアプリケーションの動作をもっさりさせる原因と�
 #### クラッシュログ
 アプリがクラッシュするとログが保存され、デバッグボトルからログを取得して解析することができます。
 
+[<img src="screenshots/crash.gif" width="225" height="400">](screenshots/raw/crash.gif)
+
 #### Leak Canaryを使用する
 Squareのメモリリークを検出するライブラリ Leak Canary を通じて、メモリリークを調査できます。デバッグボトルはすでにLeak Canaryを含んでいるから、その機能は使えます。もっと詳しくは[こちらで](https://github.com/square/leakcanary/wiki/FAQ)。
 
