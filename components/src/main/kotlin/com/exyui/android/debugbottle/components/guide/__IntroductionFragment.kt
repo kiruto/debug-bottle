@@ -132,6 +132,7 @@ class __IntroductionFragment: Fragment() {
                 val strict = v(R.id.__dt_enable_strict_mode) as AppCompatCheckBox
                 val leak = v(R.id.__dt_enable_leak_canary) as AppCompatCheckBox
                 val block = v(R.id.__dt_enable_block_canary) as AppCompatCheckBox
+                val sniffer = v(R.id.__dt_enable_http_sniffer) as AppCompatCheckBox
 
                 bottle.setOnCheckedChangeListener { compoundButton, b ->
                     DTSettings.setBottleEnable(b)
@@ -147,6 +148,10 @@ class __IntroductionFragment: Fragment() {
 
                 block.setOnCheckedChangeListener { compoundButton, b ->
                     DTSettings.setBlockCanaryEnable(b)
+                }
+
+                sniffer.setOnCheckedChangeListener { compoundButton, b ->
+                    DTSettings.setNetworkSniff(b)
                 }
             }
         }

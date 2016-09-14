@@ -63,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/__dt_intro_text"
                     android:layout_toRightOf="@id/__dt_icon_bottle"
+                    android:layout_marginTop="60dp"
                     android:layout_marginLeft="40dp"
                     android:orientation="vertical">
 

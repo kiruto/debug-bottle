@@ -12,6 +12,8 @@ import com.exyui.android.debugbottle.components.RunningFeatureMgr
 
 /**
  * Created by yuriel on 9/1/16.
+ *
+ * 3D View floating window management service
  */
 internal class FloatingService : Service() {
 

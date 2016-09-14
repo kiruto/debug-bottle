@@ -6,13 +6,18 @@
     <TextView style="@style/__DTIntro.Title"
         android:id="@+id/__dt_title"/>
 
-    <LinearLayout style="@style/__DTIntro.Content">
+    <LinearLayout
+        style="@style/__DTIntro.Content">
+
+        <TextView style="@style/__DTIntro.ContentText.Left"
+            android:text="@string/__dt_intro_for_qa"
+            android:layout_marginBottom="8dp"/>
 
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:layout_gravity="center">
+            android:layout_marginLeft="20dp">
 
             <TableRow>
 
@@ -23,6 +28,38 @@
                     android:text="@string/__dt_enable_bottle"/>
 
             </TableRow>
+
+            <TableRow>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/__dt_enable_block_canary"/>
+
+                <TextView style="@style/__DTIntro.ContentText.Left"
+                    android:text="@string/__dt_enable_block_canary"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/__dt_enable_http_sniffer"/>
+
+                <TextView style="@style/__DTIntro.ContentText.Left"
+                    android:text="@string/__dt_enable_http_sniffer"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView style="@style/__DTIntro.ContentText.Left"
+            android:text="@string/__dt_intro_for_dev"
+            android:layout_marginBottom="8dp"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp">
 
             <TableRow>
 
@@ -41,16 +78,6 @@
 
                 <TextView style="@style/__DTIntro.ContentText.Left"
                     android:text="@string/__dt_enable_leak_canary"/>
-
-            </TableRow>
-
-            <TableRow>
-
-                <android.support.v7.widget.AppCompatCheckBox
-                    android:id="@+id/__dt_enable_block_canary"/>
-
-                <TextView style="@style/__DTIntro.ContentText.Left"
-                    android:text="@string/__dt_enable_block_canary"/>
 
             </TableRow>
 
