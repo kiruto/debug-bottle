@@ -2,6 +2,7 @@ package com.exyui.android.debugbottle.components.fragments
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 
 /**
@@ -23,5 +24,13 @@ open class __ContentFragment: Fragment() {
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
         context = activity
+    }
+
+    fun selectItemAtDrawer(@StringRes res: Int) {
+        (activity as DrawerActivity).selectItemByRes(res)
+    }
+
+    interface DrawerActivity {
+        fun selectItemByRes(@StringRes res: Int)
     }
 }
