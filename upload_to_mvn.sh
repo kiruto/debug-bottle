@@ -1,11 +1,15 @@
 #!/bin/bash
 upload() {
+    rm settings.gradle
+    cp settings.gradle.before settings.gradle
     ./gradlew clean assemble
     ./gradlew :core:uploadArchives
     ./gradlew :views:uploadArchives
     ./gradlew :blockcanary:uploadArchives
     ./gradlew :components:uploadArchives
     cleanGradleCache
+    rm settings.gradle
+    cp settings.gradle.ready settings.gradle
     ./gradlew :runtime:uploadArchives
 
     ./gradlew :noop-java:uploadArchives
