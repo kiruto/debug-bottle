@@ -8,6 +8,8 @@ import com.exyui.android.debugbottle.core.*
  */
 internal object DTSettings {
 
+    val GITHUB_URL = "https://github.com/kiruto/debug-bottle"
+
     private fun getSP() = DTInstaller.getSP(DT_SETTING_STORE_FILE)
 
     fun setBottleEnable(enable: Boolean) {

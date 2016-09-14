@@ -1,14 +1,11 @@
 package com.exyui.android.debugbottle.components
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AlertDialog
@@ -21,8 +18,10 @@ import com.exyui.android.debugbottle.components.guide.IntroductionActivity
 
 /**
  * Created by yuriel on 9/3/16.
+ *
+ * The main Activity of Debug Bottle
  */
-internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialogAction {
+internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialogAction, __ContentFragment.DrawerActivity {
 
     private var contentFragment: __ContentFragment? = null
 
@@ -79,7 +78,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                     .setMessage(R.string.__dt_info_introduction)
                     .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
                     .setNeutralButton(R.string.__dt_github) { dialog, witch ->
-                        val url = "https://github.com/kiruto/debug-bottle"
+                        val url = DTSettings.GITHUB_URL
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.data = Uri.parse(url)
                         startActivity(intent)
@@ -92,6 +91,9 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
     private val introLayout by lazy {
         val result = findViewById(R.id.__dt_helper) as ViewGroup
         result.setOnClickListener {
+
+            // To start IntroductionActivity, need a AppCompatTheme.
+            // But this module does't has an access to AppCompatTheme.
             val intent = Intent(this, IntroductionActivity::class.java)
             val clazz = ContextThemeWrapper::class.java
             val method = clazz.getMethod("getThemeResId")
@@ -131,7 +133,9 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     override fun onBackPressed() {
         if (!(contentFragment?.onBackPressed()?: false)) {
-            if (!(contentFragment?.isHome?: false)) {
+            if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                drawerLayout.closeDrawers()
+            } else if (!(contentFragment?.isHome?: false)) {
                 selectItem(0)
             } else {
                 super.onBackPressed()
@@ -161,40 +165,59 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     private fun s(@IdRes id: Int): String = resources.getString(id)
 
+    override fun selectItemByRes(@StringRes res: Int) {
+        selectItem(getString(res))
+    }
+
+    private fun selectItem(title: String) {
+        val i = titles.indexOf(title)
+        if (-1 == i) return
+        selectItem(i)
+    }
+
     private fun selectItem(position: Int) {
 
         var fragment: __ContentFragment? = null
 
+        // Create fragment by it's title
         when (titles[position]) {
 
+            // Status fragment
             s(R.string.__dt_status) -> {
                 fragment = __StatusFragment()
             }
 
+            // All Activities fragment
             s(R.string.__dt_all_activities) -> {
                 fragment = __InjectorFragment.newInstance(__InjectorFragment.TYPE_ALL_ACTIVITIES)
             }
 
+            // Intent entries fragment
             s(R.string.__dt_intents) -> {
                 fragment =  __InjectorFragment.newInstance(__InjectorFragment.TYPE_INTENT)
             }
 
+            // Runnable entries fragment
             s(R.string.__dt_runnable) -> {
                 fragment = __InjectorFragment.newInstance(__InjectorFragment.TYPE_RUNNABLE)
             }
 
+            // Shared Preferences editor fragment
             s(R.string.__dt_sp_viewer) -> {
                 fragment = __SPViewerFragment()
             }
 
+            // Block canary fragment
             s(R.string.__dt_blocks) -> {
                 fragment = __DisplayBlockFragment()
             }
 
+            // Network sniffer fragment
             s(R.string.__dt_network_traffics) -> {
                 fragment = __DisplayHttpBlockFragment()
             }
 
+            // Leak canary fragment
             s(R.string.__dt_leaks) -> {
                 if (RunningFeatureMgr.has(RunningFeatureMgr.LEAK_CANARY)) {
                     val intent = Intent(this, DisplayLeakActivity::class.java)
@@ -205,22 +228,27 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                 return
             }
 
+            // Crash report fragment
             s(R.string.__dt_crashes) -> {
                 fragment = __DisplayCrashBlockFragment()
             }
 
+            // Feedback fragment
             s(R.string.__dt_feedback) -> {
-                fragment = __WebViewFragment.newInstance("https://github.com/kiruto/debug-bottle/issues")
+                fragment = __WebViewFragment.newInstance("${DTSettings.GITHUB_URL}/issues")
             }
 
+            // Github fragment
             s(R.string.__dt_project) -> {
-                fragment = __WebViewFragment.newInstance("https://github.com/kiruto/debug-bottle")
+                fragment = __WebViewFragment.newInstance(DTSettings.GITHUB_URL)
             }
 
+            // Settings fragment
             s(R.string.__dt_settings) -> {
                 fragment = __SettingsFragment()
             }
 
+            // None
             else -> {
 
             }
@@ -240,6 +268,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     internal inner class DrawerAdapter(val titles: Array<String>): BaseAdapter() {
 
+        // Menu item's title to icon map
         private val menu by lazy {
             val result = mutableListOf<DrawerMenuItem>()
             for (str in titles) {

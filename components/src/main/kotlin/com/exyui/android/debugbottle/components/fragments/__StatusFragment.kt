@@ -102,10 +102,11 @@ class __StatusFragment: __ContentFragment() {
     private val sourceBtn by lazy {
         val result = findViewById(R.id.__dt_source_site)
         result?.setOnClickListener {
-            val url = "https://github.com/kiruto/debug-bottle"
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
-            startActivity(intent)
+//            val url = DTSettings.GITHUB_URL
+//            val intent = Intent(Intent.ACTION_VIEW)
+//            intent.data = Uri.parse(url)
+//            startActivity(intent)
+            selectItemAtDrawer(R.string.__dt_project)
         }
         result!!
     }
