@@ -86,15 +86,15 @@ allprojects {
 然后在主模块中（Application类所在模块）加入依赖：
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-beta'
 
     // 如果你的工程是Java工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-beta'
 
     // 如果你的工程是Kotlin工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-beta'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
     compile 'com.android.support:support-v4:23.2.0+'
@@ -104,15 +104,15 @@ dependencies {
 Debug Bottle不仅支持API 23+，还可以支持API 22. 若想使用API 22，请按照下面方式加入依赖：
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support22-EAP-SNAPSHOT'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-support22-beta'
 
     // 如果你的工程是Java工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support22-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support22-beta'
 
     // 如果你的工程是Kotlin工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support22-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support22-beta'
 
     compile 'com.android.support:appcompat-v7:22+'
 }
@@ -121,15 +121,15 @@ dependencies {
 若只需支持API23，请按照下面方式加入依赖:
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support23-EAP-SNAPSHOT'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-support23-beta'
 
     // 如果你的工程是Java工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support23-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support23-beta'
 
     // 如果你的工程是Kotlin工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support23-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support23-beta'
 
     compile 'com.android.support:appcompat-v7:23+'
 }
