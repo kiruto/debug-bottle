@@ -78,9 +78,7 @@ Add snapshot of maven central repository to primary Gradle file:
 allprojects {
     repositories {
         ...
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
+        mavenCentral()
     }
 }
 ```
@@ -88,15 +86,15 @@ Edit and add dependencies in your app module:
 
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-beta'
 
     // Use this in your Java project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-beta'
 
     // Use this in your Kotlin project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-beta'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
 }
@@ -105,15 +103,15 @@ dependencies {
 Specially, Debug Bottle not only support API 23+, but also 22. To support API 22, please add dependencies like this:
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support22-EAP-SNAPSHOT'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-support22-beta'
 
     // Use this in your Java project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support22-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support22-beta'
 
     // Use this in your Kotlin project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support22-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support22-beta'
 
     compile 'com.android.support:appcompat-v7:22+'
 }
@@ -122,15 +120,15 @@ dependencies {
 To support API 23, add dependencies like this:
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0-support23-EAP-SNAPSHOT'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.0EAP-support23-beta'
 
     // Use this in your Java project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support23-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.0EAP-support23-beta'
 
     // Use this in your Kotlin project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support23-beta'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-support23-beta'
 
     compile 'com.android.support:appcompat-v7:23+'
 }
