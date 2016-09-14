@@ -20,6 +20,7 @@ Demo App is now available at Google Play:
 - [3D preview an Activity with Scalpel](#scalpel-viewer)
 - [Simple shared preferences editor](#shared-preferences-editor)
 - [Open strict mode any time](#strict-mode)
+- [Catch crashes and get stacktrace log](crash-log)
 - [Find leaks by using Leak Canary](#leak-canary)
 - [Find UI Blocks by using Block Canary](#block-canary)
 - [Mock Activity or function entries in developing](#development-entries)
@@ -47,6 +48,9 @@ Preview and edit the Shared Preferences of app more simply.
 
 #### Strict Mode
 Enable or disable Android strict mode at runtime. StrictMode is a developer tool which detects things you might be doing by accident and brings them to your attention so you can fix them. StrictMode is most commonly used to catch accidental disk or network access on the application's main thread, where UI operations are received and animations take place. For more information, see [Android Developers](https://developer.android.com/reference/android/os/StrictMode.html).
+
+#### Crash Log
+List all crash stacktrace logs.
 
 #### Leak Canary
 Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Leak Canary by visiting [Leak Canary wiki](https://github.com/square/leakcanary/wiki/FAQ).

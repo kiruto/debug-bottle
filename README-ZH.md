@@ -19,6 +19,7 @@ Demo App可在Google Play中下载:
 - [3D化Activity视图](#3D化视图)
 - [Shared Preferences编辑器](#shared-preferences编辑器)
 - [使用Strict mode调试软件](#使用strict-mode)
+- [截获App崩溃，收集崩溃日志](#崩溃日志)
 - [轻松找到可能出现的内存泄漏代码](#使用leak-canary)
 - [找到可能出现的UI卡顿代码](#使用block-canary)
 - [简易创造Activity入口，及测试Runnable](#进入一切activity并注入参数)
@@ -44,6 +45,9 @@ Demo App可在Google Play中下载:
 
 #### 使用Strict Mode
 Debug Bottle可以在运行时启用或禁用Strict Mode。StrictMode最常用来捕捉应用程序的主线程，它将报告与线程及虚拟机相关的策略违例。一旦检测到策略违例（policy violation），你将获得警告，其包含了一个栈trace显示你的应用在何处发生违例。除了主线程，我们还可以在Handler，AsyncTask，AsyncQueryHandler，IntentService等API中使用StrictMode。更多使用方法介绍，参见[官方开发者文档](https://developer.android.com/reference/android/os/StrictMode.html)。
+
+#### 崩溃日志
+收集所有崩溃的信息，存储成日志文件。
 
 #### 使用Leak Canary
 Debug Bottle中编译进了Leak Canary，所有Leak Canary的功能都可以使用了，并且可以通过Debug Bottle来控制开关。Leak Canary的使用方法请参考[官方Wiki](https://github.com/square/leakcanary/wiki/FAQ)。
