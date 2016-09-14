@@ -127,5 +127,8 @@
     <string name="__dt_step_one">Tips</string>
     <string name="__dt_injector_step_one_no_package_message">Create a class extends Injector, implement function inject().\n\nPut Intents and Runnable at function inject().\n\nIntent can be create with getActivity() function.</string>
     <string name="__dt_injector_step_one_message">Find the class %s, put Intents and Runnable at function inject().\n\nIntent can be create with getActivity() function.</string>
+    <string name="__dt_enable_http_sniffer">Enable HTTP sniffer</string>
+    <string name="__dt_intro_for_dev">For Develop</string>
+    <string name="__dt_intro_for_qa">For Quality Assurance</string>
 
 </resources>
