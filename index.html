@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Debug-bottle by kiruto</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Debug-bottle</h1>
+        <h2>🍼Debug Bottle is an Android runtime debug / develop tools written using kotlin language.</h2>
+        <a href="https://github.com/kiruto/debug-bottle" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p><a href="README-ZH.md"><g-emoji alias="cn" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f1e8-1f1f3.png">🇨🇳</g-emoji> 中文</a> / <a href="README-JP.md"><g-emoji alias="jp" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f1ef-1f1f5.png">🇯🇵</g-emoji>日本語</a> / <a href="README.md"><g-emoji alias="gb" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f1ec-1f1e7.png">🇬🇧</g-emoji> English</a></p>
+
+<h1>
+<a id="debug-bottle" class="anchor" href="#debug-bottle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="baby_bottle" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f37c.png">🍼</g-emoji>Debug Bottle</h1>
+
+<p>An Android debug / develop tools written using Kotlin language. All the features in Debug bottle are only available on debug build version with your app, it doesn't has an impact on release version.</p>
+
+<ul>
+<li><a href="CHANGELOG.md">CHANGELOG</a></li>
+<li><a href="TODO.md">TODO</a></li>
+</ul>
+
+<p>Demo App is now available at Google Play:</p>
+
+<p><a href="https://play.google.com/store/apps/details?id=me.chunyu.dev.yuriel.kotdebugtool"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300"></a></p>
+
+<p><a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/introduction.gif"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/introduction.gif" width="225" height="400"></a>
+<a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/main-panel.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/main-panel.png"></a>
+<a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/features-2.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/features-2.png"></a></p>
+
+<h2>
+<a id="what-can-i-do-with-debug-bottle" class="anchor" href="#what-can-i-do-with-debug-bottle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What can I do with Debug Bottle?</h2>
+
+<ul>
+<li><a href="#okhttp-sniffer">Simple OkHttp Sniffer</a></li>
+<li><a href="#scalpel-viewer">3D preview an Activity with Scalpel</a></li>
+<li><a href="#shared-preferences-editor">Simple shared preferences editor</a></li>
+<li><a href="#strict-mode">Open strict mode any time</a></li>
+<li><a href="#leak-canary">Find leaks by using Leak Canary</a></li>
+<li><a href="#block-canary">Find UI Blocks by using Block Canary</a></li>
+<li><a href="#development-entries">Mock Activity or function entries in developing</a></li>
+</ul>
+
+<h4>
+<a id="okhttp-sniffer" class="anchor" href="#okhttp-sniffer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>OkHttp Sniffer</h4>
+
+<p>Enable "Network Listener" at Settings, then you can see all network traffics what requested by your app.</p>
+
+<p><a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/network-sniffer-1.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/network-sniffer-1.png"></a>
+<a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/network-sniffer-2.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/network-sniffer-2.png"></a></p>
+
+<h4>
+<a id="scalpel-viewer" class="anchor" href="#scalpel-viewer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scalpel Viewer</h4>
+
+<p>Enable "3D View", then you can view your Activity. When interaction is enabled the following gestures are supported:</p>
+
+<ul>
+<li>Single touch: Controls the rotation of the model.</li>
+<li>Two finger vertical pinch: Adjust zoom.</li>
+<li>Two finger horizontal pinch: Adjust layer spacing.</li>
+</ul>
+
+<p><a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/network-sniffer-2.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/scalpel-view.png"></a>
+<a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/scalpel-view.gif"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/scalpel-view.gif" width="225" height="400"></a></p>
+
+<h4>
+<a id="shared-preferences-editor" class="anchor" href="#shared-preferences-editor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shared Preferences editor</h4>
+
+<p>Preview and edit the Shared Preferences of app more simply.</p>
+
+<p><a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/network-sniffer-2.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/shared-preferences-editor-1.png"></a>
+<a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/network-sniffer-2.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/shared-preferences-editor-2.png"></a></p>
+
+<h4>
+<a id="strict-mode" class="anchor" href="#strict-mode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Strict Mode</h4>
+
+<p>Enable or disable Android strict mode at runtime. StrictMode is a developer tool which detects things you might be doing by accident and brings them to your attention so you can fix them. StrictMode is most commonly used to catch accidental disk or network access on the application's main thread, where UI operations are received and animations take place. For more information, see <a href="https://developer.android.com/reference/android/os/StrictMode.html">Android Developers</a>.</p>
+
+<h4>
+<a id="leak-canary" class="anchor" href="#leak-canary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Leak Canary</h4>
+
+<p>Leak Canary is fully imported. Leak Canary is a memory leak detection library for Android and Java. More about using Leak Canary by visiting <a href="https://github.com/square/leakcanary/wiki/FAQ">Leak Canary wiki</a>.</p>
+
+<h4>
+<a id="block-canary" class="anchor" href="#block-canary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Block Canary</h4>
+
+<p>Detect UI blocks at runtime.</p>
+
+<p><a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/network-sniffer-2.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/ui-blocks.png"></a>
+<a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/block-canary-demo.gif"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/block-canary-demo.gif" width="225" height="400"></a></p>
+
+<h4>
+<a id="development-entries" class="anchor" href="#development-entries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development Entries</h4>
+
+<p>Launch any Activity with custom Intents, or Runnable you want.</p>
+
+<p><a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/network-sniffer-2.png"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/all-activities.png"></a>
+<a href="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/raw/run-activity-with-intent.gif"><img src="https://github.com/kiruto/debug-bottle/raw/1.0.0EAP/screenshots/run-activity-with-intent.gif" width="225" height="400"></a></p>
+
+<h2>
+<a id="how-do-i-use-it" class="anchor" href="#how-do-i-use-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How do I use it?</h2>
+
+<p>After installing Debug Bottle Demo app, you'll find there are two app icons appears to launcher. Click bottle icon to run Debug Bottle.</p>
+
+<h2>
+<a id="setting-up" class="anchor" href="#setting-up" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setting up</h2>
+
+<h4>
+<a id="1-configure-your-gradle-project" class="anchor" href="#1-configure-your-gradle-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Configure your Gradle project</h4>
+
+<p>Add snapshot of maven central repository to primary Gradle file:</p>
+
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">allprojects</span> {
+    repositories {
+        <span class="pl-k">..</span>.
+        maven {
+            url <span class="pl-s"><span class="pl-pds">"</span>https://oss.sonatype.org/content/repositories/snapshots<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+
+<p>Edit and add dependencies in your app module:</p>
+
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">dependencies</span> {
+    debugCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-runtime:1.0.0EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    <span class="pl-c">// Use this in your Java project</span>
+    releaseCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+    testCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-java:1.0.0EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    <span class="pl-c">// Use this in your Kotlin project</span>
+    releaseCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+    testCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-kotlin:1.0.0EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.android.support:appcompat-v7:23.2.0+<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<p>Specially, Debug Bottle not only support API 23+, but also 22. To support API 22, please add dependencies like this:</p>
+
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">dependencies</span> {
+    debugCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-runtime:1.0.0-support22-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    <span class="pl-c">// Use this in your Java project</span>
+    releaseCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+    testCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-java:1.0.0-support22-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    <span class="pl-c">// Use this in your Kotlin project</span>
+    releaseCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+    testCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support22-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.android.support:appcompat-v7:22+<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<p>To support API 23, add dependencies like this:</p>
+
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">dependencies</span> {
+    debugCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-runtime:1.0.0-support23-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    <span class="pl-c">// Use this in your Java project</span>
+    releaseCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+    testCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-java:1.0.0-support23-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    <span class="pl-c">// Use this in your Kotlin project</span>
+    releaseCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+    testCompile <span class="pl-s"><span class="pl-pds">'</span>com.exyui.android:debug-bottle-noop-kotlin:1.0.0-support23-EAP-SNAPSHOT<span class="pl-pds">'</span></span>
+
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.android.support:appcompat-v7:23+<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<h4>
+<a id="2-edit-manifest" class="anchor" href="#2-edit-manifest" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Edit Manifest</h4>
+
+<p>Add Debug Bottle main Activity in your Manifest:</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">activity</span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>com.exyui.android.debugbottle.components.DTDrawerActivity<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">theme</span>=<span class="pl-s"><span class="pl-pds">"</span>@style/Theme.AppCompat.Light<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">"</span>The Name You Like<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<p>The value of tag label, will display to your android launch pad.</p>
+
+<h4>
+<a id="3-inject-debug-bottle-into-your-application" class="anchor" href="#3-inject-debug-bottle-into-your-application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Inject Debug Bottle into your Application</h4>
+
+<p>First, you may implement Block Canary Context:</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AppBlockCanaryContext</span> <span class="pl-k">extends</span> <span class="pl-e">BlockCanaryContext</span> {<span class="pl-c1">...</span>}</pre></div>
+
+<p>Now you could inject Debug Bottle in your Application like:</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyApplication</span> <span class="pl-k">extends</span> <span class="pl-e">Application</span>{
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onCreate</span>() {
+        <span class="pl-v">super</span><span class="pl-k">.</span>onCreate();
+        <span class="pl-smi">DTInstaller</span><span class="pl-k">.</span>install(<span class="pl-v">this</span>)
+            .setBlockCanary(AppBlockCanaryContext(<span class="pl-v">this</span>))
+            .setOkHttpClient(httpClient)
+            .setInjector(<span class="pl-s"><span class="pl-pds">"</span>your.package.injector.ContentInjector<span class="pl-pds">"</span></span>)
+            .setPackageName(<span class="pl-s"><span class="pl-pds">"</span>your.package<span class="pl-pds">"</span></span>)
+            .enable()
+            .run();
+    }
+}</pre></div>
+
+<p>Or if you use Kotlin, you can inject like:</p>
+
+<div class="highlight highlight-source-Kotlin"><pre>class <span class="pl-en">MyApplication</span><span class="pl-k">:</span> <span class="pl-e">Application</span>() {
+    <span class="pl-k">override</span> <span class="pl-k">fun</span> <span class="pl-en">onCreate</span>() {
+        <span class="pl-c1">super</span><span class="pl-k">.</span>onCreate()
+        DTInstaller<span class="pl-k">.</span>install(<span class="pl-c1">this</span>)
+            <span class="pl-k">.</span>setBlockCanary(AppBlockCanaryContext(<span class="pl-c1">this</span>))
+            <span class="pl-k">.</span>setOkHttpClient(httpClient)
+            <span class="pl-k">.</span>setInjector(<span class="pl-s"><span class="pl-pds">"</span>your.package.injector.ContentInjector<span class="pl-pds">"</span></span>)
+            <span class="pl-k">.</span>setPackageName(<span class="pl-s"><span class="pl-pds">"</span>your.package<span class="pl-pds">"</span></span>)
+            <span class="pl-k">.</span>enable()
+            <span class="pl-k">.</span>run()
+    }
+}</pre></div>
+
+<h2>
+<a id="links" class="anchor" href="#links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Links</h2>
+
+<ul>
+<li><a href="https://github.com/square/leakcanary">Leak Canary</a></li>
+<li><a href="https://github.com/markzhai/AndroidPerformanceMonitor">Android Performance Monitor</a></li>
+<li><a href="https://github.com/JakeWharton/scalpel">Scalpel</a></li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Debug Bottle
+
+Copyright 2016 Yuriel (http://exyui.com).
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Android Performance Monitor
+
+Copyright (C) 2016 MarkZhai (http://zhaiyifan.cn).
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Leak Canary
+
+Copyright 2015 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Scalpel
+
+Copyright 2014 Jake Wharton
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/kiruto/debug-bottle/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/kiruto/debug-bottle/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/kiruto/debug-bottle"></a> is maintained by <a href="https://github.com/kiruto">kiruto</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
