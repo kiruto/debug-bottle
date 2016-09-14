@@ -10,6 +10,7 @@ upload() {
     cleanGradleCache
     rm settings.gradle
     cp settings.gradle.ready settings.gradle
+    ./gradlew clean
     ./gradlew :runtime:uploadArchives
 
     ./gradlew :noop-java:uploadArchives
