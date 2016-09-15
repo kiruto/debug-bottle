@@ -28,21 +28,21 @@ uploadExceptRuntime() {
     ./gradlew :noop-kotlin:uploadArchives
 }
 uploadPrimary() {
-    git checkout 1.0.0EAP
+    git checkout 1.0.0
     uploadExceptRuntime
 }
-upload100EAP23() {
-    git checkout v23/1.0.0EAP
+upload100_23() {
+    git checkout v23/1.0.0
     uploadExceptRuntime
 }
-upload100EAP22() {
-    git checkout v22/1.0.0EAP
+upload100_22() {
+    git checkout v22/1.0.0
     uploadExceptRuntime
 }
 cleanGradleCache() {
     rm -rf ~/.gradle/caches/modules-2/files-2.1/com.exyui.android
 }
 uploadPrimary
-upload100EAP22
-upload100EAP23
-git checkout 1.0.0EAP
+upload100_22
+upload100_23
+git checkout 1.0.0
