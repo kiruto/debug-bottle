@@ -3,8 +3,8 @@
 buildscript {
     ext {
         // May cause merge file conflicts
-        versionUploaded = "1.0.0EAP-support22-beta"
-        versionName = "1.0.0EAP-support22-beta"
+        versionUploaded = "1.0.1-support22-SNAPSHOT"
+        versionName = "1.0.1-support22-SNAPSHOT"
 
 
         minSdkVersion = 14
