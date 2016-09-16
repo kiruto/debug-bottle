@@ -110,6 +110,16 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         return this
     }
 
+    fun setHttpLogPath(path: String): DTInstaller {
+        DTSettings.httpFileStorePath = path
+        return this
+    }
+
+    fun setCrashLogPath(path: String): DTInstaller {
+        DTSettings.crashFileStorePath = path
+        return this
+    }
+
     fun enable(): DTInstaller {
         enabled = true
         return this

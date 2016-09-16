@@ -32,6 +32,16 @@ public class DTInstaller {
         return this;
     }
 
+    public DTInstaller setHttpLogPath(Object a) {
+        Log.d(TAG, "setHttpLogPath");
+        return this;
+    }
+
+    public DTInstaller setCrashLogPath(Object a) {
+        Log.d(TAG, "setCrashLogPath");
+        return this;
+    }
+
     public DTInstaller enable() {
         Log.d(TAG, "enable");
         return this;

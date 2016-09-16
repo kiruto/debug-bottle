@@ -28,6 +28,16 @@ object DTInstaller {
         return this
     }
 
+    fun setHttpLogPath(any: Any): DTInstaller {
+        Log.d(TAG, "setHttpLogPath")
+        return this
+    }
+
+    fun setCrashLogPath(any: Any): DTInstaller {
+        Log.d(TAG, "setCrashLogPath")
+        return this
+    }
+
     fun enable(): DTInstaller {
         Log.d(TAG, "enable")
         return this

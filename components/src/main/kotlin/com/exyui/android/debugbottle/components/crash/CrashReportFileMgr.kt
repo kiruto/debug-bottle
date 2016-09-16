@@ -8,6 +8,6 @@ import com.exyui.android.debugbottle.components.DTSettings
  */
 internal object CrashReportFileMgr : DTReportMgr() {
     override val TAG: String = "CrashReportFileMgr"
-    override val logPath: String = DTSettings.getCrashFileStorePath()
+    override val logPath: String = DTSettings.crashFileStorePath
     override val filePrefix: String = "crash"
 }
