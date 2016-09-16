@@ -18,6 +18,6 @@ import java.util.*
  */
 internal object HttpBlockFileMgr: DTReportMgr() {
     override val TAG = "HttpBlockFileMgr"
-    override val logPath = DTSettings.getHttpFileStorePath()
+    override val logPath = DTSettings.httpFileStorePath
     override val filePrefix = "http"
 }

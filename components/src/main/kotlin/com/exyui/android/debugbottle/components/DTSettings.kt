@@ -9,6 +9,8 @@ import com.exyui.android.debugbottle.core.*
 internal object DTSettings {
 
     val GITHUB_URL = "https://github.com/kiruto/debug-bottle"
+    var httpFileStorePath = "/ktdebugtools/http"
+    var crashFileStorePath = "/ktdebugtools/crash"
 
     private fun getSP() = DTInstaller.getSP(DT_SETTING_STORE_FILE)
 
@@ -24,8 +26,6 @@ internal object DTSettings {
     }
 
     fun getBlockThreshold() = getSP()?.getLong(BLOCK_THRESHOLD, DEFAULT_BLOCK_THRESHOLD)?: DEFAULT_BLOCK_THRESHOLD
-
-    fun getHttpFileStorePath() = "/ktdebugtools/http"
 
     fun setNetworkSniff(sniff: Boolean) {
         getSP()?.edit()?.putBoolean(NETWORK_SNIFF, sniff)?.apply()
@@ -45,8 +45,6 @@ internal object DTSettings {
         }
         return result
     }
-
-    fun getCrashFileStorePath() = "/ktdebugtools/crash"
 
     fun setStrictMode(strictMode: Boolean) {
         getSP()?.edit()?.putBoolean(STRICT_MODE, strictMode)?.apply()
