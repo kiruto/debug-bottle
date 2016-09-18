@@ -142,6 +142,7 @@ internal object DialogsCollection {
         private fun updateContentGroup(parent: ViewGroup) {
             parent.removeAllViews()
             val onDelClickListener = { v: View ->
+                @Suppress("UNCHECKED_CAST")
                 val p = v.tag as Pair<String, Any>
                 intentExtras.remove(p.first)
                 updateContentGroup(parent)
@@ -301,6 +302,7 @@ internal object DialogsCollection {
             return builder.create()
         }
 
+        @Suppress("DEPRECATION", "OverridingDeprecatedMember")
         override fun onAttach(activity: Activity?) {
             super.onAttach(activity)
             action = activity as SPDialogAction

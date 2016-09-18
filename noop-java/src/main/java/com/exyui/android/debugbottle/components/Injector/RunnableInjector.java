@@ -6,6 +6,7 @@ import android.util.Log;
  * Created by yuriel on 9/7/16.
  */
 
+@SuppressWarnings("unused")
 public class RunnableInjector {
     public final static RunnableInjector INSTANCE = new RunnableInjector();
     private static final String TAG = "FakeRunnableInjector";

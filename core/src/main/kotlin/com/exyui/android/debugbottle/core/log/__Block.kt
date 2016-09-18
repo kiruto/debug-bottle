@@ -226,7 +226,6 @@ class __Block private constructor() {
                 try {
                     if (reader != null) {
                         reader.close()
-                        reader = null
                     }
                 } catch (e: Exception) {
                     Log.e(TAG, NEW_INSTANCE, e)

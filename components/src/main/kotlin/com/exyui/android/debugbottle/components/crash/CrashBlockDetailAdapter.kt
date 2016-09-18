@@ -58,6 +58,7 @@ internal class CrashBlockDetailAdapter: BaseAdapter() {
                 __DisplayLeakConnectorView.Type.NODE
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun elementToHtmlString(element: String?, position: Int, folding: Boolean): String {
         var htmlString = element?.replace(CrashBlock.SEPARATOR.toRegex(), "<br>")
 

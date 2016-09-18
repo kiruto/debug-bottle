@@ -6,6 +6,7 @@ import android.util.Log;
  * Created by yuriel on 9/7/16.
  */
 
+@SuppressWarnings("unused")
 public class BlockCanary {
     public static final BlockCanary INSTANCE = new BlockCanary();
     private BlockCanary() {}

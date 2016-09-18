@@ -6,6 +6,7 @@ import android.util.Log;
  * Created by yuriel on 9/7/16.
  */
 
+@SuppressWarnings("unused")
 public class DTInstaller {
     private static final String TAG = "FakeInstaller";
     public static final DTInstaller INSTANCE = new DTInstaller();
