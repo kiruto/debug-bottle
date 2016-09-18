@@ -198,6 +198,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun showNotification(app: Application) {
         //val view = RemoteViews(app.packageName, R.layout.__notification_main)
         //view.setTextViewText(R.id.notify_title, "start")

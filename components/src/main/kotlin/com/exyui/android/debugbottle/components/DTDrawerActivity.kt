@@ -150,7 +150,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode > -1 && requestCode < __StatusFragment.permissions.size) {
-            val permission = __StatusFragment.permissions[requestCode]
+            //val permission = __StatusFragment.permissions[requestCode]
             updatePermissionStatus()
             return
         } else
