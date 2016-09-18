@@ -223,7 +223,7 @@ class __DisplayCrashBlockFragment: __ContentFragment() {
     }
 
     private fun getBlock(startTime: String?): CrashBlock? {
-        if (mBlockEntries == null || TextUtils.isEmpty(startTime)) {
+        if (TextUtils.isEmpty(startTime)) {
             return null
         }
         for (block in mBlockEntries) {
@@ -253,12 +253,13 @@ class __DisplayCrashBlockFragment: __ContentFragment() {
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var convertView = convertView
-            if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.__dt_canary_block_row, parent, false)
+            var view = convertView
+            if (view == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
-            val titleView = convertView!!.findViewById(R.id.__dt_canary_row_text) as TextView
-            val timeView = convertView.findViewById(R.id.__dt_canary_row_time) as TextView
+            val titleView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            @Suppress("UNUSED_VARIABLE")
+            val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
             val block = getItem(position)
 
             val index: String
@@ -272,7 +273,7 @@ class __DisplayCrashBlockFragment: __ContentFragment() {
             titleView.text = title
             //timeView.text = block.time
 
-            return convertView
+            return view
         }
     }
 

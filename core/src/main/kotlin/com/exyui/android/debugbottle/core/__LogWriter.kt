@@ -40,7 +40,7 @@ object __LogWriter {
      * Delete obsolete log files，see also `OBSOLETE_DURATION`
      */
     fun cleanOldFiles() {
-        __HandlerThread.writeLogFileThreadHandler?.post {
+        __HandlerThread.writeLogFileThreadHandler.post {
             val now = System.currentTimeMillis()
             val f = __BlockCanaryInternals.logFiles
             synchronized(SAVE_DELETE_LOCK) {
@@ -95,7 +95,6 @@ object __LogWriter {
             try {
                 if (writer != null) {
                     writer.close()
-                    writer = null
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "saveLogToSDCard: ", e)

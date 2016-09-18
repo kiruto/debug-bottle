@@ -81,7 +81,7 @@ class __DisplayBlockActivity : Activity() {
 
     // No, it's not deprecated. Android lies.
     override fun onRetainNonConfigurationInstance(): Any {
-        return mBlockEntries as Any
+        return mBlockEntries
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -236,7 +236,7 @@ class __DisplayBlockActivity : Activity() {
     }
 
     private fun getBlock(startTime: String?): __Block? {
-        if (mBlockEntries == null || TextUtils.isEmpty(startTime)) {
+        if (TextUtils.isEmpty(startTime)) {
             return null
         }
         for (block in mBlockEntries) {
@@ -262,12 +262,12 @@ class __DisplayBlockActivity : Activity() {
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var convertView = convertView
-            if (convertView == null) {
-                convertView = LayoutInflater.from(this@__DisplayBlockActivity).inflate(R.layout.__dt_canary_block_row, parent, false)
+            var view = convertView
+            if (view == null) {
+                view = LayoutInflater.from(this@__DisplayBlockActivity).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
-            val titleView = convertView!!.findViewById(R.id.__dt_canary_row_text) as TextView
-            val timeView = convertView.findViewById(R.id.__dt_canary_row_time) as TextView
+            val titleView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
             val block = getItem(position)
 
             val index: String
@@ -283,7 +283,7 @@ class __DisplayBlockActivity : Activity() {
             val time = DateUtils.formatDateTime(this@__DisplayBlockActivity,
                     block.logFile?.lastModified()?: 0L, FORMAT_SHOW_TIME or FORMAT_SHOW_DATE)
             timeView.text = time
-            return convertView
+            return view
         }
     }
 

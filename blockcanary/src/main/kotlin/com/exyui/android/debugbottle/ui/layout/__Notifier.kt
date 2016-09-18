@@ -28,6 +28,7 @@ internal class __Notifier : __OnBlockEventInterceptor {
         show(context, contentTitle, contentText, pendingIntent)
     }
 
+    @Suppress("DEPRECATION")
     @TargetApi(HONEYCOMB)
     private fun show(context: Context, contentTitle: String, contentText: String, pendingIntent: PendingIntent) {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
