@@ -159,7 +159,7 @@ public class MyApplication extends Application{
     public void onCreate() {
         super.onCreate();
         DTInstaller.install(this)
-            .setBlockCanary(AppBlockCanaryContext(this))
+            .setBlockCanary(new AppBlockCanaryContext(this))
             .setOkHttpClient(httpClient)
             .setInjector("your.package.injector.ContentInjector")
             .setPackageName("your.package")
