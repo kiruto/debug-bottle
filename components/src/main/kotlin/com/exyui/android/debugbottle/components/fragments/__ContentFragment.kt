@@ -21,6 +21,7 @@ open class __ContentFragment: Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @Suppress("DEPRECATION", "OverridingDeprecatedMember")
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
         context = activity

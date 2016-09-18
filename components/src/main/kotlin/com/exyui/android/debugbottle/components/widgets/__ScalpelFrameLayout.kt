@@ -321,7 +321,7 @@ class __ScalpelFrameLayout @JvmOverloads constructor(
             layeredViewPool.restore(layeredView)
             // Hide any visible children.
             if (view is ViewGroup) {
-                val viewGroup = view as ViewGroup
+                val viewGroup = view
                 visibilities.clear()
                 var i = 0
                 val count = viewGroup.childCount
@@ -358,7 +358,7 @@ class __ScalpelFrameLayout @JvmOverloads constructor(
             canvas.restoreToCount(viewSaveCount)
             // Restore any hidden children and queue them for later drawing.
             if (view is ViewGroup) {
-                val viewGroup = view as ViewGroup
+                val viewGroup = view
                 var i = 0
                 val count = viewGroup.childCount
                 while (i < count) {

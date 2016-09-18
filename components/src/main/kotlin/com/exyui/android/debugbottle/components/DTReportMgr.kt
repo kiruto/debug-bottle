@@ -110,7 +110,6 @@ internal abstract class DTReportMgr {
             try {
                 if (writer != null) {
                     writer.close()
-                    writer = null
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "saveLogToSDCard: ", e)

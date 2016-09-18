@@ -72,7 +72,7 @@ internal class DisplayHttpBlockActivity : Activity() {
 
     // No, it's not deprecated. Android lies.
     override fun onRetainNonConfigurationInstance(): Any {
-        return mBlockEntries as Any
+        return mBlockEntries
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -229,7 +229,7 @@ internal class DisplayHttpBlockActivity : Activity() {
     }
 
     private fun getBlock(startTime: String?): HttpBlock? {
-        if (mBlockEntries == null || TextUtils.isEmpty(startTime)) {
+        if (TextUtils.isEmpty(startTime)) {
             return null
         }
         for (block in mBlockEntries) {
@@ -255,12 +255,12 @@ internal class DisplayHttpBlockActivity : Activity() {
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var convertView = convertView
-            if (convertView == null) {
-                convertView = LayoutInflater.from(this@DisplayHttpBlockActivity).inflate(R.layout.__dt_canary_block_row, parent, false)
+            var view = convertView
+            if (view == null) {
+                view = LayoutInflater.from(this@DisplayHttpBlockActivity).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
-            val titleView = convertView!!.findViewById(R.id.__dt_canary_row_text) as TextView
-            val timeView = convertView.findViewById(R.id.__dt_canary_row_time) as TextView
+            val titleView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
             val block = getItem(position)
 
             val index: String
@@ -273,7 +273,7 @@ internal class DisplayHttpBlockActivity : Activity() {
             val title = index + block.method + " " + block.url
             titleView.text = title
             timeView.text = String.format("%.1f", block.time) + "ms"
-            return convertView
+            return view
         }
     }
 
