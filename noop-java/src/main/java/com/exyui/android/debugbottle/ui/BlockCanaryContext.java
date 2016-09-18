@@ -6,6 +6,7 @@ import android.content.Context;
  * Created by yuriel on 9/7/16.
  */
 
+@SuppressWarnings("unused")
 public class BlockCanaryContext {
     public BlockCanaryContext(Object a) {}
 

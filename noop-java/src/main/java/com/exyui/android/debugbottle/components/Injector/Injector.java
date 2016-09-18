@@ -7,6 +7,7 @@ import android.util.Log;
  * Created by yuriel on 9/7/16.
  */
 
+@SuppressWarnings("unused")
 abstract class Injector {
     private static final String TAG = "FakeInjector";
     protected final Activity activity = null;
