@@ -1,0 +1,42 @@
+// Use your package instead "your.package", and add file "app/src/main/java/your/package/debug/DTInjector.java" to your git ignore list.
+task ensureDebugBottleInjectFile << {
+    def file = new File(rootDir, 'app/src/main/java/your/package/debug/DTInjector.java')
+    if (!file.exists()) {
+        print("creating DTInjector.java...")
+        file.withWriter('utf-8') { writer ->
+            writer.writeLine 'package your.package.debug;'
+            writer.writeLine ''
+            writer.writeLine 'import android.content.Intent;'
+            writer.writeLine 'import android.widget.Toast;'
+            writer.writeLine 'import com.exyui.android.debugbottle.components.injector.Injector;'
+            writer.writeLine 'import your.package.MainActivity;'
+            writer.writeLine ''
+            writer.writeLine '/**'
+            writer.writeLine " * Created by Machine on ${new Date().format('MM/dd/yy')}."
+            writer.writeLine ''
+            writer.writeLine ' * This file has been added in "git ignore" list.'
+            writer.writeLine ' * The file shows an example to write the fake Runnable & Activity entries'
+            writer.writeLine ' * You can edit this file at any time if you wish to change the defaults.'
+            writer.writeLine ' * If you like to revert just delete the file.'
+            writer.writeLine ' */'
+            writer.writeLine '@SuppressWarnings("unused")'
+            writer.writeLine 'public class DTInjector extends Injector {'
+            writer.writeLine '    @Override'
+            writer.writeLine '    public void inject() {'
+            writer.writeLine '        put(new Runnable() {'
+            writer.writeLine '            @Override'
+            writer.writeLine '            public void run() {'
+            writer.writeLine '                // Do clean cache file here.'
+            writer.writeLine '                Toast.makeText(getActivity(), "Cache cleaned", Toast.LENGTH_SHORT).show();'
+            writer.writeLine '            }'
+            writer.writeLine '        }, "Clean cache file example");'
+            writer.writeLine ''
+            writer.writeLine '        put(new Intent(getActivity(), MainActivity.class), "Intent Activity example");'
+            writer.writeLine '    }'
+            writer.writeLine '}'
+        }
+        print("DTInjector.java created.")
+    }
+}
+
+preBuild.dependsOn ensureDebugBottleInjectFile
