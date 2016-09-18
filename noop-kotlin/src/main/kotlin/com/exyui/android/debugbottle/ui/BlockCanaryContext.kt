@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER", "unused")
+
 package com.exyui.android.debugbottle.ui
 
 import android.content.Context

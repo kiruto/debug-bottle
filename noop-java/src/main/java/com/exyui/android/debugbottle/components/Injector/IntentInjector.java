@@ -7,6 +7,7 @@ import android.util.Log;
  * Created by yuriel on 9/7/16.
  */
 
+@SuppressWarnings("unused")
 public class IntentInjector {
 
     public final static IntentInjector INSTANCE = new IntentInjector();
