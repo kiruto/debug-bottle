@@ -18,8 +18,8 @@ import android.widget.SeekBar
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTSettings
-import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
-import com.exyui.android.debugbottle.components.floating.FloatingService
+import com.exyui.android.debugbottle.components.floating.Floating3DViewMgr
+import com.exyui.android.debugbottle.components.floating.Floating3DService
 import com.exyui.android.debugbottle.ui.BlockCanary
 
 /**
@@ -102,9 +102,9 @@ class __SettingsFragment: __ContentFragment() {
 
     private val view3DSwitcher by lazy {
         val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
-        result.isChecked = FloatingViewMgr.isFloatingWindowRunning()
+        result.isChecked = Floating3DViewMgr.isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            val intent = Intent(context, FloatingService::class.java)
+            val intent = Intent(context, Floating3DService::class.java)
             if (isChecked) {
                 context?.startService(intent)
             } else {
