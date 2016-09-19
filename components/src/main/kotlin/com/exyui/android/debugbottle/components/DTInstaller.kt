@@ -14,6 +14,7 @@ import android.os.Build.VERSION_CODES.GINGERBREAD
 import android.os.Bundle
 import android.os.Process
 import android.os.StrictMode
+import android.support.annotation.IdRes
 import android.util.Log
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.crash.DTCrashHandler
@@ -251,4 +252,8 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     internal fun getSP(fileName: String): SharedPreferences? {
         return app?.getSharedPreferences(fileName, Context.MODE_PRIVATE)
     }
+
+    internal fun getApplication() = app
+
+    internal fun getString(@IdRes id: Int) = app?.getString(id)
 }
