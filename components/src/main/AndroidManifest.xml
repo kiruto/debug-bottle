@@ -40,7 +40,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.exyui.android.debugbottle.components.floating.FloatingService" />
+        <service android:name="com.exyui.android.debugbottle.components.floating.Floating3DService" />
+        <service android:name="com.exyui.android.debugbottle.components.floating.FloatingTestRunnerService" />
     </application>
 
 </manifest>

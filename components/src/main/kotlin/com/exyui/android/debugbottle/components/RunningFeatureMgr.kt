@@ -14,6 +14,7 @@ internal object RunningFeatureMgr {
     val LEAK_CANARY = 1 shl 4
     val BLOCK_CANARY = 1 shl 5
     val CRASH_HANDELER = 1 shl 6
+    val MONKEY_TEST_RUNNER = 1 shl 7
 
     private var flags by Delegates.observable(0) { prop, old, new ->
         Log.d("RunningFeatureMgr", "old: $old, new: $new")

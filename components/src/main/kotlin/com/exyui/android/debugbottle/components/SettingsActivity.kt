@@ -8,7 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.SeekBar
-import com.exyui.android.debugbottle.components.floating.FloatingService
+import com.exyui.android.debugbottle.components.floating.Floating3DService
 import com.exyui.android.debugbottle.ui.BlockCanary
 
 internal class SettingsActivity : DTBaseActivity() {
@@ -90,7 +90,7 @@ internal class SettingsActivity : DTBaseActivity() {
         val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
         result.isChecked = isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            val intent = Intent(this, FloatingService::class.java)
+            val intent = Intent(this, Floating3DService::class.java)
             if (isChecked) {
                 startService(intent)
             } else {
@@ -152,7 +152,7 @@ internal class SettingsActivity : DTBaseActivity() {
         }
 
         for (i in 0..serviceList.size - 1) {
-            if (serviceList[i].service.className.equals(FloatingService::class.java.name) == true) {
+            if (serviceList[i].service.className.equals(Floating3DService::class.java.name) == true) {
                 return true
             }
         }

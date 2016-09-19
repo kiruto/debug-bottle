@@ -17,8 +17,8 @@ import android.support.v7.widget.SwitchCompat
 import android.view.*
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.*
-import com.exyui.android.debugbottle.components.floating.FloatingViewMgr
-import com.exyui.android.debugbottle.components.floating.FloatingService
+import com.exyui.android.debugbottle.components.floating.Floating3DViewMgr
+import com.exyui.android.debugbottle.components.floating.Floating3DService
 
 /**
  * Created by yuriel on 9/3/16.
@@ -68,10 +68,10 @@ class __StatusFragment: __ContentFragment() {
 
     private val view3DSwitcher by lazy {
         val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
-        FloatingViewMgr.setupWith(context!!.applicationContext)
-        result.isChecked = FloatingViewMgr.isFloatingWindowRunning()
+        Floating3DViewMgr.setupWith(context!!.applicationContext)
+        result.isChecked = Floating3DViewMgr.isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            val intent = Intent(context, FloatingService::class.java)
+            val intent = Intent(context, Floating3DService::class.java)
             if (isChecked) {
                 context?.startService(intent)
             } else {
