@@ -14,20 +14,31 @@ internal abstract class DTBaseFloatingService: Service() {
 
     abstract val floatingViewMgr: DTDragFloatingViewMgr
 
+    companion object {
+        val runningServices = mutableListOf<Service>()
+
+        fun stopAllFloatingService() {
+            for (s in runningServices) {
+                s.stopSelf()
+            }
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
         createView()
+        runningServices.add(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         floatingViewMgr.releaseView()
         floatingViewMgr.releaseContext(this)
+        runningServices.remove(this)
     }
 
     open fun createView() {
         floatingViewMgr.setupWith(this)
-
         try {
             floatingViewMgr.showFloatingView()
         } catch (e: WindowManager.BadTokenException) {
@@ -40,7 +51,6 @@ internal abstract class DTBaseFloatingService: Service() {
             e.printStackTrace()
             return
         }
-
     }
 
     fun requestingPermission(msg: String?) {
