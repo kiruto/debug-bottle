@@ -1,30 +1,31 @@
 package com.exyui.android.debugbottle.components.floating
 
-import android.app.Activity
 import android.app.ActivityManager
+import android.app.Service
 import android.content.Context
 import android.graphics.PixelFormat
 import android.view.*
 import android.widget.Button
-import com.exyui.android.debugbottle.components.DTActivityManager
 import com.exyui.android.debugbottle.components.R
-import com.exyui.android.debugbottle.components.widgets.__ScalpelFrameLayout
+import kotlin.reflect.KClass
 
 /**
- * Created by yuriel on 9/2/16.
+ * Created by yuriel on 9/19/16.
  */
-internal object FloatingViewMgr {
+internal abstract class DTDragFloatingViewMgr {
 
-    private var context: Context? = null
-    private var windowMgr: WindowManager? = null
-    private var floating3DView: ViewGroup? = null
+    protected var context: Context? = null
+    protected var windowMgr: WindowManager? = null
+    protected var floatingView: ViewGroup? = null
+    abstract val title: String
+    abstract val bindingService: KClass<out Service>
 
     fun setupWith(context: Context) {
         this.context = context
         windowMgr = context.applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     }
 
-    fun show3DViewFloating(): Floating3DViewHolder {
+    fun showFloatingView(): FloatingViewHolder {
         val wmParams = WindowManager.LayoutParams()
         wmParams.type = WindowManager.LayoutParams.TYPE_PHONE
         wmParams.format = PixelFormat.RGBA_8888
@@ -49,7 +50,7 @@ internal object FloatingViewMgr {
 
 
         windowMgr?.addView(root, wmParams)
-        floating3DView = root
+        floatingView = root
         root.measure(View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
         drag.setOnTouchListener { v, event ->
@@ -64,26 +65,13 @@ internal object FloatingViewMgr {
             false
         }
 
+        action.text = title
+
         action.setOnClickListener { v ->
-            val activity = DTActivityManager.topActivity
-            activity?: return@setOnClickListener
-            attachActivityTo3DView(activity)
+            onClick(v)
         }
 
-        return Floating3DViewHolder(root, drag, action)
-    }
-
-    fun release3DView() {
-        if (null != floating3DView) {
-            windowMgr?.removeView(floating3DView)
-            floating3DView = null
-        }
-    }
-
-    fun releaseContext(context: Context) {
-        if (context === this.context) {
-            this.context = null
-        }
+        return FloatingViewHolder(root, drag, action)
     }
 
     fun isFloatingWindowRunning(): Boolean {
@@ -100,41 +88,29 @@ internal object FloatingViewMgr {
         }
 
         for (i in 0..serviceList.size - 1) {
-            if (serviceList[i].service.className.equals(FloatingService::class.java.name) == true) {
+            if (serviceList[i].service.className.equals(bindingService.java.name) == true) {
                 return true
             }
         }
         return false
     }
 
-    private fun attachActivityTo3DView(activity: Activity) {
-        val layout: __ScalpelFrameLayout
-        val decorView: ViewGroup = activity.window.decorView as ViewGroup
-        if (decorView.findViewById(R.id.__dt_scalpel_frame_layout) == null) {
-            layout = __ScalpelFrameLayout(activity)
-            layout.id = R.id.__dt_scalpel_frame_layout
-            val rootView = decorView.getChildAt(0)
-
-            decorView.removeView(rootView)
-            layout.addView(rootView)
-            decorView.addView(layout)
-        } else {
-            layout = decorView.findViewById(R.id.__dt_scalpel_frame_layout) as __ScalpelFrameLayout
-        }
-
-        if (!layout.isLayerInteractionEnabled) {
-            layout.isLayerInteractionEnabled = true
-            layout.setDrawIds(true)
-        }else {
-            layout.isLayerInteractionEnabled = false
+    fun releaseView() {
+        if (null != floatingView) {
+            windowMgr?.removeView(floatingView)
+            floatingView = null
         }
     }
 
-    private fun remove3DView() {
-
+    fun releaseContext(context: Context) {
+        if (context === this.context) {
+            this.context = null
+        }
     }
 
-    data class Floating3DViewHolder (
+    abstract fun onClick(v: View)
+
+    data class FloatingViewHolder(
             val root: ViewGroup,
             val drag: View,
             val action: View

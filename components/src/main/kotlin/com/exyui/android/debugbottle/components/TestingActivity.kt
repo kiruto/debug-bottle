@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import com.squareup.leakcanary.internal.DisplayLeakActivity
-import com.exyui.android.debugbottle.components.floating.FloatingService
+import com.exyui.android.debugbottle.components.floating.Floating3DService
 import com.exyui.android.debugbottle.components.injector.InjectorActivity
 import com.exyui.android.debugbottle.ui.layout.__DisplayBlockActivity
 
@@ -50,7 +50,7 @@ internal class TestingActivity : Activity() {
     val button5 by lazy {
         val result = findViewById(R.id.__dt_button5) as Button
         result.setOnClickListener {
-            val intent = Intent(this, FloatingService::class.java)
+            val intent = Intent(this, Floating3DService::class.java)
             startService(intent)
         }
         result
