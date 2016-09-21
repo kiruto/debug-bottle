@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="__DTListItem">
+        <attr name="__dt_title" format="string"/>
+        <attr name="__dt_content" format="string"/>
+    </declare-styleable>
+</resources>
