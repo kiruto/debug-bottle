@@ -10,33 +10,48 @@ import android.util.Log
 object DTInstaller {
     private val TAG = "FakeInstaller"
 
-    fun install(any: Any?): DTInstaller {
+    fun install(app: Any?): DTInstaller {
         Log.d(TAG, "install")
         return this
     }
 
-    fun setBlockCanary(any: Any?): DTInstaller {
+    fun setBlockCanary(context: Any?): DTInstaller {
         Log.d(TAG, "setBlockCanary")
         return this
     }
 
-    fun setInjector(any: Any?): DTInstaller {
+    fun setInjector(injector: Any?): DTInstaller {
         Log.d(TAG, "setInjector")
         return this
     }
 
-    fun setOkHttpClient(any: Any): DTInstaller {
+    fun setOkHttpClient(client: Any?): DTInstaller {
         Log.d(TAG, "setOkHttpClient")
         return this
     }
 
-    fun setHttpLogPath(any: Any): DTInstaller {
+    fun setHttpLogPath(path: Any?): DTInstaller {
         Log.d(TAG, "setHttpLogPath")
         return this
     }
 
-    fun setCrashLogPath(any: Any): DTInstaller {
+    fun setCrashLogPath(path: Any?): DTInstaller {
         Log.d(TAG, "setCrashLogPath")
+        return this
+    }
+
+    fun setNotificationIcon(id: Any?): DTInstaller {
+        Log.d(TAG, "setNotificationIcon")
+        return this
+    }
+
+    fun setNotificationTitle(title: Any?): DTInstaller {
+        Log.d(TAG, "setNotificationTitle")
+        return this
+    }
+
+    fun setNotificationMessage(message: Any?): DTInstaller {
+        Log.d(TAG, "setNotificationMessage")
         return this
     }
 

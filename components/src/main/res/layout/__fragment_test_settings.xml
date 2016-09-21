@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:dt="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+            android:id="@+id/__dt_testing_enable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            dt:__dt_title="@string/__dt_test_controller"
+            dt:__dt_content="@string/__dt_test_controller_enable"/>
+
+        <View style="@style/__DTList.Divider" />
+
+    </LinearLayout>
+
+</ScrollView>

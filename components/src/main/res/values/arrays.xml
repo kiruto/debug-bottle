@@ -9,6 +9,7 @@
         <item>@string/__dt_blocks</item>
         <item>@string/__dt_network_traffics</item>
         <item>@string/__dt_crashes</item>
+        <item>@string/__dt_black_box_testing</item>
         <item>@string/__dt_intents</item>
         <item>@string/__dt_runnable</item>
         <item>@string/__dt_project</item>

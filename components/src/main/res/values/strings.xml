@@ -38,6 +38,7 @@
     <string name="__dt_blocks">Block Reports</string>
     <string name="__dt_network_traffics">Network Traffics Reports</string>
     <string name="__dt_crashes">Crash Reports</string>
+    <string name="__dt_black_box_testing">Black-box Testing</string>
     <string name="__dt_feedback">Feedback</string>
     <string name="__dt_project">Open source project</string>
     <string name="__dt_intents">Intent Entries</string>
@@ -137,5 +138,7 @@
 
     <string name="__dt_testing_ready">Testing runner is ready!</string>
     <string name="__dt_testing_ready_message">All Debug Bottle running services has been reset.\n\nFire by click start button.</string>
+    <string name="__dt_test_controller_enable">Enable test controller</string>
+    <string name="__dt_test_controller">Test Controller</string>
 
 </resources>
