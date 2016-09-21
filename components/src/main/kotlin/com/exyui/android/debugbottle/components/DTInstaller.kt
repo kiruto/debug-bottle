@@ -14,7 +14,9 @@ import android.os.Build.VERSION_CODES.GINGERBREAD
 import android.os.Bundle
 import android.os.Process
 import android.os.StrictMode
+import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
+import android.support.annotation.StringRes
 import android.util.Log
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.crash.DTCrashHandler
@@ -31,6 +33,9 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     private var enabled = true
     //private var notification: Notification? = null
     private val NOTIFICATION_ID = 12030
+    @DrawableRes private var notificationIconRes: Int? = null
+    private var notificationTitle: String? = null
+    private var notificationMessage: String? = null
     private var blockCanary: BlockCanaryContext? = null
         set(value) {
             if (!installed) field = value
@@ -95,11 +100,14 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         return this
     }
 
-    fun setInjector(packageName: String): DTInstaller {
-        injectorClassName = packageName
+    /**
+     * @param injector: The package name of injector class
+     */
+    fun setInjector(injector: String): DTInstaller {
+        injectorClassName = injector
         try {
-            val injectorClass = Class.forName(packageName)
-            injector = injectorClass.newInstance() as Injector
+            val injectorClass = Class.forName(injector)
+            this.injector = injectorClass.newInstance() as Injector
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -118,6 +126,21 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     fun setCrashLogPath(path: String): DTInstaller {
         DTSettings.crashFileStorePath = path
+        return this
+    }
+
+    fun setNotificationIcon(@DrawableRes id: Int): DTInstaller {
+        notificationIconRes = id
+        return this
+    }
+
+    fun setNotificationTitle(title: String): DTInstaller {
+        notificationTitle = title
+        return this
+    }
+
+    fun setNotificationMessage(message: String): DTInstaller {
+        notificationMessage = message
         return this
     }
 
@@ -216,11 +239,23 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         val pi = PendingIntent.getActivity(app, 0, Intent(app, DTDrawerActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
         val notification: Notification
         val notify = Notification.Builder(app)
-                .setSmallIcon(R.drawable.__dt_notification_bt)
+        if (null == notificationIconRes) {
+            notify.setSmallIcon(R.drawable.__dt_notification_bt)
+        } else {
+            notify.setSmallIcon(notificationIconRes!!)
+        }
+        if (null == notificationTitle) {
+            notify.setContentTitle("Debug Bottle")
+        } else {
+            notify.setContentTitle(notificationTitle!!)
+        }
+        if (null == notificationMessage) {
+            notify.setContentText("Debug Bottle is running correctly")
+        } else {
+            notify.setContentText(notificationMessage)
+        }
                 .setTicker("debug tool")
                 .setContentIntent(pi)
-                .setContentTitle("Debug Bottle")
-                .setContentText("Debug Bottle is running correctly")
                 .setOngoing(true)
         if (SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             notification = notify.notification

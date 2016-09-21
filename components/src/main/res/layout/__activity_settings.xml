@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:dt="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.exyui.android.debugbottle.components.SettingsActivity">
 
@@ -11,192 +12,51 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true"
-            style="@style/__DTList.Item">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/__dt_bottle_enable"
-                style="@style/__DTList.Header"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:text="@string/__dt_enable_switcher" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/__dt_enable_switcher"
-                    android:textOn="On"
-                    android:textOff="Off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:id="@+id/__dt_enable_switcher"
+            dt:__dt_title="@string/__dt_bottle_enable"
+            dt:__dt_content="@string/__dt_enable_switcher"/>
 
         <View style="@style/__DTList.Divider" />
 
-        <LinearLayout
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            style="@style/__DTList.Item">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/__dt_network_listener"
-                style="@style/__DTList.Header"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:text="@string/__dt_okhttp_listener_switcher" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/__dt_network_switcher"
-                    android:textOn="On"
-                    android:textOff="Off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:id="@+id/__dt_network_switcher"
+            dt:__dt_title="@string/__dt_network_listener"
+            dt:__dt_content="@string/__dt_okhttp_listener_switcher"/>
 
         <View style="@style/__DTList.Divider" />
 
-        <LinearLayout
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            style="@style/__DTList.Item">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/__dt_strict_mode"
-                style="@style/__DTList.Header"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:text="@string/__dt_strict_mode_switcher" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/__dt_strict_switcher"
-                    android:textOn="On"
-                    android:textOff="Off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:id="@+id/__dt_strict_switcher"
+            dt:__dt_title="@string/__dt_strict_mode"
+            dt:__dt_content="@string/__dt_strict_mode_switcher" />
 
         <View style="@style/__DTList.Divider" />
 
-        <LinearLayout
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            style="@style/__DTList.Item">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/__dt_3d_window"
-                style="@style/__DTList.Header"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:text="@string/__dt_3d_window_switcher" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/__dt_3d_switcher"
-                    android:textOn="On"
-                    android:textOff="Off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:id="@+id/__dt_3d_switcher"
+            dt:__dt_title="@string/__dt_3d_window"
+            dt:__dt_content="@string/__dt_3d_window_switcher"/>
 
         <View style="@style/__DTList.Divider" />
 
-        <LinearLayout
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            style="@style/__DTList.Item">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/__dt_leak_canary"
-                style="@style/__DTList.Header"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:text="@string/__dt_leak_canary_switcher" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/__dt_leak_canary_switcher"
-                    android:textOn="On"
-                    android:textOff="Off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:id="@+id/__dt_leak_canary_switcher"
+            dt:__dt_title="@string/__dt_leak_canary"
+            dt:__dt_content="@string/__dt_leak_canary_switcher" />
 
         <View style="@style/__DTList.Divider" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

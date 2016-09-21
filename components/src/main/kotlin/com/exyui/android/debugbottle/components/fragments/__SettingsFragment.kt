@@ -20,6 +20,7 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTSettings
 import com.exyui.android.debugbottle.components.floating.Floating3DViewMgr
 import com.exyui.android.debugbottle.components.floating.Floating3DService
+import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
 import com.exyui.android.debugbottle.ui.BlockCanary
 
 /**
@@ -82,7 +83,7 @@ class __SettingsFragment: __ContentFragment() {
     }
 
     private val networkSwitcher by lazy {
-        val result = findViewById(R.id.__dt_network_switcher) as SwitchCompat
+        val result = findViewById(R.id.__dt_network_switcher) as DTListItemSwitch
         result.isChecked = DTSettings.getNetworkSniff()
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.setNetworkSniff(isChecked)
@@ -91,7 +92,7 @@ class __SettingsFragment: __ContentFragment() {
     }
 
     private val strictSwitcher by lazy {
-        val result = findViewById(R.id.__dt_strict_switcher) as SwitchCompat
+        val result = findViewById(R.id.__dt_strict_switcher) as DTListItemSwitch
         result.isChecked = DTSettings.getStrictMode()
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.setStrictMode(isChecked)
@@ -101,7 +102,7 @@ class __SettingsFragment: __ContentFragment() {
     }
 
     private val view3DSwitcher by lazy {
-        val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
+        val result = findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch
         result.isChecked = Floating3DViewMgr.isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
             val intent = Intent(context, Floating3DService::class.java)
@@ -115,7 +116,7 @@ class __SettingsFragment: __ContentFragment() {
     }
 
     private val leakCanarySwitcher by lazy {
-        val result = findViewById(R.id.__dt_leak_canary_switcher) as SwitchCompat
+        val result = findViewById(R.id.__dt_leak_canary_switcher) as DTListItemSwitch
         result.isChecked = DTSettings.getLeakCanaryEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.setLeakCanaryEnable(isChecked)
@@ -143,7 +144,7 @@ class __SettingsFragment: __ContentFragment() {
     }
 
     private val bottleSwitch by lazy {
-        val result = findViewById(R.id.__dt_enable_switcher) as SwitchCompat
+        val result = findViewById(R.id.__dt_enable_switcher) as DTListItemSwitch
         result.isChecked = DTSettings.getBottleEnable()
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.setBottleEnable(isChecked)

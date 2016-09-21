@@ -248,6 +248,11 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                 fragment = __SettingsFragment()
             }
 
+            // Test
+            s(R.string.__dt_black_box_testing) -> {
+                fragment = __TestSettingsFragment()
+            }
+
             // None
             else -> {
 
@@ -280,12 +285,13 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                     s(R.string.__dt_runnable) -> R.drawable.__ic_clear_all_black_24dp
                     s(R.string.__dt_sp_viewer) -> R.drawable.__ic_edit_black_24dp
                     s(R.string.__dt_blocks) -> R.drawable.__ic_block_black_24dp
-                    s(R.string.__dt_network_traffics) -> R.drawable.__ic_network_check_black_24dp
+                    s(R.string.__dt_network_traffics) -> R.drawable.__ic_http_black_24dp
                     s(R.string.__dt_leaks) -> R.drawable.__ic_bug_report_black_24dp
                     s(R.string.__dt_settings) -> R.drawable.__ic_settings_black_24dp
                     s(R.string.__dt_crashes) -> R.drawable.__ic_report_problem_black_24dp
                     s(R.string.__dt_feedback) -> R.drawable.__ic_feedback_black_24dp
                     s(R.string.__dt_project) -> R.drawable.__ic_code_black_24dp
+                    s(R.string.__dt_black_box_testing) -> R.drawable.__ic_fast_forward_black_24dp
                     else -> R.drawable.__ic_info_outline_black_24dp
                 }))
             }
