@@ -19,6 +19,7 @@ import android.widget.TextView
 import com.exyui.android.debugbottle.components.*
 import com.exyui.android.debugbottle.components.floating.Floating3DViewMgr
 import com.exyui.android.debugbottle.components.floating.Floating3DService
+import com.exyui.android.debugbottle.components.scalpel.__ScalpelService
 
 /**
  * Created by yuriel on 9/3/16.
@@ -72,10 +73,13 @@ class __StatusFragment: __ContentFragment() {
         result.isChecked = Floating3DViewMgr.isFloatingWindowRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
             val intent = Intent(context, Floating3DService::class.java)
+            val intent2 = Intent(context, __ScalpelService::class.java)
             if (isChecked) {
                 context?.startService(intent)
+                context?.startService(intent2)
             } else {
                 context?.stopService(intent)
+                context?.stopService(intent2)
             }
         }
         result

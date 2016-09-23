@@ -18,14 +18,13 @@ buildscript {
 
         libraries = [
                 gradle: '2.2.0',
-                kotlin: '1.0.3',
+                kotlin: '1.0.4',
                 support: '22.2.1',
                 support23: '23.2.0',
                 markdownview: '1.1.0',
                 junit: '4.12',
                 leakcanary: '1.4-beta2',
                 okhttp: '2.4.0',
-                appintro: '4.0.0',
                 debugbottle: versionName
         ]
     }
