@@ -19,7 +19,7 @@ internal open class __BubbleBaseLayout : FrameLayout {
     private lateinit var params: WindowManager.LayoutParams
     private var layoutCoordinator: __BubblesLayoutCoordinator? = null
 
-    fun setLayoutCoordinator(layoutCoordinator: __BubblesLayoutCoordinator) {
+    fun setLayoutCoordinator(layoutCoordinator: __BubblesLayoutCoordinator?) {
         this.layoutCoordinator = layoutCoordinator
     }
 
