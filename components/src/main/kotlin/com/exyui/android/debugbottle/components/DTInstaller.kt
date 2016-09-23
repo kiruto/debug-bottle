@@ -19,6 +19,8 @@ import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.util.Log
 import android.widget.Toast
+import com.exyui.android.debugbottle.components.bubbles.__BubblesManager
+import com.exyui.android.debugbottle.components.bubbles.services.__BubblesManagerService
 import com.exyui.android.debugbottle.components.crash.DTCrashHandler
 import com.squareup.okhttp.OkHttpClient
 import com.exyui.android.debugbottle.components.injector.Injector
@@ -187,6 +189,10 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
             showNotification(app!!)
             registerActivityLifecycleCallbacks(app!!)
+
+            // Initialize bubble manager
+            val intent = Intent(app, __BubblesManagerService::class.java)
+            app?.startService(intent)
         }
         if (null != httpClient) {
             httpClient!!.interceptors().add(LoggingInterceptor())

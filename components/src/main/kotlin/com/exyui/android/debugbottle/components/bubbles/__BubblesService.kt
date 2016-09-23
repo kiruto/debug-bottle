@@ -20,8 +20,15 @@ internal class __BubblesService : Service() {
     private val binder = BubblesServiceBinder()
     private val bubbles = mutableListOf<__BubbleLayout>()
     private var bubblesTrash: __BubbleTrashLayout? = null
+    private val cb = mutableListOf<__OnBubbleStatusChangeCallback>()
     private var windowManager: WindowManager? = null
-    private lateinit var layoutCoordinator: __BubblesLayoutCoordinator
+        get() {
+            if (field == null) {
+                field = getSystemService(WINDOW_SERVICE) as WindowManager
+            }
+            return field
+        }
+    private var layoutCoordinator: __BubblesLayoutCoordinator? = null
 
     override fun onBind(intent: Intent): IBinder {
         return binder
@@ -37,31 +44,29 @@ internal class __BubblesService : Service() {
 
     private fun recycleBubble(bubble: __BubbleLayout) {
         Handler(Looper.getMainLooper()).post {
-            getWindowManager().removeView(bubble)
-            for (cachedBubble in bubbles) {
-                if (cachedBubble === bubble) {
-                    bubble.notifyBubbleRemoved()
-                    bubbles.remove(cachedBubble)
-                    break
+            try {
+                windowManager?.removeView(bubble)
+                for (cachedBubble in bubbles) {
+                    if (cachedBubble === bubble) {
+                        bubble.notifyBubbleRemoved()
+                        bubbles.remove(cachedBubble)
+                        break
+                    }
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
 
-    private fun getWindowManager(): WindowManager {
-        if (windowManager == null) {
-            windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
-        }
-        return windowManager!!
-    }
-
     fun addBubble(bubble: __BubbleLayout, x: Int, y: Int) {
         val layoutParams = buildLayoutParamsForBubble(x, y)
-        bubble.windowManager = getWindowManager()
+        bubble.windowManager = windowManager!!
         bubble.setViewParams(layoutParams)
         bubble.setLayoutCoordinator(layoutCoordinator)
         bubbles.add(bubble)
         addViewToWindow(bubble)
+        cb.forEach { it.onAdd() }
     }
 
     fun addTrash(trashLayoutResourceId: Int) {
@@ -76,15 +81,25 @@ internal class __BubblesService : Service() {
         }
     }
 
+    fun addCallback(cb: __OnBubbleStatusChangeCallback) {
+        this.cb.add(cb)
+    }
+
+    fun removeCallback(cb: __OnBubbleStatusChangeCallback) {
+        this.cb.remove(cb)
+    }
+
     private fun initializeLayoutCoordinator() {
         layoutCoordinator = __BubblesLayoutCoordinator.Builder(this)
-                .setWindowManager(getWindowManager())
+                .setWindowManager(windowManager!!)
                 .setTrashView(bubblesTrash!!)
                 .build()
     }
 
     private fun addViewToWindow(view: __BubbleBaseLayout) {
-        Handler(Looper.getMainLooper()).post(Runnable { getWindowManager().addView(view, view.getViewParams()) })
+        Handler(Looper.getMainLooper()).post {
+            windowManager?.addView(view, view.getViewParams())
+        }
     }
 
     private fun buildLayoutParamsForBubble(x: Int, y: Int): WindowManager.LayoutParams {
@@ -116,6 +131,7 @@ internal class __BubblesService : Service() {
 
     fun removeBubble(bubble: __BubbleLayout) {
         recycleBubble(bubble)
+        cb.forEach { it.onRemove() }
     }
 
     inner class BubblesServiceBinder : Binder() {

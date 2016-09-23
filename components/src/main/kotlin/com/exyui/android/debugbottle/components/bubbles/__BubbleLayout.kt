@@ -134,7 +134,7 @@ internal class __BubbleLayout : __BubbleBaseLayout {
         val display = windowManager.defaultDisplay
         val size = Point()
         display.getSize(size)
-        obsWidth = size.x - this.getWidth()
+        obsWidth = size.x - this.width
 
     }
 
