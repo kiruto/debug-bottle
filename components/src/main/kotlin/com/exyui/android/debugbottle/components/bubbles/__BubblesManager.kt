@@ -10,7 +10,6 @@ import android.os.IBinder
  * Created by yuriel on 9/22/16.
  */
 internal object __BubblesManager {
-    private lateinit var context: Context
     private var bounded: Boolean = false
     private var bubblesService: __BubblesService? = null
     private var trashLayoutResourceId: Int = 0
@@ -34,13 +33,17 @@ internal object __BubblesManager {
         bubblesService!!.addTrash(trashLayoutResourceId)
     }
 
-    fun initialize() {
-        context.bindService(Intent(context, __BubblesService::class.java),
-                bubbleServiceConnection,
-                Context.BIND_AUTO_CREATE)
+    fun initialize(context: Context) {
+        if (bounded) {
+            listener?.onInitialized()
+        } else {
+            context.bindService(Intent(context, __BubblesService::class.java),
+                    bubbleServiceConnection,
+                    Context.BIND_AUTO_CREATE)
+        }
     }
 
-    fun recycle() {
+    fun recycle(context: Context) {
         context.unbindService(bubbleServiceConnection)
     }
 
@@ -56,12 +59,11 @@ internal object __BubblesManager {
         }
     }
 
-    class Builder(context: Context) {
+    class Builder() {
         private val bubblesManager: __BubblesManager
 
         init {
             this.bubblesManager = __BubblesManager
-            this.bubblesManager.context = context
         }
 
         fun setInitializationCallback(listener: __OnInitializedCallback): Builder {

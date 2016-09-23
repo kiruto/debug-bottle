@@ -15,6 +15,10 @@ import kotlin.reflect.KClass
 /**
  * Created by yuriel on 9/2/16.
  */
+@Deprecated(
+        message = "use __3DViewBubble instead",
+        replaceWith = ReplaceWith("__3DViewBubble", "com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble")
+)
 internal object Floating3DViewMgr: DTDragFloatingViewMgr() {
 
     override val title: String = "3D"

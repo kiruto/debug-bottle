@@ -10,6 +10,11 @@ import com.exyui.android.debugbottle.components.RunningFeatureMgr
  *
  * 3D View floating window management service
  */
+@Deprecated(
+        message = "Use __BubblesManagerService instead",
+        replaceWith = ReplaceWith("__BubblesManagerService", "com.exyui.android.debugbottle.components.bubbles.services.__BubblesManagerService"),
+        level = DeprecationLevel.WARNING
+)
 internal class Floating3DService : DTBaseFloatingService() {
 
     override val floatingViewMgr: DTDragFloatingViewMgr = Floating3DViewMgr

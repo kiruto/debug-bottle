@@ -1,7 +1,9 @@
-package com.exyui.android.debugbottle.components.scalpel
+package com.exyui.android.debugbottle.components.bubbles.services
 
 import android.app.Service
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import com.exyui.android.debugbottle.components.R
@@ -11,26 +13,25 @@ import com.exyui.android.debugbottle.components.bubbles.__BubblesManager
 /**
  * Created by yuriel on 9/23/16.
  */
-internal class __ScalpelService: Service() {
-    private val TAG = "__ScalpelService"
+internal class __BubblesManagerService : Service() {
+    private val TAG = "__BubblesManagerService"
     private lateinit var bubblesMgr: __BubblesManager
     override fun onBind(intent: Intent?) = null
 
     override fun onCreate() {
         super.onCreate()
-        bubblesMgr = __BubblesManager.Builder(this)
+        bubblesMgr = __BubblesManager.Builder()
+                .setTrashLayout(R.layout.__bubble_trash)
                 .build()
-        bubblesMgr.initialize()
-        val bubbleView = LayoutInflater.from(this).inflate(R.layout.__bubble_3d, null) as __BubbleLayout
-        val btn = bubbleView.findViewById(R.id.__3d_view_btn)
-        btn.setOnClickListener {
-            Log.d(TAG, "clicked")
-        }
-        bubblesMgr.addBubble(bubbleView, 60, 20)
+        bubblesMgr.initialize(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        bubblesMgr.recycle()
+        bubblesMgr.recycle(this)
+    }
+
+    fun __BubbleLayout.remove() {
+        bubblesMgr.removeBubble(this)
     }
 }

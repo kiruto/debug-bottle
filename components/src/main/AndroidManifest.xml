@@ -42,6 +42,10 @@
 
         <service android:name="com.exyui.android.debugbottle.components.floating.Floating3DService" />
         <service android:name="com.exyui.android.debugbottle.components.floating.FloatingTestRunnerService" />
+        <service android:name="com.exyui.android.debugbottle.components.bubbles.__BubblesService"
+            android:enabled="true"
+            android:exported="false"/>
+        <service android:name="com.exyui.android.debugbottle.components.bubbles.services.__BubblesManagerService" />
     </application>
 
 </manifest>
