@@ -2,11 +2,12 @@ package com.exyui.android.debugbottle.components.fragments
 
 import android.app.Activity
 import android.app.ActivityManager
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
 import android.support.v7.widget.SwitchCompat
 import android.text.Editable
 import android.text.TextWatcher
@@ -18,8 +19,8 @@ import android.widget.SeekBar
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTSettings
-import com.exyui.android.debugbottle.components.floating.Floating3DViewMgr
-import com.exyui.android.debugbottle.components.floating.Floating3DService
+import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
+import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
 import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
 import com.exyui.android.debugbottle.ui.BlockCanary
 
@@ -103,13 +104,12 @@ class __SettingsFragment: __ContentFragment() {
 
     private val view3DSwitcher by lazy {
         val result = findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch
-        result.isChecked = Floating3DViewMgr.isFloatingWindowRunning()
+        result.isChecked = __3DViewBubble.isRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            val intent = Intent(context, Floating3DService::class.java)
             if (isChecked) {
-                context?.startService(intent)
+                __3DViewBubble.create(activity.applicationContext)
             } else {
-                context?.stopService(intent)
+                __3DViewBubble.destroy(activity.applicationContext)
             }
         }
         result
@@ -153,17 +153,44 @@ class __SettingsFragment: __ContentFragment() {
         result
     }
 
+    private val bubbleStatusChangeReceiver by lazy {
+        object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent?) {
+                when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
+                    __3DViewBubble.TAG -> {
+                        val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
+                        view3DSwitcher.isChecked = bubble3DStatus
+                    }
+                }
+            }
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.__activity_settings, container, false)
         this.rootView = rootView
         seekBar; valueText; networkSwitcher; strictSwitcher; view3DSwitcher
         leakCanarySwitcher; blockCanarySwitcher; bottleSwitch
+
+        // bubble change listener
+        registerBubbleStatusChangeReceiver()
         return rootView
+    }
+
+    private fun registerBubbleStatusChangeReceiver() {
+        val filter = IntentFilter()
+        filter.addAction(__DTBubble.INTENT_ACTION)
+        activity.registerReceiver(bubbleStatusChangeReceiver, filter)
     }
 
     override fun onPause() {
         super.onPause()
         save()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        activity.unregisterReceiver(bubbleStatusChangeReceiver)
     }
 
     private fun restartHint() {
