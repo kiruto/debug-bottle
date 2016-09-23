@@ -18,7 +18,7 @@ buildscript {
 
         libraries = [
                 gradle: '2.2.0',
-                kotlin: '1.0.3',
+                kotlin: '1.0.4',
                 support: '23.2.0',
                 junit: '4.12',
                 leakcanary: '1.4-beta2',
