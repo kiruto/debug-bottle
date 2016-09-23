@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.exyui.android.debugbottle.components.bubbles.__BubbleLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/__bg_round_white"
+    android:padding="8dp"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:id="@+id/__3d_view_btn"
+        android:src="@drawable/__ic_3d_view_btn"/>
+
+</com.exyui.android.debugbottle.components.bubbles.__BubbleLayout>
