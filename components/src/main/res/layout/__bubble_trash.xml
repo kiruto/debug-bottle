@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="72dp"
     android:layout_height="72dp"
-    android:background="@drawable/__bg_round_white"
+    android:background="@drawable/__bg_round_white_black"
     android:layout_gravity="bottom|center_horizontal">
 
     <ImageView

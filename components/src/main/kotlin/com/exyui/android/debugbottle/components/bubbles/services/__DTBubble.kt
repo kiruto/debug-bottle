@@ -21,9 +21,9 @@ internal abstract class __DTBubble(protected val bubblesManager: __BubblesManage
         val KEY_TAG = "KEY_TAG"
     }
 
-    fun create(appContext: Context) { onCreate(appContext) }
+    fun create(context: Context) { onCreate(context.applicationContext) }
 
-    fun destroy(appContext: Context) { onDestroy(appContext) }
+    fun destroy(context: Context) { onDestroy(context.applicationContext) }
 
     protected open fun onCreate(context: Context) {
         view = onCreateView(context)

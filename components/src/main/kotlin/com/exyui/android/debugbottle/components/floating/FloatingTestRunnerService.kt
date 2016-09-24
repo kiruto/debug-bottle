@@ -7,6 +7,10 @@ import com.exyui.android.debugbottle.components.RunningFeatureMgr
 /**
  * Created by yuriel on 9/19/16.
  */
+@Deprecated(
+        message = "use __TestingRunnerBubble instead",
+        replaceWith = ReplaceWith("__TestingRunnerBubble", "com.exyui.android.debugbottle.components.bubbles.services.__TestingRunnerBubble")
+)
 internal class FloatingTestRunnerService: DTBaseFloatingService() {
     override val floatingViewMgr: DTDragFloatingViewMgr = FloatingTestRunnerViewMgr
     override fun onBind(intent: Intent?): IBinder? = null
