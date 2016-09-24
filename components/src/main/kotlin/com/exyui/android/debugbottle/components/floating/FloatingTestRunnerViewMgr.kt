@@ -13,6 +13,7 @@ import com.exyui.android.debugbottle.components.testing.MonkeyTestRunner
  */
 internal object FloatingTestRunnerViewMgr: DTDragFloatingViewMgr() {
     override val title: String = "Run Test"
+    @Suppress("DEPRECATION")
     override val bindingService = FloatingTestRunnerService::class
 
     override fun onClick(v: View) {

@@ -22,6 +22,7 @@ import kotlin.reflect.KClass
 internal object Floating3DViewMgr: DTDragFloatingViewMgr() {
 
     override val title: String = "3D"
+    @Suppress("DEPRECATION")
     override val bindingService = Floating3DService::class
 
     override fun onClick(v: View) {

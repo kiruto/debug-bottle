@@ -73,9 +73,9 @@ class __StatusFragment: __ContentFragment() {
         result.isChecked = __3DViewBubble.isRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
             if (isChecked) {
-                __3DViewBubble.create(activity.applicationContext)
+                __3DViewBubble.create(activity)
             } else {
-                __3DViewBubble.destroy(activity.applicationContext)
+                __3DViewBubble.destroy(activity)
             }
         }
         result
@@ -127,19 +127,6 @@ class __StatusFragment: __ContentFragment() {
     private val leakStatusText by lazy { findViewById(R.id.__dt_leak_canary_feature) as TextView }
     private val blockStatusText by lazy { findViewById(R.id.__dt_block_canary_feature) as TextView }
 
-    private val bubbleStatusChangeReceiver by lazy {
-        object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent?) {
-                when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
-                    __3DViewBubble.TAG -> {
-                        val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
-                        view3DSwitcher.isChecked = bubble3DStatus
-                    }
-                }
-            }
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.__fragment_status, container, false)
         this.rootView = rootView
@@ -156,13 +143,16 @@ class __StatusFragment: __ContentFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        activity.unregisterReceiver(bubbleStatusChangeReceiver)
+        unregisterBubbleStatusChangeReceiver()
     }
 
-    private fun registerBubbleStatusChangeReceiver() {
-        val filter = IntentFilter()
-        filter.addAction(__DTBubble.INTENT_ACTION)
-        activity.registerReceiver(bubbleStatusChangeReceiver, filter)
+    override fun onReceiveBubbleIntent(context: Context, intent: Intent?) {
+        when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
+            __3DViewBubble.TAG -> {
+                val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
+                view3DSwitcher.isChecked = bubble3DStatus
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {

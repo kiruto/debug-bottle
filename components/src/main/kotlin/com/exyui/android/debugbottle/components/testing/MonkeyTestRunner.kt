@@ -23,7 +23,7 @@ internal object MonkeyTestRunner {
                 Log.d(TAG, "depth set: $field")
             }
         }
-    var eventsCount = 500
+    var eventsCount = 50
         set(value) {
             field = value
             Log.d(TAG, "events count set: $field")
