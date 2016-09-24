@@ -101,6 +101,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.crash_button -> {
+                @Suppress("CAST_NEVER_SUCCEEDS")
                 (null as List<Any>).last()
             }
             else -> {

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
+import com.exyui.android.debugbottle.components.RunningFeatureMgr
+import com.exyui.android.debugbottle.components.bubbles.services.__TestingRunnerBubble
 import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
 
 /**
@@ -13,18 +15,34 @@ import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
  */
 class __TestSettingsFragment: __ContentFragment() {
     override val TAG = __TestSettingsFragment.TAG
-    private lateinit var testCtrlView: DTListItemSwitch
+
+    private lateinit var rootView: View
+
+    private val testCtrlView: DTListItemSwitch by lazy {
+        val result = rootView.findViewById(R.id.__dt_testing_enable) as DTListItemSwitch
+        result.isChecked = RunningFeatureMgr.has(RunningFeatureMgr.MONKEY_TEST_RUNNER)
+        result.setOnCheckedChangeListener { view, isChecked ->
+            if (isChecked) {
+                __TestingRunnerBubble.create(activity)
+            } else {
+                __TestingRunnerBubble.destroy(activity)
+            }
+        }
+        result
+    }
 
     companion object {
         val TAG = "__TestSettingsFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val rootView = inflater.inflate(R.layout.__fragment_test_settings, container, false)
-        testCtrlView = rootView.findViewById(R.id.__dt_testing_enable) as DTListItemSwitch
-        testCtrlView.setOnCheckedChangeListener { view, isChecked ->
-            Toast.makeText(context, "$view, $isChecked", Toast.LENGTH_SHORT).show()
-        }
+        rootView = inflater.inflate(R.layout.__fragment_test_settings, container, false)
+        testCtrlView
         return rootView
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
     }
 }

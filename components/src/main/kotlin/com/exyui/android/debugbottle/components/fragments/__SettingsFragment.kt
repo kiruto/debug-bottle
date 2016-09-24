@@ -153,19 +153,6 @@ class __SettingsFragment: __ContentFragment() {
         result
     }
 
-    private val bubbleStatusChangeReceiver by lazy {
-        object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent?) {
-                when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
-                    __3DViewBubble.TAG -> {
-                        val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
-                        view3DSwitcher.isChecked = bubble3DStatus
-                    }
-                }
-            }
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.__activity_settings, container, false)
         this.rootView = rootView
@@ -177,10 +164,13 @@ class __SettingsFragment: __ContentFragment() {
         return rootView
     }
 
-    private fun registerBubbleStatusChangeReceiver() {
-        val filter = IntentFilter()
-        filter.addAction(__DTBubble.INTENT_ACTION)
-        activity.registerReceiver(bubbleStatusChangeReceiver, filter)
+    override fun onReceiveBubbleIntent(context: Context, intent: Intent?) {
+        when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
+            __3DViewBubble.TAG -> {
+                val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
+                view3DSwitcher.isChecked = bubble3DStatus
+            }
+        }
     }
 
     override fun onPause() {
@@ -190,7 +180,7 @@ class __SettingsFragment: __ContentFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        activity.unregisterReceiver(bubbleStatusChangeReceiver)
+        unregisterBubbleStatusChangeReceiver()
     }
 
     private fun restartHint() {
