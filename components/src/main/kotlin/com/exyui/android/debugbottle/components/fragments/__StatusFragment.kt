@@ -185,7 +185,7 @@ class __StatusFragment: __ContentFragment() {
                     context?.finish()
                 }
                 .setPositiveButton(R.string.__dt_enable) { dialog, witch ->
-                    DTSettings.setBottleEnable(true)
+                    DTSettings.bottleEnable = true
                     showNeedKillProcDialog()
                 }
                 .show()

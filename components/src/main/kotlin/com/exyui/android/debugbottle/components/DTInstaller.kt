@@ -159,13 +159,13 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     fun run() {
         RunningFeatureMgr.clear()
-        if(!DTSettings.getBottleEnable() && enabled)
+        if(!DTSettings.bottleEnable && enabled)
             return
         RunningFeatureMgr.add(RunningFeatureMgr.DEBUG_BOTTLE)
         installed = true
         if (null != blockCanary) {
             val blockCanary = BlockCanary.install(blockCanary!!)
-            if (DTSettings.getBlockCanaryEnable()) {
+            if (DTSettings.blockCanaryEnable) {
                 blockCanary.start()
                 RunningFeatureMgr.add(RunningFeatureMgr.BLOCK_CANARY)
             } else {
@@ -174,14 +174,14 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             }
         }
         if (null != app) {
-            if (DTSettings.getStrictMode()) {
+            if (DTSettings.strictMode) {
                 enableStrictMode()
                 RunningFeatureMgr.add(RunningFeatureMgr.STRICT_MODE)
             } else {
                 RunningFeatureMgr.remove(RunningFeatureMgr.STRICT_MODE)
             }
 
-            if (DTSettings.getLeakCanaryEnable()) {
+            if (DTSettings.leakCanaryEnable) {
                 LeakCanary.install(app)
                 RunningFeatureMgr.add(RunningFeatureMgr.LEAK_CANARY)
             } else {
@@ -197,7 +197,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         }
         if (null != httpClient) {
             httpClient!!.interceptors().add(LoggingInterceptor())
-            DTSettings.getNetworkSniff()
+            DTSettings.networkSniff
         }
         DTCrashHandler.install()
     }
