@@ -19,5 +19,5 @@
 - [ ] feature: SQLite editor
 - [ ] feature: fragment previewer without activity
 - [ ] feature: calculator
-- [ ] feature: monkey test runner
+- [x] feature: monkey test runner
 - [ ] annotation: observe a member of an activity

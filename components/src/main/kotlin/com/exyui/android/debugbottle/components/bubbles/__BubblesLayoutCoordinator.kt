@@ -39,7 +39,7 @@ internal object __BubblesLayoutCoordinator {
 
     private fun checkIfBubbleIsOverTrash(bubble: __BubbleLayout): Boolean {
         var result = false
-        if (trashView!!.visibility === View.VISIBLE) {
+        if (trashView!!.visibility == View.VISIBLE) {
             val trashContentView = getTrashContent()
             val trashWidth = trashContentView.measuredWidth
             val trashHeight = trashContentView.measuredHeight

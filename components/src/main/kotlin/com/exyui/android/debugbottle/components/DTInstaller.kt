@@ -29,6 +29,7 @@ import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
 /**
  * Created by yuriel on 8/10/16.
  */
+@Suppress("unused")
 object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     private var installed: Boolean = false
@@ -70,7 +71,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityPaused(activity: Activity) {
-        if (DTActivityManager.topActivity === activity) {
+        if (DTActivityManager.topActivity == activity) {
             DTActivityManager.topActivity = null
         }
     }

@@ -25,6 +25,16 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     private var contentFragment: __ContentFragment? = null
 
+    companion object {
+        val KEY_SELECTED = "KEY_SELECTED"
+
+        /**
+         * Intent "selected item" must choose an string resource from items in this array.
+         */
+        @Suppress("unused")
+        val VALUE_SELECTED = R.array.__dt_drawer_items
+    }
+
     private val titles: Array<String> by lazy {
         resources.getStringArray(R.array.__dt_drawer_items)
     }
@@ -113,7 +123,15 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
         drawerListView; infoLayout; introLayout
-        selectItem(0)
+
+        val selectedItem = intent?.extras?.getInt(KEY_SELECTED)
+
+        if (null == selectedItem) {
+            selectItem(0)
+        } else {
+            selectItemByRes(selectedItem)
+        }
+
         drawerLayout.openDrawer(Gravity.LEFT)
     }
 

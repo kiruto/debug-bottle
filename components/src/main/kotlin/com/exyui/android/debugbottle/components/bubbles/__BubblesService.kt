@@ -47,7 +47,7 @@ internal class __BubblesService : Service() {
             try {
                 windowManager?.removeView(bubble)
                 for (cachedBubble in bubbles) {
-                    if (cachedBubble === bubble) {
+                    if (cachedBubble == bubble) {
                         bubble.notifyBubbleRemoved()
                         bubbles.remove(cachedBubble)
                         break
