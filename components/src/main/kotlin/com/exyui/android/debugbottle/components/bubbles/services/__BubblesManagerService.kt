@@ -1,11 +1,13 @@
 package com.exyui.android.debugbottle.components.bubbles.services
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.WindowManager
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.bubbles.__BubbleLayout
 import com.exyui.android.debugbottle.components.bubbles.__BubblesManager

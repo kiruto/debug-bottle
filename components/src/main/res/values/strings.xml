@@ -14,6 +14,7 @@
     <string name="__true">true</string>
     <string name="__false">false</string>
     <string name="__start">start</string>
+    <string name="__dt_run_test">run test</string>
     <string name="__dt_block_threshold">Block Threshold (default: 500ms)</string>
     <string name="__dt_network_listener">Network Listener</string>
     <string name="__dt_okhttp_listener_switcher">Okhttp listener switcher</string>
@@ -133,7 +134,11 @@
     <string name="__dt_intro_for_dev">For Develop</string>
     <string name="__dt_intro_for_qa">For Quality Assurance</string>
 
-    <string name="__dt_warning_open_activity_first">Please open your Activity before run testing.</string>
+    <string name="__dt_draw_over_permission_denied">Permission denied for this action. You need to manually grant the permission in Settings -> Apps -> Draw over other apps.</string>
+    <string name="__dt_should_enable_leak_canary">You should enable leak canary first!</string>
+    <string name="__dt_should_grant_draw_over_permission">You should grant draw over permission first!</string>
+
+    <string name="__dt_warning_open_activity_first">Please open your App before run testing.</string>
     <string name="__dt_warning_joker">Would you want to test Debug Bottle?????</string>
 
     <string name="__dt_testing_ready">Testing runner is ready!</string>

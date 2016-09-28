@@ -21,6 +21,8 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTSettings
 import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
+import com.exyui.android.debugbottle.components.isSystemAlertPermissionGranted
+import com.exyui.android.debugbottle.components.requestingPermissionDrawOverOtherApps
 import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
 import com.exyui.android.debugbottle.ui.BlockCanary
 
@@ -52,7 +54,7 @@ class __SettingsFragment: __ContentFragment() {
             }
         })
         result.max = MAX - MIN
-        result.progress = DTSettings.getBlockThreshold().toInt() - MIN
+        result.progress = DTSettings.blockThreshold.toInt() - MIN
         result
     }
 
@@ -85,18 +87,18 @@ class __SettingsFragment: __ContentFragment() {
 
     private val networkSwitcher by lazy {
         val result = findViewById(R.id.__dt_network_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.getNetworkSniff()
+        result.isChecked = DTSettings.networkSniff
         result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.setNetworkSniff(isChecked)
+            DTSettings.networkSniff = isChecked
         }
         result
     }
 
     private val strictSwitcher by lazy {
         val result = findViewById(R.id.__dt_strict_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.getStrictMode()
+        result.isChecked = DTSettings.strictMode
         result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.setStrictMode(isChecked)
+            DTSettings.strictMode = isChecked
             restartHint()
         }
         result
@@ -106,10 +108,19 @@ class __SettingsFragment: __ContentFragment() {
         val result = findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch
         result.isChecked = __3DViewBubble.isRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            if (isChecked) {
-                __3DViewBubble.create(activity.applicationContext)
+            if (!activity.isSystemAlertPermissionGranted()){
+                result.isChecked = false
+                activity.requestingPermissionDrawOverOtherApps(null)
             } else {
-                __3DViewBubble.destroy(activity.applicationContext)
+                if (isChecked) {
+                    val started = __3DViewBubble.create(activity.applicationContext)
+                    if (!started) {
+                        result.isChecked = false
+                        activity.requestingPermissionDrawOverOtherApps(null)
+                    }
+                } else {
+                    __3DViewBubble.destroy(activity.applicationContext)
+                }
             }
         }
         result
@@ -117,9 +128,9 @@ class __SettingsFragment: __ContentFragment() {
 
     private val leakCanarySwitcher by lazy {
         val result = findViewById(R.id.__dt_leak_canary_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.getLeakCanaryEnable()
+        result.isChecked = DTSettings.leakCanaryEnable
         result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.setLeakCanaryEnable(isChecked)
+            DTSettings.leakCanaryEnable = isChecked
             restartHint()
         }
         result
@@ -127,9 +138,9 @@ class __SettingsFragment: __ContentFragment() {
 
     private val blockCanarySwitcher by lazy {
         val result = findViewById(R.id.__dt_block_canary_switcher) as SwitchCompat
-        result.isChecked = DTSettings.getBlockCanaryEnable()
+        result.isChecked = DTSettings.blockCanaryEnable
         result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.setBlockCanaryEnable(isChecked)
+            DTSettings.blockCanaryEnable = isChecked
             try {
                 if (isChecked) {
                     BlockCanary.get().start()
@@ -145,9 +156,9 @@ class __SettingsFragment: __ContentFragment() {
 
     private val bottleSwitch by lazy {
         val result = findViewById(R.id.__dt_enable_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.getBottleEnable()
+        result.isChecked = DTSettings.bottleEnable
         result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.setBottleEnable(isChecked)
+            DTSettings.bottleEnable = isChecked
             restartHint()
         }
         result
@@ -190,6 +201,6 @@ class __SettingsFragment: __ContentFragment() {
     private fun findViewById(@IdRes id: Int) = rootView?.findViewById(id)
 
     private fun save() {
-        DTSettings.setBlockThreshold(seekBar.progress.toLong())
+        DTSettings.blockThreshold = seekBar.progress.toLong()
     }
 }

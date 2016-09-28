@@ -11,6 +11,7 @@ import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.WindowManager
 import com.exyui.android.debugbottle.components.R
+import com.exyui.android.debugbottle.components.dp
 
 /**
  * Created by yuriel on 9/22/16.

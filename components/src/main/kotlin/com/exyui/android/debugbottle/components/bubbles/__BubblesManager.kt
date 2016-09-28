@@ -10,7 +10,8 @@ import android.os.IBinder
  * Created by yuriel on 9/22/16.
  */
 internal object __BubblesManager {
-    private var bounded: Boolean = false
+    var bounded: Boolean = false
+        private set
     private var bubblesService: __BubblesService? = null
     private var trashLayoutResourceId: Int = 0
     private var listener: __OnInitializedCallback? = null

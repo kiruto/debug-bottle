@@ -36,6 +36,12 @@ task ensureDebugBottleInjectFile << {
             writer.writeLine '}'
         }
         print("DTInjector.java created.")
+
+        def ignoreFile = new File(rootDir, '.gitignore')
+        if (ignoreFile.exists()) {
+            def SEPARATOR = System.getProperty("line.separator")
+            ignoreFile.append("${SEPARATOR}app/src/main/java/your/package/debug/DTInjector.java")
+        }
     }
 }
 

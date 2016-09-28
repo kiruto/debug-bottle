@@ -66,7 +66,7 @@ internal class LoggingInterceptor : Interceptor {
         }
 
         val block = HttpBlock.newInstance(request, response, t1, t2, requestBody, responseBody)
-        if (DTSettings.getNetworkSniff()) {
+        if (DTSettings.networkSniff) {
             HttpBlockFileMgr.saveLog(block.toString())
         }
         if (response.body() != null) {

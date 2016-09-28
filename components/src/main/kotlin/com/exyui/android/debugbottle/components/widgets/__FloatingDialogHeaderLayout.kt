@@ -1,8 +1,6 @@
 package com.exyui.android.debugbottle.components.widgets
 
 import android.content.Context
-import android.content.res.TypedArray
-import android.support.v7.widget.SwitchCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -10,9 +8,9 @@ import android.widget.TextView
 import com.exyui.android.debugbottle.components.R
 
 /**
- * Created by yuriel on 9/21/16.
+ * Created by yuriel on 9/27/16.
  */
-internal class DTListItemSwitch : LinearLayout {
+internal class __FloatingDialogHeaderLayout : LinearLayout {
 
     var title: String = ""
         set(value) {
@@ -21,32 +19,10 @@ internal class DTListItemSwitch : LinearLayout {
             invalidate()
             requestLayout()
         }
-    var content: String = ""
-        set(value) {
-            field = value
-            contentView.text = field
-            invalidate()
-            requestLayout()
-        }
-
-    var isChecked: Boolean
-        get() = switchView.isChecked
-        set(value) {
-            switchView.isChecked = value
-        }
-
-    /**
-     * Switcher enabled
-     */
-    var enable: Boolean
-        get() = switchView.isEnabled
-        set(value) {
-            switchView.isEnabled = value
-        }
 
     lateinit var titleView: TextView
-    lateinit var contentView: TextView
-    lateinit var switchView: SwitchCompat
+    lateinit var actionView: View
+    lateinit var closeView: View
 
     constructor(context: Context): super(context) {
         init(context)
@@ -61,19 +37,11 @@ internal class DTListItemSwitch : LinearLayout {
         init(context, attr, defStyleAttr, defStyleRes)
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-    }
-
-    fun setOnCheckedChangeListener(listener: (v: View, isChecked: Boolean) -> Unit) {
-        switchView.setOnCheckedChangeListener(listener)
-    }
-
     private fun bindViews() {
-        inflate(context, R.layout.__custom_list_item_swicher, this)
-        titleView = findViewById(R.id.__dt_title) as TextView
-        contentView = findViewById(R.id.__dt_content) as TextView
-        switchView = findViewById(R.id.__dt_switcher) as SwitchCompat
+        inflate(context, R.layout.__custom_floating_header, this)
+        titleView = findViewById(R.id.__dt_header_title) as TextView
+        actionView = findViewById(R.id.__dt_header_action)
+        closeView = findViewById(R.id.__dt_header_close)
     }
 
     private fun init(context: Context, attr: AttributeSet? = null, defStyleAttr: Int? = null, defStyleRes: Int? = null) {
@@ -85,9 +53,16 @@ internal class DTListItemSwitch : LinearLayout {
         val ta = context.theme.obtainStyledAttributes(attr, R.styleable.__DTListItem, defStyleAttr, defStyleRes)
         try {
             title = ta.getString(R.styleable.__DTListItem___dt_title)?: ""
-            content = ta.getString(R.styleable.__DTListItem___dt_content)?: ""
         } finally {
             ta.recycle()
         }
+    }
+
+    fun setAction(listener: (View) -> Unit) {
+        actionView.setOnClickListener(listener)
+    }
+
+    fun setClose(listener: (View) -> Unit) {
+        closeView.setOnClickListener(listener)
     }
 }

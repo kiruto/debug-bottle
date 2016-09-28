@@ -103,7 +103,7 @@ internal abstract class DTDragFloatingViewMgr {
     }
 
     fun releaseContext(context: Context) {
-        if (context === this.context) {
+        if (context == this.context) {
             this.context = null
         }
     }
