@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/__dt_header_action"
+        android:layout_gravity="center_vertical"
         android:src="@drawable/__ic_settings_black_24dp"/>
 
     <TextView
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textColor="#A8000000"
         android:id="@+id/__dt_header_title"/>
 
@@ -25,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/__dt_header_close"
+        android:layout_gravity="center_vertical"
         android:src="@drawable/__ic_close_black_24dp"/>
 
 </LinearLayout>

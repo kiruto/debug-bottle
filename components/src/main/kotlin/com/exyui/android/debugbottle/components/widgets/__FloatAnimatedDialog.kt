@@ -1,53 +1,34 @@
 package com.exyui.android.debugbottle.components.widgets
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
-import android.app.AlertDialog
 import android.app.Dialog
 import android.app.DialogFragment
-import android.content.DialogInterface
 import android.os.Bundle
-import android.view.ContextThemeWrapper
-import android.view.Gravity
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import com.exyui.android.debugbottle.components.R
 
 /**
  * Created by yuriel on 9/26/16.
  */
-abstract class __FloatAnimatedDialog : DialogFragment()/*, DialogInterface.OnClickListener*/ {
-    //private val animationDuration = 500L
+abstract class __FloatAnimatedDialog : DialogFragment() {
     abstract val title: Int
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        /*
-        val result = AlertDialog.Builder(activity)
-                .setTitle(title)
-                .setView(createView())
-                .setPositiveButton(android.R.string.ok, this)
-                .setNegativeButton(android.R.string.cancel, this)
-                .create()
-        */
-
         val result = Dialog(activity)
+        result.window.requestFeature(Window.FEATURE_NO_TITLE)
         result.setContentView(createView())
-        //isCancelable = false
-
         return result
     }
 
     override fun onStart() {
         super.onStart()
 
-        dialog.window.attributes.gravity = Gravity.BOTTOM
+        dialog.window.attributes.gravity = Gravity.TOP
         dialog.window.attributes.width = WindowManager.LayoutParams.MATCH_PARENT
         dialog.window.attributes.height = WindowManager.LayoutParams.WRAP_CONTENT
         dialog.window.attributes.windowAnimations = R.style.__DialogAnimation
         dialog.window.setBackgroundDrawableResource(android.R.color.transparent)
 
-        /*
+        /** THIS WILL ADD AN ANIMATION WITH DIALOG APPEARANCE
         //Grab the window of the dialog, and change the width
         val lp = WindowManager.LayoutParams()
         val window = dialog.window
@@ -75,7 +56,7 @@ abstract class __FloatAnimatedDialog : DialogFragment()/*, DialogInterface.OnCli
     }
 
     override fun dismiss() {
-        /*
+        /** THIS WILL ADD AN ANIMATION WITH DIALOG DISMISS
         val decorView = dialog.window.decorView
 
         val scaleDown = ObjectAnimator.ofPropertyValuesHolder(decorView,

@@ -4,6 +4,8 @@ package com.exyui.android.debugbottle.core
  * Created by yuriel on 8/22/16.
  */
 const val DEFAULT_BLOCK_THRESHOLD = 500L
+const val DEFAULT_TESTING_SEED = 1000
+const val DEFAULT_TESTING_EVENT_COUNT = 50
 
 const val DT_SETTING_STORE_FILE = "dt_settings"
 const val BOTTLE_ENABLE = "BOTTLE_ENABLE"
@@ -12,3 +14,7 @@ const val STRICT_MODE = "STRICT_MODE"
 const val NETWORK_SNIFF = "NETWORK_SNIFF"
 const val LEAK_CANARY_ENABLE = "LEAK_CANARY_ENABLE"
 const val BLOCK_CANARY_ENABLE = "BLOCK_CANARY_ENABLE"
+const val TESTING_SEED = "TESTING_SEED"
+const val TESTING_SEND_KEY_EVENT = "TESTING_SEND_KEY_EVENT"
+const val TESTING_EVENT_COUNT = "TESTING_EVENT_COUNT"
+const val TESTING_LOG_DEPTH = "TESTING_LOG_DEPTH"

@@ -128,11 +128,10 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
         if (null == selectedItem) {
             selectItem(0)
+            drawerLayout.openDrawer(Gravity.LEFT)
         } else {
             selectItemByRes(selectedItem)
         }
-
-        drawerLayout.openDrawer(Gravity.LEFT)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
