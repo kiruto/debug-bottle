@@ -11,6 +11,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import com.exyui.android.debugbottle.components.requestingPermissionDrawOverOtherApps
 import java.util.*
 
 /**
@@ -98,7 +99,11 @@ internal class __BubblesService : Service() {
 
     private fun addViewToWindow(view: __BubbleBaseLayout) {
         Handler(Looper.getMainLooper()).post {
-            windowManager?.addView(view, view.getViewParams())
+            try {
+                windowManager?.addView(view, view.getViewParams())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

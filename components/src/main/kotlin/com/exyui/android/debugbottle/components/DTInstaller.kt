@@ -4,6 +4,7 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import com.squareup.leakcanary.LeakCanary
 import com.exyui.android.debugbottle.ui.BlockCanary
@@ -14,10 +15,12 @@ import android.os.Build.VERSION_CODES.GINGERBREAD
 import android.os.Bundle
 import android.os.Process
 import android.os.StrictMode
+import android.provider.Settings
 import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.bubbles.__BubblesManager
 import com.exyui.android.debugbottle.components.bubbles.services.__BubblesManagerService
@@ -191,9 +194,9 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             showNotification(app!!)
             registerActivityLifecycleCallbacks(app!!)
 
-            // Initialize bubble manager
-            val intent = Intent(app, __BubblesManagerService::class.java)
-            app?.startService(intent)
+            if (app?.isSystemAlertPermissionGranted()?: false) {
+                app?.runBubbleService()
+            }
         }
         if (null != httpClient) {
             httpClient!!.interceptors().add(LoggingInterceptor())

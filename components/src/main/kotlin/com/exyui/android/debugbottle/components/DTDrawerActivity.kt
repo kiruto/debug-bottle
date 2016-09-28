@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components
 
+import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -169,9 +170,16 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         if (requestCode > -1 && requestCode < __StatusFragment.permissions.size) {
             //val permission = __StatusFragment.permissions[requestCode]
             updatePermissionStatus()
-            return
-        } else
-            return
+        }
+
+        /**
+         * Bubble service must run before add bubble view.
+         */
+        if (!hasPermission(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+            requestingPermissionDrawOverOtherApps(null)
+        } else {
+            runBubbleService()
+        }
     }
 
     private fun updatePermissionStatus() {
@@ -240,7 +248,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                     val intent = Intent(this, DisplayLeakActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "You should enable leak canary first!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.__dt_should_enable_leak_canary, Toast.LENGTH_SHORT).show()
                 }
                 return
             }
@@ -267,7 +275,11 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
             // Test
             s(R.string.__dt_black_box_testing) -> {
-                fragment = __TestSettingsFragment()
+                if (isSystemAlertPermissionGranted()) {
+                    fragment = __TestSettingsFragment()
+                } else {
+                    requestingPermissionDrawOverOtherApps(null)
+                }
             }
 
             // None

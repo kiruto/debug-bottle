@@ -21,6 +21,8 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTSettings
 import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
+import com.exyui.android.debugbottle.components.isSystemAlertPermissionGranted
+import com.exyui.android.debugbottle.components.requestingPermissionDrawOverOtherApps
 import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
 import com.exyui.android.debugbottle.ui.BlockCanary
 
@@ -106,10 +108,19 @@ class __SettingsFragment: __ContentFragment() {
         val result = findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch
         result.isChecked = __3DViewBubble.isRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            if (isChecked) {
-                __3DViewBubble.create(activity.applicationContext)
+            if (!activity.isSystemAlertPermissionGranted()){
+                result.isChecked = false
+                activity.requestingPermissionDrawOverOtherApps(null)
             } else {
-                __3DViewBubble.destroy(activity.applicationContext)
+                if (isChecked) {
+                    val started = __3DViewBubble.create(activity.applicationContext)
+                    if (!started) {
+                        result.isChecked = false
+                        activity.requestingPermissionDrawOverOtherApps(null)
+                    }
+                } else {
+                    __3DViewBubble.destroy(activity.applicationContext)
+                }
             }
         }
         result

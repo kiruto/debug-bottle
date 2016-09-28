@@ -35,6 +35,15 @@ internal class DTListItemSwitch : LinearLayout {
             switchView.isChecked = value
         }
 
+    /**
+     * Switcher enabled
+     */
+    var enable: Boolean
+        get() = switchView.isEnabled
+        set(value) {
+            switchView.isEnabled = value
+        }
+
     lateinit var titleView: TextView
     lateinit var contentView: TextView
     lateinit var switchView: SwitchCompat
