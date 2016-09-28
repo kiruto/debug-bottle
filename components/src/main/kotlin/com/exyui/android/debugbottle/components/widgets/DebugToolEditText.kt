@@ -51,11 +51,11 @@ internal class DebugToolEditText : EditText {
     private inner class DebugToolEditTextConnection(target: InputConnection, mutable: Boolean) : InputConnectionWrapper(target, mutable) {
 
         override fun sendKeyEvent(event: KeyEvent): Boolean {
-            if (event.action === KeyEvent.ACTION_DOWN && event.keyCode === KeyEvent.KEYCODE_DEL) {
+            if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_DEL) {
                 backListener?.invoke()
-            } else if (event.action === KeyEvent.ACTION_DOWN && event.keyCode === KeyEvent.KEYCODE_SPACE) {
+            } else if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_SPACE) {
                 spaceListener?.invoke()
-            } else if (event.action === KeyEvent.ACTION_DOWN && event.keyCode === KeyEvent.KEYCODE_ENTER) {
+            } else if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER) {
                 enterListener?.invoke()
                 return false
             }

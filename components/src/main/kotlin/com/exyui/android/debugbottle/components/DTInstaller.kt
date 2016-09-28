@@ -4,6 +4,7 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import com.squareup.leakcanary.LeakCanary
 import com.exyui.android.debugbottle.ui.BlockCanary
@@ -14,10 +15,12 @@ import android.os.Build.VERSION_CODES.GINGERBREAD
 import android.os.Bundle
 import android.os.Process
 import android.os.StrictMode
+import android.provider.Settings
 import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.bubbles.__BubblesManager
 import com.exyui.android.debugbottle.components.bubbles.services.__BubblesManagerService
@@ -29,6 +32,7 @@ import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
 /**
  * Created by yuriel on 8/10/16.
  */
+@Suppress("unused")
 object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     private var installed: Boolean = false
@@ -70,7 +74,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityPaused(activity: Activity) {
-        if (DTActivityManager.topActivity === activity) {
+        if (DTActivityManager.topActivity == activity) {
             DTActivityManager.topActivity = null
         }
     }
@@ -158,13 +162,13 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     fun run() {
         RunningFeatureMgr.clear()
-        if(!DTSettings.getBottleEnable() && enabled)
+        if(!DTSettings.bottleEnable && enabled)
             return
         RunningFeatureMgr.add(RunningFeatureMgr.DEBUG_BOTTLE)
         installed = true
         if (null != blockCanary) {
             val blockCanary = BlockCanary.install(blockCanary!!)
-            if (DTSettings.getBlockCanaryEnable()) {
+            if (DTSettings.blockCanaryEnable) {
                 blockCanary.start()
                 RunningFeatureMgr.add(RunningFeatureMgr.BLOCK_CANARY)
             } else {
@@ -173,14 +177,14 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             }
         }
         if (null != app) {
-            if (DTSettings.getStrictMode()) {
+            if (DTSettings.strictMode) {
                 enableStrictMode()
                 RunningFeatureMgr.add(RunningFeatureMgr.STRICT_MODE)
             } else {
                 RunningFeatureMgr.remove(RunningFeatureMgr.STRICT_MODE)
             }
 
-            if (DTSettings.getLeakCanaryEnable()) {
+            if (DTSettings.leakCanaryEnable) {
                 LeakCanary.install(app)
                 RunningFeatureMgr.add(RunningFeatureMgr.LEAK_CANARY)
             } else {
@@ -190,13 +194,13 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             showNotification(app!!)
             registerActivityLifecycleCallbacks(app!!)
 
-            // Initialize bubble manager
-            val intent = Intent(app, __BubblesManagerService::class.java)
-            app?.startService(intent)
+            if (app?.isSystemAlertPermissionGranted()?: false) {
+                app?.runBubbleService()
+            }
         }
         if (null != httpClient) {
             httpClient!!.interceptors().add(LoggingInterceptor())
-            DTSettings.getNetworkSniff()
+            DTSettings.networkSniff
         }
         DTCrashHandler.install()
     }

@@ -72,10 +72,15 @@ class __StatusFragment: __ContentFragment() {
         val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
         result.isChecked = __3DViewBubble.isRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
-            if (isChecked) {
-                __3DViewBubble.create(activity)
+            if (!(context?.isSystemAlertPermissionGranted()?: false)) {
+                context?.requestingPermissionDrawOverOtherApps(null)
+                result.isChecked = false
             } else {
-                __3DViewBubble.destroy(activity)
+                if (isChecked) {
+                    __3DViewBubble.create(activity)
+                } else {
+                    __3DViewBubble.destroy(activity)
+                }
             }
         }
         result
@@ -185,7 +190,7 @@ class __StatusFragment: __ContentFragment() {
                     context?.finish()
                 }
                 .setPositiveButton(R.string.__dt_enable) { dialog, witch ->
-                    DTSettings.setBottleEnable(true)
+                    DTSettings.bottleEnable = true
                     showNeedKillProcDialog()
                 }
                 .show()
@@ -203,19 +208,19 @@ class __StatusFragment: __ContentFragment() {
 
     private fun checkupPermission() {
 
-//        if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+//        if (context?.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             rwPermissionText.granted()
 //        } else {
 //            rwPermissionText.denied()
 //        }
 //
-//        if (hasPermission(Manifest.permission.READ_PHONE_STATE)) {
+//        if (context?.hasPermission(Manifest.permission.READ_PHONE_STATE)) {
             phonePermissionText.granted()
 //        } else {
 //            phonePermissionText.denied()
 //        }
 //
-//        if (isSystemAlertPermissionGranted(context!!)) {
+//        if (context?.isSystemAlertPermissionGranted(context!!)) {
             windowPermissionText.granted()
 //        } else {
 //            windowPermissionText.denied()
@@ -297,14 +302,6 @@ class __StatusFragment: __ContentFragment() {
         setText(R.string.__dt_stopped)
         setTextColor(Color.RED)
     }
-
-//    @TargetApi(Build.VERSION_CODES.M)
-//    private fun isSystemAlertPermissionGranted(context: Context): Boolean {
-//        val result = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(context)
-//        return result
-//    }
-
-//    private fun hasPermission(permission: String) = PackageManager.PERMISSION_DENIED != ContextCompat.checkSelfPermission(context!!, permission)
 
     private fun ensurePermission(): Boolean {
 //        context?: return false

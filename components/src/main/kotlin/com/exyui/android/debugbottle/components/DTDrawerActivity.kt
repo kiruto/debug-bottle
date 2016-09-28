@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components
 
+import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,6 +25,16 @@ import com.exyui.android.debugbottle.components.guide.IntroductionActivity
 internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialogAction, __ContentFragment.DrawerActivity {
 
     private var contentFragment: __ContentFragment? = null
+
+    companion object {
+        val KEY_SELECTED = "KEY_SELECTED"
+
+        /**
+         * Intent "selected item" must choose an string resource from items in this array.
+         */
+        @Suppress("unused")
+        val VALUE_SELECTED = R.array.__dt_drawer_items
+    }
 
     private val titles: Array<String> by lazy {
         resources.getStringArray(R.array.__dt_drawer_items)
@@ -113,8 +124,15 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.__dt_ic_bottle_24dp)
         drawerListView; infoLayout; introLayout
-        selectItem(0)
-        drawerLayout.openDrawer(Gravity.LEFT)
+
+        val selectedItem = intent?.extras?.getInt(KEY_SELECTED)
+
+        if (null == selectedItem) {
+            selectItem(0)
+            drawerLayout.openDrawer(Gravity.LEFT)
+        } else {
+            selectItemByRes(selectedItem)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -152,9 +170,16 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         if (requestCode > -1 && requestCode < __StatusFragment.permissions.size) {
             //val permission = __StatusFragment.permissions[requestCode]
             updatePermissionStatus()
-            return
-        } else
-            return
+        }
+
+        /**
+         * Bubble service must run before add bubble view.
+         */
+        if (!hasPermission(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+            requestingPermissionDrawOverOtherApps(null)
+        } else {
+            runBubbleService()
+        }
     }
 
     private fun updatePermissionStatus() {
@@ -223,7 +248,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                     val intent = Intent(this, DisplayLeakActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "You should enable leak canary first!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.__dt_should_enable_leak_canary, Toast.LENGTH_SHORT).show()
                 }
                 return
             }
@@ -250,7 +275,11 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
             // Test
             s(R.string.__dt_black_box_testing) -> {
-                fragment = __TestSettingsFragment()
+                if (isSystemAlertPermissionGranted()) {
+                    fragment = __TestSettingsFragment()
+                } else {
+                    requestingPermissionDrawOverOtherApps(null)
+                }
             }
 
             // None

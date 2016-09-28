@@ -135,23 +135,23 @@ class __IntroductionFragment: Fragment() {
                 val sniffer = v(R.id.__dt_enable_http_sniffer) as AppCompatCheckBox
 
                 bottle.setOnCheckedChangeListener { compoundButton, b ->
-                    DTSettings.setBottleEnable(b)
+                    DTSettings.bottleEnable = b
                 }
 
                 strict.setOnCheckedChangeListener { compoundButton, b ->
-                    DTSettings.setStrictMode(b)
+                    DTSettings.strictMode = b
                 }
 
                 leak.setOnCheckedChangeListener { compoundButton, b ->
-                    DTSettings.setLeakCanaryEnable(b)
+                    DTSettings.leakCanaryEnable = b
                 }
 
                 block.setOnCheckedChangeListener { compoundButton, b ->
-                    DTSettings.setBlockCanaryEnable(b)
+                    DTSettings.blockCanaryEnable = b
                 }
 
                 sniffer.setOnCheckedChangeListener { compoundButton, b ->
-                    DTSettings.setNetworkSniff(b)
+                    DTSettings.networkSniff = b
                 }
             }
         }

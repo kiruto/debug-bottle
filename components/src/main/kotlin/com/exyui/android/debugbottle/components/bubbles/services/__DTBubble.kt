@@ -21,7 +21,14 @@ internal abstract class __DTBubble(protected val bubblesManager: __BubblesManage
         val KEY_TAG = "KEY_TAG"
     }
 
-    fun create(context: Context) { onCreate(context.applicationContext) }
+    fun create(context: Context): Boolean {
+        if (!bubblesManager.bounded) {
+            return false
+        } else {
+            onCreate(context.applicationContext)
+            return true
+        }
+    }
 
     fun destroy(context: Context) { onDestroy(context.applicationContext) }
 

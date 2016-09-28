@@ -11,6 +11,7 @@
         <activity
             android:name="me.chunyu.dev.yuriel.kotdebugtool.DemoActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/__DemoAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -22,6 +23,7 @@
         <activity
             android:name="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity"
             android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat" />
 
         <activity

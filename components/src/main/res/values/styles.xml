@@ -51,4 +51,18 @@
         <item name="android:textSize">15sp</item>
         <item name="android:layout_marginBottom">12dp</item>
     </style>
+
+    <style name="__DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/__slide_down_dialog</item>
+        <item name="android:windowExitAnimation">@anim/__slide_up_dialog</item>
+    </style>
+
+    <style name="__DialogSlide" parent="@android:style/Theme.Dialog">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowAnimationStyle">@style/__DialogAnimation</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>
