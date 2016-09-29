@@ -8,6 +8,7 @@ import android.view.View
 import com.exyui.android.debugbottle.components.DTDrawerActivity
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.bubbles.services.__TestingRunnerBubble
+import com.exyui.android.debugbottle.components.testing.StressTestRunner
 import com.exyui.android.debugbottle.components.widgets.__FloatAnimatedDialog
 import com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLayout
 
@@ -65,6 +66,7 @@ class __TestingPreStartDialog : __FloatAnimatedDialog() {
 
     private fun startTesting() {
         dismiss()
+        StressTestRunner.start()
     }
 
     private fun openSettings() {

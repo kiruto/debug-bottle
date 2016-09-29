@@ -17,11 +17,11 @@ internal class FloatingTestRunnerService: DTBaseFloatingService() {
 
     override fun createView() {
         super.createView()
-        RunningFeatureMgr.add(RunningFeatureMgr.MONKEY_TEST_RUNNER)
+        RunningFeatureMgr.add(RunningFeatureMgr.STRESS_TEST_RUNNER)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        RunningFeatureMgr.remove(RunningFeatureMgr.MONKEY_TEST_RUNNER)
+        RunningFeatureMgr.remove(RunningFeatureMgr.STRESS_TEST_RUNNER)
     }
 }

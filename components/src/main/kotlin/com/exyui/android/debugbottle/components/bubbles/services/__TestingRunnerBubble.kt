@@ -25,11 +25,11 @@ internal object __TestingRunnerBubble:
         bubbleView.setShouldStickToWall(true)
         bubbleView.setOnBubbleClickListener(this)
         bubbleView.setOnBubbleRemoveListener(this)
-        RunningFeatureMgr.add(RunningFeatureMgr.MONKEY_TEST_RUNNER)
+        RunningFeatureMgr.add(RunningFeatureMgr.STRESS_TEST_RUNNER)
         return bubbleView
     }
 
-    override fun isRunning() = RunningFeatureMgr.has(RunningFeatureMgr.MONKEY_TEST_RUNNER)
+    override fun isRunning() = RunningFeatureMgr.has(RunningFeatureMgr.STRESS_TEST_RUNNER)
 
     override fun onBubbleClick(bubble: __BubbleLayout) {
         val activity = DTActivityManager.topActivity
@@ -48,7 +48,7 @@ internal object __TestingRunnerBubble:
     }
 
     override fun onBubbleRemoved(bubble: __BubbleLayout) {
-        RunningFeatureMgr.remove(RunningFeatureMgr.MONKEY_TEST_RUNNER)
+        RunningFeatureMgr.remove(RunningFeatureMgr.STRESS_TEST_RUNNER)
         notify()
     }
 }

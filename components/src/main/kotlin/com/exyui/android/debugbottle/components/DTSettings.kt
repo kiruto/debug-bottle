@@ -93,7 +93,7 @@ internal object DTSettings {
 
     /**
      * Seed value for pseudo-random number generator.
-     * If you re-run the Monkey with the same seed value, it will generate the same sequence of events.
+     * If you re-run the stress test with the same seed value, it will generate the same sequence of events.
      */
     var testingSeed: Int
         set(value) {
