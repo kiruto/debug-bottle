@@ -93,7 +93,7 @@ internal object DTSettings {
 
     /**
      * Seed value for pseudo-random number generator.
-     * If you re-run the Monkey with the same seed value, it will generate the same sequence of events.
+     * If you re-run the stress test with the same seed value, it will generate the same sequence of events.
      */
     var testingSeed: Int
         set(value) {
@@ -124,4 +124,13 @@ internal object DTSettings {
             getSP()?.edit()?.putInt(TESTING_LOG_DEPTH, value)?.apply()
         }
         get() = getSP()?.getInt(TESTING_LOG_DEPTH, 1)?: 1
+
+    /**
+     * Display FPS on screen
+     */
+    var frameEnable: Boolean
+        set(value) {
+            __FrameRecorder.enabled = value
+        }
+        get() = __FrameRecorder.enabled
 }

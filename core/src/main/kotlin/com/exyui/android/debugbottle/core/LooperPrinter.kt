@@ -24,6 +24,7 @@ internal class LooperPrinter(
             mStartThreadTimeMillis = SystemClock.currentThreadTimeMillis()
             mStartedPrinting = true
             startDump()
+            __FrameRecorder.record(mStartTimeMillis)
         } else {
             val endTime = System.currentTimeMillis()
             mStartedPrinting = false
@@ -31,6 +32,7 @@ internal class LooperPrinter(
                 notifyBlockEvent(endTime)
             }
             stopDump()
+            __FrameRecorder.record(System.currentTimeMillis())
         }
     }
 

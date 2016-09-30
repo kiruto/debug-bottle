@@ -145,5 +145,7 @@
     <string name="__dt_testing_ready_message">All Debug Bottle running services has been reset.\n\nFire by click start button.</string>
     <string name="__dt_test_controller_enable">Enable test controller</string>
     <string name="__dt_test_controller">Test Controller</string>
+    <string name="__dt_frame">Frame per second</string>
+    <string name="__dt_frame_switcher">Display FPS on screen</string>
 
 </resources>

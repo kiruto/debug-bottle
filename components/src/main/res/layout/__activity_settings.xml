@@ -57,6 +57,14 @@
 
         <View style="@style/__DTList.Divider" />
 
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/__dt_frame_switcher"
+            dt:__dt_title="@string/__dt_frame"
+            dt:__dt_content="@string/__dt_frame_switcher"/>
+
+        <View style="@style/__DTList.Divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
