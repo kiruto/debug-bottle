@@ -164,11 +164,20 @@ class __SettingsFragment: __ContentFragment() {
         result
     }
 
+    private val frameSwitcher by lazy {
+        val result = findViewById(R.id.__dt_frame_switcher) as DTListItemSwitch
+        result.isChecked = DTSettings.frameEnable
+        result.setOnCheckedChangeListener { view, isChecked ->
+            DTSettings.frameEnable = isChecked
+        }
+        result
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.__activity_settings, container, false)
         this.rootView = rootView
         seekBar; valueText; networkSwitcher; strictSwitcher; view3DSwitcher
-        leakCanarySwitcher; blockCanarySwitcher; bottleSwitch
+        leakCanarySwitcher; blockCanarySwitcher; bottleSwitch; frameSwitcher
 
         // bubble change listener
         registerBubbleStatusChangeReceiver()

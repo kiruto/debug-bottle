@@ -6,7 +6,7 @@
 - [x] feature: strict mode
 - [x] feature: leak detect
 - [x] feature: block detect
-- [x] feature: rewrite noop use java
+- [x] feature: rewrite no-op use java
 - [x] feature: crash handler
 - [x] feature: custom icon label
 - [x] feature: introduction activity
@@ -19,5 +19,7 @@
 - [ ] feature: SQLite editor
 - [ ] feature: fragment previewer without activity
 - [ ] feature: calculator
-- [x] feature: monkey test runner
+- [x] feature: stress test runner
 - [ ] annotation: observe a member of an activity
+- [ ] root packages
+- [ ] xPosed packages

@@ -6,7 +6,7 @@ import android.widget.Toast
 import com.exyui.android.debugbottle.components.DTActivityManager
 import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.R
-import com.exyui.android.debugbottle.components.testing.MonkeyTestRunner
+import com.exyui.android.debugbottle.components.testing.StressTestRunner
 
 /**
  * Created by yuriel on 9/19/16.
@@ -43,7 +43,7 @@ internal object FloatingTestRunnerViewMgr: DTDragFloatingViewMgr() {
                 .setTitle(R.string.__dt_testing_ready)
                 .setMessage(R.string.__dt_testing_ready_message)
                 .setPositiveButton(R.string.__start) { dialog, witch ->
-                    MonkeyTestRunner.start()
+                    StressTestRunner.start()
                 }
                 .show()
     }

@@ -135,6 +135,13 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (isSystemAlertPermissionGranted()) {
+            runBubbleService()
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         if (drawerToggle.onOptionsItemSelected(item)) {
@@ -175,7 +182,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         /**
          * Bubble service must run before add bubble view.
          */
-        if (!hasPermission(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+        if (!isSystemAlertPermissionGranted()) {
             requestingPermissionDrawOverOtherApps(null)
         } else {
             runBubbleService()
@@ -279,6 +286,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                     fragment = __TestSettingsFragment()
                 } else {
                     requestingPermissionDrawOverOtherApps(null)
+                    return
                 }
             }
 
