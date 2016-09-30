@@ -124,4 +124,13 @@ internal object DTSettings {
             getSP()?.edit()?.putInt(TESTING_LOG_DEPTH, value)?.apply()
         }
         get() = getSP()?.getInt(TESTING_LOG_DEPTH, 1)?: 1
+
+    /**
+     * Display FPS on screen
+     */
+    var frameEnable: Boolean
+        set(value) {
+            __FrameRecorder.enabled = value
+        }
+        get() = __FrameRecorder.enabled
 }

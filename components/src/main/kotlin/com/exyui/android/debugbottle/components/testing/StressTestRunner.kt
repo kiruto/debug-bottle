@@ -52,7 +52,7 @@ internal object StressTestRunner {
 //            (1..depth).filter { it < 4 }.forEach { v += "-v " }
 //            val command = arrayOf("monkey", v, "$eventsCount", "--ignore-timeouts")
 //            return Runtime.getRuntime().exec(command)
-//            fortest()
+            fortest()
         } catch (ex: IOException) {
             Log.e(TAG, "getLog failed", ex)
         }
@@ -77,7 +77,7 @@ internal object StressTestRunner {
     private fun fortest() {
 //        val binder = ServiceManager?.getService( "window" )
 //        val WindowManager = IWindowManager.Stub.asInterface(binder)
-        getWindowManager()?.injectPointerEvent(MotionEvent.obtain(SystemClock.uptimeMillis(),
+        injectPointerEvent(getWindowManager()!!, MotionEvent.obtain(SystemClock.uptimeMillis(),
                 SystemClock.uptimeMillis(),MotionEvent.ACTION_DOWN, 10f, 10f, 0), true)
     }
 
@@ -95,8 +95,8 @@ internal object StressTestRunner {
     }
 
     @Deprecated("")
-    private fun Any.injectPointerEvent(event: MotionEvent, bool: Boolean) {
-        val method = this@injectPointerEvent.javaClass.getMethod("injectPointerEvent", MotionEvent::class.java, Boolean::class.java)
+    private fun injectPointerEvent(any: Any, event: MotionEvent, bool: Boolean) {
+        val method = any.javaClass.getMethod("injectPointerEvent", MotionEvent::class.java, Boolean::class.java)
         method.invoke(this, event, bool)
     }
 }
