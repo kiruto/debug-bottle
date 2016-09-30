@@ -29,11 +29,16 @@ internal class __TaktFrame {
 
         rootView = inflater.inflate(R.layout.__dt_float_frame, null) as ViewGroup
         bindViews()
+
+        val mgr = app.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        mgr.addView(rootView, wmParams)
     }
 
-    fun destroy() {
+    fun destroy(context: Context) {
         rootView?: return
-
+        val mgr = context.applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        mgr.removeView(rootView)
+        rootView = null
     }
 
     private fun bindViews() {
