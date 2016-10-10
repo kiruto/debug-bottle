@@ -3,6 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/__dt_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="@android:color/white"/>
 
+    <TextView
+        android:id="@+id/__dt_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="@android:color/white"/>
 
 </LinearLayout>
