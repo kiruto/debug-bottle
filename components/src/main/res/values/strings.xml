@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">components</string>
+
+    <string name="__warn">WARN</string>
+    <string name="__busy">BUSY</string>
+    <string name="__idle">IDLE</string>
     <string name="__filter">filter</string>
     <string name="__run">Run</string>
     <string name="__run_activity_with_intent">Run activity with intent</string>

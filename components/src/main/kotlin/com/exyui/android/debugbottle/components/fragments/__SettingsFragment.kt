@@ -21,6 +21,7 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTSettings
 import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
+import com.exyui.android.debugbottle.components.floating.frame.__FloatFrame
 import com.exyui.android.debugbottle.components.isSystemAlertPermissionGranted
 import com.exyui.android.debugbottle.components.requestingPermissionDrawOverOtherApps
 import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
@@ -99,7 +100,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = DTSettings.strictMode
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.strictMode = isChecked
-            restartHint()
+            hintRestart()
         }
         result
     }
@@ -131,7 +132,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = DTSettings.leakCanaryEnable
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.leakCanaryEnable = isChecked
-            restartHint()
+            hintRestart()
         }
         result
     }
@@ -159,7 +160,7 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = DTSettings.bottleEnable
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.bottleEnable = isChecked
-            restartHint()
+            hintRestart()
         }
         result
     }
@@ -169,6 +170,11 @@ class __SettingsFragment: __ContentFragment() {
         result.isChecked = DTSettings.frameEnable
         result.setOnCheckedChangeListener { view, isChecked ->
             DTSettings.frameEnable = isChecked
+            if (isChecked) {
+                __FloatFrame.start(activity)
+            } else {
+                __FloatFrame.stop(activity)
+            }
         }
         result
     }
@@ -203,7 +209,7 @@ class __SettingsFragment: __ContentFragment() {
         unregisterBubbleStatusChangeReceiver()
     }
 
-    private fun restartHint() {
+    private fun hintRestart() {
         Toast.makeText(context, R.string.__dt_need_restart_after_apply, Toast.LENGTH_LONG).show()
     }
 
