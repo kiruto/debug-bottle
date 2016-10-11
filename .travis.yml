@@ -1,7 +1,14 @@
+# http://docs.travis-ci.com/user/languages/android/
 language: android
 jdk: oraclejdk8
 os:
   - osx
+
+before_install:
+  - mkdir "$ANDROID_SDK/licenses" || true
+  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_SDK/licenses/android-sdk-license"
+  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_SDK/licenses/android-sdk-preview-license"
+
 android:
     components:
       - build-tools-23.0.2
@@ -12,7 +19,3 @@ android:
     script:
       - echo "Travis branch is $TRAVIS_BRANCH"
       - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
-    before_install:
-      - mkdir "$ANDROID_SDK/licenses" || true
-      - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_SDK/licenses/android-sdk-license"
-      - echo -e echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_SDK/licenses/android-sdk-preview-license"
