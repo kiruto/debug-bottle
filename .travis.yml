@@ -2,3 +2,4 @@ language: android
 android:
   components:
     - build-tools-23.0.2
+    - android-25
