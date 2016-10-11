@@ -1,4 +1,10 @@
-[🇨🇳 中文](README-ZH.md) / [🇯🇵日本語](README-JP.md) / [🇬🇧 English](README.md)
+[🇨🇳 中文](README-ZH.md) / [🇯🇵日本語](README-JP.md) / [🇬🇧 English](README.md) |
+<a href="https://travis-ci.org/kiruto/debug-bottle" title="Latest push build on default branch: created">
+  <img src="https://travis-ci.org/kiruto/debug-bottle.svg?branch=1.0.1" alt="build:created">
+</a>
+<a href="https://mvnrepository.com/artifact/com.exyui.android/debug-bottle-runtime" name="status-images" title="Latest version on maven-central">
+  <img src="https://img.shields.io/maven-central/v/com.exyui.android/debug-bottle-runtime.svg?maxAge=2592000" alt="version:maven-central">
+</a>
 # 🍼デバッグボットル
 アンドロイド Java / Kotlin 開発者ツール
 

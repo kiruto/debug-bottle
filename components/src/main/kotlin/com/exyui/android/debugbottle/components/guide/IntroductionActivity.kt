@@ -118,9 +118,11 @@ internal class IntroductionActivity : AppCompatActivity() {
                 tag ?: return
                 backgroundView.setBackgroundColor(tag.color)
 
-                iconBottle.imageAlpha = tag.iconBottleAlpha.toAlphaInt()
-                iconArrow.imageAlpha = tag.iconArrowAlpha.toAlphaInt()
-                iconApp.imageAlpha = tag.iconAppAlpha.toAlphaInt()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    iconBottle.imageAlpha = tag.iconBottleAlpha.toAlphaInt()
+                    iconArrow.imageAlpha = tag.iconArrowAlpha.toAlphaInt()
+                    iconApp.imageAlpha = tag.iconAppAlpha.toAlphaInt()
+                }
                 textView.alpha = tag.text
                 if (tag.done) {
                     nextView.setText(R.string.__dt_restart)

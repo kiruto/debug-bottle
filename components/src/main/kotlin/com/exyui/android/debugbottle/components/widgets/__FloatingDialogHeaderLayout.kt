@@ -1,6 +1,9 @@
 package com.exyui.android.debugbottle.components.widgets
 
+import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -33,6 +36,9 @@ internal class __FloatingDialogHeaderLayout : LinearLayout {
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr) {
         init(context, attr, defStyleAttr)
     }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @SuppressLint("NewApi")
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int, defStyleRes: Int): super(context, attr, defStyleAttr, defStyleRes) {
         init(context, attr, defStyleAttr, defStyleRes)
     }
