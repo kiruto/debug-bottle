@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PixelFormat
 import android.os.Handler
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.R
