@@ -151,5 +151,6 @@
     <string name="__dt_test_controller">Test Controller</string>
     <string name="__dt_frame">Frame per second</string>
     <string name="__dt_frame_switcher">Display FPS on screen</string>
+    <string name="__dt_root_required">** This feature requires ROOT permission.</string>
 
 </resources>
