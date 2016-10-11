@@ -18,6 +18,15 @@
 
         <View style="@style/__DTList.Divider" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:padding="8dp"
+            android:text="@string/__dt_root_required"/>
+
     </LinearLayout>
 
 </ScrollView>
