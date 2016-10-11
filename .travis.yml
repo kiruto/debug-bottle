@@ -4,3 +4,6 @@ android:
   components:
     - build-tools-23.0.2
     - android-25
+  licenses:
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
