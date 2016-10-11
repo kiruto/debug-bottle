@@ -1,4 +1,12 @@
+<a href="https://travis-ci.org/kiruto/debug-bottle" title="Latest push build on default branch: created">
+  <img src="https://travis-ci.org/kiruto/debug-bottle.svg?branch=1.0.1" alt="build:created">
+</a>
+<a href="https://mvnrepository.com/artifact/com.exyui.android/debug-bottle-runtime" name="status-images" title="Latest version on maven-central">
+  <img src="https://img.shields.io/maven-central/v/com.exyui.android/debug-bottle-runtime.svg?maxAge=2592000" alt="version:maven-central">
+</a>
+
 [🇨🇳 中文](README-ZH.md) / [🇯🇵日本語](README-JP.md) / [🇬🇧 English](README.md)
+
 # 🍼デバッグボットル
 アンドロイド Java / Kotlin 開発者ツール
 
@@ -213,3 +221,4 @@ Debug Bottle required features are based on or derives from projects below:
   - [Leak Canary](https://raw.githubusercontent.com/square/leakcanary/master/LICENSE.txt)
   - [Scalpel](https://raw.githubusercontent.com/JakeWharton/scalpel/master/LICENSE.txt)
   - [Bubbles for Android](https://raw.githubusercontent.com/txusballesteros/bubbles-for-android/master/LICENSE)
+  - [Takt](https://raw.githubusercontent.com/wasabeef/Takt/master/LICENSE)
