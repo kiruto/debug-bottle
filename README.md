@@ -1,5 +1,8 @@
 [🇨🇳 中文](README-ZH.md) / [🇯🇵日本語](README-JP.md) / [🇬🇧 English](README.md)
 
+<a href="https://travis-ci.org/kiruto/debug-bottle" id="status-image-popup" name="status-images" class="open-popup" title="Latest push build on default branch: created" data-ember-action="1025">
+  <img src="https://travis-ci.org/kiruto/debug-bottle.svg?branch=1.0.1" alt="build:created">
+</a>
 # 🍼Debug Bottle
 
 An Android debug / develop tools written using Kotlin language. All the features in Debug bottle are only available on debug build version with your app, it doesn't has an impact on release version.
