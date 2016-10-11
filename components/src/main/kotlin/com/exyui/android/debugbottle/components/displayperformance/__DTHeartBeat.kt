@@ -11,17 +11,13 @@ import java.util.concurrent.TimeUnit
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 internal class __DTHeartBeat : Choreographer.FrameCallback {
 
-    private val choreographer: Choreographer
+    private val choreographer: Choreographer = Choreographer.getInstance()
 
     private var frameStartTime: Long = 0
     private var framesRendered = 0
 
     private val listeners = mutableListOf<(fps: Double) -> Unit>()
     private var interval = 500
-
-    init {
-        choreographer = Choreographer.getInstance()
-    }
 
     fun start() {
         choreographer.postFrameCallback(this)
@@ -55,8 +51,8 @@ internal class __DTHeartBeat : Choreographer.FrameCallback {
                 frameStartTime = currentTimeMillis
                 framesRendered = 0
 
-                for (audience in listeners) {
-                    audience(fps)
+                for (l in listeners) {
+                    l(fps)
                 }
             }
         } else {
