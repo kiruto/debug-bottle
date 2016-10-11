@@ -220,3 +220,4 @@ Debug Bottle 功能实现是基于以下项目的派生:
   - [Leak Canary](https://raw.githubusercontent.com/square/leakcanary/master/LICENSE.txt)
   - [Scalpel](https://raw.githubusercontent.com/JakeWharton/scalpel/master/LICENSE.txt)
   - [Bubbles for Android](https://raw.githubusercontent.com/txusballesteros/bubbles-for-android/master/LICENSE)
+  - [Takt](https://raw.githubusercontent.com/wasabeef/Takt/master/LICENSE)

@@ -217,3 +217,4 @@ Debug Bottle required features are based on or derives from projects below:
   - [Leak Canary](https://raw.githubusercontent.com/square/leakcanary/master/LICENSE.txt)
   - [Scalpel](https://raw.githubusercontent.com/JakeWharton/scalpel/master/LICENSE.txt)
   - [Bubbles for Android](https://raw.githubusercontent.com/txusballesteros/bubbles-for-android/master/LICENSE)
+  - [Takt](https://raw.githubusercontent.com/wasabeef/Takt/master/LICENSE)
