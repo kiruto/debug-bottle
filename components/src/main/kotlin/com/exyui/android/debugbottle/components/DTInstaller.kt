@@ -258,7 +258,9 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         //view.setTextViewText(R.id.notify_title, "start")
 
 
-        val pi = PendingIntent.getActivity(app, 0, Intent(app, DTDrawerActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+        //val pi = PendingIntent.getActivity(app, 0, Intent(app, __OnNotificationReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+        val intent = Intent(app, __OnNotificationReceiver::class.java)
+        val pi = PendingIntent.getBroadcast(app, 1, intent, 0)
         val notification: Notification
         val notify = Notification.Builder(app)
         if (null == notificationIconRes) {

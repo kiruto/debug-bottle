@@ -3,6 +3,7 @@ package com.exyui.android.debugbottle.components.widgets
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.support.v7.widget.SwitchCompat
 import android.util.AttributeSet
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.R
+import com.exyui.android.debugbottle.components.sp
 
 /**
  * Created by yuriel on 9/21/16.
@@ -35,6 +37,16 @@ internal class DTListItemSwitch : LinearLayout {
         get() = switchView.isChecked
         set(value) {
             switchView.isChecked = value
+        }
+
+    var isSmart: Boolean = false
+        set(value) {
+            if (value) {
+                contentView.visibility = View.GONE
+            } else {
+                contentView.visibility = View.VISIBLE
+            }
+            field = value
         }
 
     /**
@@ -91,6 +103,7 @@ internal class DTListItemSwitch : LinearLayout {
         try {
             title = ta.getString(R.styleable.__DTListItem___dt_title)?: ""
             content = ta.getString(R.styleable.__DTListItem___dt_content)?: ""
+            isSmart = ta.getBoolean(R.styleable.__DTListItem___dt_smart, false)
         } finally {
             ta.recycle()
         }

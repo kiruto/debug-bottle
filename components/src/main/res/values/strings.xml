@@ -55,6 +55,7 @@
     <string name="__dt_bottle_enable">Debug Bottle Report</string>
     <string name="__dt_permissions">Debug Bottle Permissions</string>
     <string name="__dt_permission_request">request</string>
+    <string name="__dt_toggles">Quick Toggles</string>
 
     <string name="__dt_granted">Granted</string>
     <string name="__dt_denied">Denied</string>
@@ -152,5 +153,6 @@
     <string name="__dt_frame">Frame per second</string>
     <string name="__dt_frame_switcher">Display FPS on screen</string>
     <string name="__dt_root_required">** This feature requires ROOT permission.</string>
+    <string name="__dt_open">open</string>
 
 </resources>

@@ -14,6 +14,15 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="__DTDialog.Floating">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
     <style name="__DTList">
 
     </style>
