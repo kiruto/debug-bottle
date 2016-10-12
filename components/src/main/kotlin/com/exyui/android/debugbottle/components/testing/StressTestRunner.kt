@@ -14,7 +14,7 @@ import java.lang.reflect.Method
  */
 internal object StressTestRunner {
     private val TAG = "StressTestRunner"
-    private val processId = android.os.Process.myPid()
+    //private val processId = android.os.Process.myPid()
 
     /**
      * Seed value for pseudo-random number generator.
@@ -52,6 +52,7 @@ internal object StressTestRunner {
 //            (1..depth).filter { it < 4 }.forEach { v += "-v " }
 //            val command = arrayOf("monkey", v, "$eventsCount", "--ignore-timeouts")
 //            return Runtime.getRuntime().exec(command)
+            @Suppress("DEPRECATION")
             fortest()
         } catch (ex: IOException) {
             Log.e(TAG, "getLog failed", ex)
@@ -72,6 +73,7 @@ internal object StressTestRunner {
         eventsCount = DTSettings.testingEventCount
     }
 
+    @Suppress("DEPRECATION")
     @Deprecated("")
     @Throws(Exception::class)
     private fun fortest() {
