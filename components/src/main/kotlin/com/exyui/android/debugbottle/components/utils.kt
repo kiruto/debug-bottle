@@ -20,6 +20,7 @@ import com.exyui.android.debugbottle.components.bubbles.services.__BubblesManage
  */
 internal fun Int.dp() = this * Resources.getSystem().displayMetrics.density
 internal fun Int.px() = this / Resources.getSystem().displayMetrics.density
+internal fun Int.sp() = this / Resources.getSystem().displayMetrics.scaledDensity
 internal fun Float.dp() = this * Resources.getSystem().displayMetrics.density
 internal fun Float.px() = this / Resources.getSystem().displayMetrics.density
 

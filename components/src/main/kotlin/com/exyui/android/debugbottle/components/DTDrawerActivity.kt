@@ -28,6 +28,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     companion object {
         val KEY_SELECTED = "KEY_SELECTED"
+        val KEY_SHOW_DRAWER = "KEY_SHOW_DRAWER"
 
         /**
          * Intent "selected item" must choose an string resource from items in this array.
@@ -126,10 +127,13 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         drawerListView; infoLayout; introLayout
 
         val selectedItem = intent?.extras?.getInt(KEY_SELECTED)
+        val showDrawer = intent?.extras?.getBoolean(KEY_SHOW_DRAWER)
 
-        if (null == selectedItem) {
+        if (null == selectedItem || 0 == selectedItem) {
             selectItem(0)
-            drawerLayout.openDrawer(Gravity.LEFT)
+            if (showDrawer?: false) {
+                drawerLayout.openDrawer(Gravity.LEFT)
+            }
         } else {
             selectItemByRes(selectedItem)
         }
