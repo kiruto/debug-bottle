@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/__dt_block_canary_switcher"
                 dt:__dt_smart="true"
-                dt:__dt_title="@string/__dt_frame"/>
+                dt:__dt_title="@string/__dt_block_canary"/>
 
             <View style="@style/__DTList.Divider" />
 
