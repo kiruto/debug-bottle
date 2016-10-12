@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.exyui.android.debugbottle.components
 
 import android.app.ActivityManager
@@ -152,7 +154,7 @@ internal class SettingsActivity : DTBaseActivity() {
         }
 
         for (i in 0..serviceList.size - 1) {
-            if (serviceList[i].service.className.equals(Floating3DService::class.java.name) == true) {
+            if (serviceList[i].service.className == Floating3DService::class.java.name == true) {
                 return true
             }
         }

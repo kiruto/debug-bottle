@@ -113,6 +113,7 @@ private fun hintRestart(context: Context) {
     Toast.makeText(context, R.string.__dt_need_restart_after_apply, Toast.LENGTH_LONG).show()
 }
 
+@Suppress("UNUSED_PARAMETER")
 private fun blockCanarySwitcherListener(v: View, isChecked: Boolean) {
     DTSettings.blockCanaryEnable = isChecked
     try {

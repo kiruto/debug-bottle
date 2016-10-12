@@ -44,7 +44,7 @@ class __TogglesDialog: __FloatAnimatedDialog() {
         result.findViewById(R.id.__dt_run_test).setOnClickListener { startDTDrawerActivity() }
         rootView = result
         bindViews()
-        isCancelable = false
+        isCancelable = true
 
         registerBubbleStatusChangeReceiver()
         return result
@@ -91,6 +91,7 @@ class __TogglesDialog: __FloatAnimatedDialog() {
         activity.unregisterReceiver(bubbleStatusChangeReceiver)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun onReceiveBubbleIntent(context: Context, intent: Intent?) {
         when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
             __3DViewBubble.TAG -> {
