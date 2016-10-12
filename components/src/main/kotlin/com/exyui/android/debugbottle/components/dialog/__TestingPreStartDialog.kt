@@ -17,7 +17,11 @@ import com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLa
  */
 class __TestingPreStartDialog : __FloatAnimatedDialog() {
 
-    val TAG = "__TestingPreStartDialog"
+    companion object {
+        val TAG = "__TestingPreStartDialog"
+    }
+
+    override val TAG = __TestingPreStartDialog.TAG
     override val title = R.string.__dt_black_box_testing
 
     override fun createView(): View {
@@ -73,9 +77,5 @@ class __TestingPreStartDialog : __FloatAnimatedDialog() {
         val intent = Intent(activity, DTDrawerActivity::class.java)
         intent.putExtra(DTDrawerActivity.KEY_SELECTED, R.string.__dt_black_box_testing)
         activity.startActivity(intent)
-    }
-
-    fun show(fm: FragmentManager) {
-        show(fm, TAG)
     }
 }

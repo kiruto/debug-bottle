@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dt="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/white"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:padding="16dp">
+    style="@style/__DTDialog.Floating">
 
     <com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLayout
         android:layout_width="match_parent"

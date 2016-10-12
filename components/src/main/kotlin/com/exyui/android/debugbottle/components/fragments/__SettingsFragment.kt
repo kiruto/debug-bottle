@@ -1,14 +1,9 @@
 package com.exyui.android.debugbottle.components.fragments
 
-import android.app.Activity
-import android.app.ActivityManager
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.support.annotation.IdRes
-import android.support.v7.widget.SwitchCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -21,10 +16,7 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTSettings
 import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
-import com.exyui.android.debugbottle.components.isSystemAlertPermissionGranted
-import com.exyui.android.debugbottle.components.requestingPermissionDrawOverOtherApps
-import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
-import com.exyui.android.debugbottle.ui.BlockCanary
+import com.exyui.android.debugbottle.components.fragments.components.*
 
 /**
  * Created by yuriel on 9/3/16.
@@ -85,93 +77,13 @@ class __SettingsFragment: __ContentFragment() {
         result
     }
 
-    private val networkSwitcher by lazy {
-        val result = findViewById(R.id.__dt_network_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.networkSniff
-        result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.networkSniff = isChecked
-        }
-        result
-    }
-
-    private val strictSwitcher by lazy {
-        val result = findViewById(R.id.__dt_strict_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.strictMode
-        result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.strictMode = isChecked
-            restartHint()
-        }
-        result
-    }
-
-    private val view3DSwitcher by lazy {
-        val result = findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch
-        result.isChecked = __3DViewBubble.isRunning()
-        result.setOnCheckedChangeListener { view, isChecked ->
-            if (!activity.isSystemAlertPermissionGranted()){
-                result.isChecked = false
-                activity.requestingPermissionDrawOverOtherApps(null)
-            } else {
-                if (isChecked) {
-                    val started = __3DViewBubble.create(activity.applicationContext)
-                    if (!started) {
-                        result.isChecked = false
-                        activity.requestingPermissionDrawOverOtherApps(null)
-                    }
-                } else {
-                    __3DViewBubble.destroy(activity.applicationContext)
-                }
-            }
-        }
-        result
-    }
-
-    private val leakCanarySwitcher by lazy {
-        val result = findViewById(R.id.__dt_leak_canary_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.leakCanaryEnable
-        result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.leakCanaryEnable = isChecked
-            restartHint()
-        }
-        result
-    }
-
-    private val blockCanarySwitcher by lazy {
-        val result = findViewById(R.id.__dt_block_canary_switcher) as SwitchCompat
-        result.isChecked = DTSettings.blockCanaryEnable
-        result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.blockCanaryEnable = isChecked
-            try {
-                if (isChecked) {
-                    BlockCanary.get().start()
-                } else {
-                    BlockCanary.get().stop()
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-        result
-    }
-
-    private val bottleSwitch by lazy {
-        val result = findViewById(R.id.__dt_enable_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.bottleEnable
-        result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.bottleEnable = isChecked
-            restartHint()
-        }
-        result
-    }
-
-    private val frameSwitcher by lazy {
-        val result = findViewById(R.id.__dt_frame_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.frameEnable
-        result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.frameEnable = isChecked
-        }
-        result
-    }
+    private val networkSwitcher by lazy { rootView?.networkSwitcher(R.id.__dt_network_switcher) }
+    private val strictSwitcher by lazy { rootView?.strictSwitcher(R.id.__dt_strict_switcher) }
+    private val view3DSwitcher by lazy { rootView?.view3DSwitcher(R.id.__dt_3d_switcher) }
+    private val leakCanarySwitcher by lazy { rootView?.leakCanarySwitcher(R.id.__dt_leak_canary_switcher) }
+    private val blockCanarySwitcher by lazy { rootView?.blockCanarySwitcherCompat(R.id.__dt_block_canary_switcher) }
+    private val bottleSwitch by lazy { rootView?.bottleSwitch(R.id.__dt_enable_switcher) }
+    private val frameSwitcher by lazy { rootView?.frameSwitcher(R.id.__dt_frame_switcher) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.__activity_settings, container, false)
@@ -188,7 +100,7 @@ class __SettingsFragment: __ContentFragment() {
         when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
             __3DViewBubble.TAG -> {
                 val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
-                view3DSwitcher.isChecked = bubble3DStatus
+                view3DSwitcher?.isChecked = bubble3DStatus
             }
         }
     }
@@ -203,7 +115,7 @@ class __SettingsFragment: __ContentFragment() {
         unregisterBubbleStatusChangeReceiver()
     }
 
-    private fun restartHint() {
+    private fun hintRestart() {
         Toast.makeText(context, R.string.__dt_need_restart_after_apply, Toast.LENGTH_LONG).show()
     }
 

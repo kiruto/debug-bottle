@@ -1,13 +1,17 @@
 package com.exyui.android.debugbottle.components.widgets
 
+import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.content.Context
-import android.content.res.TypedArray
+import android.graphics.Color
+import android.os.Build
 import android.support.v7.widget.SwitchCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.R
+import com.exyui.android.debugbottle.components.sp
 
 /**
  * Created by yuriel on 9/21/16.
@@ -35,6 +39,16 @@ internal class DTListItemSwitch : LinearLayout {
             switchView.isChecked = value
         }
 
+    var isSmart: Boolean = false
+        set(value) {
+            if (value) {
+                contentView.visibility = View.GONE
+            } else {
+                contentView.visibility = View.VISIBLE
+            }
+            field = value
+        }
+
     /**
      * Switcher enabled
      */
@@ -57,6 +71,9 @@ internal class DTListItemSwitch : LinearLayout {
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr) {
         init(context, attr, defStyleAttr)
     }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @SuppressLint("NewApi")
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int, defStyleRes: Int): super(context, attr, defStyleAttr, defStyleRes) {
         init(context, attr, defStyleAttr, defStyleRes)
     }
@@ -86,6 +103,7 @@ internal class DTListItemSwitch : LinearLayout {
         try {
             title = ta.getString(R.styleable.__DTListItem___dt_title)?: ""
             content = ta.getString(R.styleable.__DTListItem___dt_content)?: ""
+            isSmart = ta.getBoolean(R.styleable.__DTListItem___dt_smart, false)
         } finally {
             ta.recycle()
         }

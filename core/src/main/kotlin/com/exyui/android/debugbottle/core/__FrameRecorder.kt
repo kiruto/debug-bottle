@@ -6,7 +6,7 @@ package com.exyui.android.debugbottle.core
 object __FrameRecorder {
     var enabled = false
 
-    var fps: Int = 0
+    var average: Double = .0
         private set
 
     private val POOL_SIZE = 30
@@ -14,6 +14,7 @@ object __FrameRecorder {
     private var counter = 0
     private var temp = 0L
     private var sum = 0L
+    var listener: ((Double) -> Unit)? = null
 
     fun record(timestamp: Long) {
 
@@ -22,7 +23,7 @@ object __FrameRecorder {
         if (temp == 0L) {
             temp = timestamp
         } else {
-            temp -= timestamp
+            temp = timestamp - temp
             put(temp)
             temp = 0
         }
@@ -40,6 +41,7 @@ object __FrameRecorder {
     }
 
     private fun compute() {
-        fps = (sum / POOL_SIZE).toInt()
+        average = sum.toDouble() / POOL_SIZE.toDouble()
+        listener?.invoke(average)
     }
 }

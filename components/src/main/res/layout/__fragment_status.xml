@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    xmlns:dt="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
@@ -258,44 +259,28 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:id="@+id/__dt_3d_switcher"
+            dt:__dt_title="@string/__dt_3d_window"
+            dt:__dt_content="@string/__dt_3d_feature"/>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical">
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/__dt_frame_switcher"
+            dt:__dt_title="@string/__dt_frame"
+            dt:__dt_content="@string/__dt_frame_switcher"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:text="@string/__dt_3d_window" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:id="@+id/__dt_3d_crash_helper"
-                    android:text="@string/__dt_if_crashes_see_this"/>
-
-            </LinearLayout>
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/__dt_3d_switcher"
-                android:textOn="On"
-                android:textOff="Off"
-                android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="14sp"
+            android:id="@+id/__dt_3d_crash_helper"
+            android:text="@string/__dt_if_crashes_see_this"/>
 
         <LinearLayout
             android:layout_width="match_parent"

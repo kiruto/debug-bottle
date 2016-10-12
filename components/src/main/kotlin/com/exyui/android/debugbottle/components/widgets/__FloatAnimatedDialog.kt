@@ -2,6 +2,7 @@ package com.exyui.android.debugbottle.components.widgets
 
 import android.app.Dialog
 import android.app.DialogFragment
+import android.app.FragmentManager
 import android.os.Bundle
 import android.view.*
 import com.exyui.android.debugbottle.components.R
@@ -10,7 +11,8 @@ import com.exyui.android.debugbottle.components.R
  * Created by yuriel on 9/26/16.
  */
 abstract class __FloatAnimatedDialog : DialogFragment() {
-    abstract val title: Int
+    protected abstract val TAG: String
+    protected abstract val title: Int
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val result = Dialog(activity)
@@ -81,6 +83,10 @@ abstract class __FloatAnimatedDialog : DialogFragment() {
         scaleDown.start()
         */
         super.dismiss()
+    }
+
+    fun show(fm: FragmentManager) {
+        show(fm, TAG)
     }
 
     abstract fun createView(): View

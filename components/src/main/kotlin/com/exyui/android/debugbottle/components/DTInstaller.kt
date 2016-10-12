@@ -4,6 +4,12 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Build
 import com.squareup.leakcanary.LeakCanary
@@ -31,6 +37,7 @@ import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
 
 /**
  * Created by yuriel on 8/10/16.
+ * God class of debug bottle, also entry of debug bottle.
  */
 @Suppress("unused")
 object DTInstaller : Application.ActivityLifecycleCallbacks {
@@ -46,16 +53,19 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         set(value) {
             if (!installed) field = value
         }
-    private var app: Application? = null
-        set(value) {
-            if (!installed) field = value
-        }
+
     private var injector: Injector? = null
         set(value) {
             if (!installed) field = value
         }
+
     private var httpClient: OkHttpClient? = null
         set(value) {
+            if (!installed) field = value
+        }
+
+    internal var app: Application? = null
+        private set(value) {
             if (!installed) field = value
         }
 
@@ -246,7 +256,11 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     private fun showNotification(app: Application) {
         //val view = RemoteViews(app.packageName, R.layout.__notification_main)
         //view.setTextViewText(R.id.notify_title, "start")
-        val pi = PendingIntent.getActivity(app, 0, Intent(app, DTDrawerActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+
+
+        //val pi = PendingIntent.getActivity(app, 0, Intent(app, __OnNotificationReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+        val intent = Intent(app, __OnNotificationReceiver::class.java)
+        val pi = PendingIntent.getBroadcast(app, 1, intent, 0)
         val notification: Notification
         val notify = Notification.Builder(app)
         if (null == notificationIconRes) {
@@ -254,13 +268,14 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         } else {
             notify.setSmallIcon(notificationIconRes!!)
         }
+                .setLargeIcon(getAppIcon()?.toBitmap())
         if (null == notificationTitle) {
             notify.setContentTitle("Debug Bottle")
         } else {
             notify.setContentTitle(notificationTitle!!)
         }
         if (null == notificationMessage) {
-            notify.setContentText("Debug Bottle is running correctly")
+            notify.setContentText("Running with ${app.packageName.split(".").last()}.")
         } else {
             notify.setContentText(notificationMessage)
         }
@@ -301,4 +316,28 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     internal fun getApplication() = app
 
     internal fun getString(@IdRes id: Int) = app?.getString(id)
+
+    internal fun getAppIcon() = app?.applicationInfo?.loadIcon(app?.packageManager)?: null
+
+    internal fun Drawable.toBitmap(): Bitmap {
+        val bitmap: Bitmap?
+
+        if (this is BitmapDrawable) {
+            val bitmapDrawable = this
+            if (bitmapDrawable.bitmap != null) {
+                return bitmapDrawable.bitmap
+            }
+        }
+
+        if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888) // Single color bitmap will be created of 1x1 pixel
+        } else {
+            bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+        }
+
+        val canvas = Canvas(bitmap)
+        setBounds(0, 0, canvas.width, canvas.height)
+        draw(canvas)
+        return bitmap
+    }
 }
