@@ -51,6 +51,10 @@
             android:enabled="true"
             android:exported="false"/>
         <service android:name="com.exyui.android.debugbottle.components.bubbles.services.__BubblesManagerService" />
+        
+        <receiver android:name=".__OnNotificationReceiver">
+
+        </receiver>
     </application>
 
 </manifest>

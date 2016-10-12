@@ -55,11 +55,12 @@
     <string name="__dt_bottle_enable">Debug Bottle Report</string>
     <string name="__dt_permissions">Debug Bottle Permissions</string>
     <string name="__dt_permission_request">request</string>
+    <string name="__dt_toggles">Quick Toggles</string>
 
     <string name="__dt_granted">Granted</string>
     <string name="__dt_denied">Denied</string>
     <string name="__dt_on_off">on / off</string>
-    <string name="__dt_if_crashes_see_this">If your app starts crashing when enable this, click me to help you solve this problem.</string>
+    <string name="__dt_if_crashes_see_this">** If your app starts crashing when enable this, click me to help you solve this problem.</string>
     <string name="__dt_application_process">App Process</string>
     <string name="__dt_kill_process">Kill proc</string>
     <string name="__dt_bottle">Debug Bottle</string>
@@ -152,5 +153,6 @@
     <string name="__dt_frame">Frame per second</string>
     <string name="__dt_frame_switcher">Display FPS on screen</string>
     <string name="__dt_root_required">** This feature requires ROOT permission.</string>
+    <string name="__dt_open">open</string>
 
 </resources>

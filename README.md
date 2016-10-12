@@ -196,7 +196,6 @@ class MyApplication: Application() {
 
 * [Leak Canary](https://github.com/square/leakcanary)
 * [Android Performance Monitor](https://github.com/markzhai/AndroidPerformanceMonitor)
-* [Scalpel](https://github.com/JakeWharton/scalpel)
 
 ## License
 
