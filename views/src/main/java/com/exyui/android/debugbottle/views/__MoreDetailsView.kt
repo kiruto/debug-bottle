@@ -15,7 +15,6 @@ class __MoreDetailsView(context: Context, attrs: AttributeSet) : View(context, a
     private var mFolding = true
 
     init {
-
         mIconPaint.strokeWidth = LeakCanaryUi.dpToPixel(2f, resources)
         mIconPaint.color = LeakCanaryUi.ROOT_COLOR
     }

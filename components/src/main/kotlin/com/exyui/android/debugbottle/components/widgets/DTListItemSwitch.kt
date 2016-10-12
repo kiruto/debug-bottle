@@ -3,7 +3,6 @@ package com.exyui.android.debugbottle.components.widgets
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
-import android.content.res.TypedArray
 import android.os.Build
 import android.support.v7.widget.SwitchCompat
 import android.util.AttributeSet

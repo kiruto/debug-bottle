@@ -21,6 +21,8 @@ import android.widget.TextView
 import com.exyui.android.debugbottle.components.*
 import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
+import com.exyui.android.debugbottle.components.floating.frame.__FloatFrame
+import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
 
 /**
  * Created by yuriel on 9/3/16.
@@ -69,7 +71,7 @@ class __StatusFragment: __ContentFragment() {
     }
 
     private val view3DSwitcher by lazy {
-        val result = findViewById(R.id.__dt_3d_switcher) as SwitchCompat
+        val result = findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch
         result.isChecked = __3DViewBubble.isRunning()
         result.setOnCheckedChangeListener { view, isChecked ->
             if (!(context?.isSystemAlertPermissionGranted()?: false)) {
@@ -81,6 +83,20 @@ class __StatusFragment: __ContentFragment() {
                 } else {
                     __3DViewBubble.destroy(activity)
                 }
+            }
+        }
+        result
+    }
+
+    private val frameSwitcher by lazy {
+        val result = findViewById(R.id.__dt_frame_switcher) as DTListItemSwitch
+        result.isChecked = DTSettings.frameEnable
+        result.setOnCheckedChangeListener { view, isChecked ->
+            DTSettings.frameEnable = isChecked
+            if (isChecked) {
+                __FloatFrame.start(activity)
+            } else {
+                __FloatFrame.stop(activity)
             }
         }
         result
@@ -137,7 +153,7 @@ class __StatusFragment: __ContentFragment() {
         this.rootView = rootView
         updatePermissionStatus()
         checkupStatus()
-        permissionRequestBtn; view3DHelperText; view3DSwitcher
+        permissionRequestBtn; view3DHelperText; view3DSwitcher; frameSwitcher
         versionText; procText; procBtn; sourceBtn; refreshView
         setHasOptionsMenu(true)
 

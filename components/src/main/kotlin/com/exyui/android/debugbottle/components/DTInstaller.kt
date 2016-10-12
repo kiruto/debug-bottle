@@ -37,6 +37,7 @@ import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
 
 /**
  * Created by yuriel on 8/10/16.
+ * God class of debug bottle, also entry of debug bottle.
  */
 @Suppress("unused")
 object DTInstaller : Application.ActivityLifecycleCallbacks {
@@ -52,16 +53,19 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         set(value) {
             if (!installed) field = value
         }
-    private var app: Application? = null
-        set(value) {
-            if (!installed) field = value
-        }
+
     private var injector: Injector? = null
         set(value) {
             if (!installed) field = value
         }
+
     private var httpClient: OkHttpClient? = null
         set(value) {
+            if (!installed) field = value
+        }
+
+    internal var app: Application? = null
+        private set(value) {
             if (!installed) field = value
         }
 
