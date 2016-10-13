@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/__dt_header_action"
         android:layout_gravity="center_vertical"
+        android:animateLayoutChanges="true"
         android:src="@drawable/__ic_settings_black_24dp"/>
 
     <TextView
