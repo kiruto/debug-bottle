@@ -12,14 +12,15 @@
 - [x] feature: introduction activity
 
 # 1.0.1
+- [x] UI: quick toggles
 - [ ] feature: services manager
-- [ ] feature: display FPS
+- [x] feature: display FPS
 - [ ] feature: display intent arguments
 - [ ] feature: content provider manager
 - [ ] feature: SQLite editor
 - [ ] feature: fragment previewer without activity
 - [ ] feature: calculator
-- [x] feature: stress test runner
+- [ ] feature: stress test runner
 - [ ] annotation: observe a member of an activity
-- [ ] root packages
-- [ ] xPosed packages
+- [ ] package: root packages
+- [ ] package: xPosed packages

@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
+import android.support.annotation.DrawableRes
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.R
@@ -24,7 +26,7 @@ internal class __FloatingDialogHeaderLayout : LinearLayout {
         }
 
     lateinit var titleView: TextView
-    lateinit var actionView: View
+    lateinit var actionView: ImageView
     lateinit var closeView: View
 
     constructor(context: Context): super(context) {
@@ -46,7 +48,7 @@ internal class __FloatingDialogHeaderLayout : LinearLayout {
     private fun bindViews() {
         inflate(context, R.layout.__custom_floating_header, this)
         titleView = findViewById(R.id.__dt_header_title) as TextView
-        actionView = findViewById(R.id.__dt_header_action)
+        actionView = findViewById(R.id.__dt_header_action) as ImageView
         closeView = findViewById(R.id.__dt_header_close)
     }
 
@@ -66,6 +68,10 @@ internal class __FloatingDialogHeaderLayout : LinearLayout {
 
     fun setAction(listener: (View) -> Unit) {
         actionView.setOnClickListener(listener)
+    }
+
+    fun setActionIcon(@DrawableRes res: Int) {
+        actionView.setImageResource(res)
     }
 
     fun setClose(listener: (View) -> Unit) {

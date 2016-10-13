@@ -1,30 +1,30 @@
-package com.exyui.android.debugbottle.components.dialog
+package com.exyui.android.debugbottle.components.dialog.quickfragments
 
+import android.app.Fragment
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Bundle
+import android.support.annotation.IdRes
+import android.view.LayoutInflater
 import android.view.View
-import com.exyui.android.debugbottle.components.DTActivityManager
-import com.exyui.android.debugbottle.components.DTDrawerActivity
-import com.exyui.android.debugbottle.components.DTInstaller
+import android.view.ViewGroup
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
 import com.exyui.android.debugbottle.components.fragments.components.*
-import com.exyui.android.debugbottle.components.widgets.__FloatAnimatedDialog
-import com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLayout
 
 /**
- * Created by yuriel on 10/12/16.
+ * Created by yuriel on 10/13/16.
  */
-class __TogglesDialog: __FloatAnimatedDialog() {
+class __QuickDialogTogglesFragment: __BaseQuickDialogFragment() {
 
     companion object {
-        val TAG = "__TogglesDialog"
+        val TAG = "__QuickDialogTogglesFragment"
     }
-    override val TAG = __TogglesDialog.TAG
-    override val title = R.string.__dt_toggles
+
+    val TAG = __QuickDialogTogglesFragment.TAG
 
     private var rootView: View? = null
 
@@ -35,19 +35,12 @@ class __TogglesDialog: __FloatAnimatedDialog() {
     private val blockCanarySwitcher by lazy { rootView?.blockCanarySwitcher(R.id.__dt_block_canary_switcher) }
     private val frameSwitcher by lazy { rootView?.frameSwitcher(R.id.__dt_frame_switcher) }
 
-    override fun createView(): View {
-        val result = activity.layoutInflater.inflate(R.layout.__dialog_toggles, null)
-
-        val header = result.findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout
-        header.setAction { startDTDrawerActivity(true) }
-        header.setClose { dismiss() }
-        result.findViewById(R.id.__dt_run_test).setOnClickListener { startDTDrawerActivity() }
-        rootView = result
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        rootView = inflater.inflate(R.layout.__fragment_quick_toggles, container, false)
         bindViews()
-        isCancelable = true
 
         registerBubbleStatusChangeReceiver()
-        return result
+        return rootView
     }
 
     override fun onDestroyView() {
@@ -60,23 +53,11 @@ class __TogglesDialog: __FloatAnimatedDialog() {
         frameSwitcher
     }
 
-    private fun startDTDrawerActivity(openSettings: Boolean = false) {
-        if (DTActivityManager.topActivity?.javaClass == DTDrawerActivity::class.java) {
-            dismiss()
-        }
-        val intent = Intent(DTInstaller.app, DTDrawerActivity::class.java)
-        if (openSettings) {
-            intent.putExtra(DTDrawerActivity.KEY_SELECTED, R.string.__dt_settings)
-        }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        DTInstaller.app?.startActivity(intent)
-    }
-
     // Use to update ui by bubble's status changes
     private val bubbleStatusChangeReceiver by lazy {
         object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent?) {
-                this@__TogglesDialog.onReceiveBubbleIntent(context, intent)
+                this@__QuickDialogTogglesFragment.onReceiveBubbleIntent(context, intent)
             }
         }
     }
