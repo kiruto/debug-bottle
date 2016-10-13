@@ -3,7 +3,7 @@ package com.exyui.android.debugbottle.components
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.exyui.android.debugbottle.components.dialog.__TogglesDialog
+import com.exyui.android.debugbottle.components.dialog.__QuickDialog
 
 /**
  * Created by yuriel on 10/12/16.
@@ -16,7 +16,7 @@ internal class __OnNotificationReceiver : BroadcastReceiver() {
             i.putExtra(DTDrawerActivity.KEY_SHOW_DRAWER, false)
             context?.applicationContext?.startActivity(i)
         } else {
-            __TogglesDialog().show(DTActivityManager.topActivity!!.fragmentManager)
+            __QuickDialog().show(DTActivityManager.topActivity!!.fragmentManager)
         }
     }
 }
