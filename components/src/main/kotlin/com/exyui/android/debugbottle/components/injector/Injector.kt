@@ -22,5 +22,6 @@ abstract class Injector {
         runnableInjector.put(name, runnable)
     }
 
+
     abstract fun inject()
 }
