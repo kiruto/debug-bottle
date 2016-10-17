@@ -14,6 +14,12 @@ abstract class Injector {
     protected void put(Object a, Object b) {
         Log.d(TAG, "put");
     }
+    protected void quickEntry(Object a, Object b, Object c) {
+        Log.d(TAG, "quickEntry");
+    }
+    protected void quickEntry(Object a, Object b) {
+        Log.d(TAG, "quickEntry");
+    }
 
     abstract void inject();
 }

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.exyui.android.debugbottle.components.injector
 
 import android.app.Activity
@@ -10,6 +12,7 @@ import com.exyui.android.debugbottle.components.DTActivityManager
 abstract class Injector {
     private val intentInjector = IntentInjector
     private val runnableInjector = RunnableInjector
+    private val quickEntry = QuickEntry
 
     protected val activity: Activity?
         get() = DTActivityManager.topActivity
@@ -22,6 +25,13 @@ abstract class Injector {
         runnableInjector.put(name, runnable)
     }
 
+    protected fun quickEntry(at: Class<out Activity>, name: String, t: Runnable) {
+        quickEntry.put(at, name, t)
+    }
+
+    protected fun quickEntry(name: String, listener: QuickEntry.OnActivityDisplayedListener) {
+        quickEntry.put(name, listener)
+    }
 
     abstract fun inject()
 }
