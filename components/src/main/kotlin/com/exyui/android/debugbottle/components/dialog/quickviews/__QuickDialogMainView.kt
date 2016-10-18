@@ -5,13 +5,13 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.widget.LinearLayout
+import android.widget.ScrollView
 import com.exyui.android.debugbottle.components.R
 
 /**
  * Created by yuriel on 10/13/16.
  */
-class __QuickDialogMainView: LinearLayout {
+class __QuickDialogMainView: ScrollView {
     constructor(context: Context): super(context) {
         init(context)
     }
