@@ -65,4 +65,26 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="__QuickDialog" />
+    <style name="__QuickDialog.Item" />
+
+    <style name="__QuickDialog.Item.Layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="__QuickDialog.Item.Title">
+        <item name="android:textColor">@color/__primary_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="__QuickDialog.Item.Description">
+        <item name="android:textColor">@color/__secondary_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

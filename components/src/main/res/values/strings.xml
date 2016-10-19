@@ -154,5 +154,7 @@
     <string name="__dt_frame_switcher">Display FPS on screen</string>
     <string name="__dt_root_required">** This feature requires ROOT permission.</string>
     <string name="__dt_open">open</string>
+    <string name="__dt_empty">Empty</string>
+    <string name="__dt_empty_injector">This is QuickEntry area of Debug Bottle.\n\nThere\'s still has no quick entry implemented in injector.\n\nTo implement quick entry, click this for view examples.</string>
 
 </resources>
