@@ -3,6 +3,7 @@
 package com.exyui.android.debugbottle.components
 
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -64,4 +65,10 @@ internal fun Context.runBubbleService() {
 //        e.printStackTrace()
 //        return "failed"
 //    }
+}
+
+internal fun Activity.openInBrowser(url: String) {
+    val i = Intent(Intent.ACTION_VIEW)
+    i.data = Uri.parse(url)
+    startActivity(i)
 }

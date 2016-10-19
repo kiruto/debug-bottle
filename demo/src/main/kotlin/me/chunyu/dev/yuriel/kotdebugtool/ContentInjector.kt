@@ -15,6 +15,7 @@ import com.exyui.android.debugbottle.components.injector.QuickEntry
  *
  * This example file shows how to inject an Intent a Runnable, or a QuickEntry
  */
+@Suppress("unused")
 class ContentInjector: Injector() {
     override fun inject() {
 

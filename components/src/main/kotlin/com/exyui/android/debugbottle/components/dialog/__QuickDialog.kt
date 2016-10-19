@@ -3,10 +3,7 @@ package com.exyui.android.debugbottle.components.dialog
 import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
-import com.exyui.android.debugbottle.components.DTActivityManager
-import com.exyui.android.debugbottle.components.DTDrawerActivity
-import com.exyui.android.debugbottle.components.DTInstaller
-import com.exyui.android.debugbottle.components.R
+import com.exyui.android.debugbottle.components.*
 import com.exyui.android.debugbottle.components.widgets.__FloatAnimatedDialog
 import com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLayout
 
@@ -50,6 +47,7 @@ class __QuickDialog : __FloatAnimatedDialog() {
         }
         header.setClose { dismiss() }
         result.findViewById(R.id.__dt_open).setOnClickListener { startDTDrawerActivity() }
+        result.findViewById(R.id.__dt_help).setOnClickListener { help() }
         rootView = result as ViewGroup
         bindViews()
         isCancelable = true
@@ -76,6 +74,10 @@ class __QuickDialog : __FloatAnimatedDialog() {
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         DTInstaller.app?.startActivity(intent)
+    }
+
+    private fun help() {
+        activity.openInBrowser("https://github.com/kiruto/debug-bottle/blob/1.0.1/demo/src/main/kotlin/me/chunyu/dev/yuriel/kotdebugtool/ContentInjector.kt")
     }
 
     private fun ViewGroup.show(view: View) {

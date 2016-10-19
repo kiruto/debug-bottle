@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ScrollView
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.injector.QuickEntry
+import com.exyui.android.debugbottle.components.openInBrowser
 
 /**
  * Created by yuriel on 10/13/16.
@@ -33,9 +34,7 @@ class __QuickDialogMainView: ScrollView {
         val result = findViewById(R.id.__dt_empty)
         result.setOnClickListener {
             val url = "https://github.com/kiruto/debug-bottle/blob/1.0.1/demo/src/main/kotlin/me/chunyu/dev/yuriel/kotdebugtool/ContentInjector.kt"
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            context.startActivity(i)
+            (context as Activity).openInBrowser(url)
         }
         result
     }
