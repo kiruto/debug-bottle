@@ -13,8 +13,10 @@
 
 # 1.0.1
 - [x] UI: quick toggles
-- [ ] feature: services manager
 - [x] feature: display FPS
+
+# 1.1
+- [ ] feature: services manager
 - [ ] feature: display intent arguments
 - [ ] feature: content provider manager
 - [ ] feature: SQLite editor

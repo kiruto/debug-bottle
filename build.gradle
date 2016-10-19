@@ -14,7 +14,7 @@ buildscript {
         javaVersion = JavaVersion.VERSION_1_7
 
         // Version of Demo App in Google Play
-        versionCode = 6
+        versionCode = 7
 
         libraries = [
                 gradle: '2.2.1',
