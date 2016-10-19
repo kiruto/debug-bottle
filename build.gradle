@@ -3,8 +3,8 @@
 buildscript {
     ext {
         // May cause merge file conflicts
-        versionUploaded = "1.0.1-support23-SNAPSHOT"
-        versionName = "1.0.1-support23-SNAPSHOT"
+        versionUploaded = "1.0.1-support23"
+        versionName = "1.0.1-support23"
 
 
         minSdkVersion = 14
