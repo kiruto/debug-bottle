@@ -29,7 +29,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.__fragment_main, null)
+        return inflater?.inflate(R.layout.fragment_main, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

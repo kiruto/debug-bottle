@@ -4,17 +4,17 @@
 
     <header
         android:fragment="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/__dt_ic_info_black_24dp"
+        android:icon="@drawable/dt_ic_info_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
         android:fragment="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity$NotificationPreferenceFragment"
-        android:icon="@drawable/__dt_ic_notifications_black_24dp"
+        android:icon="@drawable/dt_ic_notifications_black_24dp"
         android:title="@string/pref_header_notifications" />
 
     <header
         android:fragment="me.chunyu.dev.yuriel.kotdebugtool.ExampleActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/__dt_ic_sync_black_24dp"
+        android:icon="@drawable/dt_ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
 
 </preference-headers>
