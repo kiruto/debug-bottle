@@ -29,8 +29,11 @@ object QuickEntry {
         return null
     }
 
+    internal fun isEmpty() = true
+
     interface OnActivityDisplayedListener {
         fun shouldShowEntry(activity: Activity?): Boolean
         fun run(context: Context?)
+        fun description(): String?
     }
 }

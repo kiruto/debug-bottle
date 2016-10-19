@@ -12,13 +12,15 @@ object QuickEntry {
 
     private val model: LinkedHashMap<String, OnActivityDisplayedListener> = LinkedHashMap()
 
-    fun put(clazz: Class<out Activity>, name: String, t: Runnable) {
+    fun put(clazz: Class<out Activity>, name: String, t: Runnable, description: String? = null) {
         val l = object: OnActivityDisplayedListener {
             override fun shouldShowEntry(activity: Activity?): Boolean = activity?.javaClass == clazz.javaClass
 
             override fun run(context: Context?) {
                 t.run()
             }
+
+            override fun description(): String? = description
         }
         put(name, l)
     }
@@ -47,8 +49,11 @@ object QuickEntry {
         return result
     }
 
+    internal fun isEmpty() = model.isEmpty()
+
     interface OnActivityDisplayedListener {
         fun shouldShowEntry(activity: Activity?): Boolean
         fun run(context: Context?)
+        fun description(): String?
     }
 }

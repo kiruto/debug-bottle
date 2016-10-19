@@ -154,5 +154,6 @@
     <string name="__dt_frame_switcher">Display FPS on screen</string>
     <string name="__dt_root_required">** This feature requires ROOT permission.</string>
     <string name="__dt_open">open</string>
+    <string name="__dt_empty">Empty</string>
 
 </resources>

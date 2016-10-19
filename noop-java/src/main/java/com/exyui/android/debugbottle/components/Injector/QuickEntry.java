@@ -28,8 +28,12 @@ public class QuickEntry {
     public LinkedHashMap<String, OnActivityDisplayedListener> getList() {
         return null;
     }
+    public boolean isEmpty() {
+        return true;
+    }
     interface OnActivityDisplayedListener {
         boolean shouldShowEntry(Activity activity);
         void run(Context context);
+        String description();
     }
 }
