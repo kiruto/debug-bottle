@@ -3,4 +3,9 @@
     <color name="__colorPrimary">#607D8B</color>
     <color name="__colorAccentRed">#F44336</color>
     <color name="__colorPrimaryDark">#263238</color>
+
+    <color name="__primary_text">#DD000000</color><!-- opacity of 87% -->
+    <color name="__secondary_text">#89000000</color><!-- opacity of 54% -->
+    <color name="__hint_text">#60000000</color><!-- opacity of 38% -->
+    <color name="__dividers">#1E000000</color><!-- opacity of 12% -->
 </resources>

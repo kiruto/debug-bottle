@@ -5,4 +5,6 @@
         <attr name="__dt_content" format="string"/>
         <attr name="__dt_smart" format="boolean" />
     </declare-styleable>
+
+    <attr name="__dt_quick_item_attr" format="reference" />
 </resources>

@@ -88,14 +88,19 @@ class __QuickDialogTogglesView: ScrollView {
         }
     }
 
+    private var receiverRegistered = false
+
     private fun registerBubbleStatusChangeReceiver() {
         val filter = IntentFilter()
         filter.addAction(__DTBubble.INTENT_ACTION)
         context.registerReceiver(bubbleStatusChangeReceiver, filter)
+        receiverRegistered = true
     }
 
     private fun unregisterBubbleStatusChangeReceiver() {
-        context.unregisterReceiver(bubbleStatusChangeReceiver)
+        if (receiverRegistered) {
+            context.unregisterReceiver(bubbleStatusChangeReceiver)
+        }
     }
 
     @Suppress("UNUSED_PARAMETER")

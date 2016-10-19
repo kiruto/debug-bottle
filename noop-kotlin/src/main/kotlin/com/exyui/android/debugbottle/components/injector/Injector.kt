@@ -11,8 +11,12 @@ import android.util.Log
 abstract class Injector {
     private val TAG = "FakeInjector"
     protected val activity: Activity? = null
-    protected fun put(a: Any?, b: Any?) {
+    protected fun put(a: Any? = null, b: Any? = null) {
         Log.d(TAG, "add")
+    }
+
+    protected fun quickEntry(a: Any? = null, b: Any? = null, c: Any? = null) {
+        Log.d(TAG, "quickEntry")
     }
 
     abstract fun inject()

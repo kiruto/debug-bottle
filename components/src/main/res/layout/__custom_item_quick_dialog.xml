@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/__dt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/__dt_content"
+        style="@style/__QuickDialog.Item.Title"/>
+
+    <TextView
+        android:id="@+id/__dt_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/__dt_title"
+        style="@style/__QuickDialog.Item.Description"/>
+
+</merge>

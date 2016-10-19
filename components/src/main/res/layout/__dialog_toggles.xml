@@ -41,7 +41,15 @@
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
             android:textColor="#2196F3"
-            android:id="@+id/__dt_run_test"
+            android:id="@+id/__dt_help"
+            android:text="@string/__dt_help"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="#2196F3"
+            android:id="@+id/__dt_open"
             android:text="@string/__dt_open"/>
 
     </LinearLayout>
