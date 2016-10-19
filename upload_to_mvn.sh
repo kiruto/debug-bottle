@@ -1,4 +1,11 @@
 #!/bin/bash
+EXCEPT_RUNTIME=true
+doUpload() {
+    if [ ${EXCEPT_RUNTIME} = "true" ];
+    then uploadRuntime
+    else uploadExceptRuntime
+    fi
+}
 upload() {
     rm settings.gradle
     cp settings.gradle.before settings.gradle
@@ -27,17 +34,23 @@ uploadExceptRuntime() {
     ./gradlew :noop-java:uploadArchives
     ./gradlew :noop-kotlin:uploadArchives
 }
+uploadRuntime() {
+    rm settings.gradle
+    cp settings.gradle.ready settings.gradle
+    ./gradlew :runtime:clean
+    ./gradlew :runtime:uploadArchives
+}
 uploadPrimary() {
     git checkout 1.0.1
-    uploadExceptRuntime
+    doUpload
 }
 upload101_23() {
     git checkout v23/1.0.1
-    uploadExceptRuntime
+    doUpload
 }
 upload101_22() {
     git checkout v22/1.0.1
-    uploadExceptRuntime
+    doUpload
 }
 cleanGradleCache() {
     rm -rf ~/.gradle/caches/modules-2/files-2.1/com.exyui.android
