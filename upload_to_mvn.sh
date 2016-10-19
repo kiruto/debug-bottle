@@ -1,7 +1,7 @@
 #!/bin/bash
-EXCEPT_RUNTIME=true
+UPLOAD_RUNTIME=false
 doUpload() {
-    if [ ${EXCEPT_RUNTIME} = "true" ];
+    if [ ${UPLOAD_RUNTIME} = "true" ];
     then uploadRuntime
     else uploadExceptRuntime
     fi
