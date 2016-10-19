@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:background="@drawable/__reac_gray"
+                android:background="@drawable/reac_gray"
                 android:orientation="vertical">
 
                 <TextView
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:background="@drawable/__reac_gray"
+                android:background="@drawable/reac_gray"
                 android:orientation="vertical">
 
                 <TextView
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:background="@drawable/__reac_gray"
+                android:background="@drawable/reac_gray"
                 android:orientation="vertical">
 
                 <TextView
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:background="@drawable/__reac_gray"
+                android:background="@drawable/reac_gray"
                 android:orientation="vertical">
 
                 <TextView
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:background="@drawable/__reac_gray"
+                android:background="@drawable/reac_gray"
                 android:orientation="vertical">
 
                 <TextView
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:background="@drawable/__reac_gray"
+                android:background="@drawable/reac_gray"
                 android:orientation="vertical">
 
                 <TextView
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="10dp"
-                android:background="@drawable/__reac_gray"
+                android:background="@drawable/reac_gray"
                 android:orientation="vertical">
 
                 <TextView

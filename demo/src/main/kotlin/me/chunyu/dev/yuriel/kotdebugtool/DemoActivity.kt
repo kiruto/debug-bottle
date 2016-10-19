@@ -22,7 +22,7 @@ class DemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //window.requestFeature(Window.FEATURE_ACTION_BAR)
         supportActionBar?.hide()
-        setContentView(R.layout.__activity_demo)
+        setContentView(R.layout.activity_demo)
         if (null == supportFragmentManager.findFragmentByTag(TAG)) {
             supportFragmentManager.beginTransaction()
                     .add(R.id.container, DemoFragment.newInstance(), TAG)
