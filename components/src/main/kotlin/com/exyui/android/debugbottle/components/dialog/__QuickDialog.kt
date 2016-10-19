@@ -49,7 +49,7 @@ class __QuickDialog : __FloatAnimatedDialog() {
             }
         }
         header.setClose { dismiss() }
-        result.findViewById(R.id.__dt_run_test).setOnClickListener { startDTDrawerActivity() }
+        result.findViewById(R.id.__dt_open).setOnClickListener { startDTDrawerActivity() }
         rootView = result as ViewGroup
         bindViews()
         isCancelable = true

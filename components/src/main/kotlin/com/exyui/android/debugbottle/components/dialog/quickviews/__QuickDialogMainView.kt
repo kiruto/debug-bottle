@@ -4,8 +4,11 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.util.AttributeSet
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import com.exyui.android.debugbottle.components.R
@@ -26,6 +29,17 @@ class __QuickDialogMainView: ScrollView {
 //    }
 
     private val rootChild by lazy { findViewById(R.id.__dt_content) as ViewGroup }
+    private val emptyView by lazy {
+        val result = findViewById(R.id.__dt_empty)
+        result.setOnClickListener {
+            val url = "https://github.com/kiruto/debug-bottle/blob/1.0.1/demo/src/main/kotlin/me/chunyu/dev/yuriel/kotdebugtool/ContentInjector.kt"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            context.startActivity(i)
+        }
+        result
+    }
+    private val contents by lazy { findViewById(R.id.__dt_content) }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("NewApi")
@@ -59,6 +73,14 @@ class __QuickDialogMainView: ScrollView {
     }
 
     private fun ViewGroup.generateItemViews()/*: List<__QuickDialogItemView>*/ {
+        if (QuickEntry.isEmpty()) {
+            emptyView.visibility = VISIBLE
+            contents.visibility = GONE
+            return
+        } else {
+            emptyView.visibility = GONE
+            contents.visibility = VISIBLE
+        }
         val items = QuickEntry.getList()
         //val result = mutableListOf<__QuickDialogItemView>()
         for ((title, impl) in items) {
