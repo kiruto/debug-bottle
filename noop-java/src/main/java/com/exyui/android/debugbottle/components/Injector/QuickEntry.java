@@ -1,4 +1,4 @@
-package com.exyui.android.debugbottle.components.Injector;
+package com.exyui.android.debugbottle.components.injector;
 
 import android.app.Activity;
 import android.content.Context;

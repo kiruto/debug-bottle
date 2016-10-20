@@ -1,4 +1,4 @@
-package com.exyui.android.debugbottle.components.Injector;
+package com.exyui.android.debugbottle.components.injector;
 
 import android.content.Intent;
 import android.util.Log;
