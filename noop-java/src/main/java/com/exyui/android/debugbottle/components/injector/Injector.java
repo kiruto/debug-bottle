@@ -8,7 +8,7 @@ import android.util.Log;
  */
 
 @SuppressWarnings("unused")
-abstract class Injector {
+public abstract class Injector {
     private static final String TAG = "FakeInjector";
     protected final Activity activity = null;
     protected void put(Object a, Object b) {
