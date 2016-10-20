@@ -11,6 +11,10 @@ import android.util.Log;
 public abstract class Injector {
     private static final String TAG = "FakeInjector";
     protected final Activity activity = null;
+    protected Activity getActivity() {
+        Log.d(TAG, "getActivity");
+        return null;
+    }
     protected void put(Object a, Object b) {
         Log.d(TAG, "put");
     }
@@ -21,5 +25,5 @@ public abstract class Injector {
         Log.d(TAG, "quickEntry");
     }
 
-    abstract void inject();
+    public abstract void inject();
 }
