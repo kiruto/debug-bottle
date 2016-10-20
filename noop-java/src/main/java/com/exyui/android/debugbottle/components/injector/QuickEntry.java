@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
  * Created by yuriel on 10/17/16.
  */
 
-@SuppressWarnings("unused")
+@SuppressWarnings("ALL")
 public class QuickEntry {
     private final String TAG = "QuickEntry";
     public void put(Object a, Object b, Object c) {
@@ -31,7 +31,7 @@ public class QuickEntry {
     public boolean isEmpty() {
         return true;
     }
-    interface OnActivityDisplayedListener {
+    public interface OnActivityDisplayedListener {
         boolean shouldShowEntry(Activity activity);
         void run(Context context);
         String description();
