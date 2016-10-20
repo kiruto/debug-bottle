@@ -13,9 +13,9 @@ public class DTInstaller {
 
     private DTInstaller() {}
 
-    public DTInstaller install(Object app) {
+    public static DTInstaller install(Object app) {
         Log.d(TAG, "install");
-        return this;
+        return new DTInstaller();
     }
 
     public DTInstaller setBlockCanary(Object context) {
