@@ -27,12 +27,7 @@ uploadExceptRuntime() {
     rm settings.gradle
     cp settings.gradle.before settings.gradle
     ./gradlew clean assemble
-    ./gradlew :core:uploadArchives
-    ./gradlew :views:uploadArchives
-    ./gradlew :blockcanary:uploadArchives
-    ./gradlew :components:uploadArchives
-    ./gradlew :noop-java:uploadArchives
-    ./gradlew :noop-kotlin:uploadArchives
+    ./gradlew uploadArchives
 }
 uploadRuntime() {
     rm settings.gradle
