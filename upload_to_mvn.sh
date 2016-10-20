@@ -36,15 +36,15 @@ uploadRuntime() {
     ./gradlew :runtime:uploadArchives
 }
 uploadPrimary() {
-    git checkout 1.0.1
+    git checkout 1.0.1 -f
     doUpload
 }
 upload101_23() {
-    git checkout v23/1.0.1
+    git checkout v23/1.0.1 -f
     doUpload
 }
 upload101_22() {
-    git checkout v22/1.0.1
+    git checkout v22/1.0.1 -f
     doUpload
 }
 cleanGradleCache() {
