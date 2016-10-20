@@ -3,8 +3,8 @@
 buildscript {
     ext {
         // May cause merge file conflicts
-        versionUploaded = "1.0.2"
-        versionName = "1.0.2"
+        versionUploaded = "1.0.3"
+        versionName = "1.0.3"
 
 
         minSdkVersion = 14
@@ -14,7 +14,7 @@ buildscript {
         javaVersion = JavaVersion.VERSION_1_7
 
         // Version of Demo App in Google Play
-        versionCode = 8
+        versionCode = 9
 
         libraries = [
                 gradle: '2.2.1',
