@@ -27,12 +27,7 @@ uploadExceptRuntime() {
     rm settings.gradle
     cp settings.gradle.before settings.gradle
     ./gradlew clean assemble
-    ./gradlew :core:uploadArchives
-    ./gradlew :views:uploadArchives
-    ./gradlew :blockcanary:uploadArchives
-    ./gradlew :components:uploadArchives
-    ./gradlew :noop-java:uploadArchives
-    ./gradlew :noop-kotlin:uploadArchives
+    ./gradlew uploadArchives
 }
 uploadRuntime() {
     rm settings.gradle
@@ -41,15 +36,15 @@ uploadRuntime() {
     ./gradlew :runtime:uploadArchives
 }
 uploadPrimary() {
-    git checkout 1.0.1
+    git checkout 1.0.1 -f
     doUpload
 }
 upload101_23() {
-    git checkout v23/1.0.1
+    git checkout v23/1.0.1 -f
     doUpload
 }
 upload101_22() {
-    git checkout v22/1.0.1
+    git checkout v22/1.0.1 -f
     doUpload
 }
 cleanGradleCache() {
