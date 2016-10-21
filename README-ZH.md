@@ -107,7 +107,6 @@ dependencies {
     testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.4'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
-    compile 'com.android.support:support-v4:23.2.0+'
 }
 ```
 
