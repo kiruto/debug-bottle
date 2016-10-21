@@ -8,7 +8,7 @@ buildscript {
         versionName = "${VERSION_NAME} build $buildCode"
         // Version of Demo App in Google Play
         versionCode = Integer.valueOf(VERSION_CODE)
-        mavenVersionName = "$versionUploaded${if (snapshot) "-SNAPSHOT" else ""}"
+        mavenVersionName = "$versionUploaded${if (snapshot) "-SNAPSHOT"}"
 
         printf("maven version: $mavenVersionName. /n")
 
@@ -25,7 +25,7 @@ buildscript {
                 junit: '4.12',
                 leakcanary: '1.4',
                 okhttp: '2.4.0',
-                debugbottle: VERSION_NAME
+                debugbottle: versionUploaded
         ]
     }
 
