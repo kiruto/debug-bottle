@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.exyui.android.debugbottle.components
 
 import android.app.Activity
@@ -12,7 +14,6 @@ import com.exyui.android.debugbottle.ui.layout.__DisplayBlockActivity
 /**
  * Created by yuriel on 8/11/16.
  */
-@Suppress("DEPRECATION")
 @Deprecated("This activity is not in used.")
 internal class TestingActivity : Activity() {
     val button1 by lazy {
