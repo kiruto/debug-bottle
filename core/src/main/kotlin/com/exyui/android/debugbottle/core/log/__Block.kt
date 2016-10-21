@@ -317,7 +317,7 @@ class __Block private constructor() {
             for (stackEntry in threadStackEntries!!) {
 
                 if (Character.isLetter(stackEntry[0])) {
-                    val lines = stackEntry.split(__Block.SEPARATOR.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                    val lines = stackEntry.split(__Block.SEPARATOR.toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
                     for (line in lines) {
                         if (!line.startsWith("com.android") && !line.startsWith("java") && !line.startsWith("android")) {
                             result = line.substring(line.indexOf('(') + 1, line.indexOf(')'))
