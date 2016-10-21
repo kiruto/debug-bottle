@@ -40,6 +40,7 @@ class __QuickDialogMainView: ScrollView {
     }
     private val contents by lazy { findViewById(R.id.__dt_content) }
 
+    @Suppress("unused")
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("NewApi")
     @JvmOverloads
@@ -47,28 +48,16 @@ class __QuickDialogMainView: ScrollView {
                 attr: AttributeSet? = null,
                 defStyleAttr: Int = 0,
                 defStyleRes: Int = 0) : super(context, attr, defStyleAttr, defStyleRes) {
-        init(context, attr, defStyleAttr, defStyleRes)
+        init()
     }
 
-    private fun init(context: Context, attr: AttributeSet? = null, defStyleAttr: Int? = null, defStyleRes: Int? = null) {
+    private fun init() {
         bindViews()
-        initAttrs(context, attr, defStyleAttr?: 0, defStyleRes?: 0)
     }
 
     private fun bindViews() {
         inflate(context, R.layout.__view_quick_main, this)
         rootChild.generateItemViews()
-    }
-
-    private fun initAttrs(context: Context, attr: AttributeSet?, defStyleAttr: Int = 0, defStyleRes: Int = 0) {
-//        val ta = context.theme.obtainStyledAttributes(attr, R.styleable.__DTListItem, defStyleAttr, defStyleRes)
-//        try {
-//            title = ta.getString(R.styleable.__DTListItem___dt_title)?: ""
-//            content = ta.getString(R.styleable.__DTListItem___dt_content)?: ""
-//            isSmart = ta.getBoolean(R.styleable.__DTListItem___dt_smart, false)
-//        } finally {
-//            ta.recycle()
-//        }
     }
 
     private fun ViewGroup.generateItemViews()/*: List<__QuickDialogItemView>*/ {
