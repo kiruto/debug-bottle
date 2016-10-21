@@ -237,7 +237,12 @@ class __Block private constructor() {
         }
 
         private fun String.getValue(): String {
-            return this.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+            val kv = this.split(KV.toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
+            if (kv.size > 1) {
+                return kv[1]
+            } else {
+                return ""
+            }
         }
     }
 
