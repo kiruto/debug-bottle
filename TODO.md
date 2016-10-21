@@ -16,6 +16,7 @@
 - [x] feature: display FPS
 
 # 1.1
+- [ ] fix: support OkHttp3
 - [ ] feature: services manager
 - [ ] feature: display intent arguments
 - [ ] feature: content provider manager

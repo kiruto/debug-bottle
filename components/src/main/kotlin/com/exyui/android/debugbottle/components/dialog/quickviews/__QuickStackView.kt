@@ -21,22 +21,23 @@ class __QuickStackView: ScrollView {
     private val TAG = "__QuickStackView"
 
     constructor(context: Context): super(context) {
-        init(context)
+        init()
     }
     constructor(context: Context, attr: AttributeSet): super(context, attr) {
-        init(context, attr)
+        init()
     }
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr) {
-        init(context, attr, defStyleAttr)
+        init()
     }
 
+    @Suppress("unused")
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("NewApi")
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int, defStyleRes: Int): super(context, attr, defStyleAttr, defStyleRes) {
-        init(context, attr, defStyleAttr, defStyleRes)
+        init()
     }
 
-    private fun init(context: Context, attr: AttributeSet? = null, defStyleAttr: Int? = null, defStyleRes: Int? = null) {
+    private fun init() {
         bindViews()
     }
 

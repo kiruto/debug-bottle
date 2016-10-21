@@ -32,41 +32,30 @@ class __QuickDialogTogglesView: ScrollView {
     private val frameSwitcher by lazy { rootView?.frameSwitcher(R.id.__dt_frame_switcher) }
 
     constructor(context: Context): super(context) {
-        init(context)
+        init()
     }
     constructor(context: Context, attr: AttributeSet): super(context, attr) {
-        init(context, attr)
+        init()
     }
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr) {
-        init(context, attr, defStyleAttr)
+        init()
     }
 
+    @Suppress("unused")
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("NewApi")
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int, defStyleRes: Int): super(context, attr, defStyleAttr, defStyleRes) {
-        init(context, attr, defStyleAttr, defStyleRes)
+        init()
     }
 
-    private fun init(context: Context, attr: AttributeSet? = null, defStyleAttr: Int? = null, defStyleRes: Int? = null) {
+    private fun init() {
         bindViews()
-        initAttrs(context, attr, defStyleAttr?: 0, defStyleRes?: 0)
     }
 
     private fun bindViews() {
         inflate(context, R.layout.__fragment_quick_toggles, this)
         networkSwitcher; strictSwitcher; view3DSwitcher; leakCanarySwitcher; blockCanarySwitcher
         frameSwitcher
-    }
-
-    private fun initAttrs(context: Context, attr: AttributeSet?, defStyleAttr: Int = 0, defStyleRes: Int = 0) {
-//        val ta = context.theme.obtainStyledAttributes(attr, R.styleable.__DTListItem, defStyleAttr, defStyleRes)
-//        try {
-//            title = ta.getString(R.styleable.__DTListItem___dt_title)?: ""
-//            content = ta.getString(R.styleable.__DTListItem___dt_content)?: ""
-//            isSmart = ta.getBoolean(R.styleable.__DTListItem___dt_smart, false)
-//        } finally {
-//            ta.recycle()
-//        }
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
