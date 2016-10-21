@@ -113,7 +113,7 @@ internal class __BlockDetailAdapter : BaseAdapter() {
             return
         }
         mBlock = block
-        mFoldings = BooleanArray(mBlock!!.threadStackEntries?.size?: 0 + POSITION_THREAD_STACK)
+        mFoldings = BooleanArray((mBlock!!.threadStackEntries?.size?: 0) + POSITION_THREAD_STACK)
         Arrays.fill(mFoldings, true)
         notifyDataSetChanged()
     }
@@ -127,7 +127,7 @@ internal class __BlockDetailAdapter : BaseAdapter() {
         if (mBlock == null) {
             return 0
         }
-        return mBlock!!.threadStackEntries?.size?: 0 + POSITION_THREAD_STACK
+        return (mBlock!!.threadStackEntries?.size?: 0) + POSITION_THREAD_STACK
     }
 
     override fun getItem(position: Int): String? {
