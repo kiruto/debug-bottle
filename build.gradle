@@ -12,10 +12,10 @@ buildscript {
 
         printf("maven version: $mavenVersionName. /n")
 
-        minSdkVersion = 14
-        compileSdkVersion = 23
+        minSdkVersion = Integer.valueOf(MIN_SDK)
+        compileSdkVersion = Integer.valueOf(COMPILE_SDK)
         targetSdkVersion = compileSdkVersion
-        buildToolsVersion = '23.0.3'
+        buildToolsVersion = BUILD_TOOLS
         javaVersion = JavaVersion.VERSION_1_7
 
         libraries = [
