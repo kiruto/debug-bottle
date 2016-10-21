@@ -2,19 +2,21 @@
 
 buildscript {
     ext {
-        // May cause merge file conflicts
-        versionUploaded = "1.0.3-support23"
-        versionName = "1.0.3-support23"
-
-
-        minSdkVersion = 14
-        compileSdkVersion = 23
-        targetSdkVersion = compileSdkVersion
-        buildToolsVersion = '23.0.3'
-        javaVersion = JavaVersion.VERSION_1_7
-
+        snapshot = Boolean.valueOf(SNAPSHOT)
+        buildCode = new Date().format('yyMMdd')
+        versionUploaded = "$VERSION_NAME-support23"
+        versionName = "${VERSION_NAME} build $buildCode"
         // Version of Demo App in Google Play
-        versionCode = 9
+        versionCode = Integer.valueOf(VERSION_CODE)
+        mavenVersionName = "$versionUploaded${if (snapshot) "-SNAPSHOT" else ""}"
+
+        printf("maven version: $mavenVersionName. /n")
+
+        minSdkVersion = Integer.valueOf(MIN_SDK)
+        compileSdkVersion = Integer.valueOf(COMPILE_SDK)
+        targetSdkVersion = Integer.valueOf(TARGET_SDK)
+        buildToolsVersion = BUILD_TOOLS
+        javaVersion = JavaVersion.VERSION_1_7
 
         libraries = [
                 gradle: '2.2.1',
@@ -23,7 +25,7 @@ buildscript {
                 junit: '4.12',
                 leakcanary: '1.4',
                 okhttp: '2.4.0',
-                debugbottle: versionName
+                debugbottle: VERSION_NAME
         ]
     }
 

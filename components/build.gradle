@@ -57,14 +57,14 @@ task setVersionInfo << {
         writer.writeLine 'package com.exyui.android.debugbottle.components'
         writer.writeLine ''
         writer.writeLine '/**'
-        writer.writeLine ' * Created by machine on ' + new Date().format('yyyy-MM-dd')
+        writer.writeLine " * Created by machine on ${new Date().format('yyyy-MM-dd')}"
         writer.writeLine ''
         writer.writeLine ' * This file is generated automatically, DO NOT modify!!!'
         writer.writeLine ' */'
         writer.writeLine ''
         writer.writeLine "const val __DT_VERSION_CODE = $versionCode"
         writer.writeLine "const val __DT_VERSION_NAME = \"$versionName\""
-        writer.writeLine "const val __DT_BUILD_NUM = ${new Date().format('yyMMdd')}"
+        writer.writeLine "const val __DT_BUILD_NUM = ${rootProject.buildCode}"
     }
     println 'Set version code done!'
 }
