@@ -14,7 +14,7 @@ buildscript {
 
         minSdkVersion = Integer.valueOf(MIN_SDK)
         compileSdkVersion = Integer.valueOf(COMPILE_SDK)
-        targetSdkVersion = compileSdkVersion
+        targetSdkVersion = Integer.valueOf(TARGET_SDK)
         buildToolsVersion = BUILD_TOOLS
         javaVersion = JavaVersion.VERSION_1_7
 
