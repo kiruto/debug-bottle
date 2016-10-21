@@ -34,7 +34,7 @@ internal class IntroductionActivity : AppCompatActivity() {
     }
 
     private val backgroundView by lazy {
-        val result = findViewById(R.id.__dt_background)
+        val result = findViewById(R.id.__dt_background) as View
         result
     }
 

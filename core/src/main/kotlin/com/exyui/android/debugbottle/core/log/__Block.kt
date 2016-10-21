@@ -174,7 +174,7 @@ class __Block private constructor() {
                     } else if (line.startsWith(KEY_CPU_BUSY)) {
                         block.cpuBusy = java.lang.Boolean.valueOf(line.getValue())!!
                     } else if (line.startsWith(KEY_CPU_RATE)) {
-                        val split = line.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                        val split = line.split(KV.toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
                         if (split.size > 1) {
                             val cpuRateSb = StringBuilder(split[1])
                             cpuRateSb.append(line.getValue()).append(SEPARATOR)
@@ -190,6 +190,8 @@ class __Block private constructor() {
                                 line = reader.readLine()
                             }
                             block.cpuRateInfo = cpuRateSb.toString()
+                        } else {
+                            block.cpuRateInfo = "Not detected."
                         }
 
                     } else if (line.startsWith(KEY_TIME_COST_START)) {
