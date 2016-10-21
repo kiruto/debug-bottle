@@ -446,7 +446,7 @@ class __DisplayBlockFragment: __ContentFragment() {
                 return
             }
             mBlock = block
-            mFoldings = BooleanArray(mBlock!!.threadStackEntries?.size?: 0 + POSITION_THREAD_STACK)
+            mFoldings = BooleanArray((mBlock!!.threadStackEntries?.size?: 0) + POSITION_THREAD_STACK)
             Arrays.fill(mFoldings, true)
             notifyDataSetChanged()
         }
@@ -460,7 +460,7 @@ class __DisplayBlockFragment: __ContentFragment() {
             if (mBlock == null) {
                 return 0
             }
-            return mBlock!!.threadStackEntries?.size?: 0 + POSITION_THREAD_STACK
+            return (mBlock!!.threadStackEntries?.size?: 0) + POSITION_THREAD_STACK
         }
 
         override fun getItem(position: Int): String? {

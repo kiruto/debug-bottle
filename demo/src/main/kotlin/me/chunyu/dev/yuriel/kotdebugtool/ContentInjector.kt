@@ -103,7 +103,7 @@ class ContentInjector: Injector() {
                         startAnimation(animation)
                     }
 
-                    val view = context.findViewById(R.id.tv_title)
+                    val view: View = context.findViewById(R.id.tv_title)?: return
                     view.shake()
                     Toast.makeText(context, view.toString(), Toast.LENGTH_LONG).show()
                 }
