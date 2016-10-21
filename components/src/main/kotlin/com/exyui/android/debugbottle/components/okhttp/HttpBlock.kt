@@ -217,9 +217,9 @@ internal data class HttpBlock(
 //        }
         
         private fun String.getValue(): String {
-            val result = this.split(KV.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            if (result.size > 1) {
-                return result[1]
+            val kv = this.split(KV.toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
+            if (kv.size > 1) {
+                return kv[1]
             } else {
                 return ""
             }
