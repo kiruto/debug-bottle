@@ -4,13 +4,19 @@ buildscript {
     ext {
         snapshot = Boolean.valueOf(SNAPSHOT)
         buildCode = new Date().format('yyMMdd')
+        buildName = Long.toHexString(Long.valueOf(new Date().format('yyMMddhhmmss'))).toUpperCase()
         versionUploaded = VERSION_NAME
         versionName = "${VERSION_NAME} build $buildCode"
         // Version of Demo App in Google Play
         versionCode = Integer.valueOf(VERSION_CODE)
-        mavenVersionName = "$versionUploaded${if (snapshot) "-SNAPSHOT"}"
+        mavenVersionName = "$versionUploaded${if (snapshot) ".$buildName-SNAPSHOT" else ""}"
 
-        printf("maven version: $mavenVersionName. /n")
+        println("*************** PRE BUILD INFO ***************")
+        println("- maven version: $mavenVersionName")
+        println("- bottle version: $versionUploaded")
+        println("- build name: $versionName")
+        println("- build code: $buildName")
+        println("**********************************************")
 
         minSdkVersion = Integer.valueOf(MIN_SDK)
         compileSdkVersion = Integer.valueOf(COMPILE_SDK)
