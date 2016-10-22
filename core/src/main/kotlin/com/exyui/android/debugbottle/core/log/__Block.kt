@@ -54,7 +54,7 @@ class __Block private constructor() {
         private set
     var cpuRateInfo: String = ""
         private set
-    var threadStackEntries: ArrayList<String>? = ArrayList()
+    var threadStackEntries: ArrayList<String> = ArrayList()
         private set
     var logFile: File? = null
         private set
@@ -212,7 +212,7 @@ class __Block private constructor() {
                                 stackSb.append(line).append(SEPARATOR)
                             } else if (stackSb.length > 0) {
                                 // ignore continual blank lines
-                                block.threadStackEntries!!.add(stackSb.toString())
+                                block.threadStackEntries.add(stackSb.toString())
                                 stackSb = StringBuilder()
                             }
                             line = reader.readLine()
@@ -293,9 +293,9 @@ class __Block private constructor() {
         cpuSb + KEY_CPU_BUSY + KV + cpuBusy + SEPARATOR
         cpuSb + KEY_CPU_RATE + KV + cpuRateInfo + SEPARATOR
 
-        if (threadStackEntries != null && !threadStackEntries!!.isEmpty()) {
+        if (threadStackEntries.isNotEmpty()) {
             val temp = StringBuilder()
-            for (s in threadStackEntries!!) {
+            for (s in threadStackEntries) {
                 temp + s
                 temp + SEPARATOR
             }
@@ -316,7 +316,7 @@ class __Block private constructor() {
     val keyStackString: String
         get() {
             var result = ""
-            for (stackEntry in threadStackEntries!!) {
+            for (stackEntry in threadStackEntries) {
 
                 if (Character.isLetter(stackEntry[0])) {
                     val lines = stackEntry.split(__Block.SEPARATOR.toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
