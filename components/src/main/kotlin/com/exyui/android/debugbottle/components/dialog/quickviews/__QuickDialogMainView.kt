@@ -39,6 +39,7 @@ class __QuickDialogMainView: ScrollView {
         result
     }
     private val contents by lazy { findViewById(R.id.__dt_content) }
+    private val cb:MutableList<(View) -> Unit> = mutableListOf()
 
     @Suppress("unused")
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -77,10 +78,17 @@ class __QuickDialogMainView: ScrollView {
             val current = inflate(context, R.layout.__item_quick_dialog, null) as __QuickDialogItemView
             current.title = title
             current.content = impl.description()
-            current.setOnClickListener { impl.run(context) }
+            current.setOnClickListener {
+                impl.run(context)
+                for (c in cb) {
+                    c.invoke(it)
+                }
+            }
             //result.add(current)
             addView(current)
         }
         //return result
     }
+
+    fun addOnItemClickListener(callback: (View) -> Unit) { cb.add(callback) }
 }

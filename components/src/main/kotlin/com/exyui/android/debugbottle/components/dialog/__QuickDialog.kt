@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import com.exyui.android.debugbottle.components.*
+import com.exyui.android.debugbottle.components.dialog.quickviews.__QuickDialogMainView
 import com.exyui.android.debugbottle.components.widgets.__FloatAnimatedDialog
 import com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLayout
 
@@ -25,7 +26,7 @@ class __QuickDialog : __FloatAnimatedDialog() {
     }
 
     private val mainView by lazy {
-        container.findViewById(R.id.__dt_quick_main) as ViewGroup
+        container.findViewById(R.id.__dt_quick_main) as __QuickDialogMainView
     }
 
     private val togglesView by lazy {
@@ -52,6 +53,8 @@ class __QuickDialog : __FloatAnimatedDialog() {
         bindViews()
         isCancelable = true
 
+        // Dismiss dialog after click quick item
+        mainView.addOnItemClickListener { dismiss() }
         container.show(mainView)
         return result
     }
