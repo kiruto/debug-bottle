@@ -7,6 +7,7 @@ import com.exyui.android.debugbottle.components.dialog.__QuickDialog
 
 /**
  * Created by yuriel on 10/12/16.
+ * Main receiver. When Bottle notification has clicked, it will be called.
  */
 internal class __OnNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
