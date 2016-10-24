@@ -112,59 +112,59 @@ afterEvaluate { project ->
         //archives androidJavadocsJar
     }
 
-    /**
-     * Upload to local maven repository
-     * if it is needed, please add following properties:
-     *  - LOCAL_MVN_REPO: local repo url
-     *  - maven_user: local repo user name
-     *  - maven_password: local repo password
-     */
-    task uploadExternal(type: Upload) {
-        def localRepo = properties.get("LOCAL_MVN_REPO")
-        def localRepoUser = properties.get("maven_user")
-        def localRepoPwd = properties.get("maven_password")
-
-        if (null != localRepo) {
-            uploadDescriptor = true
-            repositories.mavenDeployer {
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-                pom.groupId = GROUP
-                pom.artifactId = POM_ARTIFACT_ID
-                pom.version = rootProject.mavenVersionName
-                // Add other pom properties here if you want (developer details / licenses)
-                repository(url: localRepo) {
-                    authentication(userName: localRepoUser, password: localRepoPwd)
-                }
-
-                pom.project {
-                    name POM_NAME
-                    packaging POM_PACKAGING
-                    description POM_DESCRIPTION
-                    url POM_URL
-
-                    scm {
-                        url POM_SCM_URL
-                        connection POM_SCM_CONNECTION
-                        developerConnection POM_SCM_DEV_CONNECTION
-                    }
-
-                    licenses {
-                        license {
-                            name POM_LICENCE_NAME
-                            url POM_LICENCE_URL
-                            distribution POM_LICENCE_DIST
-                        }
-                    }
-
-                    developers {
-                        developer {
-                            id POM_DEVELOPER_ID
-                            name POM_DEVELOPER_NAME
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    /**
+//     * Upload to local maven repository
+//     * if it is needed, please add following properties:
+//     *  - LOCAL_MVN_REPO: local repo url
+//     *  - maven_user: local repo user name
+//     *  - maven_password: local repo password
+//     */
+//    task uploadExternal(type: Upload) {
+//        def localRepo = properties.get("LOCAL_MVN_REPO")
+//        def localRepoUser = properties.get("maven_user")
+//        def localRepoPwd = properties.get("maven_password")
+//
+//        if (null != localRepo) {
+//            uploadDescriptor = true
+//            repositories.mavenDeployer {
+//                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//                pom.groupId = GROUP
+//                pom.artifactId = POM_ARTIFACT_ID
+//                pom.version = rootProject.mavenVersionName
+//                // Add other pom properties here if you want (developer details / licenses)
+//                repository(url: localRepo) {
+//                    authentication(userName: localRepoUser, password: localRepoPwd)
+//                }
+//
+//                pom.project {
+//                    name POM_NAME
+//                    packaging POM_PACKAGING
+//                    description POM_DESCRIPTION
+//                    url POM_URL
+//
+//                    scm {
+//                        url POM_SCM_URL
+//                        connection POM_SCM_CONNECTION
+//                        developerConnection POM_SCM_DEV_CONNECTION
+//                    }
+//
+//                    licenses {
+//                        license {
+//                            name POM_LICENCE_NAME
+//                            url POM_LICENCE_URL
+//                            distribution POM_LICENCE_DIST
+//                        }
+//                    }
+//
+//                    developers {
+//                        developer {
+//                            id POM_DEVELOPER_ID
+//                            name POM_DEVELOPER_NAME
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
