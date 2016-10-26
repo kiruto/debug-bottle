@@ -27,3 +27,8 @@
 - [ ] annotation: observe a member of an activity
 - [ ] package: root packages
 - [ ] package: xPosed packages
+
+# PC / Mac client
+- [ ] getting ip by adb
+- [ ] pull log files from android device
+- [ ] full control with bottle
