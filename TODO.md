@@ -14,11 +14,11 @@
 # 1.0.1
 - [x] UI: quick toggles
 - [x] feature: display FPS
+- [ ] feature: display intent arguments
 
 # 1.1
 - [ ] fix: support OkHttp3
 - [ ] feature: services manager
-- [ ] feature: display intent arguments
 - [ ] feature: content provider manager
 - [ ] feature: SQLite editor
 - [ ] feature: fragment previewer without activity
