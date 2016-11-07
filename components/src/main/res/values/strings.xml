@@ -156,5 +156,9 @@
     <string name="__dt_open">open</string>
     <string name="__dt_empty">Empty</string>
     <string name="__dt_empty_injector">This is QuickEntry area of Debug Bottle.\n\nThere\'s still has no quick entry implemented in injector.\n\nTo implement quick entry, click this for view examples.</string>
+    <string name="__dt_monkey_blacklist">Monkey test blacklist</string>
+    <string name="__dt_monkey_black_list_enabled">Monkey blacklist is enabled now. To disable, you should restart your App.</string>
+    <string name="__dt_activities_in_monkey_black_list">Activities in Monkey blacklist</string>
+    <string name="__dt_review_activityies_list">Review Activities list.</string>
 
 </resources>

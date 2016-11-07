@@ -34,6 +34,7 @@ import com.exyui.android.debugbottle.components.crash.DTCrashHandler
 import com.squareup.okhttp.OkHttpClient
 import com.exyui.android.debugbottle.components.injector.Injector
 import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
+import com.exyui.android.debugbottle.components.testing.MonkeyExcludeActivities
 
 /**
  * Created by yuriel on 8/10/16.
@@ -72,7 +73,9 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
     internal var injectorClassName: String? = null
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-
+        if (DTSettings.monkeyBlacklist) {
+            MonkeyExcludeActivities.activityStarted(activity)
+        }
     }
 
     override fun onActivityStarted(activity: Activity) {
@@ -187,6 +190,8 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             }
         }
         if (null != app) {
+            MonkeyExcludeActivities.init(app!!)
+
             if (DTSettings.strictMode) {
                 enableStrictMode()
                 RunningFeatureMgr.add(RunningFeatureMgr.STRICT_MODE)

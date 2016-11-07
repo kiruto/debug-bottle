@@ -13,6 +13,7 @@ import android.widget.SeekBar
 import com.exyui.android.debugbottle.components.floating.Floating3DService
 import com.exyui.android.debugbottle.ui.BlockCanary
 
+@Deprecated("")
 internal class SettingsActivity : DTBaseActivity() {
 
     private val MIN: Int = 15

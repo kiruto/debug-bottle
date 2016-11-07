@@ -10,6 +10,7 @@
 # 🍼Debug Bottle
 Android Java / Kotlin 程序员开发调试工具。Debug Bottle的所有功能均建立在App的debug版本中，不会对release版本产生任何影响。Debug Bottle旨在提高开发效率，把控App质量。
 
+- [开发文档](docs/zh-CN/README.md)
 - [CHANGELOG](CHANGELOG.md)
 - [TODO](TODO.md)
 
