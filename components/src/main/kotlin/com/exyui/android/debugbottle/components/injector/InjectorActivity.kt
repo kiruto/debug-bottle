@@ -10,6 +10,7 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.SearchableListViewHelper
 import com.exyui.android.debugbottle.components.injector.*
 
+@Deprecated("")
 internal class InjectorActivity : AppCompatActivity() {
 
     companion object {

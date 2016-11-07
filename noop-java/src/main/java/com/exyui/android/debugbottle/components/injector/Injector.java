@@ -24,6 +24,9 @@ public abstract class Injector {
     protected void quickEntry(Object a, Object b) {
         Log.d(TAG, "quickEntry");
     }
+    protected void excludeFromMonkey(Object a) {
+        Log.d(TAG, "excludeFromMonkey");
+    }
 
     public abstract void inject();
 }

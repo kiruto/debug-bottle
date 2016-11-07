@@ -30,6 +30,7 @@ class __QuickDialogTogglesView: ScrollView {
     private val leakCanarySwitcher by lazy { rootView?.leakCanarySwitcher(R.id.__dt_leak_canary_switcher) }
     private val blockCanarySwitcher by lazy { rootView?.blockCanarySwitcher(R.id.__dt_block_canary_switcher) }
     private val frameSwitcher by lazy { rootView?.frameSwitcher(R.id.__dt_frame_switcher) }
+    private val monkeyBlackList by lazy { rootView?.monkeyBlackListSwitcher(R.id.__dt_monkey_black_list) }
 
     constructor(context: Context): super(context) {
         init()
@@ -55,7 +56,7 @@ class __QuickDialogTogglesView: ScrollView {
     private fun bindViews() {
         inflate(context, R.layout.__fragment_quick_toggles, this)
         networkSwitcher; strictSwitcher; view3DSwitcher; leakCanarySwitcher; blockCanarySwitcher
-        frameSwitcher
+        frameSwitcher; monkeyBlackList
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {

@@ -19,5 +19,9 @@ abstract class Injector {
         Log.d(TAG, "quickEntry")
     }
 
+    protected fun excludeFromMonkey(a: Any? = null) {
+        Log.d(TAG, "excludeFromMonkey")
+    }
+
     abstract fun inject()
 }

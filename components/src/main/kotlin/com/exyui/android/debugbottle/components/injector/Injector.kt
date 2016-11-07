@@ -5,6 +5,7 @@ package com.exyui.android.debugbottle.components.injector
 import android.app.Activity
 import android.content.Intent
 import com.exyui.android.debugbottle.components.DTActivityManager
+import com.exyui.android.debugbottle.components.testing.MonkeyExcludeActivities
 
 /**
  * Created by yuriel on 8/15/16.
@@ -13,6 +14,7 @@ abstract class Injector {
     private val intentInjector = IntentInjector
     private val runnableInjector = RunnableInjector
     private val quickEntry = QuickEntry
+    private val blackList = MonkeyExcludeActivities.list
 
     protected val activity: Activity?
         get() = DTActivityManager.topActivity
@@ -31,6 +33,14 @@ abstract class Injector {
 
     protected fun quickEntry(name: String, listener: QuickEntry.OnActivityDisplayedListener) {
         quickEntry.put(name, listener)
+    }
+
+    protected fun excludeFromMonkey(activityClass: Class<out Activity>) {
+        blackList.exclude(activityClass)
+    }
+
+    protected fun excludeFromMonkey(activityClassName: String) {
+        blackList.exclude(activityClassName)
     }
 
     abstract fun inject()

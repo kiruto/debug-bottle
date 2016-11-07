@@ -1,16 +1,21 @@
 package com.exyui.android.debugbottle.components.fragments
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.RunningFeatureMgr
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
 import com.exyui.android.debugbottle.components.bubbles.services.__TestingRunnerBubble
+import com.exyui.android.debugbottle.components.testing.MonkeyExcludeActivities
 import com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
 
 /**
@@ -34,13 +39,21 @@ class __TestSettingsFragment: __ContentFragment() {
         result
     }
 
+    private val showBlacklistView: ViewGroup by lazy {
+        val result = rootView.findViewById(R.id.__dt_show_list) as ViewGroup
+        result.setOnClickListener {
+            MonkeyBlackListDialog().show(childFragmentManager, TAG)
+        }
+        result
+    }
+
     companion object {
         val TAG = "__TestSettingsFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         rootView = inflater.inflate(R.layout.__fragment_test_settings, container, false)
-        testCtrlView
+        testCtrlView; showBlacklistView
         registerBubbleStatusChangeReceiver()
         return rootView
     }
@@ -56,6 +69,26 @@ class __TestSettingsFragment: __ContentFragment() {
                 val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
                 testCtrlView.isChecked = bubble3DStatus
             }
+        }
+    }
+
+    class MonkeyBlackListDialog: DialogFragment() {
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+            val adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, android.R.id.text1)
+
+            for (name in MonkeyExcludeActivities.list.blackList) {
+                adapter.add(name)
+            }
+
+            val builder = AlertDialog.Builder(context)
+            builder.setAdapter(adapter) { dialog, witch ->
+
+            }
+            builder.setNegativeButton(R.string.__dt_close) { dialog, witch ->
+
+            }
+            return builder.create()
         }
     }
 }

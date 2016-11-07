@@ -11,14 +11,16 @@
 - [x] feature: custom icon label
 - [x] feature: introduction activity
 
-# 1.0.1
+# 1.0.x
 - [x] UI: quick toggles
 - [x] feature: display FPS
+- [x] feature: monkey test excluding Activities list
+- [ ] feature: display intent arguments
+- [ ] i18n: add Chinese support
 
-# 1.1
+# 1.1.x
 - [ ] fix: support OkHttp3
 - [ ] feature: services manager
-- [ ] feature: display intent arguments
 - [ ] feature: content provider manager
 - [ ] feature: SQLite editor
 - [ ] feature: fragment previewer without activity
@@ -27,3 +29,8 @@
 - [ ] annotation: observe a member of an activity
 - [ ] package: root packages
 - [ ] package: xPosed packages
+
+# PC / Mac client
+- [ ] getting ip by adb
+- [ ] pull log files from android device
+- [ ] full control with bottle
