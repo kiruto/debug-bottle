@@ -15,6 +15,7 @@ import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.DTBaseActivity
 import java.util.zip.Inflater
 
+@Deprecated("")
 internal class SPViewerActivity : DTBaseActivity(), DialogsCollection.SPDialogAction {
 
     private val listView by lazy { findViewById(R.id.list_view) as ExpandableListView }

@@ -133,4 +133,19 @@ internal object DTSettings {
             __FrameRecorder.enabled = value
         }
         get() = __FrameRecorder.enabled
+
+    /**
+     * The black list of Activities in Monkey test
+     */
+    var monkeyBlacklist: Boolean
+        set(value) {
+            if (value) {
+                RunningFeatureMgr.add(RunningFeatureMgr.MONKEY_BLACKLIST)
+            } else {
+                RunningFeatureMgr.remove(RunningFeatureMgr.MONKEY_BLACKLIST)
+            }
+        }
+        get() {
+            return RunningFeatureMgr.has(RunningFeatureMgr.MONKEY_BLACKLIST)
+        }
 }

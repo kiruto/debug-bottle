@@ -109,6 +109,23 @@ internal fun View.frameSwitcher(@IdRes id: Int): DTListItemSwitch {
     return result
 }
 
+internal fun View.monkeyBlackListSwitcher(@IdRes id: Int): DTListItemSwitch {
+    val result = findViewById(id) as DTListItemSwitch
+    result.isChecked = DTSettings.monkeyBlacklist
+    if (result.isChecked) {
+        result.enable = false
+    } else {
+        result.setOnCheckedChangeListener { view, isChecked ->
+            if (isChecked) {
+                DTSettings.monkeyBlacklist = true
+                result.enable = false
+                Toast.makeText(context, R.string.__dt_monkey_black_list_enabled, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+    return result
+}
+
 private fun hintRestart(context: Context) {
     Toast.makeText(context, R.string.__dt_need_restart_after_apply, Toast.LENGTH_LONG).show()
 }

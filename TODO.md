@@ -11,12 +11,14 @@
 - [x] feature: custom icon label
 - [x] feature: introduction activity
 
-# 1.0.1
+# 1.0.x
 - [x] UI: quick toggles
 - [x] feature: display FPS
+- [x] feature: monkey test excluding Activities list
 - [ ] feature: display intent arguments
+- [ ] i18n: add Chinese support
 
-# 1.1
+# 1.1.x
 - [ ] fix: support OkHttp3
 - [ ] feature: services manager
 - [ ] feature: content provider manager
