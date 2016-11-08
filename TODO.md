@@ -30,7 +30,7 @@
 - [ ] package: root packages
 - [ ] package: xPosed packages
 
-# PC / Mac client
+# PC / Mac / Linux client
 - [ ] getting ip by adb
 - [ ] pull log files from android device
 - [ ] full control with bottle
