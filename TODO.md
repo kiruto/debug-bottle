@@ -16,7 +16,7 @@
 - [x] feature: display FPS
 - [x] feature: monkey test excluding Activities list
 - [ ] feature: display intent arguments
-- [ ] i18n: add Chinese support
+- [x] i18n: add Chinese support
 
 # 1.1.x
 - [ ] fix: support OkHttp3

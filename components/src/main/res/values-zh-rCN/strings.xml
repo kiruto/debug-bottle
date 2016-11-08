@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">组件</string>
+    <string name="__dt_component_name">组件</string>
 
     <string name="__warn">WARN</string>
     <string name="__busy">BUSY</string>

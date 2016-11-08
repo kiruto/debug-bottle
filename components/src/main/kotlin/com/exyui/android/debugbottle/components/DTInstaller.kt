@@ -5,12 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.Icon
-import android.net.Uri
 import android.os.Build
 import com.squareup.leakcanary.LeakCanary
 import com.exyui.android.debugbottle.ui.BlockCanary
@@ -21,15 +18,10 @@ import android.os.Build.VERSION_CODES.GINGERBREAD
 import android.os.Bundle
 import android.os.Process
 import android.os.StrictMode
-import android.provider.Settings
 import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
-import android.support.annotation.StringRes
 import android.util.Log
-import android.view.WindowManager
 import android.widget.Toast
-import com.exyui.android.debugbottle.components.bubbles.__BubblesManager
-import com.exyui.android.debugbottle.components.bubbles.services.__BubblesManagerService
 import com.exyui.android.debugbottle.components.crash.DTCrashHandler
 import com.squareup.okhttp.OkHttpClient
 import com.exyui.android.debugbottle.components.injector.Injector
@@ -106,6 +98,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     @JvmStatic fun install(app: Application): DTInstaller {
         this.app = app
+        MonkeyExcludeActivities.init(app)
         return this
     }
 
@@ -190,7 +183,6 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             }
         }
         if (null != app) {
-            MonkeyExcludeActivities.init(app!!)
 
             if (DTSettings.strictMode) {
                 enableStrictMode()
@@ -232,7 +224,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         return true
     }
 
-    internal fun setNotificationDisplay(display: Boolean) {
+    fun setNotificationDisplay(display: Boolean) {
         if (display) {
             showNotification(app!!)
         } else {
