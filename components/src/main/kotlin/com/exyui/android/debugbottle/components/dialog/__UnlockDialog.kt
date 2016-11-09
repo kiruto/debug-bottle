@@ -64,5 +64,5 @@ class __UnlockDialog: __FloatAnimatedDialog() {
         })
     }
 
-    private fun generateCode(): Int = (Math.random() * 1000000).toInt()
+    private fun generateCode(): Int = 100000 + (Math.random() * 900000).toInt()
 }

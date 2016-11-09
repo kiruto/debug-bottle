@@ -66,12 +66,18 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         if (DTSettings.monkeyBlacklist) {
-            MonkeyExcludeActivities.activityStarted(activity)
+            try {
+                MonkeyExcludeActivities.activityStarted(activity)
+            } finally {}
         }
     }
 
     override fun onActivityStarted(activity: Activity) {
-
+        if (DTSettings.monkeyBlacklist) {
+            try {
+                MonkeyExcludeActivities.activityStarted(activity)
+            } finally {}
+        }
     }
 
     override fun onActivityResumed(activity: Activity) {
