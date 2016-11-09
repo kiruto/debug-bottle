@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">components</string>
+    <string name="__dt_component_name">components</string>
 
     <string name="__warn">WARN</string>
     <string name="__busy">BUSY</string>
@@ -143,7 +143,7 @@
     <string name="__dt_should_enable_leak_canary">You should enable leak canary first!</string>
     <string name="__dt_should_grant_draw_over_permission">You should grant draw over permission first!</string>
 
-    <string name="__dt_warning_open_activity_first">Please open your App before run testing.</string>
+    <string name="__dt_warning_open_activity_first">Please open your App first.</string>
     <string name="__dt_warning_joker">Would you want to test Debug Bottle?????</string>
 
     <string name="__dt_testing_ready">Testing runner is ready!</string>
@@ -160,5 +160,10 @@
     <string name="__dt_monkey_black_list_enabled">Monkey blacklist is enabled now. To disable, you should restart your App.</string>
     <string name="__dt_activities_in_monkey_black_list">Activities in Monkey blacklist</string>
     <string name="__dt_review_activityies_list">Review Activities list.</string>
+    <string name="__dt_notification_lock">lock the notification of Debug Bottle</string>
+    <string name="__dt_unlock">Unlock Debug Bottle</string>
+    <string name="__dt_unlock_input_following_number">Input following number to unlock:</string>
+    <string name="__dt_unlocked">unlocked</string>
+    <string name="__dt_notification_locked">Debug bottle notification has locked.</string>
 
 </resources>

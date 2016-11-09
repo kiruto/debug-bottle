@@ -17,8 +17,11 @@
 - [x] feature: monkey test excluding Activities list
 - [ ] feature: display intent arguments
 - [x] i18n: add Chinese support
+- [ ] feature: reset shared preferences witch created by debug bottle
+- [ ] feature: notification lock
 
 # 1.1.x
+- [ ] feature: build test
 - [ ] fix: support OkHttp3
 - [ ] feature: services manager
 - [ ] feature: content provider manager
