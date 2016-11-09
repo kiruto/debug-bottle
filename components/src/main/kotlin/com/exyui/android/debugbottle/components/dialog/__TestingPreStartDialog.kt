@@ -1,9 +1,7 @@
 package com.exyui.android.debugbottle.components.dialog
 
-import android.app.FragmentManager
 import android.content.DialogInterface
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import com.exyui.android.debugbottle.components.DTDrawerActivity
 import com.exyui.android.debugbottle.components.DTInstaller
@@ -82,9 +80,7 @@ class __TestingPreStartDialog : __FloatAnimatedDialog() {
     }
 
     private fun recreateBubble() {
-        if (null != activity) {
-            __TestingRunnerBubble.create(activity)
-        }
+        activity?.let { __TestingRunnerBubble.create(it) }
     }
 
     private fun startTesting() {

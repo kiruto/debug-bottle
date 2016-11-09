@@ -1,6 +1,7 @@
 package com.exyui.android.debugbottle.components.fragments
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -8,6 +9,7 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
+import com.exyui.android.debugbottle.components.DTSettings
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
 
 /**

@@ -1,6 +1,7 @@
 package com.exyui.android.debugbottle.components
 
 import android.Manifest
+import android.app.ActivityManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -119,6 +120,10 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (ActivityManager.isUserAMonkey()) {
+            finish()
+            return
+        }
         setContentView(R.layout.__activity_dt_drawer)
         drawerLayout.setDrawerListener(drawerToggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
