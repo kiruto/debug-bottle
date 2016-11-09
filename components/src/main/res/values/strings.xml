@@ -165,5 +165,9 @@
     <string name="__dt_unlock_input_following_number">Input following number to unlock:</string>
     <string name="__dt_unlocked">unlocked</string>
     <string name="__dt_notification_locked">Debug bottle notification has locked.</string>
+    <string name="__dt_monkey_blacklist_activity_closed">Monkey Blacklist: Activity is closed</string>
+    <string name="__dt_test_report">Enable these reports / features while testing:</string>
+    <string name="__dt_enable_testing_environment">Enable testing environment will enable \"monkey blacklist\" and \"notification lock\", you may close these after tested.</string>
+    <string name="__dt_monkey_environment_ready">monkey test environment is ready.</string>
 
 </resources>

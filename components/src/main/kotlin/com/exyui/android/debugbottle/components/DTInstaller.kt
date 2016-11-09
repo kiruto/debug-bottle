@@ -224,6 +224,18 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         return true
     }
 
+    internal fun startTestingEnvironment(): Boolean {
+        if (null != injector) {
+            try {
+                injector?.beforeMonkeyTest()
+                return true
+            } catch (e: Exception) {
+                return false
+            }
+        }
+        return true
+    }
+
     fun setNotificationDisplay(display: Boolean) {
         if (display) {
             showNotification(app!!)

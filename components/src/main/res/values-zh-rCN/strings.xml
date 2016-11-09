@@ -165,5 +165,9 @@
     <string name="__dt_unlock_input_following_number">输入下面的数字解锁:</string>
     <string name="__dt_unlocked">已解锁</string>
     <string name="__dt_notification_locked">Debug bottle通知栏已被锁定。</string>
+    <string name="__dt_monkey_blacklist_activity_closed">Activity在Monkey黑名单中，已关闭。</string>
+    <string name="__dt_test_report">压力测试中开启以下功能以生成报告:</string>
+    <string name="__dt_enable_testing_environment">开启测试环境后会自动启用Monkey黑名单功能及通知栏锁定功能。测试完毕后需要手动关闭。</string>
+    <string name="__dt_monkey_environment_ready">Monkey环境已完成，现在可以开始压力测试。</string>
 
 </resources>

@@ -113,11 +113,7 @@ internal fun View.monkeyBlackListSwitcher(@IdRes id: Int): DTListItemSwitch {
     val result = findViewById(id) as DTListItemSwitch
     result.isChecked = DTSettings.monkeyBlacklist
     result.setOnCheckedChangeListener { view, isChecked ->
-        if (isChecked) {
-            DTSettings.monkeyBlacklist = true
-            result.enable = false
-            Toast.makeText(context, R.string.__dt_monkey_black_list_enabled, Toast.LENGTH_LONG).show()
-        }
+        DTSettings.monkeyBlacklist = isChecked
     }
     return result
 }
