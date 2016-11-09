@@ -50,9 +50,9 @@ upload101_22() {
 cleanGradleCache() {
     rm -rf ~/.gradle/caches/modules-2/files-2.1/com.exyui.android
 }
-uploadPrimary
 upload101_22
 upload101_23
+uploadPrimary
 git checkout 1.0.1
 rm settings.gradle
 cp settings.gradle.before settings.gradle

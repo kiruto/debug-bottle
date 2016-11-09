@@ -68,4 +68,13 @@
 
     <View style="@style/__DTList.Divider" />
 
+    <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/__dt_notification_lock"
+        dt:__dt_smart="true"
+        dt:__dt_title="@string/__dt_notification_lock" />
+
+    <View style="@style/__DTList.Divider" />
+
 </LinearLayout>

@@ -68,6 +68,10 @@ public class DTInstaller {
         return this;
     }
 
+    public void setNotificationDisplay(boolean display) {
+        Log.d(TAG, "setNotificationDisplay");
+    }
+
     public void run() {
         Log.d(TAG, "run");
     }

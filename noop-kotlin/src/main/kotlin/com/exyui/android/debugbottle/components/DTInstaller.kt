@@ -55,6 +55,10 @@ object DTInstaller {
         return this
     }
 
+    fun setNotificationDisplay(display: Boolean) {
+        Log.d(TAG, "setNotificationDisplay")
+    }
+
     fun enable(): DTInstaller {
         Log.d(TAG, "enable")
         return this

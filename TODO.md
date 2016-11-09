@@ -16,9 +16,12 @@
 - [x] feature: display FPS
 - [x] feature: monkey test excluding Activities list
 - [ ] feature: display intent arguments
-- [ ] i18n: add Chinese support
+- [x] i18n: add Chinese support
+- [ ] feature: reset shared preferences witch created by debug bottle
+- [ ] feature: notification lock
 
 # 1.1.x
+- [ ] feature: build test
 - [ ] fix: support OkHttp3
 - [ ] feature: services manager
 - [ ] feature: content provider manager
@@ -30,7 +33,7 @@
 - [ ] package: root packages
 - [ ] package: xPosed packages
 
-# PC / Mac client
+# PC / Mac / Linux client
 - [ ] getting ip by adb
 - [ ] pull log files from android device
 - [ ] full control with bottle

@@ -1,7 +1,5 @@
 package com.exyui.android.debugbottle.components.dialog.quickviews
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.BroadcastReceiver
@@ -10,9 +8,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.util.AttributeSet
-import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.ScrollView
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.bubbles.services.__3DViewBubble
@@ -30,7 +25,8 @@ class __QuickDialogTogglesView: ScrollView {
     private val leakCanarySwitcher by lazy { rootView?.leakCanarySwitcher(R.id.__dt_leak_canary_switcher) }
     private val blockCanarySwitcher by lazy { rootView?.blockCanarySwitcher(R.id.__dt_block_canary_switcher) }
     private val frameSwitcher by lazy { rootView?.frameSwitcher(R.id.__dt_frame_switcher) }
-    private val monkeyBlackList by lazy { rootView?.monkeyBlackListSwitcher(R.id.__dt_monkey_black_list) }
+    private val monkeyBlackListSwitcher by lazy { rootView?.monkeyBlackListSwitcher(R.id.__dt_monkey_black_list) }
+    private val notificationLockSwitcher by lazy { rootView?.notificationLockSwitcher(R.id.__dt_notification_lock) }
 
     constructor(context: Context): super(context) {
         init()
@@ -56,7 +52,7 @@ class __QuickDialogTogglesView: ScrollView {
     private fun bindViews() {
         inflate(context, R.layout.__fragment_quick_toggles, this)
         networkSwitcher; strictSwitcher; view3DSwitcher; leakCanarySwitcher; blockCanarySwitcher
-        frameSwitcher; monkeyBlackList
+        frameSwitcher; monkeyBlackListSwitcher; notificationLockSwitcher
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {

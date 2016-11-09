@@ -1,0 +1,173 @@
+<resources>
+    <string name="__dt_component_name">组件</string>
+
+    <string name="__warn">WARN</string>
+    <string name="__busy">BUSY</string>
+    <string name="__idle">IDLE</string>
+    <string name="__filter">过滤器</string>
+    <string name="__run">Run</string>
+    <string name="__run_activity_with_intent">通过Intent启动Activity</string>
+    <string name="__cancel">取消</string>
+    <string name="__string">字符串</string>
+    <string name="__ic_char_delete">❌</string>
+    <string name="__intent_content_hint">请输入Intent参数，输入key后按空格键输入value，再按回车继续输入下一个参数。</string>
+    <string name="__package">包名:</string>
+    <string name="__sp_editor_title">首选项编辑器</string>
+    <string name="__delete">删除</string>
+    <string name="__save">保存</string>
+    <string name="__true">true</string>
+    <string name="__false">false</string>
+    <string name="__start">开始</string>
+    <string name="__dt_run_test">运行测试</string>
+    <string name="__dt_block_threshold">卡顿时长，超过此数值会被算为卡顿(默认: 500ms)</string>
+    <string name="__dt_network_listener">网络监听</string>
+    <string name="__dt_okhttp_listener_switcher">启用Okhttp监听</string>
+    <string name="__dt_sp_title">首选项编辑器</string>
+    <string name="__dt_setting_title">调试工具设置</string>
+    <string name="__dt_strict_mode">严格模式（Strict Mode）</string>
+    <string name="__dt_strict_mode_switcher">App启动时开启严格模式</string>
+    <string name="__dt_3d_window">3D显示View结构</string>
+    <string name="__dt_3d_window_switcher">开启3D开关气泡</string>
+    <string name="__dt_leak_canary">内存泄漏检测（Leak Canary）</string>
+    <string name="__dt_leak_canary_switcher">开启内存泄漏检测(需要杀进程重启)</string>
+    <string name="__dt_block_canary_switcher">开启UI卡顿检测</string>
+    <string name="__dt_block_canary">UI卡顿检测（Block Canary）</string>
+
+    <string name="__dt_drawer_open">__dt_drawer_open</string>
+    <string name="__dt_drawer_close">__dt_drawer_close</string>
+
+    <string name="__dt_status">Debug Bottle 状态</string>
+    <string name="__dt_all_activities">全部Activity</string>
+    <string name="__dt_sp_viewer">首选项编辑器</string>
+    <string name="__dt_leaks">内存泄漏日志</string>
+    <string name="__dt_blocks">UI卡顿日志</string>
+    <string name="__dt_network_traffics">网络监听日志</string>
+    <string name="__dt_crashes">崩溃日志</string>
+    <string name="__dt_black_box_testing">黑箱测试</string>
+    <string name="__dt_feedback">反馈</string>
+    <string name="__dt_project">开源程序</string>
+    <string name="__dt_intents">Intent入口</string>
+    <string name="__dt_runnable">Runnable入口</string>
+    <string name="__dt_settings">设置</string>
+    <string name="__dt_submit">提交</string>
+    <string name="__dt_put">输入</string>
+    <string name="__dt_enable_switcher">开启Debug Bottle(需要杀进程重启)</string>
+    <string name="__dt_bottle_enable">开启使用Debug Bottle功能</string>
+    <string name="__dt_permissions">Debug Bottle 权限</string>
+    <string name="__dt_permission_request">申请</string>
+    <string name="__dt_toggles">Quick Toggles</string>
+
+    <string name="__dt_granted">已允许</string>
+    <string name="__dt_denied">被拒绝</string>
+    <string name="__dt_on_off">on / off</string>
+    <string name="__dt_if_crashes_see_this">** 如果开启此选项后崩溃，点击此处查看解决方案。</string>
+    <string name="__dt_application_process">App 进程ID</string>
+    <string name="__dt_kill_process">杀掉进程</string>
+    <string name="__dt_bottle">Debug Bottle</string>
+    <string name="__dt_bottle_version">version 1.0.0EAP</string>
+    <string name="__dt_finish">关闭</string>
+    <string name="__dt_running_feature">运行中的服务</string>
+    <string name="__dt_bottle_feature">Debug Bottle</string>
+    <string name="__dt_net_work_feature">网络请求监听</string>
+    <string name="__dt_strict_mode_feature">严格模式</string>
+    <string name="__dt_3d_feature">3D气泡</string>
+    <string name="__dt_leak_canary_feature">内存泄漏监听</string>
+    <string name="__dt_block_canary_feature">UI卡顿监听</string>
+    <string name="__dt_running">运行中</string>
+    <string name="__dt_stopped">已停止</string>
+    <string name="__dt_write_external_storage">Write external storage</string>
+    <string name="__dt_read_phone_state">Read phone state</string>
+    <string name="__dt_system_alert_window">System alert window</string>
+
+    <string name="__dt_need_permissions">缺少权限</string>
+    <string name="__dt_permission_message">开启Debug Bottle需要一些基本权限。要现在确认权限吗？</string>
+    <string name="__dt_check">确认</string>
+    <string name="__dt_not_now">以后再说</string>
+
+    <string name="__dt_need_enable_dt">立即开启Debug Bottle！</string>
+    <string name="__dt_enable_dt_message">Debug Bottle已被关闭。是否需要立即开启？你也可以在设置中开启。</string>
+    <string name="__dt_enable">开启</string>
+    <string name="__dt_later">以后再说</string>
+
+    <string name="__dt_need_kill_proc">准备就绪。杀掉进程重启App后即可使用Debug Bottle</string>
+    <string name="__dt_kill_proc">重启App</string>
+    <string name="__dt_kill_success">进程关闭成功。请点击App图标重启</string>
+
+    <string name="__dt_need_restart_after_apply">此功能将在App下次启动时开启。</string>
+    <string name="__dt_information">关于</string>
+    <string name="__dt_help">帮助</string>
+    <string name="__dt_share">分享</string>
+
+    <string name="__dt_info">Debug Bottle</string>
+    <string name="__dt_info_introduction">Android开发与调试工具，使用Kotlin编写。\n\n如果你喜欢此工具，可以在Github上star此项目。</string>
+    <string name="__dt_github">github</string>
+    <string name="__dt_close">关闭</string>
+    <string name="__dt_full_url">完整URL</string>
+    <string name="__dt_copy">复制</string>
+    <string name="__dt_open_in_browser">在浏览器中打开</string>
+    <string name="__dt_copied">URL已复制</string>
+
+    <string name="__dt_intro_title_welcome">欢迎使用Debug Bottle!</string>
+    <string name="__dt_intro_title_check_permission">检查权限</string>
+    <string name="__dt_intro_title_enable_features">启用Debug Bottle</string>
+    <string name="__dt_intro_title_done">准备就绪!</string>
+    <string name="__dt_intro_content_debug_runtime">在App运行时调试</string>
+    <string name="__dt_intro_content_find_bug">自动定位Bug代码</string>
+    <string name="__dt_intro_content_view_reports">随时查看反馈日志</string>
+    <string name="__dt_intro_content_more_feature">其他鹅妹子嘤功能</string>
+    <string name="__dt_next">下一步</string>
+    <string name="__dt_restart">重启</string>
+    <string name="__dt_intro_request_permissions">点击此处</string>
+    <string name="__dt_intro_permission_done">已通过权限检查</string>
+    <string name="__dt_enable_bottle">启用Debug Bottle</string>
+    <string name="__dt_enable_strict_mode">启用严格模式</string>
+    <string name="__dt_enable_leak_canary">启用内存泄漏检测</string>
+    <string name="__dt_enable_block_canary">启用UI卡顿检测</string>
+    <string name="__dt_intro_content_done_1">所有设置已完成</string>
+    <string name="__dt_intro_content_done_2">Debug Bottle已成功启用在你的App中</string>
+    <string name="__dt_intro_content_done_3">重启App后，Debug Bottle入口将出现在通知栏</string>
+    <string name="__dt_intro_content_done_4">Good luck!</string>
+
+    <string name="__dt_how_to_use">使用方法</string>
+    <string name="__dt_injector_help">使用说明</string>
+    <string name="__dt_intent_injector_introduction">Injector是Debug Bottle的附属功能。\n\n此功能可以在此给开发者提供一个进入Activity的快速入口。\n\n使用该功能需要实现Injector接口。</string>
+    <string name="__dt_runnable_injector_introduction">Injector是Debug Bottle的附属功能。\n\n此功能可以在此给开发者提供一个运行方法并查看结果的快速入口。\n\n使用该功能需要实现Injector接口。</string>
+    <string name="__dt_step_one">提示</string>
+    <string name="__dt_injector_step_one_no_package_message">新建一个类继承Injector类，并实现inject()方法。\n\n将要启动的Activity的Intent，和要启动的任务的Runable通过put方法放入inject()中\n\n创建Intent时可以使用getActivity方法拿到当前activity。</string>
+    <string name="__dt_injector_step_one_message">打开类 %s 的原文件, 在inject()方法中调用put函数设置要启动的Activity的Intent，和要启动的任务的Runable。\n\n创建Intent时可以使用getActivity方法拿到当前activity。</string>
+    <string name="__dt_enable_http_sniffer">开启网络监听</string>
+    <string name="__dt_intro_for_dev">开发选项</string>
+    <string name="__dt_intro_for_qa">测试选项</string>
+
+    <string name="__dt_draw_over_permission_denied">没有足够的权限。 请在系统设置中开启 Settings -> Apps -> Draw over other apps 权限。</string>
+    <string name="__dt_should_enable_leak_canary">必须先开启Leak canary功能</string>
+    <string name="__dt_should_grant_draw_over_permission">You should grant draw over permission first!</string>
+
+    <string name="__dt_warning_open_activity_first">请先打开您的App</string>
+    <string name="__dt_warning_joker">Would you want to test Debug Bottle?????</string>
+
+    <string name="__dt_testing_ready">Testing runner is ready!</string>
+    <string name="__dt_testing_ready_message">All Debug Bottle running services has been reset.\n\nFire by click start button.</string>
+    <string name="__dt_test_controller_enable">开启测试控制</string>
+    <string name="__dt_test_controller">测试选项</string>
+    <string name="__dt_frame">FPS</string>
+    <string name="__dt_frame_switcher">在屏幕上显示每秒帧数</string>
+    <string name="__dt_root_required">** 此功能需要Root权限</string>
+    <string name="__dt_open">打开</string>
+    <string name="__dt_empty">Empty</string>
+    <string name="__dt_empty_injector">此区域是Debug Bottle的QuickEntry功能区域。\n\n目前还没有Injector的实现类。\n\n若要实现Injector，点击此处查看编写示例。</string>
+    <string name="__dt_monkey_blacklist">Monkey黑名单</string>
+    <string name="__dt_monkey_black_list_enabled">Monkey功能已开启，若要关闭，请重启App。</string>
+    <string name="__dt_activities_in_monkey_black_list">查看黑名单</string>
+    <string name="__dt_review_activityies_list">查看Monkey test禁止的所有Activity</string>
+    <string name="__dt_notification_lock">锁定Debug Bottle的通知栏消息</string>
+    <string name="__dt_unlock">解锁Debug Bottle</string>
+    <string name="__dt_unlock_input_following_number">输入下面的数字解锁:</string>
+    <string name="__dt_unlocked">已解锁</string>
+    <string name="__dt_notification_locked">Debug bottle通知栏已被锁定。</string>
+    <string name="__dt_monkey_blacklist_activity_closed">Activity在Monkey黑名单中，已关闭。</string>
+    <string name="__dt_test_report">压力测试中开启以下功能以生成报告:</string>
+    <string name="__dt_enable_testing_environment">开启测试环境后会自动启用Monkey黑名单功能及通知栏锁定功能。测试完毕后需要手动关闭。</string>
+    <string name="__dt_monkey_environment_ready">Monkey环境已完成，现在可以开始压力测试。</string>
+
+</resources>
