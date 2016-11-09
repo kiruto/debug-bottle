@@ -14,7 +14,49 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/__dt_test_report"/>
 
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/__dt_network_switcher"
+            dt:__dt_smart="true"
+            dt:__dt_title="@string/__dt_network_listener"/>
+
+        <View style="@style/__DTList.Divider" />
+
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/__dt_strict_switcher"
+            dt:__dt_smart="true"
+            dt:__dt_title="@string/__dt_strict_mode" />
+
+        <View style="@style/__DTList.Divider" />
+
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/__dt_leak_canary_switcher"
+            dt:__dt_smart="true"
+            dt:__dt_title="@string/__dt_leak_canary" />
+
+        <View style="@style/__DTList.Divider" />
+
+        <com.exyui.android.debugbottle.components.widgets.DTListItemSwitch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/__dt_block_canary_switcher"
+            dt:__dt_smart="true"
+            dt:__dt_title="@string/__dt_block_canary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/__dt_enable_testing_environment"/>
 
     </LinearLayout>
 

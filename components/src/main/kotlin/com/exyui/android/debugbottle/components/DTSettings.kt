@@ -1,6 +1,5 @@
 package com.exyui.android.debugbottle.components
 
-import android.content.SharedPreferences
 import com.exyui.android.debugbottle.core.*
 
 /**
@@ -139,6 +138,7 @@ internal object DTSettings {
      */
     var monkeyBlacklist: Boolean
         set(value) {
+            getSP()?.edit()?.putBoolean(MONKEY_BLACKLIST, value)?.apply()
             if (value) {
                 RunningFeatureMgr.add(RunningFeatureMgr.MONKEY_BLACKLIST)
             } else {
@@ -146,6 +146,21 @@ internal object DTSettings {
             }
         }
         get() {
-            return RunningFeatureMgr.has(RunningFeatureMgr.MONKEY_BLACKLIST)
+            val result = getSP()?.getBoolean(MONKEY_BLACKLIST, false)?: false
+            if (result) {
+                RunningFeatureMgr.add(RunningFeatureMgr.MONKEY_BLACKLIST)
+            } else {
+                RunningFeatureMgr.remove(RunningFeatureMgr.MONKEY_BLACKLIST)
+            }
+            return result
         }
+
+    /**
+     * Notification number lock
+     */
+    var notificationLock: Boolean
+        set(value) {
+            getSP()?.edit()?.putBoolean(NOTIFICATION_LOCK, value)?.apply()
+        }
+        get() = getSP()?.getBoolean(NOTIFICATION_LOCK, false)?: false
 }

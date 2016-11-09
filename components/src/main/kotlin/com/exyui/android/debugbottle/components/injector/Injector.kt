@@ -4,7 +4,9 @@ package com.exyui.android.debugbottle.components.injector
 
 import android.app.Activity
 import android.content.Intent
+import android.widget.Toast
 import com.exyui.android.debugbottle.components.DTActivityManager
+import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.testing.MonkeyExcludeActivities
 
 /**
@@ -44,4 +46,6 @@ abstract class Injector {
     }
 
     abstract fun inject()
+
+    open fun beforeMonkeyTest() = Toast.makeText(activity, R.string.__dt_monkey_environment_ready, Toast.LENGTH_SHORT).show()
 }

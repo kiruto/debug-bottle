@@ -24,4 +24,6 @@ abstract class Injector {
     }
 
     abstract fun inject()
+
+    open fun beforeMonkeyTest() = Log.d(TAG, "beforeMonkeyTest")
 }

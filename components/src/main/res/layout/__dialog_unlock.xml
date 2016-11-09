@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dt="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/__DTDialog.Floating">
+
+    <com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/__floating_header"
+        dt:__dt_title="@string/__dt_bottle"/>
+
+    <LinearLayout
+        android:id="@+id/__dt_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/__dt_unlock_input_following_number"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            android:id="@+id/__dt_number"
+            tools:text="029475"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:inputType="number"
+            android:textColor="@android:color/black"
+            android:id="@+id/__dt_input"/>
+
+    </LinearLayout>
+
+</LinearLayout>
