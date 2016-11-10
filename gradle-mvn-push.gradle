@@ -58,7 +58,7 @@ afterEvaluate { project ->
                 pom.artifactId = POM_ARTIFACT_ID
                 pom.version = rootProject.mavenVersionName
 
-                if (uploadToLocalRepo()) {
+                if (!uploadToLocalRepo()) {
                     repository(url: getReleaseRepositoryUrl()) {
                         authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
                     }
