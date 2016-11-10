@@ -332,7 +332,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
     internal fun getString(@IdRes id: Int) = app?.getString(id)
 
-    internal fun getAppIcon() = app?.applicationInfo?.loadIcon(app?.packageManager)?: null
+    internal fun getAppIcon() = app?.applicationInfo?.loadIcon(app?.packageManager)
 
     internal fun Drawable.toBitmap(): Bitmap {
         val bitmap: Bitmap?

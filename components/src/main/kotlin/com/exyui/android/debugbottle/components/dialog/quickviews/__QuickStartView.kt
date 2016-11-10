@@ -16,9 +16,9 @@ import java.util.*
 /**
  * Created by yuriel on 10/14/16.
  */
-class __QuickStackView: ScrollView {
+class __QuickStartView : ScrollView {
 
-    private val TAG = "__QuickStackView"
+    private val TAG = "__QuickStartView"
 
     constructor(context: Context): super(context) {
         init()
