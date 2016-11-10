@@ -18,7 +18,8 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 def isReleaseBuild() {
-    return VERSION_NAME.contains("SNAPSHOT") == false
+    //return VERSION_NAME.contains("SNAPSHOT") == false
+    return hasProperty('SNAPSHOT')? Boolean.valueOf(SNAPSHOT): false
 }
 
 def getReleaseRepositoryUrl() {
@@ -29,6 +30,14 @@ def getReleaseRepositoryUrl() {
 def getSnapshotRepositoryUrl() {
     return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL
             : "https://oss.sonatype.org/content/repositories/snapshots/"
+}
+
+def getLocalRepositoryUrl() {
+    return hasProperty('LOCAL_MVN_REPO') ? LOCAL_MVN_REPO: ''
+}
+
+def uploadToLocalRepo() {
+    return hasProperty('UPLOAD_TO_LOCAL') ? Boolean.valueOf(UPLOAD_TO_LOCAL) : false
 }
 
 def getRepositoryUsername() {
@@ -49,9 +58,16 @@ afterEvaluate { project ->
                 pom.artifactId = POM_ARTIFACT_ID
                 pom.version = rootProject.mavenVersionName
 
-                repository(url: getReleaseRepositoryUrl()) {
-                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                if (uploadToLocalRepo()) {
+                    repository(url: getReleaseRepositoryUrl()) {
+                        authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                    }
+                } else {
+                    repository(url: getLocalRepositoryUrl()) {
+                        authentication(userName: maven_user, password: maven_password)
+                    }
                 }
+
                 snapshotRepository(url: getSnapshotRepositoryUrl()) {
                     authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
                 }
@@ -111,60 +127,4 @@ afterEvaluate { project ->
         archives androidSourcesJar
         //archives androidJavadocsJar
     }
-
-//    /**
-//     * Upload to local maven repository
-//     * if it is needed, please add following properties:
-//     *  - LOCAL_MVN_REPO: local repo url
-//     *  - maven_user: local repo user name
-//     *  - maven_password: local repo password
-//     */
-//    task uploadExternal(type: Upload) {
-//        def localRepo = properties.get("LOCAL_MVN_REPO")
-//        def localRepoUser = properties.get("maven_user")
-//        def localRepoPwd = properties.get("maven_password")
-//
-//        if (null != localRepo) {
-//            uploadDescriptor = true
-//            repositories.mavenDeployer {
-//                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-//
-//                pom.groupId = GROUP
-//                pom.artifactId = POM_ARTIFACT_ID
-//                pom.version = rootProject.mavenVersionName
-//                // Add other pom properties here if you want (developer details / licenses)
-//                repository(url: localRepo) {
-//                    authentication(userName: localRepoUser, password: localRepoPwd)
-//                }
-//
-//                pom.project {
-//                    name POM_NAME
-//                    packaging POM_PACKAGING
-//                    description POM_DESCRIPTION
-//                    url POM_URL
-//
-//                    scm {
-//                        url POM_SCM_URL
-//                        connection POM_SCM_CONNECTION
-//                        developerConnection POM_SCM_DEV_CONNECTION
-//                    }
-//
-//                    licenses {
-//                        license {
-//                            name POM_LICENCE_NAME
-//                            url POM_LICENCE_URL
-//                            distribution POM_LICENCE_DIST
-//                        }
-//                    }
-//
-//                    developers {
-//                        developer {
-//                            id POM_DEVELOPER_ID
-//                            name POM_DEVELOPER_NAME
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
