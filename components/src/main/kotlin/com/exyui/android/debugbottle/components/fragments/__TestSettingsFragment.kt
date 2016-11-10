@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components.fragments
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
@@ -91,7 +92,9 @@ class __TestSettingsFragment: __ContentFragment() {
             return builder.create()
         }
 
-        override fun onAttach(context: Context?) {
+        @Suppress("OverridingDeprecatedMember")
+        override fun onAttach(context: Activity?) {
+            @Suppress("DEPRECATION")
             super.onAttach(context)
             context?.let { activityContext = it }
         }
