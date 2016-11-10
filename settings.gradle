@@ -1,1 +1,1 @@
-include ':demo', ':core', ':blockcanary', ':noop-kotlin', ':components', ':views'/*, ':runtime'*/, ':noop-java'
+include ':demo', ':core', ':blockcanary', ':noop-kotlin', ':components', ':views', ':runtime', ':noop-java'

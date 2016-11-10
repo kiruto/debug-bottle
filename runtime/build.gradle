@@ -43,13 +43,11 @@ dependencies {
 }
 repositories {
     mavenCentral()
-    if (properties.hasProperty('maven_user') && properties.hasProperty('maven_password')) {
-        maven {
-            url "http://maven.chunyu.mobi/content/groups/public/"
-            credentials {
-                username maven_user
-                password maven_password
-            }
+    maven {
+        url "http://maven.chunyu.mobi/content/groups/public/"
+        credentials {
+            username maven_user
+            password maven_password
         }
     }
 }
