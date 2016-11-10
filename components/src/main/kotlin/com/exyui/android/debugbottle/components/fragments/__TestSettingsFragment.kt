@@ -73,15 +73,15 @@ class __TestSettingsFragment: __ContentFragment() {
     }
 
     class MonkeyBlackListDialog: DialogFragment() {
+        private lateinit var activityContext: Context
+
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-            val adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, android.R.id.text1)
+            val adapter = ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, android.R.id.text1)
 
-            for (name in MonkeyExcludeActivities.list.blackList) {
-                adapter.add(name)
-            }
+            adapter.addAll(MonkeyExcludeActivities.list.blackList)
 
-            val builder = AlertDialog.Builder(context)
+            val builder = AlertDialog.Builder(activityContext)
             builder.setAdapter(adapter) { dialog, witch ->
 
             }
@@ -89,6 +89,11 @@ class __TestSettingsFragment: __ContentFragment() {
 
             }
             return builder.create()
+        }
+
+        override fun onAttach(context: Context?) {
+            super.onAttach(context)
+            context?.let { activityContext = it }
         }
     }
 }
