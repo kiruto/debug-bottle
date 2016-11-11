@@ -169,5 +169,6 @@
     <string name="__dt_test_report">压力测试中开启以下功能以生成报告:</string>
     <string name="__dt_enable_testing_environment">开启测试环境后会自动启用Monkey黑名单功能及通知栏锁定功能。测试完毕后需要手动关闭。</string>
     <string name="__dt_monkey_environment_ready">Monkey环境已完成，现在可以开始压力测试。</string>
+    <string name="__dt_apply_and_restart">应用并重启</string>
 
 </resources>

@@ -47,6 +47,7 @@ class __UnlockDialog: __FloatAnimatedDialog() {
                 val input = s.toString()
                 if (code == input) {
                     DTSettings.notificationLock = false
+                    DTSettings.monkeyBlacklist = false
                     Toast.makeText(activity, R.string.__dt_unlocked, Toast.LENGTH_SHORT).show()
                     dismiss()
                 } else if (!code.startsWith(input)) {

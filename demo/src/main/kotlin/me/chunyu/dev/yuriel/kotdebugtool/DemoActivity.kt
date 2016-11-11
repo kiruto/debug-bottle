@@ -37,14 +37,14 @@ class DemoActivity : AppCompatActivity() {
         }
 
         fun ViewGroup.shakeChild() {
-            for (i in 0..childCount) {
-                val v = getChildAt(i)
-                if (v is ViewGroup) {
-                    v.shakeChild()
-                } else {
-                    v?.shake()
-                }
-            }
+            (0..childCount).map { getChildAt(it) }
+                    .forEach {
+                        if (it is ViewGroup) {
+                            it.shakeChild()
+                        } else {
+                            it?.shake()
+                        }
+                    }
         }
 
         (window.decorView.rootView as ViewGroup).shakeChild()

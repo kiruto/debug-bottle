@@ -1,6 +1,7 @@
 package com.exyui.android.debugbottle.components.okhttp
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -57,6 +58,10 @@ internal class DisplayHttpBlockActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (ActivityManager.isUserAMonkey()) {
+            finish()
+        }
 
         if (savedInstanceState != null) {
             mBlockStartTime = savedInstanceState.getString(SHOW_BLOCK_EXTRA_KEY)
