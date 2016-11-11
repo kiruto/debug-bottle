@@ -169,5 +169,6 @@
     <string name="__dt_test_report">Enable these reports / features while testing:</string>
     <string name="__dt_enable_testing_environment">Enable testing environment will enable \"monkey blacklist\" and \"notification lock\", you may close these after tested.</string>
     <string name="__dt_monkey_environment_ready">monkey test environment is ready.</string>
+    <string name="__dt_apply_and_restart">apply &amp; restart</string>
 
 </resources>

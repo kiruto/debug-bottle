@@ -42,6 +42,10 @@ class __TestingPreStartDialog : __FloatAnimatedDialog() {
         val header = result.findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout
         header.setAction { openSettings() }
         header.setClose { close() }
+        result.findViewById(R.id.__dt_apply_and_restart).setOnClickListener {
+            startTestingEnvironment()
+            DTInstaller.kill()
+        }
         result.findViewById(R.id.__dt_run_test).setOnClickListener { startTestingEnvironment() }
         isCancelable = false
         rootView = result

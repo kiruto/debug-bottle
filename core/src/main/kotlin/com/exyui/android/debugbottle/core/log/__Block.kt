@@ -316,18 +316,18 @@ class __Block private constructor() {
     val keyStackString: String
         get() {
             var result = ""
-            for (stackEntry in threadStackEntries) {
-
-                if (Character.isLetter(stackEntry[0])) {
-                    val lines = stackEntry.split(__Block.SEPARATOR.toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
-                    for (line in lines) {
-                        if (!line.startsWith("com.android") && !line.startsWith("java") && !line.startsWith("android")) {
-                            result = line.substring(line.indexOf('(') + 1, line.indexOf(')'))
-                            return result
+            threadStackEntries
+                    .asSequence()
+                    .filter { Character.isLetter(it[0]) }
+                    .map { it.split(__Block.SEPARATOR.toRegex()).dropLastWhile(String::isEmpty).toTypedArray() }
+                    .forEach {
+                        for (line in it) {
+                            if (!line.startsWith("com.android") && !line.startsWith("java") && !line.startsWith("android")) {
+                                result = line.substring(line.indexOf('(') + 1, line.indexOf(')'))
+                                return result
+                            }
                         }
                     }
-                }
-            }
             return result
         }
 
