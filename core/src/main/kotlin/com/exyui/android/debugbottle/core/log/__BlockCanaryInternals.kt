@@ -34,7 +34,7 @@ object __BlockCanaryInternals {
         get() {
             val f = detectedBlockDirectory()
             if (f.exists() && f.isDirectory) {
-                return f.listFiles() { dir, filename ->
+                return f.listFiles { dir, filename ->
                     filename.endsWith(TYPE)
                 }
             }

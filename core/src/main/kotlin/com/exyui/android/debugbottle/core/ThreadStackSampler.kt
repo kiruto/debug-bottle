@@ -26,7 +26,7 @@ internal class ThreadStackSampler(private val mThread: Thread,
     }
 
     override fun doSample() {
-        Log.d("BlockCanary", "sample thread stack: [" + mThreadStackEntries.size + ", " + mMaxEntryCount + "]");
+        Log.d("BlockCanary", "sample thread stack: [" + mThreadStackEntries.size + ", " + mMaxEntryCount + "]")
         val stringBuilder = StringBuilder()
 
         // Fetch thread stack info

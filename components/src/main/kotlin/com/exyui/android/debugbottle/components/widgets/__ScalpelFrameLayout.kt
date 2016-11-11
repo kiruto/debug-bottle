@@ -70,7 +70,7 @@ class __ScalpelFrameLayout @JvmOverloads constructor(
     private val idNames = SparseArray<String>()
     private val layeredViewQueue = ArrayDeque<LayeredView>()
     private val layeredViewPool = object : Pool<LayeredView>(CHILD_COUNT_ESTIMATION) {
-        protected override fun newObject(): LayeredView {
+        override fun newObject(): LayeredView {
             return LayeredView()
         }
     }
