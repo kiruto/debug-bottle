@@ -92,15 +92,15 @@ allprojects {
 
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.5'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.6'
 
     // Javaの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.5'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.5'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6'
 
     // Kotlinの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.5'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.5'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
 }
@@ -109,15 +109,15 @@ dependencies {
 Specially, Debug Bottle not only support API 23+, but also 22. To support API 22, please add dependencies like this:
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.5-support22'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.6-support22'
 
     // Javaの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.5-support22'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.5-support22'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6-support22'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6-support22'
 
     // Kotlinの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.5-support22'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.5-support22'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6-support22'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6-support22'
 
     compile 'com.android.support:appcompat-v7:22+'
 }
@@ -126,15 +126,15 @@ dependencies {
 To support API 23, add dependencies like this:
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.5-support23'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.6-support23'
 
     // Javaの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.5-support23'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.5-support23'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6-support23'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6-support23'
 
     // Kotlinの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.5-support23'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.5-support23'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6-support23'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6-support23'
 
     compile 'com.android.support:appcompat-v7:23+'
 }
