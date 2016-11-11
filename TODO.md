@@ -15,15 +15,16 @@
 - [x] UI: quick toggles
 - [x] feature: display FPS
 - [x] feature: monkey test excluding Activities list
-- [ ] feature: display intent arguments
 - [x] i18n: add Chinese support
-- [ ] feature: reset shared preferences witch created by debug bottle
-- [ ] feature: notification lock
+- [x] feature: reset shared preferences witch created by debug bottle
+- [x] feature: notification lock
+- [x] code: clean codes
 
 # 1.1.x
 - [ ] feature: build test
 - [ ] fix: support OkHttp3
 - [ ] feature: services manager
+- [ ] feature: display intent arguments
 - [ ] feature: content provider manager
 - [ ] feature: SQLite editor
 - [ ] feature: fragment previewer without activity

@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components.guide
 
+import android.app.ActivityManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -66,6 +67,11 @@ internal class IntroductionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (ActivityManager.isUserAMonkey()) {
+            finish()
+        }
+
         try {
             theme = intent.extras.getInt("theme")
         } catch (e: Exception) {
