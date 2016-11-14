@@ -22,7 +22,7 @@
 
 # 1.1.x
 - [ ] feature: build test
-- [ ] fix: support OkHttp3
+- [x] fix: support OkHttp3
 - [ ] feature: services manager
 - [ ] feature: display intent arguments
 - [ ] feature: content provider manager

@@ -76,6 +76,11 @@ public class DTInstaller {
         Log.d(TAG, "run");
     }
 
+    public Object getOkHttp3Interceptor() {
+        Log.d(TAG, "getOkHttp3Interceptor");
+        return null;
+    }
+
     public void kill() {
         Log.d(TAG, "kill");
     }

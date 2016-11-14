@@ -354,9 +354,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
 
         if (this is BitmapDrawable) {
             val bitmapDrawable = this
-            if (bitmapDrawable.bitmap != null) {
-                return bitmapDrawable.bitmap
-            }
+            bitmapDrawable.bitmap?.let { return it }
         }
 
         if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {

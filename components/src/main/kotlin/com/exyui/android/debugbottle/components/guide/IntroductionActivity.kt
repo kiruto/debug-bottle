@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.exyui.android.debugbottle.components.BuildConfig
 import com.exyui.android.debugbottle.components.DTInstaller
 import com.exyui.android.debugbottle.components.R
 
