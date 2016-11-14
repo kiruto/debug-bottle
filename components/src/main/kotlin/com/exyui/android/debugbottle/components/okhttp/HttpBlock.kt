@@ -84,21 +84,24 @@ internal data class HttpBlock(
         internal val KEY_RESPONSE_BODY = "responseBody"
 
         // Use for write to file
-        fun newInstance(request: Request,
-                        response: Response,
+        fun newInstance(url: String,
+                        method: String,
+                        requestHeader: String,
+                        responseCode: String,
+                        responseHeader:String,
                         timeStart: Long,
                         timeEnd: Long,
                         requestBody: String = "",
                         responseBody: String = ""): HttpBlock {
             val result = HttpBlock(
-                    url = request.url().toString(),
-                    method = request.method(),
+                    url = url,
+                    method = method,
                     timeStart = timeStart,
                     timeEnd = timeEnd,
-                    requestHeader = request.headers()?.toString()?: "",
+                    requestHeader = requestHeader,
                     requestBody = requestBody,
-                    responseCode = response.code().toString(),
-                    responseHeader = response.headers()?.toString()?: "",
+                    responseCode = responseCode,
+                    responseHeader = responseHeader,
                     responseBody = responseBody
             )
 //            result.flushString()

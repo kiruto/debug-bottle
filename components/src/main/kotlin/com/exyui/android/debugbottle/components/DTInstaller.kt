@@ -23,14 +23,15 @@ import android.support.annotation.IdRes
 import android.util.Log
 import android.widget.Toast
 import com.exyui.android.debugbottle.components.crash.DTCrashHandler
-import com.squareup.okhttp.OkHttpClient
 import com.exyui.android.debugbottle.components.injector.Injector
-import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor
+import com.exyui.android.debugbottle.components.okhttp.LoggingInterceptor3
+import com.exyui.android.debugbottle.components.okhttp.OK_HTTP_CLIENT_3_CLASS
+import com.exyui.android.debugbottle.components.okhttp.OkHttpLoader
 import com.exyui.android.debugbottle.components.testing.MonkeyExcludeActivities
 
 /**
  * Created by yuriel on 8/10/16.
- * God class of debug bottle, also entry of debug bottle.
+ * Context class of debug bottle, also entry of debug bottle.
  */
 @Suppress("unused")
 object DTInstaller : Application.ActivityLifecycleCallbacks {
@@ -52,10 +53,12 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             if (!installed) field = value
         }
 
-    private var httpClient: OkHttpClient? = null
+    private var httpClient: Any? = null
         set(value) {
             if (!installed) field = value
         }
+
+    private var okHttp3Interceptor: Any? = null
 
     internal var app: Application? = null
         private set(value) {
@@ -132,7 +135,7 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
         return this
     }
 
-    fun setOkHttpClient(client: OkHttpClient): DTInstaller {
+    fun setOkHttpClient(client: Any): DTInstaller {
         httpClient = client
         return this
     }
@@ -212,10 +215,22 @@ object DTInstaller : Application.ActivityLifecycleCallbacks {
             }
         }
         if (null != httpClient) {
-            httpClient!!.interceptors().add(LoggingInterceptor())
+            OkHttpLoader.load(httpClient)
             DTSettings.networkSniff
         }
         DTCrashHandler.install()
+    }
+
+    fun getOkHttp3Interceptor(): Any? {
+        try {
+            Class.forName(OK_HTTP_CLIENT_3_CLASS)
+            if (null == okHttp3Interceptor) {
+                okHttp3Interceptor = LoggingInterceptor3()
+            }
+        } catch (e: Exception) {
+            return null
+        }
+        return okHttp3Interceptor
     }
 
     internal fun startInject(): Boolean {

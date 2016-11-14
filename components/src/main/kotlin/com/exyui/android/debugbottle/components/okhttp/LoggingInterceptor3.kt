@@ -1,19 +1,15 @@
 package com.exyui.android.debugbottle.components.okhttp
 
 import android.util.Log
-import com.squareup.okhttp.*
 import com.exyui.android.debugbottle.components.DTSettings
-
+import okhttp3.*
+import okio.Buffer
 import java.io.IOException
 
-import okio.Buffer
-
 /**
- * Created by yuriel on 8/18/16.
+ * Created by yuriel on 11/14/16.
  */
-internal class LoggingInterceptor : Interceptor {
-
-    @Throws(IOException::class)
+internal class LoggingInterceptor3 : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
 

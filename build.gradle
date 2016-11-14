@@ -32,6 +32,7 @@ buildscript {
                 junit: '4.12',
                 leakcanary: '1.4',
                 okhttp: '2.4.0',
+                okhttp3: '3.4.2',
                 debugbottle: versionUploaded
         ]
     }
