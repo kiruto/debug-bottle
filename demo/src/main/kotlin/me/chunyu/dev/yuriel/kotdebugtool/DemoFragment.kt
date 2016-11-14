@@ -7,15 +7,11 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.util.Log
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.squareup.okhttp.MediaType
-import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.Request
-import com.squareup.okhttp.RequestBody
 import java.io.FileInputStream
 import java.io.IOException
 

@@ -2,13 +2,16 @@ package me.chunyu.dev.yuriel.kotdebugtool
 
 import android.app.Application
 import android.content.Context
-import com.squareup.okhttp.OkHttpClient
+import android.util.Log
 import com.exyui.android.debugbottle.components.DTInstaller
+import com.squareup.okhttp.OkHttpClient
 
 /**
  * Created by yuriel on 8/9/16.
  */
 class DemoApplication : Application() {
+
+    private val TAG = "DemoApplication"
 
     override fun onCreate() {
         super.onCreate()
@@ -21,10 +24,14 @@ class DemoApplication : Application() {
                 //.disable()
                 .enable()
                 .run()
+
+        val h3i = DTInstaller.getOkHttp3Interceptor()
+        Log.d(TAG, h3i.toString())
     }
 
     companion object {
         val httpClient by lazy { OkHttpClient() }
+
         var appContext: Context? = null
             private set
     }
