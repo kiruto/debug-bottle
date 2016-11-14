@@ -38,6 +38,7 @@ dependencies {
     testCompile "junit:junit:${libs.junit}"
     compile "com.squareup.leakcanary:leakcanary-android:${libs.leakcanary}"
     provided "com.squareup.okhttp:okhttp:${libs.okhttp}"
+    provided "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
     provided "com.android.support:appcompat-v7:${libs.support}"
 }
 
