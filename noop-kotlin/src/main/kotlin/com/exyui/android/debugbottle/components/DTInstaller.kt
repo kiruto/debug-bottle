@@ -73,6 +73,11 @@ object DTInstaller {
         Log.d(TAG, "run")
     }
 
+    fun getOkHttp3Interceptor(): Any? {
+        Log.d(TAG, "getOkHttp3Interceptor")
+        return null
+    }
+
     fun kill() {
         Log.d(TAG, "kill")
     }
