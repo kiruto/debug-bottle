@@ -10,6 +10,7 @@ internal object DTSettings {
     val GITHUB_URL = "https://github.com/kiruto/debug-bottle"
     var httpFileStorePath = "/ktdebugtools/http"
     var crashFileStorePath = "/ktdebugtools/crash"
+    val socketPort = 25252
 
     private fun getSP() = DTInstaller.getSP(DT_SETTING_STORE_FILE)
 
