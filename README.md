@@ -95,15 +95,15 @@ Edit and add dependencies in your app module:
 
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.6'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.1.0'
 
     // Use this in your Java project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
 
     // Use this in your Kotlin project
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
 }

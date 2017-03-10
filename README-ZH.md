@@ -97,15 +97,15 @@ allprojects {
 然后在主模块中（Application类所在模块）加入依赖：
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.0.6'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.1.0'
 
     // 如果你的工程是Java工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.0.6'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
 
     // 如果你的工程是Kotlin工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.0.6'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
 }
