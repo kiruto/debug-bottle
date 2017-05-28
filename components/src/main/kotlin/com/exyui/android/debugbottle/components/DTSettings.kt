@@ -39,13 +39,13 @@ internal object DTSettings {
             }
         }
         get() {
-            val result = getSP()?.getBoolean(NETWORK_SNIFF, false)?: false
-            if (result) {
-                RunningFeatureMgr.add(RunningFeatureMgr.NETWORK_LISTENER)
-            } else {
-                RunningFeatureMgr.remove(RunningFeatureMgr.NETWORK_LISTENER)
+            return (getSP()?.getBoolean(NETWORK_SNIFF, false)?: false).apply {
+                if (this) {
+                    RunningFeatureMgr.add(RunningFeatureMgr.NETWORK_LISTENER)
+                } else {
+                    RunningFeatureMgr.remove(RunningFeatureMgr.NETWORK_LISTENER)
+                }
             }
-            return result
         }
 
     /**

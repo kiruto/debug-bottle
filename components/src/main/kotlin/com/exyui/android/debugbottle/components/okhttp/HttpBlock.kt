@@ -93,7 +93,7 @@ internal data class HttpBlock(
                         timeEnd: Long,
                         requestBody: String = "",
                         responseBody: String = ""): HttpBlock {
-            val result = HttpBlock(
+            return HttpBlock(
                     url = url,
                     method = method,
                     timeStart = timeStart,
@@ -105,12 +105,10 @@ internal data class HttpBlock(
                     responseBody = responseBody
             )
 //            result.flushString()
-            return result
         }
 
         // Use for read data from file
         fun newInstance(file: File): HttpBlock {
-            val result: HttpBlock
             var reader: BufferedReader? = null
 
             var url: String? = null
@@ -192,7 +190,7 @@ internal data class HttpBlock(
                 }
 
             }
-            result = HttpBlock(
+            return HttpBlock(
                     url = url?: "",
                     method = method?: "",
                     timeStart = timeStart?.toLong()?: 0L,
@@ -205,7 +203,6 @@ internal data class HttpBlock(
                     file = file
             )
 //            result.flushString()
-            return result
         }
 
 //        private fun stringifyRequestBody(request: Request): String {

@@ -28,24 +28,24 @@ class __TestSettingsFragment: __ContentFragment() {
     private lateinit var rootView: View
 
     private val testCtrlView: DTListItemSwitch by lazy {
-        val result = rootView.findViewById(R.id.__dt_testing_enable) as DTListItemSwitch
-        result.isChecked = RunningFeatureMgr.has(RunningFeatureMgr.STRESS_TEST_RUNNER)
-        result.setOnCheckedChangeListener { view, isChecked ->
-            if (isChecked) {
-                __TestingRunnerBubble.create(activity)
-            } else {
-                __TestingRunnerBubble.destroy(activity)
+        (rootView.findViewById(R.id.__dt_testing_enable) as DTListItemSwitch).apply {
+            isChecked = RunningFeatureMgr.has(RunningFeatureMgr.STRESS_TEST_RUNNER)
+            setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    __TestingRunnerBubble.create(activity)
+                } else {
+                    __TestingRunnerBubble.destroy(activity)
+                }
             }
         }
-        result
     }
 
     private val showBlacklistView: ViewGroup by lazy {
-        val result = rootView.findViewById(R.id.__dt_show_list) as ViewGroup
-        result.setOnClickListener {
-            MonkeyBlackListDialog().show(childFragmentManager, TAG)
+        (rootView.findViewById(R.id.__dt_show_list) as ViewGroup).apply {
+            setOnClickListener {
+                MonkeyBlackListDialog().show(childFragmentManager, TAG)
+            }
         }
-        result
     }
 
     companion object {

@@ -15,20 +15,22 @@ abstract class __FloatAnimatedDialog : DialogFragment() {
     protected abstract val title: Int
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val result = Dialog(activity)
-        result.window.requestFeature(Window.FEATURE_NO_TITLE)
-        result.setContentView(createView())
-        return result
+        return Dialog(activity).apply {
+            window.requestFeature(Window.FEATURE_NO_TITLE)
+            setContentView(createView())
+        }
     }
 
     override fun onStart() {
         super.onStart()
 
-        dialog.window.attributes.gravity = Gravity.TOP
-        dialog.window.attributes.width = WindowManager.LayoutParams.MATCH_PARENT
-        dialog.window.attributes.height = WindowManager.LayoutParams.WRAP_CONTENT
-        dialog.window.attributes.windowAnimations = R.style.__DialogAnimation
-        dialog.window.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window.apply {
+            attributes.gravity = Gravity.TOP
+            attributes.width = WindowManager.LayoutParams.MATCH_PARENT
+            attributes.height = WindowManager.LayoutParams.WRAP_CONTENT
+            attributes.windowAnimations = R.style.__DialogAnimation
+            setBackgroundDrawableResource(android.R.color.transparent)
+        }
 
         /** THIS WILL ADD AN ANIMATION WITH DIALOG APPEARANCE
         //Grab the window of the dialog, and change the width

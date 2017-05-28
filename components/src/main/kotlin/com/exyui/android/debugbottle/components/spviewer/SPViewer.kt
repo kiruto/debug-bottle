@@ -10,21 +10,20 @@ import java.util.*
  */
 internal class SPViewer(private val appContext: Context) {
     private fun getSPFiles(): Array<out String> {
-        val prefsdir = File(appContext.applicationInfo.dataDir, "shared_prefs")
-        if (prefsdir.exists() && prefsdir.isDirectory) {
-            return prefsdir.list()
-        } else {
-            return arrayOf()
+        return File(appContext.applicationInfo.dataDir, "shared_prefs").let {
+            if (it.exists() && it.isDirectory) {
+                it.list()
+            } else {
+                arrayOf()
+            }
         }
     }
 
     fun getAll(): LinkedHashMap<String, SharedPreferences> {
-        val list = getSPFiles()
-        val result = LinkedHashMap<String, SharedPreferences>()
-        for (f in list) {
-            val preffile = f.substring(0, f.length - 4)
-            result.put(f, appContext.getSharedPreferences(preffile, Context.MODE_PRIVATE))
+        return (LinkedHashMap<String, SharedPreferences>()).apply {
+            getSPFiles().forEach {
+                put(it, appContext.getSharedPreferences(it.substring(0, it.length - 4), Context.MODE_PRIVATE))
+            }
         }
-        return result
     }
 }

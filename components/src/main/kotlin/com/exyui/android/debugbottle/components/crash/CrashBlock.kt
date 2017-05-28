@@ -89,7 +89,6 @@ internal data class CrashBlock(
         }
 
         fun newInstance(file: File): CrashBlock {
-            val result: CrashBlock
             var reader: BufferedReader? = null
 
             var time: String = ""
@@ -164,7 +163,7 @@ internal data class CrashBlock(
                 }
 
             }
-            result = CrashBlock(
+            return CrashBlock(
                     time = time,
                     threadName = threadName,
                     threadId = threadId,
@@ -175,7 +174,6 @@ internal data class CrashBlock(
                     stacktrace = stacktrace,
                     file = file
             )
-            return result
         }
 
         private fun String.getValue(): String {

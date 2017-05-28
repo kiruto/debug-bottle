@@ -55,40 +55,40 @@ class __InjectorFragment: __ContentFragment() {
     }
 
     private val editText by lazy {
-        val result = findViewById(R.id.edit_text) as EditText
-        result.addTextChangedListener(object: TextWatcher {
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        (findViewById(R.id.edit_text) as EditText).apply {
+            addTextChangedListener(object: TextWatcher {
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-            }
+                }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-            }
+                }
 
-            override fun afterTextChanged(s: Editable?) {
-                val pattern = SearchableListViewHelper.getPattern(s.toString())
-                adapter.highlight(pattern, s.toString())
-            }
-        })
-        result
+                override fun afterTextChanged(s: Editable?) {
+                    val pattern = SearchableListViewHelper.getPattern(s.toString())
+                    adapter.highlight(pattern, s.toString())
+                }
+            })
+        }
     }
 
     private val list by lazy {
-        val result = findViewById(R.id.list_view) as ListView
-        result.adapter = adapter
-        result.onItemClickListener = adapter
-        result
+        (findViewById(R.id.list_view) as ListView).apply {
+            this.adapter = this@__InjectorFragment.adapter
+            onItemClickListener = this@__InjectorFragment.adapter
+        }
     }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val rootView = inflater.inflate(R.layout.__activity_injector, container, false)
-        this.rootView = rootView
-        list; editText
-        if (type != TYPE_ALL_ACTIVITIES) {
-            setHasOptionsMenu(true)
+        return inflater.inflate(R.layout.__activity_injector, container, false).apply {
+            this@__InjectorFragment.rootView = rootView
+            list; editText
+            if (type != TYPE_ALL_ACTIVITIES) {
+                setHasOptionsMenu(true)
+            }
         }
-        return rootView
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
@@ -119,14 +119,12 @@ class __InjectorFragment: __ContentFragment() {
 
     private fun showStepOne() {
         val packageName = DTInstaller.injectorClassName
-        val builder = AlertDialog.Builder(activity)
+        AlertDialog.Builder(activity)
                 .setIcon(R.drawable.__ic_lightbulb_outline_black_24dp)
                 .setTitle(R.string.__dt_step_one)
-        if (null == packageName) {
-            builder.setMessage(R.string.__dt_injector_step_one_no_package_message)
-        } else {
-            builder.setMessage(getString(R.string.__dt_injector_step_one_message, packageName))
-        }
+                .setMessage(
+                        if (null == packageName) getString(R.string.__dt_injector_step_one_no_package_message)
+                        else getString(R.string.__dt_injector_step_one_message, packageName))
                 .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
                 .show()
     }

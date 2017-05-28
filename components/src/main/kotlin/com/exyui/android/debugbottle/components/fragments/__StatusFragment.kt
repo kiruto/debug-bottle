@@ -44,74 +44,69 @@ class __StatusFragment: __ContentFragment() {
     }
 
     private val versionText by lazy {
-        val result = findViewById(R.id.__dt_version_text) as TextView
-        result.text = "version: $__DT_VERSION_NAME"
-        result
+        (findViewById(R.id.__dt_version_text) as TextView).apply { text = "version: $__DT_VERSION_NAME" }
     }
 
     private val permissionRequestBtn by lazy {
-        val result = findViewById(R.id.__dt_permission_request)
-        result?.setOnClickListener {
-            requestPermission()
+        (findViewById(R.id.__dt_permission_request))?.apply {
+            setOnClickListener {
+                requestPermission()
+            }
         }
-        result
     }
 
     private val view3DHelperText by lazy {
-        val result = findViewById(R.id.__dt_3d_crash_helper) as TextView
-
-        result.setOnClickListener {
-            val url = "http://stackoverflow.com/questions/36016369/system-alert-window-how-to-get-this-permission-automatically-on-android-6-0-an"
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
-            startActivity(intent)
-        }
-
-        result
-    }
-
-    private val view3DSwitcher by lazy {
-        val result = findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch
-        result.isChecked = __3DViewBubble.isRunning()
-        result.setOnCheckedChangeListener { view, isChecked ->
-            if (!(context?.isSystemAlertPermissionGranted()?: false)) {
-                context?.requestingPermissionDrawOverOtherApps(null)
-                result.isChecked = false
-            } else {
-                if (isChecked) {
-                    __3DViewBubble.create(activity)
-                } else {
-                    __3DViewBubble.destroy(activity)
+        (findViewById(R.id.__dt_3d_crash_helper) as TextView).apply {
+            setOnClickListener {
+                val url = "http://stackoverflow.com/questions/36016369/system-alert-window-how-to-get-this-permission-automatically-on-android-6-0-an"
+                Intent(Intent.ACTION_VIEW).let {
+                    it.data = Uri.parse(url)
+                    startActivity(it)
                 }
             }
         }
-        result
+    }
+
+    private val view3DSwitcher by lazy {
+        (findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch).apply {
+            isChecked = __3DViewBubble.isRunning()
+            setOnCheckedChangeListener { _, isChecked ->
+                if (!(context?.isSystemAlertPermissionGranted()?: false)) {
+                    context?.requestingPermissionDrawOverOtherApps(null)
+                    this.isChecked = false
+                } else {
+                    if (isChecked) {
+                        __3DViewBubble.create(activity)
+                    } else {
+                        __3DViewBubble.destroy(activity)
+                    }
+                }
+            }
+        }
     }
 
     private val frameSwitcher by lazy {
-        val result = findViewById(R.id.__dt_frame_switcher) as DTListItemSwitch
-        result.isChecked = DTSettings.frameEnable
-        result.setOnCheckedChangeListener { view, isChecked ->
-            DTSettings.frameEnable = isChecked
-            if (isChecked) {
-                __FloatFrame.start(activity)
-            } else {
-                __FloatFrame.stop(activity)
+        (findViewById(R.id.__dt_frame_switcher) as DTListItemSwitch).apply {
+            isChecked = DTSettings.frameEnable
+            setOnCheckedChangeListener { _, isChecked ->
+                DTSettings.frameEnable = isChecked
+                if (isChecked) {
+                    __FloatFrame.start(activity)
+                } else {
+                    __FloatFrame.stop(activity)
+                }
             }
         }
-        result
     }
 
     private val procText by lazy {
-        val result = findViewById(R.id.__dt_application_process) as TextView
-        result.text = "process_id=${Process.myPid()}"
-        result
+        (findViewById(R.id.__dt_application_process) as TextView).apply {
+            text = "process_id=${Process.myPid()}"
+        }
     }
 
     private val procBtn by lazy {
-        val result = findViewById(R.id.__dt_kill_process)
-        result?.setOnClickListener { DTInstaller.kill() }
-        result!!
+        findViewById(R.id.__dt_kill_process)?.apply { setOnClickListener { DTInstaller.kill() } }
     }
 
 //    private val finishBtn by lazy {
@@ -121,21 +116,21 @@ class __StatusFragment: __ContentFragment() {
 //    }
 
     private val sourceBtn by lazy {
-        val result = findViewById(R.id.__dt_source_site)
-        result?.setOnClickListener {
+        findViewById(R.id.__dt_source_site)?.apply {
+            setOnClickListener {
 //            val url = DTSettings.GITHUB_URL
 //            val intent = Intent(Intent.ACTION_VIEW)
 //            intent.data = Uri.parse(url)
 //            startActivity(intent)
-            selectItemAtDrawer(R.string.__dt_project)
+                selectItemAtDrawer(R.string.__dt_project)
+            }
         }
-        result!!
     }
 
     private val refreshView by lazy {
-        val result = findViewById(R.id.__dt_refresh)
-        result?.setOnClickListener { checkupStatus() }
-        result!!
+        findViewById(R.id.__dt_refresh)?.apply {
+            setOnClickListener { checkupStatus() }
+        }
     }
 
     private val rwPermissionText by lazy { findViewById(R.id.__dt_write_external_storage) as TextView }

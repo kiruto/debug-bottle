@@ -19,15 +19,6 @@ import com.exyui.android.debugbottle.components.openInBrowser
  * Created by yuriel on 10/13/16.
  */
 class __QuickDialogMainView: ScrollView {
-//    constructor(context: Context): super(context) {
-//        init(context)
-//    }
-//    constructor(context: Context, attr: AttributeSet): super(context, attr) {
-//        init(context, attr)
-//    }
-//    constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr) {
-//        init(context, attr, defStyleAttr)
-//    }
 
     private val rootChild by lazy { findViewById(R.id.__dt_content) as ViewGroup }
     private val emptyView by lazy {
@@ -41,14 +32,23 @@ class __QuickDialogMainView: ScrollView {
     private val contents by lazy { findViewById(R.id.__dt_content) }
     private val cb:MutableList<(View) -> Unit> = mutableListOf()
 
-    @Suppress("unused")
+    constructor(context: Context): super(context) {
+        init()
+    }
+
+    constructor(context: Context, attr: AttributeSet): super(context, attr) {
+        init()
+    }
+
+    constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr) {
+        init()
+    }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @SuppressLint("NewApi")
-    @JvmOverloads
     constructor(context: Context,
-                attr: AttributeSet? = null,
-                defStyleAttr: Int = 0,
-                defStyleRes: Int = 0) : super(context, attr, defStyleAttr, defStyleRes) {
+                attr: AttributeSet?,
+                defStyleAttr: Int,
+                defStyleRes: Int) : super(context, attr, defStyleAttr, defStyleRes) {
         init()
     }
 

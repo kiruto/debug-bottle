@@ -72,8 +72,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
                 readFile()
             }
             R.id.button3 -> {
-                val result = compute()
-                println(result)
+                println(compute())
             }
             R.id.button4 -> {
                 startAsyncTask()

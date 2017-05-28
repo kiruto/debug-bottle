@@ -35,11 +35,11 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
         private val URL = "url"
 
         fun newInstance(url: String): __WebViewFragment {
-            val result = __WebViewFragment()
-            val args = Bundle()
-            args.putString(URL, url)
-            result.arguments = args
-            return result
+            return __WebViewFragment().apply {
+                val args = Bundle()
+                args.putString(URL, url)
+                arguments = args
+            }
         }
     }
 
@@ -49,23 +49,23 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val result = inflater.inflate(R.layout.__fragment_web_view, container, false)
-        webView = result.findViewById(R.id.__dt_web_view) as WebView
-        addressView = result.findViewById(R.id.__dt_address) as TextView
-        backView = result.findViewById(R.id.__dt_back)
-        refreshView = result.findViewById(R.id.__dt_refresh)
-        urlBar = result.findViewById(R.id.__dt_url_bar) as ViewGroup
+        return inflater.inflate(R.layout.__fragment_web_view, container, false).apply {
+            webView = findViewById(R.id.__dt_web_view) as WebView
+            addressView = findViewById(R.id.__dt_address) as TextView
+            backView = findViewById(R.id.__dt_back)
+            refreshView = findViewById(R.id.__dt_refresh)
+            urlBar = findViewById(R.id.__dt_url_bar) as ViewGroup
 
-        addressView?.setOnClickListener(this)
-        backView?.setOnClickListener(this)
-        refreshView?.setOnClickListener(this)
+            addressView?.setOnClickListener(this@__WebViewFragment)
+            backView?.setOnClickListener(this@__WebViewFragment)
+            refreshView?.setOnClickListener(this@__WebViewFragment)
 
-        webView?.setWebViewClient(DTWebViewClient())
-        webView?.settings?.javaScriptEnabled = true
-        webView?.load(url)
+            webView?.setWebViewClient(DTWebViewClient())
+            webView?.settings?.javaScriptEnabled = true
+            webView?.load(url)
 
-        setHasOptionsMenu(true)
-        return result
+            setHasOptionsMenu(true)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {

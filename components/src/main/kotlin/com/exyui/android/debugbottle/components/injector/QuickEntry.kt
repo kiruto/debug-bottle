@@ -40,13 +40,13 @@ object QuickEntry {
     }
 
     internal fun getList(): LinkedHashMap<String, OnActivityDisplayedListener> {
-        val result = LinkedHashMap<String, OnActivityDisplayedListener>()
-        for ((k, m) in model) {
-            if (m.shouldShowEntry(DTActivityManager.topActivity)) {
-                result.put(k, m)
+        return LinkedHashMap<String, OnActivityDisplayedListener>().apply {
+            model.filter {
+                it.value.shouldShowEntry(DTActivityManager.topActivity)
+            }.forEach {
+                put(it.key, it.value)
             }
         }
-        return result
     }
 
     internal fun isEmpty() = model.isEmpty()

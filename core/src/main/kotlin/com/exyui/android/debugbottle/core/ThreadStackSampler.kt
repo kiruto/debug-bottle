@@ -14,15 +14,13 @@ internal class ThreadStackSampler(private val mThread: Thread,
 
     fun getThreadStackEntries(startTime: Long, endTime: Long): ArrayList<String> {
         val dateFormat = SimpleDateFormat("MM-dd HH:mm:ss.SSS", Locale.getDefault())
-        val result = ArrayList<String>()
-        synchronized(mThreadStackEntries) {
-            for (entryTime in mThreadStackEntries.keys) {
-                if (startTime < entryTime && entryTime < endTime) {
-                    result.add(dateFormat.format(entryTime) + __Block.SEPARATOR + __Block.SEPARATOR + mThreadStackEntries[entryTime])
-                }
+        return ArrayList<String>().apply {
+            synchronized(mThreadStackEntries) {
+                mThreadStackEntries.keys
+                        .filter { it in (startTime + 1)..(endTime - 1) }
+                        .mapTo(this) { dateFormat.format(it) + __Block.SEPARATOR + __Block.SEPARATOR + mThreadStackEntries[it] }
             }
         }
-        return result
     }
 
     override fun doSample() {

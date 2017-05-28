@@ -19,112 +19,112 @@ import com.exyui.android.debugbottle.ui.BlockCanary
  * Created by yuriel on 10/12/16.
  */
 internal fun View.networkSwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    result.isChecked = DTSettings.networkSniff
-    result.setOnCheckedChangeListener { view, isChecked ->
-        DTSettings.networkSniff = isChecked
+    return (findViewById(id) as DTListItemSwitch).apply {
+        isChecked = DTSettings.networkSniff
+        setOnCheckedChangeListener { _, isChecked ->
+            DTSettings.networkSniff = isChecked
+        }
     }
-    return result
 }
 
 internal fun View.strictSwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    result.isChecked = DTSettings.strictMode
-    result.setOnCheckedChangeListener { view, isChecked ->
-        DTSettings.strictMode = isChecked
-        hintRestart(context)
+    return (findViewById(id) as DTListItemSwitch).apply {
+        isChecked = DTSettings.strictMode
+        setOnCheckedChangeListener { _, isChecked ->
+            DTSettings.strictMode = isChecked
+            hintRestart(context)
+        }
     }
-    return result
 }
 
 internal fun View.view3DSwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    val activity = context as Activity
-    result.isChecked = __3DViewBubble.isRunning()
-    result.setOnCheckedChangeListener { view, isChecked ->
-        if (!activity.isSystemAlertPermissionGranted()){
-            result.isChecked = false
-            activity.requestingPermissionDrawOverOtherApps(null)
-        } else {
-            if (isChecked) {
-                val started = __3DViewBubble.create(activity.applicationContext)
-                if (!started) {
-                    result.isChecked = false
-                    activity.requestingPermissionDrawOverOtherApps(null)
-                }
+    return (findViewById(id) as DTListItemSwitch).apply {
+        val activity = context as Activity
+        isChecked = __3DViewBubble.isRunning()
+        setOnCheckedChangeListener { _, isChecked ->
+            if (!activity.isSystemAlertPermissionGranted()){
+                this.isChecked = false
+                activity.requestingPermissionDrawOverOtherApps(null)
             } else {
-                __3DViewBubble.destroy(activity.applicationContext)
+                if (isChecked) {
+                    val started = __3DViewBubble.create(activity.applicationContext)
+                    if (!started) {
+                        this.isChecked = false
+                        activity.requestingPermissionDrawOverOtherApps(null)
+                    }
+                } else {
+                    __3DViewBubble.destroy(activity.applicationContext)
+                }
             }
         }
     }
-    return result
 }
 
 internal fun View.leakCanarySwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    result.isChecked = DTSettings.leakCanaryEnable
-    result.setOnCheckedChangeListener { view, isChecked ->
-        DTSettings.leakCanaryEnable = isChecked
-        hintRestart(context)
+    return (findViewById(id) as DTListItemSwitch).apply {
+        isChecked = DTSettings.leakCanaryEnable
+        setOnCheckedChangeListener { _, isChecked ->
+            DTSettings.leakCanaryEnable = isChecked
+            hintRestart(context)
+        }
     }
-    return result
 }
 
 internal fun View.blockCanarySwitcherCompat(@IdRes id: Int): SwitchCompat {
-    val result = findViewById(id) as SwitchCompat
-    result.isChecked = DTSettings.blockCanaryEnable
-    result.setOnCheckedChangeListener(::blockCanarySwitcherListener)
-    return result
+    return (findViewById(id) as SwitchCompat).apply {
+        isChecked = DTSettings.blockCanaryEnable
+        setOnCheckedChangeListener(::blockCanarySwitcherListener)
+    }
 }
 
 internal fun View.blockCanarySwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    result.isChecked = DTSettings.blockCanaryEnable
-    result.setOnCheckedChangeListener(::blockCanarySwitcherListener)
-    return result
+    return (findViewById(id) as DTListItemSwitch).apply {
+        isChecked = DTSettings.blockCanaryEnable
+        setOnCheckedChangeListener(::blockCanarySwitcherListener)
+    }
 }
 
 internal fun View.bottleSwitch(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    result.isChecked = DTSettings.bottleEnable
-    result.setOnCheckedChangeListener { view, isChecked ->
-        DTSettings.bottleEnable = isChecked
-        hintRestart(context)
+    return (findViewById(id) as DTListItemSwitch).apply {
+        isChecked = DTSettings.bottleEnable
+        setOnCheckedChangeListener { _, isChecked ->
+            DTSettings.bottleEnable = isChecked
+            hintRestart(context)
+        }
     }
-    return result
 }
 
 internal fun View.frameSwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    val activity = context as Activity
-    result.isChecked = DTSettings.frameEnable
-    result.setOnCheckedChangeListener { view, isChecked ->
-        DTSettings.frameEnable = isChecked
-        if (isChecked) {
-            __FloatFrame.start(activity)
-        } else {
-            __FloatFrame.stop(activity)
+    return (findViewById(id) as DTListItemSwitch).apply {
+        val activity = context as Activity
+        isChecked = DTSettings.frameEnable
+        setOnCheckedChangeListener { _, isChecked ->
+            DTSettings.frameEnable = isChecked
+            if (isChecked) {
+                __FloatFrame.start(activity)
+            } else {
+                __FloatFrame.stop(activity)
+            }
         }
     }
-    return result
 }
 
 internal fun View.monkeyBlackListSwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    result.isChecked = DTSettings.monkeyBlacklist
-    result.setOnCheckedChangeListener { view, isChecked ->
-        DTSettings.monkeyBlacklist = isChecked
+    return (findViewById(id) as DTListItemSwitch).apply {
+        isChecked = DTSettings.monkeyBlacklist
+        setOnCheckedChangeListener { _, isChecked ->
+            DTSettings.monkeyBlacklist = isChecked
+        }
     }
-    return result
 }
 
 internal fun View.notificationLockSwitcher(@IdRes id: Int): DTListItemSwitch {
-    val result = findViewById(id) as DTListItemSwitch
-    result.isChecked = DTSettings.notificationLock
-    result.setOnCheckedChangeListener { view, isChecked ->
-        DTSettings.notificationLock = isChecked
+    return (findViewById(id) as DTListItemSwitch).apply {
+        isChecked = DTSettings.notificationLock
+        setOnCheckedChangeListener { _, isChecked ->
+            DTSettings.notificationLock = isChecked
+        }
     }
-    return result
 }
 
 private fun hintRestart(context: Context) {

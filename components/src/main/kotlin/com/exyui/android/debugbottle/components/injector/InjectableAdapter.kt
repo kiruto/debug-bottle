@@ -43,10 +43,10 @@ internal class InjectableAdapter<out T>(private val injectable: Injectable<T>):
         val v: View = convertView?:
                 LayoutInflater.from(context).inflate(R.layout.__item_injector, parent, false)
         val h: Holder = if (null != v.tag) v.tag as Holder else {
-            val result = Holder()
-            result.textView = v.findViewById(R.id.text_view) as TextView
-            v.tag = result
-            result
+            Holder().apply {
+                textView = v.findViewById(R.id.text_view) as TextView
+                v.tag = this
+            }
         }
         val item = getItem(position)
         if (!filterString.isEmpty() && matchedMap?.isEmpty()?: true)

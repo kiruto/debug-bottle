@@ -26,9 +26,9 @@ internal object DialogsCollection {
 
         companion object {
             fun newInstance(intent: Intent): RunActivityDialogFragment {
-                val result = RunActivityDialogFragment()
-                result.intent = intent
-                return result
+                return (RunActivityDialogFragment()).apply {
+                    this.intent = intent
+                }
             }
         }
 
@@ -43,28 +43,27 @@ internal object DialogsCollection {
             for (i in intent?.extras?.keySet()?: setOf()) {
                 intentExtras.put(i, intent!!.extras.get(i))
             }
-            val builder = AlertDialog.Builder(activity)
             val content = inflater.inflate(R.layout.__dialog_run_activity, null)
-            builder.setView(content)
-            builder.setPositiveButton(R.string.__run) { dialog, view ->
-                for ((k, v) in intentExtras) {
-                    if (v is Boolean) {
-                        intent!!.putExtra(k, v)
-                    } else if (v is Int) {
-                        intent!!.putExtra(k, v)
-                    } else if (v is Float) {
-                        intent!!.putExtra(k, v)
-                    } else {
-                        intent!!.putExtra(k, v.toString())
+            val builder = AlertDialog.Builder(activity)
+                    .setView(content)
+                    .setPositiveButton(R.string.__run) { dialog, _ ->
+                        for ((k, v) in intentExtras) {
+                            if (v is Boolean) {
+                                intent!!.putExtra(k, v)
+                            } else if (v is Int) {
+                                intent!!.putExtra(k, v)
+                            } else if (v is Float) {
+                                intent!!.putExtra(k, v)
+                            } else {
+                                intent!!.putExtra(k, v.toString())
+                            }
+                        }
+                        activity.startActivity(intent)
+                        dialog.dismiss()
                     }
-                }
-                activity.startActivity(intent)
-                dialog.dismiss()
-            }
-            .setNegativeButton(R.string.__cancel) { dialog, view ->
-                dialog.dismiss()
-            }
-
+                    .setNegativeButton(R.string.__cancel) { dialog, view ->
+                        dialog.dismiss()
+                    }
             content.init()
 
             return builder.create()
@@ -72,71 +71,75 @@ internal object DialogsCollection {
 
         private fun View.init() {
             val content = findViewById(R.id.__dt_intent_content) as ViewGroup
-            val nameView = findViewById(R.id.__dt_activity_name) as TextView
             val key = findViewById(R.id.__dt_intent_key) as TextView
-            val et = findViewById(R.id.__dt_edit_text) as DebugToolEditText
-            val title = findViewById(R.id.__dt_title) as TextView
-            val putBtn = findViewById(R.id.__dt_edit_submit) as Button
-            nameView.text = intent!!.component.className
-            title.text = getString(R.string.__run_activity_with_intent)
 
-            et.addTextChangedListener(object: TextWatcher {
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
-                    if (key.text.isEmpty()) {
-                        if (s?.contains(" ") ?: false) {
-                            val string = s!!.split(" ")
-                            key.text = string[0]
-                            et.setText(string[1])
+
+            (findViewById(R.id.__dt_activity_name) as TextView).apply {
+                text = intent?.component?.className?: ""
+            }
+            (findViewById(R.id.__dt_title) as TextView).apply {
+                text = getString(R.string.__run_activity_with_intent)
+            }
+
+            fun DebugToolEditText.putExtra() {
+                if (!key.text.isEmpty() && !text.isEmpty()) {
+                    intentExtras.apply {
+                        text.toString().let {
+                            when {
+                                it.equals("true", true) || it.equals("false", true) -> put(key.text.toString(), it.toBoolean())
+                                it.isInteger() -> put(key.text.toString(), it.toInt())
+                                it.isNumeric() -> put(key.text.toString(), it.toFloat())
+                                else -> put(key.text.toString(), it)
+                            }
                         }
                     }
-                }
-
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-
-                }
-            })
-
-            et.onBackPressed {
-                if (key.text.isEmpty()) return@onBackPressed
-                if (et.text.isEmpty()) {
-                    et.setText(key.text.toString())
                     key.text = ""
-                }
-            }
-
-            et.onSpacePressed {
-                if (!key.text.isEmpty()) return@onSpacePressed
-                key.text = et.text
-                et.setText("")
-            }
-
-            fun putExtra() {
-                if (!key.text.isEmpty() && !et.text.isEmpty()) {
-                    val valueResult: String = et.text.toString()
-                    if (valueResult.equals("true", true) || valueResult.equals("false", true)) {
-                        intentExtras.put(key.text.toString(), valueResult.toBoolean())
-                    } else if (valueResult.isInteger()) {
-                        intentExtras.put(key.text.toString(), valueResult.toInt())
-                    } else if (valueResult.isNumeric()) {
-                        intentExtras.put(key.text.toString(), valueResult.toFloat())
-                    } else {
-                        intentExtras.put(key.text.toString(), valueResult)
-                    }
-                    key.text = ""
-                    et.setText("")
+                    setText("")
                     updateContentGroup(content)
                 }
             }
 
-            et.onEnterPressed {
-                putExtra()
+            val et = (findViewById(R.id.__dt_edit_text) as DebugToolEditText).apply {
+                addTextChangedListener(object: TextWatcher {
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
+                        if (key.text.isEmpty()) {
+                            if (s?.contains(" ") ?: false) {
+                                val string = s!!.split(" ")
+                                key.text = string[0]
+                                setText(string[1])
+                            }
+                        }
+                    }
+
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+
+                    }
+                })
+
+                onBackPressed {
+                    if (key.text.isEmpty()) return@onBackPressed
+                    if (text.isEmpty()) {
+                        setText(key.text.toString())
+                        key.text = ""
+                    }
+                }
+
+                onSpacePressed {
+                    if (!key.text.isEmpty()) return@onSpacePressed
+                    key.text = text
+                    setText("")
+                }
+
+                onEnterPressed {
+                    putExtra()
+                }
             }
 
-            putBtn.setOnClickListener { putExtra() }
+            (findViewById(R.id.__dt_edit_submit) as Button).setOnClickListener { et.putExtra() }
         }
 
         private fun updateContentGroup(parent: ViewGroup) {
@@ -149,56 +152,56 @@ internal object DialogsCollection {
             }
             for ((k, v) in intentExtras) {
                 val view = inflater.inflate(R.layout.__item_intents_content, parent, false)
-                val del = view.findViewById(R.id.__dt_delete)
-                val tv = view.findViewById(R.id.__dt_intent_content_kv) as TextView
+                (view.findViewById(R.id.__dt_delete)).apply {
+                    tag = Pair(k, v)
+                    setOnClickListener(onDelClickListener)
+                }
+                (view.findViewById(R.id.__dt_intent_content_kv) as TextView).apply { text = "$k: $v" }
                 val anyBtn = view.findViewById(R.id.__dt_radio_any) as RadioButton
 //                val stringBtn = view.findViewById(R.id.__dt_radio_string) as RadioButton
-                val radioGroup = view.findViewById(R.id.__dt_radio_group) as RadioGroup
-
-                del.tag = Pair(k, v)
-                del.setOnClickListener(onDelClickListener)
-
-                radioGroup.visibility = View.VISIBLE
-                if (v !is String) {
-                    radioGroup.check(R.id.__dt_radio_any)
-                    anyBtn.text = v.javaClass.simpleName
-                    radioGroup.setOnCheckedChangeListener { radioGroup, id ->
-                        when(id) {
-                            R.id.__dt_radio_any -> intentExtras.put(k, v)
-                            R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
-                        }
-                    }
-                } else {
-                    radioGroup.check(R.id.__dt_radio_string)
-                    if (v.toUpperCase() == "TRUE" || v.toUpperCase() == "FALSE") {
-                        anyBtn.text = "Boolean"
-                        radioGroup.setOnCheckedChangeListener { radioGroup, id ->
+                (view.findViewById(R.id.__dt_radio_group) as RadioGroup).apply {
+                    visibility = View.VISIBLE
+                    if (v !is String) {
+                        check(R.id.__dt_radio_any)
+                        anyBtn.text = v.javaClass.simpleName
+                        setOnCheckedChangeListener { radioGroup, id ->
                             when(id) {
-                                R.id.__dt_radio_any -> intentExtras.put(k, v.toBoolean())
-                                R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
-                            }
-                        }
-                    } else if (v.isInteger()) {
-                        anyBtn.text = "Int"
-                        radioGroup.setOnCheckedChangeListener { radioGroup, id ->
-                            when(id) {
-                                R.id.__dt_radio_any -> intentExtras.put(k, v.toInt())
-                                R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
-                            }
-                        }
-                    } else if (v.isNumeric()) {
-                        anyBtn.text = "Float"
-                        radioGroup.setOnCheckedChangeListener { radioGroup, id ->
-                            when(id) {
-                                R.id.__dt_radio_any -> intentExtras.put(k, v.toFloat())
+                                R.id.__dt_radio_any -> intentExtras.put(k, v)
                                 R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
                             }
                         }
                     } else {
-                        radioGroup.visibility = View.GONE
+                        check(R.id.__dt_radio_string)
+                        if (v.toUpperCase() == "TRUE" || v.toUpperCase() == "FALSE") {
+                            anyBtn.text = "Boolean"
+                            setOnCheckedChangeListener { _, id ->
+                                when(id) {
+                                    R.id.__dt_radio_any -> intentExtras.put(k, v.toBoolean())
+                                    R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
+                                }
+                            }
+                        } else if (v.isInteger()) {
+                            anyBtn.text = "Int"
+                            setOnCheckedChangeListener { _, id ->
+                                when(id) {
+                                    R.id.__dt_radio_any -> intentExtras.put(k, v.toInt())
+                                    R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
+                                }
+                            }
+                        } else if (v.isNumeric()) {
+                            anyBtn.text = "Float"
+                            setOnCheckedChangeListener { _, id ->
+                                when(id) {
+                                    R.id.__dt_radio_any -> intentExtras.put(k, v.toFloat())
+                                    R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
+                                }
+                            }
+                        } else {
+                            visibility = View.GONE
+                        }
                     }
                 }
-                tv.text = "$k: $v"
+
                 parent.addView(view)
             }
         }
@@ -235,14 +238,14 @@ internal object DialogsCollection {
 
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog? {
             if (null == sp || null == key) return null
-            val builder = AlertDialog.Builder(activity)
             val content = inflater.inflate(R.layout.__dialog_sp_edit, null)
 
-            val keyView = content.findViewById(R.id.__dt_sp_key) as TextView
             val editView = content.findViewById(R.id.__dt_sp_value) as TextView
             val radio = content.findViewById(R.id.__dt_radio_group) as RadioGroup
 
             var value: Any? = null
+
+            // TODO: improve
             for ((k, v) in sp?.all?: mapOf<String, Any>()) {
                 if (k == key) {
                     value = v
@@ -269,37 +272,37 @@ internal object DialogsCollection {
                 is Double -> editView.setRawInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL)
             }
 
-            keyView.text = key
+            (content.findViewById(R.id.__dt_sp_key) as TextView).apply { text = key }
 
-            builder.setView(content)
-            builder.setNeutralButton(R.string.__delete) { dialog, view ->
-                sp?.edit()?.remove(key)
-                dialog.dismiss()
-                action?.updateSPViews()
-            }
-            .setNegativeButton(R.string.__cancel) { dialog, view ->
-                dialog.dismiss()
-            }
-            .setPositiveButton(R.string.__save) { dialog, view ->
-                try {
-                    val editor = sp?.edit()?: return@setPositiveButton
-                    when (value) {
-                        is Boolean -> {
-                            val result = radio.checkedRadioButtonId == R.id.__dt_radio_true
-                            editor.putBoolean(key, result)
-                        }
-                        is Int -> editor.putInt(key, editView.text.toString().toInt())
-                        is Float -> editor.putFloat(key, editView.text.toString().toFloat())
-                        is String -> editor.putString(key, editView.text.toString())
+            return AlertDialog.Builder(activity)
+                    .setView(content)
+                    .setNeutralButton(R.string.__delete) { dialog, _ ->
+                        sp?.edit()?.remove(key)
+                        dialog.dismiss()
+                        action?.updateSPViews()
                     }
-                    editor.apply()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-                dialog.dismiss()
-                action?.updateSPViews()
-            }
-            return builder.create()
+                    .setNegativeButton(R.string.__cancel) { dialog, view ->
+                        dialog.dismiss()
+                    }
+                    .setPositiveButton(R.string.__save) { dialog, view ->
+                        try {
+                            val editor = sp?.edit()?: return@setPositiveButton
+                            when (value) {
+                                is Boolean -> {
+                                    editor.putBoolean(key, radio.checkedRadioButtonId == R.id.__dt_radio_true)
+                                }
+                                is Int -> editor.putInt(key, editView.text.toString().toInt())
+                                is Float -> editor.putFloat(key, editView.text.toString().toFloat())
+                                is String -> editor.putString(key, editView.text.toString())
+                            }
+                            editor.apply()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                        dialog.dismiss()
+                        action?.updateSPViews()
+                    }
+                    .create()
         }
 
         @Suppress("DEPRECATION", "OverridingDeprecatedMember")

@@ -22,47 +22,29 @@ internal class IntroductionActivity : AppCompatActivity() {
     private var theme: Int? = null
 
     private val pagerView by lazy {
-        val result = findViewById(R.id.__dt_view_pager) as ViewPager
-        result.adapter = IntroductionAdapter(supportFragmentManager)
-        result.setPageTransformer(false, IntroductionTransformer())
-        result
+        (findViewById(R.id.__dt_view_pager) as ViewPager).apply {
+            adapter = IntroductionAdapter(supportFragmentManager)
+            setPageTransformer(false, IntroductionTransformer())
+        }
     }
 
-    private val contentView by lazy {
-        val result = findViewById(R.id.__dt_content_view) as ViewGroup
-        result
-    }
+    private val contentView by lazy { findViewById(R.id.__dt_content_view) as ViewGroup }
 
-    private val backgroundView by lazy {
-        val result = findViewById(R.id.__dt_background) as View
-        result
-    }
+    private val backgroundView by lazy { findViewById(R.id.__dt_background) as View }
 
     private val iconApp by lazy {
-        val result = findViewById(R.id.__dt_icon_app) as ImageView
-        result.setImageDrawable(applicationInfo.loadIcon(packageManager))
-        result
+        (findViewById(R.id.__dt_icon_app) as ImageView).apply {
+            setImageDrawable(applicationInfo.loadIcon(packageManager))
+        }
     }
 
-    private val iconArrow by lazy {
-        val result = findViewById(R.id.__dt_icon_arrow) as ImageView
-        result
-    }
+    private val iconArrow by lazy { findViewById(R.id.__dt_icon_arrow) as ImageView }
 
-    private val iconBottle by lazy {
-        val result = findViewById(R.id.__dt_icon_bottle) as ImageView
-        result
-    }
+    private val iconBottle by lazy { findViewById(R.id.__dt_icon_bottle) as ImageView }
 
-    private val textView by lazy {
-        val result = findViewById(R.id.__dt_intro_text) as ViewGroup
-        result
-    }
+    private val textView by lazy { findViewById(R.id.__dt_intro_text) as ViewGroup }
 
-    private val nextView by lazy {
-        val result = findViewById(R.id.__dt_intro_next) as TextView
-        result
-    }
+    private val nextView by lazy { findViewById(R.id.__dt_intro_next) as TextView }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

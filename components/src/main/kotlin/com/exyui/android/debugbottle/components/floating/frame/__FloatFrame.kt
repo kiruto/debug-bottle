@@ -25,7 +25,7 @@ internal object __FloatFrame {
     private val decimal = DecimalFormat("#.0' fps'")
 
     private val frameSetter by lazy {
-        val result = object: Runnable {
+        object: Runnable {
             override fun run() {
                 //val fps = __FrameRecorder.fps.toString()
                 //Log.d(TAG, "scan fps: $fps")
@@ -33,7 +33,6 @@ internal object __FloatFrame {
                 Handler().postDelayed(this, 1000)
             }
         }
-        result
     }
 
     fun start(context: Context) {

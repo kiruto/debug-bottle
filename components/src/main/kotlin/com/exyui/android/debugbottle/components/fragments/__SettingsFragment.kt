@@ -29,52 +29,52 @@ class __SettingsFragment: __ContentFragment() {
     private val DEFAULT: Int = 500
 
     private val seekBar: SeekBar by lazy {
-        val result = findViewById(R.id.__dt_seek_bar) as SeekBar
-        result.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onStopTrackingTouch(v: SeekBar?) {
+        (findViewById(R.id.__dt_seek_bar) as SeekBar).apply {
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onStopTrackingTouch(v: SeekBar?) {
 
-            }
-
-            override fun onStartTrackingTouch(v: SeekBar?) {
-
-            }
-
-            override fun onProgressChanged(v: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    valueText.setText((progress + MIN).toString())
                 }
-            }
-        })
-        result.max = MAX - MIN
-        result.progress = DTSettings.blockThreshold.toInt() - MIN
-        result
+
+                override fun onStartTrackingTouch(v: SeekBar?) {
+
+                }
+
+                override fun onProgressChanged(v: SeekBar?, progress: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        valueText.setText((progress + MIN).toString())
+                    }
+                }
+            })
+            max = MAX - MIN
+            progress = DTSettings.blockThreshold.toInt() - MIN
+        }
     }
 
     private val valueText: EditText by lazy {
-        val result = findViewById(R.id.__dt_seek_value) as EditText
-        result.addTextChangedListener(object : TextWatcher {
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                try {
-                    var num: Int = s.toString().toInt()
-                    if (num < MIN || num > MAX) {
-                        num = DEFAULT
+        (findViewById(R.id.__dt_seek_value) as EditText).apply {
+            addTextChangedListener(object : TextWatcher {
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    try {
+                        var num: Int = s.toString().toInt()
+                        if (num < MIN || num > MAX) {
+                            num = DEFAULT
+                        }
+                        seekBar.progress = num
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
-                    seekBar.progress = num
-                } catch (e: Exception) {
-                    e.printStackTrace()
                 }
-            }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-            }
+                }
 
-            override fun afterTextChanged(s: Editable?) {
+                override fun afterTextChanged(s: Editable?) {
 
-            }
-        })
-        result.setText((seekBar.progress + MIN).toString())
-        result
+                }
+            })
+            setText((seekBar.progress + MIN).toString())
+        }
     }
 
     private val networkSwitcher by lazy { rootView?.networkSwitcher(R.id.__dt_network_switcher) }
