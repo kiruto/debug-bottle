@@ -67,7 +67,7 @@ Debug Bottle中编译进了Leak Canary，所有Leak Canary的功能都可以使�
 加入了支持Kotlin的Block Canary，可以监控UI线程卡死。
 
 [<img src="screenshots/ui-blocks.png"/>](screenshots/raw/network-sniffer-2.png)
-[<img src="screenshots/block-canary-demo.gif" width="225" height="400" />](screenshots/raw/block-canary-demo.gif)
+[<img src="scree1nshots/block-canary-demo.gif" width="225" height="400" />](screenshots/raw/block-canary-demo.gif)
 
 #### 进入一切Activity并注入参数
 简单的Activity／Runnable入口。可以随心所欲进入任何一个Activity，使用任何参数，甚至可以向App中注入想要测试的Intent。
@@ -97,15 +97,15 @@ allprojects {
 然后在主模块中（Application类所在模块）加入依赖：
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.1.0'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.1.1'
 
     // 如果你的工程是Java工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.1.1'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.1.1'
 
     // 如果你的工程是Kotlin工程,使用此依赖
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.1'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.1'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
 }

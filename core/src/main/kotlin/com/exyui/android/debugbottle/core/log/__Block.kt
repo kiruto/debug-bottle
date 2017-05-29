@@ -95,38 +95,38 @@ class __Block private constructor() {
         private val EMPTY_IMEI = "empty_imei"
 
         fun newInstance(): __Block {
-            val block = __Block()
-            val context = __CanaryCoreMgr.context?.context
-            if (block.versionName == null || block.versionName!!.length == 0) {
-                try {
-                    val info = context?.packageManager?.getPackageInfo(context.packageName, 0)
-                    block.versionCode = info?.versionCode?: 0
-                    block.versionName = info?.versionName
-                } catch (e: Throwable) {
-                    Log.e(TAG, NEW_INSTANCE, e)
+            return __Block().apply {
+                val context = __CanaryCoreMgr.context?.context
+                if (versionName?.isEmpty()?: false) {
+                    try {
+                        val info = context?.packageManager?.getPackageInfo(context.packageName, 0)
+                        versionCode = info?.versionCode?: 0
+                        versionName = info?.versionName
+                    } catch (e: Throwable) {
+                        Log.e(TAG, NEW_INSTANCE, e)
+                    }
+
                 }
 
-            }
+                if (imei?.isEmpty()?: false) {
+                    try {
+                        imei = (context?.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager).deviceId
+                    } catch (e: Exception) {
+                        Log.e(TAG, NEW_INSTANCE, e)
+                        imei = EMPTY_IMEI
+                    }
 
-            if (block.imei == null || block.imei!!.length == 0) {
-                try {
-                    block.imei = (context?.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager).deviceId
-                } catch (e: Exception) {
-                    Log.e(TAG, NEW_INSTANCE, e)
-                    block.imei = EMPTY_IMEI
                 }
-
+                qualifier = __CanaryCoreMgr.context?.qualifier?: ""
+                apiLevel = "${Build.VERSION.SDK_INT} ${Build.VERSION.RELEASE}"
+                model = Build.MODEL
+                uid = __CanaryCoreMgr.context?.uid?: ""
+                cpuCoreNum = PerformanceUtils.numCores
+                processName = __ProcessUtils.myProcessName()
+                network = __CanaryCoreMgr.context?.networkType?: ""
+                freeMemory = PerformanceUtils.freeMemory.toString()
+                totalMemory = PerformanceUtils.totalMemory.toString()
             }
-            block.qualifier = __CanaryCoreMgr.context?.qualifier?: ""
-            block.apiLevel = "${Build.VERSION.SDK_INT} ${Build.VERSION.RELEASE}"
-            block.model = Build.MODEL
-            block.uid = __CanaryCoreMgr.context?.uid?: ""
-            block.cpuCoreNum = PerformanceUtils.numCores
-            block.processName = __ProcessUtils.myProcessName()
-            block.network = __CanaryCoreMgr.context?.networkType?: ""
-            block.freeMemory = PerformanceUtils.freeMemory.toString()
-            block.totalMemory = PerformanceUtils.totalMemory.toString()
-            return block
         }
 
         /**

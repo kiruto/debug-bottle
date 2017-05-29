@@ -92,15 +92,15 @@ allprojects {
 
 ```gradle
 dependencies {
-    debugCompile 'com.exyui.android:debug-bottle-runtime:1.1.0'
+    debugCompile 'com.exyui.android:debug-bottle-runtime:1.1.1'
 
     // Javaの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
-    testCompile 'com.exyui.android:debug-bottle-noop-java:1.1.0'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-java:1.1.1'
+    testCompile 'com.exyui.android:debug-bottle-noop-java:1.1.1'
 
     // Kotlinの場合はこうして構築します
-    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
-    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.0'
+    releaseCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.1'
+    testCompile 'com.exyui.android:debug-bottle-noop-kotlin:1.1.1'
 
     compile 'com.android.support:appcompat-v7:23.2.0+'
 }
