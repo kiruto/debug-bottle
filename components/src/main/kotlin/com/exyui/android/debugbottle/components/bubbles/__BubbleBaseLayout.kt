@@ -29,15 +29,11 @@ internal open class __BubbleBaseLayout : FrameLayout {
         this.layoutCoordinator = layoutCoordinator
     }
 
-    fun getLayoutCoordinator(): __BubblesLayoutCoordinator? {
-        return layoutCoordinator
-    }
+    fun getLayoutCoordinator(): __BubblesLayoutCoordinator? = layoutCoordinator
 
     fun setViewParams(params: WindowManager.LayoutParams) {
         this.params = params
     }
 
-    fun getViewParams(): WindowManager.LayoutParams {
-        return this.params
-    }
+    fun getViewParams(): WindowManager.LayoutParams = this.params
 }

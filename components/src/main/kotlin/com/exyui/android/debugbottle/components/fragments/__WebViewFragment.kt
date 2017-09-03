@@ -82,11 +82,11 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
     }
 
     override fun onBackPressed(): Boolean {
-        if (webView?.canGoBack()?: false) {
+        return if (webView?.canGoBack() == true) {
             webView?.goBack()
-            return true
+            true
         } else {
-            return super.onBackPressed()
+            super.onBackPressed()
         }
     }
 
@@ -97,10 +97,10 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
                         .setIcon(R.drawable.__ic_github_black_24dp)
                         .setTitle(R.string.__dt_full_url)
                         .setMessage(url)
-                        .setPositiveButton(R.string.__dt_copy) { dialog, witch ->
+                        .setPositiveButton(R.string.__dt_copy) { _, _ ->
                             copyUrlToClipboard()
                         }
-                        .setNeutralButton(R.string.__dt_open_in_browser) { dialog, witch ->
+                        .setNeutralButton(R.string.__dt_open_in_browser) { _, _ ->
                             val intent = Intent(Intent.ACTION_VIEW)
                             intent.data = Uri.parse(url)
                             startActivity(intent)
@@ -108,7 +108,7 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
                         .show()
             }
             R.id.__dt_back -> {
-                if (webView?.canGoBack()?: false) {
+                if (webView?.canGoBack() == true) {
                     webView?.goBack()
                 }
             }

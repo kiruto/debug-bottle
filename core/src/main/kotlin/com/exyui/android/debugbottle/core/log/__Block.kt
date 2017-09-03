@@ -331,9 +331,7 @@ class __Block private constructor() {
             return result
         }
 
-    override fun toString(): String {
-        return basicSb.toString() + timeSb + cpuSb + stackSb
-    }
+    override fun toString(): String = basicSb.toString() + timeSb + cpuSb + stackSb
 
     private operator fun StringBuilder.plus(any: Any?): StringBuilder = this.append(any?: "")
 

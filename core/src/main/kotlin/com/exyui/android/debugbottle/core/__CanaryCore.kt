@@ -11,7 +11,7 @@ import com.exyui.android.debugbottle.core.log.__Block
 object __CanaryCore {
 
     private val context = __CanaryCoreMgr.context
-    internal var mainLooperPrinter: LooperPrinter
+    private var mainLooperPrinter: LooperPrinter
     internal var threadStackSampler: ThreadStackSampler?
     internal var cpuSampler: CpuSampler
 
@@ -27,9 +27,7 @@ object __CanaryCore {
         mainLooperPrinter = LooperPrinter(threshold) { realTimeStart, realTimeEnd, threadTimeStart, threadTimeEnd ->
 
             // Get recent thread-stack entries and cpu usage
-            if (null == threadStackSampler) return@LooperPrinter
-
-            val threadStackEntries = threadStackSampler!!.getThreadStackEntries(realTimeStart, realTimeEnd)
+            val threadStackEntries = threadStackSampler?.getThreadStackEntries(realTimeStart, realTimeEnd)?: return@LooperPrinter
             // Log.d("BlockCanary", "threadStackEntries: " + threadStackEntries.size)
             if (!threadStackEntries.isEmpty()) {
                 val block = __Block.newInstance()
@@ -40,8 +38,8 @@ object __CanaryCore {
                         .flushString()
                 __LogWriter.saveLooperLog(block.toString())
 
-                if (context?.isNeedDisplay?: false && mOnBlockEventInterceptor != null) {
-                    mOnBlockEventInterceptor?.onBlockEvent(context?.context!!, block.timeStart)
+                if (context?.isNeedDisplay == true && mOnBlockEventInterceptor != null) {
+                    mOnBlockEventInterceptor?.onBlockEvent(context.context, block.timeStart)
                 }
             }
         }

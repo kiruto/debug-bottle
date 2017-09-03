@@ -21,29 +21,32 @@ internal object __TestingRunnerBubble:
     override val TAG: String = "__TestingRunnerBubble"
 
     override fun onCreateView(context: Context): __BubbleLayout {
-        val bubbleView = LayoutInflater.from(context).inflate(R.layout.__bubble_test_runner, null) as __BubbleLayout
-        bubbleView.setShouldStickToWall(true)
-        bubbleView.setOnBubbleClickListener(this)
-        bubbleView.setOnBubbleRemoveListener(this)
-        RunningFeatureMgr.add(RunningFeatureMgr.STRESS_TEST_RUNNER)
-        return bubbleView
+        return (LayoutInflater.from(context).inflate(R.layout.__bubble_test_runner, null) as __BubbleLayout).apply {
+            setShouldStickToWall(true)
+            setOnBubbleClickListener(this@__TestingRunnerBubble)
+            setOnBubbleRemoveListener(this@__TestingRunnerBubble)
+            RunningFeatureMgr.add(RunningFeatureMgr.STRESS_TEST_RUNNER)
+        }
     }
 
     override fun isRunning() = RunningFeatureMgr.has(RunningFeatureMgr.STRESS_TEST_RUNNER)
 
     override fun onBubbleClick(bubble: __BubbleLayout) {
-        val activity = DTActivityManager.topActivity
-        if (null == activity){
-            val msg = DTInstaller.getString(R.string.__dt_warning_open_activity_first)
-            Toast.makeText(DTInstaller.getApplication(), msg, Toast.LENGTH_LONG).show()
-            return
-        } else if (activity.javaClass.name.startsWith("com.exyui")) {
-            // I don't need you test debug bottle.
-            val msg = DTInstaller.getString(R.string.__dt_warning_joker)
-            Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
-            return
-        } else {
-            __TestingPreStartDialog().show(activity.fragmentManager)
+        DTActivityManager.topActivity.let { activity ->
+            when {
+                null == activity -> {
+                    val msg = DTInstaller.getString(R.string.__dt_warning_open_activity_first)
+                    Toast.makeText(DTInstaller.getApplication(), msg, Toast.LENGTH_LONG).show()
+                    return
+                }
+                activity.javaClass.name.startsWith("com.exyui") -> {
+                    // I don't need you test debug bottle.
+                    val msg = DTInstaller.getString(R.string.__dt_warning_joker)
+                    Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
+                    return
+                }
+                else -> __TestingPreStartDialog().show(activity.fragmentManager)
+            }
         }
     }
 

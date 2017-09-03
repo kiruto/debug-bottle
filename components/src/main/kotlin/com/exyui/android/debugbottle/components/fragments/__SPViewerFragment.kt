@@ -36,9 +36,7 @@ class __SPViewerFragment: __ContentFragment(), DialogsCollection.SPDialogAction 
         return rootView
     }
 
-    private fun findViewById(@IdRes id: Int): View? {
-        return rootView?.findViewById(id)
-    }
+    private fun findViewById(@IdRes id: Int): View? = rootView?.findViewById(id)
 
     private fun initSP() {
         val viewer = SPViewer(context?.applicationContext?: return)

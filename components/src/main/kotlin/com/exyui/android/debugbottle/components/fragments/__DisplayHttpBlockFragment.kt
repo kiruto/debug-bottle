@@ -51,10 +51,10 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
 
         internal fun classSimpleName(className: String): String {
             val separator = className.lastIndexOf('.')
-            if (separator == -1) {
-                return className
+            return if (separator == -1) {
+                className
             } else {
-                return className.substring(separator + 1)
+                className.substring(separator + 1)
             }
         }
     }
@@ -65,7 +65,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
             mBlockStartTime = savedInstanceState.getString(SHOW_BLOCK_EXTRA_KEY)
         } else {
             val intent = context?.intent
-            if (intent?.hasExtra(SHOW_BLOCK_EXTRA)?: false) {
+            if (intent?.hasExtra(SHOW_BLOCK_EXTRA) == true) {
                 mBlockStartTime = intent!!.getStringExtra(SHOW_BLOCK_EXTRA)
             }
         }
@@ -122,12 +122,12 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
     }
 
     override fun onBackPressed(): Boolean {
-        if (mBlockStartTime != null) {
+        return if (mBlockStartTime != null) {
             mBlockStartTime = null
             updateUi()
-            return true
+            true
         } else {
-            return super.onBackPressed()
+            super.onBackPressed()
         }
     }
 
@@ -175,7 +175,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
         } else {
             val adapter = BlockListAdapter()
             mListView.adapter = adapter
-            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
                 mBlockStartTime = mBlockEntries[position].timeStart.toString()
                 updateUi()
             }
@@ -203,7 +203,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
         } else {
             adapter = HttpBlockDetailAdapter()
             mListView.adapter = adapter
-            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
                 adapter.toggleRow(position)
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -230,31 +230,18 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
         if (TextUtils.isEmpty(startTime)) {
             return null
         }
-        for (block in mBlockEntries) {
-            if (block.timeStart.toString() == startTime) {
-                return block
-            }
-        }
-        return null
+        return mBlockEntries.firstOrNull { it.timeStart.toString() == startTime }
     }
 
-    private fun findViewById(@IdRes id: Int): View? {
-        return rootView?.findViewById(id)
-    }
+    private fun findViewById(@IdRes id: Int): View? = rootView?.findViewById(id)
 
     internal inner class BlockListAdapter : BaseAdapter() {
 
-        override fun getCount(): Int {
-            return mBlockEntries.size
-        }
+        override fun getCount(): Int = mBlockEntries.size
 
-        override fun getItem(position: Int): HttpBlock {
-            return mBlockEntries[position]
-        }
+        override fun getItem(position: Int): HttpBlock = mBlockEntries[position]
 
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
+        override fun getItemId(position: Int): Long = position.toLong()
 
         @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE", "UNUSED_VALUE")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -266,16 +253,15 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
             val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
             val block = getItem(position)
 
-            val index: String
-            if (position == 0 && mBlockEntries.size == mMaxStoredBlockCount) {
-                index = "MAX. "
+            val index: String = if (position == 0 && mBlockEntries.size == mMaxStoredBlockCount) {
+                "MAX. "
             } else {
-                index = "${mBlockEntries.size - position}. "
+                "${mBlockEntries.size - position}. "
             }
 
             val title = "${block.responseCode}. ${block.method} ${block.url.split("?")[0].replace("http://", "").replace("https://", "")}"
             titleView.text = title
-            timeView.text = String.format("%.1f", block.time) + "ms"
+            timeView.text = "${block.time}ms"
 
             if (block.responseCode.startsWith("2")) {
                 titleView.setTextColor(Color.parseColor("#DE1B5E20"))
@@ -290,11 +276,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
     }
 
     internal class LoadBlocks(private var fragmentOrNull: __DisplayHttpBlockFragment?) : Runnable {
-        private val mainHandler: Handler
-
-        init {
-            mainHandler = Handler(Looper.getMainLooper())
-        }
+        private val mainHandler: Handler = Handler(Looper.getMainLooper())
 
         override fun run() {
             val blocks = ArrayList<HttpBlock>()
@@ -328,7 +310,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
         companion object {
 
             val inFlight: MutableList<LoadBlocks> = ArrayList()
-            val backgroundExecutor: Executor = Executors.newSingleThreadExecutor()
+            private val backgroundExecutor: Executor = Executors.newSingleThreadExecutor()
 
             fun load(activity: __DisplayHttpBlockFragment) {
                 val loadBlocks = LoadBlocks(activity)

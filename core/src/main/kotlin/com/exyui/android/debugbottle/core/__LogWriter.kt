@@ -104,8 +104,7 @@ object __LogWriter {
         return path
     }
 
-    fun generateTempZipFile(filename: String): File {
-        return File(__BlockCanaryInternals.path + "/" + filename + ".log.zip")
-    }
+    fun generateTempZipFile(filename: String): File =
+            File(__BlockCanaryInternals.path + "/" + filename + ".log.zip")
 }
 

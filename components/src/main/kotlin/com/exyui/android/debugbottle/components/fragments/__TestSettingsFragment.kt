@@ -82,14 +82,14 @@ class __TestSettingsFragment: __ContentFragment() {
 
             adapter.addAll(MonkeyExcludeActivities.list.blackList)
 
-            val builder = AlertDialog.Builder(activityContext)
-            builder.setAdapter(adapter) { dialog, witch ->
+            return AlertDialog.Builder(activityContext).apply {
+                setAdapter(adapter) { _, _ ->
 
-            }
-            builder.setNegativeButton(R.string.__dt_close) { dialog, witch ->
+                }
+                setNegativeButton(R.string.__dt_close) { _, _ ->
 
-            }
-            return builder.create()
+                }
+            }.create()
         }
 
         @Suppress("OverridingDeprecatedMember")

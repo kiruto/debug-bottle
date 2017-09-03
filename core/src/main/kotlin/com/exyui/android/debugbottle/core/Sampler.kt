@@ -6,9 +6,9 @@ import java.util.concurrent.atomic.AtomicBoolean
  * Created by yuriel on 8/8/16.
  */
 internal abstract class Sampler(sampleIntervalMillis: Long) {
-    internal val DEFAULT_SAMPLE_INTERVAL_MILLIS = 300
+    private val DEFAULT_SAMPLE_INTERVAL_MILLIS = 300
 
-    internal var mIsDumping = AtomicBoolean(false)
+    private var mIsDumping = AtomicBoolean(false)
     internal var mSampleIntervalMillis: Long = 0
 
     private val mRunnable: Runnable by lazy {

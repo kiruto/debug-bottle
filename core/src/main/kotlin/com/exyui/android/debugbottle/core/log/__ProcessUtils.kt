@@ -14,11 +14,11 @@ object __ProcessUtils {
     private val sNameLock = Any()
 
     fun myProcessName(): String {
-        if (sProcessName?.isNotEmpty()?: false) {
+        if (sProcessName?.isNotEmpty() == true) {
             return sProcessName?: ""
         }
         synchronized(sNameLock) {
-            if (sProcessName?.isNotEmpty()?: false) {
+            if (sProcessName?.isNotEmpty() == true) {
                 return sProcessName?: ""
             }
             sProcessName = obtainProcessName(__CanaryCoreMgr.context?.context!!)
@@ -31,11 +31,9 @@ object __ProcessUtils {
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val listTaskInfo = am.runningAppProcesses
         if (listTaskInfo != null && !listTaskInfo.isEmpty()) {
-            for (info in listTaskInfo) {
-                if (info != null && info.pid == pid) {
-                    return info.processName
-                }
-            }
+            listTaskInfo
+                    .filter { it != null && it.pid == pid }
+                    .forEach { return it.processName }
         }
         return null
     }

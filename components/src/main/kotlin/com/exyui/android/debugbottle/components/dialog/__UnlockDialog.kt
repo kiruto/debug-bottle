@@ -31,13 +31,14 @@ class __UnlockDialog: __FloatAnimatedDialog() {
     private val inputView by lazy { rootView?.findViewById(R.id.__dt_input) as EditText }
 
     override fun createView(): View {
-        val result = activity.layoutInflater.inflate(R.layout.__dialog_unlock, null)
-        val header = result.findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout
-        header.setAction { Toast.makeText(activity, R.string.__dt_notification_locked, Toast.LENGTH_SHORT).show() }
-        header.setClose { dismiss() }
-        rootView = result as ViewGroup
-        bindViews()
-        return result
+        return activity.layoutInflater.inflate(R.layout.__dialog_unlock, null).apply {
+            (findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout).let { header ->
+                header.setAction { Toast.makeText(activity, R.string.__dt_notification_locked, Toast.LENGTH_SHORT).show() }
+                header.setClose { dismiss() }
+            }
+            this@__UnlockDialog.rootView = this as ViewGroup
+            bindViews()
+        }
     }
 
     private fun bindViews() {

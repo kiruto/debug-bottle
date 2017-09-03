@@ -31,9 +31,7 @@ internal class __BubblesService : Service() {
         }
     private var layoutCoordinator: __BubblesLayoutCoordinator? = null
 
-    override fun onBind(intent: Intent): IBinder {
-        return binder
-    }
+    override fun onBind(intent: Intent): IBinder = binder
 
     override fun onUnbind(intent: Intent): Boolean {
         for (bubble in bubbles) {

@@ -78,8 +78,8 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
                         .setIcon(R.drawable.__dt_ic_bottle_24dp)
                         .setTitle(R.string.__dt_info)
                         .setMessage(R.string.__dt_info_introduction)
-                        .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
-                        .setNeutralButton(R.string.__dt_github) { dialog, witch ->
+                        .setNegativeButton(R.string.__dt_close) { _, _ -> }
+                        .setNeutralButton(R.string.__dt_github) { _, _ ->
                             val url = DTSettings.GITHUB_URL
                             val intent = Intent(Intent.ACTION_VIEW)
                             intent.data = Uri.parse(url)
@@ -125,7 +125,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
 
         if (null == selectedItem || 0 == selectedItem) {
             selectItem(0)
-            if (showDrawer?: false) {
+            if (showDrawer == true) {
                 drawerLayout.openDrawer(Gravity.LEFT)
             }
         } else {
@@ -155,13 +155,11 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
     }
 
     override fun onBackPressed() {
-        if (!(contentFragment?.onBackPressed()?: false)) {
-            if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-                drawerLayout.closeDrawers()
-            } else if (!(contentFragment?.isHome?: false)) {
-                selectItem(0)
-            } else {
-                super.onBackPressed()
+        if (contentFragment?.onBackPressed() != true) {
+            when {
+                drawerLayout.isDrawerOpen(Gravity.LEFT) -> drawerLayout.closeDrawers()
+                contentFragment?.isHome != true -> selectItem(0)
+                else -> super.onBackPressed()
             }
         }
     }
@@ -306,7 +304,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         drawerLayout.closeDrawer(drawerRoot)
     }
 
-    internal inner class DrawerAdapter(val titles: Array<String>): BaseAdapter() {
+    internal inner class DrawerAdapter(private val titles: Array<String>): BaseAdapter() {
 
         // Menu item's title to icon map
         private val menu by lazy {

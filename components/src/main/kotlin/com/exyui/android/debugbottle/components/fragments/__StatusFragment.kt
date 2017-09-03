@@ -71,7 +71,7 @@ class __StatusFragment: __ContentFragment() {
         (findViewById(R.id.__dt_3d_switcher) as DTListItemSwitch).apply {
             isChecked = __3DViewBubble.isRunning()
             setOnCheckedChangeListener { _, isChecked ->
-                if (!(context?.isSystemAlertPermissionGranted()?: false)) {
+                if (context?.isSystemAlertPermissionGranted() != true) {
                     context?.requestingPermissionDrawOverOtherApps(null)
                     this.isChecked = false
                 } else {
@@ -185,8 +185,8 @@ class __StatusFragment: __ContentFragment() {
         AlertDialog.Builder(context)
                 .setTitle(R.string.__dt_need_permissions)
                 .setMessage(R.string.__dt_permission_message)
-                .setNegativeButton(R.string.__dt_not_now) { dialog, witch -> }
-                .setPositiveButton(R.string.__dt_check) { dialog, witch ->
+                .setNegativeButton(R.string.__dt_not_now) { _, _ -> }
+                .setPositiveButton(R.string.__dt_check) { _, _ ->
                     requestPermission()
                 }
                 .show()
@@ -197,10 +197,10 @@ class __StatusFragment: __ContentFragment() {
                 .setIcon(R.drawable.__dt_ic_bottle_24dp)
                 .setTitle(R.string.__dt_need_enable_dt)
                 .setMessage(R.string.__dt_enable_dt_message)
-                .setNegativeButton(R.string.__dt_later) { dialog, witch ->
+                .setNegativeButton(R.string.__dt_later) { _, _ ->
                     context?.finish()
                 }
-                .setPositiveButton(R.string.__dt_enable) { dialog, witch ->
+                .setPositiveButton(R.string.__dt_enable) { _, _ ->
                     DTSettings.bottleEnable = true
                     showNeedKillProcDialog()
                 }
@@ -210,8 +210,8 @@ class __StatusFragment: __ContentFragment() {
     private fun showNeedKillProcDialog() {
         AlertDialog.Builder(context)
                 .setMessage(R.string.__dt_need_kill_proc)
-                .setNegativeButton(R.string.__dt_later) { dialog, witch -> }
-                .setPositiveButton(R.string.__dt_kill_process) { dialog, witch ->
+                .setNegativeButton(R.string.__dt_later) { _, _ -> }
+                .setPositiveButton(R.string.__dt_kill_process) { _, _ ->
                     DTInstaller.kill()
                 }
                 .show()
@@ -219,19 +219,19 @@ class __StatusFragment: __ContentFragment() {
 
     private fun checkupPermission() {
 
-        if (context?.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)?: false) {
+        if (context?.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == true) {
             rwPermissionText.granted()
         } else {
             rwPermissionText.denied()
         }
 
-        if (context?.hasPermission(Manifest.permission.READ_PHONE_STATE)?: false) {
+        if (context?.hasPermission(Manifest.permission.READ_PHONE_STATE) == true) {
             phonePermissionText.granted()
         } else {
             phonePermissionText.denied()
         }
 
-        if (context?.isSystemAlertPermissionGranted()?: false) {
+        if (context?.isSystemAlertPermissionGranted() == true) {
             windowPermissionText.granted()
         } else {
             windowPermissionText.denied()
@@ -318,25 +318,18 @@ class __StatusFragment: __ContentFragment() {
         context?: return false
         checkupPermission()
 
-        for (p in permissions) {
-            if (!(context?.hasPermission(p)?: false))
-                return false
-        }
-        return true
+        return permissions.any { context?.hasPermission(it)?: false }
     }
 
     private fun requestPermission() {
         context?: return
 
-        for (p in permissions) {
-            // Here, thisActivity is the current activity
-            if (ContextCompat.checkSelfPermission(context!!, p) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(context!!, arrayOf(p), permissions.indexOf(p))
-            }
-        }
+        permissions
+                .filter { // Here, thisActivity is the current activity
+                    ContextCompat.checkSelfPermission(context!!, it) != PackageManager.PERMISSION_GRANTED
+                }
+                .forEach { ActivityCompat.requestPermissions(context!!, arrayOf(it), permissions.indexOf(it)) }
     }
 
-    private fun findViewById(@IdRes id: Int): View? {
-        return rootView?.findViewById(id)
-    }
+    private fun findViewById(@IdRes id: Int): View? = rootView?.findViewById(id)
 }

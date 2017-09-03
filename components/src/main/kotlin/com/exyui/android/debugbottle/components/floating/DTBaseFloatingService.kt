@@ -53,7 +53,7 @@ internal abstract class DTBaseFloatingService: Service() {
         }
     }
 
-    fun requestingPermission(msg: String?) {
+    private fun requestingPermission(msg: String?) {
         val str = msg?:  "Permission denied for this action. You need to manually grant the permission in Settings -> Apps -> Draw over other apps."
         Toast.makeText(this, str, Toast.LENGTH_LONG).show()
         val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + packageName))

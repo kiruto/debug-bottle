@@ -47,9 +47,7 @@ class ExampleActivity : AppCompatPreferenceActivity() {
     /**
      * {@inheritDoc}
      */
-    override fun onIsMultiPane(): Boolean {
-        return isXLargeTablet(this)
-    }
+    override fun onIsMultiPane(): Boolean = isXLargeTablet(this)
 
     /**
      * {@inheritDoc}
@@ -209,9 +207,8 @@ class ExampleActivity : AppCompatPreferenceActivity() {
          * Helper method to determine if the device has an extra-large screen. For
          * example, 10" tablets are extra-large.
          */
-        private fun isXLargeTablet(context: Context): Boolean {
-            return context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
-        }
+        private fun isXLargeTablet(context: Context): Boolean =
+                context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
 
         /**
          * Binds a preference's summary to its value. More specifically, when the

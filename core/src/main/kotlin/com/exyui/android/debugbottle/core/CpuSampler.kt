@@ -17,7 +17,7 @@ internal class CpuSampler(sampleIntervalMillis: Long) : Sampler(sampleIntervalMi
     /**
      * TODO: Explain how we define cpu busy in README
      */
-    private val BUSY_TIME: Int
+    private val BUSY_TIME: Int = (mSampleIntervalMillis * 1.2f).toInt()
 
     private val mCpuInfoEntries = LinkedHashMap<Long, String>()
     private var mPid = 0
@@ -27,10 +27,6 @@ internal class CpuSampler(sampleIntervalMillis: Long) : Sampler(sampleIntervalMi
     private var mIoWaitLast: Long = 0
     private var mTotalLast: Long = 0
     private var mAppCpuTimeLast: Long = 0
-
-    init {
-        BUSY_TIME = (mSampleIntervalMillis * 1.2f).toInt()
-    }
 
     override fun start() {
         super.start()
@@ -61,7 +57,7 @@ internal class CpuSampler(sampleIntervalMillis: Long) : Sampler(sampleIntervalMi
             var last: Long = 0
             synchronized(mCpuInfoEntries) {
                 for ((time) in mCpuInfoEntries) {
-                    if (s < time && time < e) {
+                    if (time in (s + 1)..(e - 1)) {
                         if (last != 0L && time - last > BUSY_TIME) {
                             return true
                         }
@@ -127,17 +123,17 @@ internal class CpuSampler(sampleIntervalMillis: Long) : Sampler(sampleIntervalMi
             return
         }
         // 从系统启动开始累计到当前时刻，用户态的CPU时间，不包含 nice值为负进程
-        val user = java.lang.Long.parseLong(cpuInfoArray[2])
+        val user = cpuInfoArray[2].toLong()
         // 从系统启动开始累计到当前时刻，nice值为负的进程所占用的CPU时间
-        val nice = java.lang.Long.parseLong(cpuInfoArray[3])
+        val nice = cpuInfoArray[3].toLong()
         // 从系统启动开始累计到当前时刻，核心时间
-        val system = java.lang.Long.parseLong(cpuInfoArray[4])
+        val system = cpuInfoArray[4].toLong()
         // 从系统启动开始累计到当前时刻，除硬盘IO等待时间以外其它等待时间
-        val idle = java.lang.Long.parseLong(cpuInfoArray[5])
+        val idle = cpuInfoArray[5].toLong()
         // 从系统启动开始累计到当前时刻，硬盘IO等待时间
-        val ioWait = java.lang.Long.parseLong(cpuInfoArray[6])
+        val ioWait = cpuInfoArray[6].toLong()
         // CPU总时间 = 以上所有加上irq（硬中断）和softirq（软中断）的时间
-        val total = user + nice + system + idle + ioWait + java.lang.Long.parseLong(cpuInfoArray[7]) + java.lang.Long.parseLong(cpuInfoArray[8])
+        val total = user + nice + system + idle + ioWait + cpuInfoArray[7].toLong() + cpuInfoArray[8].toLong()
 
         val pidCpuInfos = pidCpuRate.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         if (pidCpuInfos.size < 17) {
@@ -151,20 +147,35 @@ internal class CpuSampler(sampleIntervalMillis: Long) : Sampler(sampleIntervalMi
          * cstime Amount of time that this process's waited-for children have been scheduled in kernel mode
          * processCpuTime = utime + stime + cutime + cstime, which includes all its threads' cpu time
          */
-        val appCpuTime = java.lang.Long.parseLong(pidCpuInfos[13]) + java.lang.Long.parseLong(pidCpuInfos[14])
-        +java.lang.Long.parseLong(pidCpuInfos[15]) + java.lang.Long.parseLong(pidCpuInfos[16])
+        val appCpuTime = pidCpuInfos[13].toLong() + pidCpuInfos[14].toLong() + pidCpuInfos[15].toLong() + pidCpuInfos[16].toLong()
 
         if (mTotalLast != 0L) {
-            val sb = StringBuilder()
-            val idleTime = idle - mIdleLast
-            val totalTime = total - mTotalLast
-            sb.append("cpu:").append((totalTime - idleTime) * 100L / totalTime).append("% ").append("app:").append((appCpuTime - mAppCpuTimeLast) * 100L / totalTime).append("% ").append("[").append("user:").append((user - mUserLast) * 100L / totalTime).append("% ").append("system:").append((system - mSystemLast) * 100L / totalTime).append("% ").append("ioWait:").append((ioWait - mIoWaitLast) * 100L / totalTime).append("% ]")
-            synchronized(mCpuInfoEntries) {
-                mCpuInfoEntries.put(System.currentTimeMillis(), sb.toString())
-                if (mCpuInfoEntries.size > MAX_ENTRY_COUNT) {
-                    for ((key) in mCpuInfoEntries) {
-                        mCpuInfoEntries.remove(key)
-                        break
+            StringBuilder().apply {
+                val idleTime = idle - mIdleLast
+                val totalTime = total - mTotalLast
+                append("cpu:")
+                append((totalTime - idleTime) * 100L / totalTime)
+                append("% ")
+                append("app:")
+                append((appCpuTime - mAppCpuTimeLast) * 100L / totalTime)
+                append("% ")
+                append("[")
+                append("user:")
+                append((user - mUserLast) * 100L / totalTime)
+                append("% ")
+                append("system:")
+                append((system - mSystemLast) * 100L / totalTime)
+                append("% ")
+                append("ioWait:")
+                append((ioWait - mIoWaitLast) * 100L / totalTime)
+                append("% ]")
+                synchronized(mCpuInfoEntries) {
+                    mCpuInfoEntries.put(System.currentTimeMillis(), toString())
+                    if (mCpuInfoEntries.size > MAX_ENTRY_COUNT) {
+                        for ((key) in mCpuInfoEntries) {
+                            mCpuInfoEntries.remove(key)
+                            break
+                        }
                     }
                 }
             }

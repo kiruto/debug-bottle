@@ -48,36 +48,28 @@ internal class CrashBlockDetailAdapter: BaseAdapter() {
         return view
     }
 
-    private fun connectorViewType(position: Int): __DisplayLeakConnectorView.Type {
-        return if (position == 1)
-            __DisplayLeakConnectorView.Type.START
-        else
-            if (position == count - 1)
-                __DisplayLeakConnectorView.Type.END
-            else
-                __DisplayLeakConnectorView.Type.NODE
-    }
+    private fun connectorViewType(position: Int): __DisplayLeakConnectorView.Type =
+            when (position) {
+                1 -> __DisplayLeakConnectorView.Type.START
+                count - 1 -> __DisplayLeakConnectorView.Type.END
+                else -> __DisplayLeakConnectorView.Type.NODE
+            }
 
     @Suppress("UNUSED_PARAMETER")
     private fun elementToHtmlString(element: String?, position: Int, folding: Boolean): String {
-        var htmlString = element?.replace(CrashBlock.SEPARATOR.toRegex(), "<br>")
-
-        when (position) {
-            POSITION_THREAD -> {
-                htmlString = String.format("<font color='#c48a47'>%s</font> ", htmlString)
-            }
-            POSITION_STACKTRACE -> {
-                htmlString = String.format("<font color='#000000'>%s</font> ", htmlString)
-            }
-            else -> {
-                htmlString = String.format("<font color='#ffffff'>%s</font> ", htmlString)
-            }
-        }
-        return htmlString
+        return element
+                ?.replace(CrashBlock.SEPARATOR.toRegex(), "<br>")
+                .let {
+                    when (position) {
+                        POSITION_THREAD -> "<font color='#c48a47'>$it</font> "
+                        POSITION_STACKTRACE -> "<font color='#000000'>$it</font> "
+                        else -> "<font color='#ffffff'>$it</font> "
+                    }
+                }
     }
 
     fun update(block: CrashBlock?) {
-        if (mBlock != null && block!!.time.equals(mBlock!!.time)) {
+        if (mBlock != null && block?.time == mBlock?.time) {
             // Same data, nothing to change.
             return
         }
@@ -104,16 +96,14 @@ internal class CrashBlockDetailAdapter: BaseAdapter() {
         if (getItemViewType(position) == TOP_ROW) {
             return null
         }
-        when (position) {
-            POSITION_THREAD -> return mBlock?.threadString
-            POSITION_STACKTRACE -> return mBlock?.stacktraceString
-            else -> return ""
+        return when (position) {
+            POSITION_THREAD -> mBlock?.threadString
+            POSITION_STACKTRACE -> mBlock?.stacktraceString
+            else -> ""
         }
     }
 
-    override fun getViewTypeCount(): Int {
-        return 2
-    }
+    override fun getViewTypeCount(): Int = 2
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0) {
@@ -122,9 +112,7 @@ internal class CrashBlockDetailAdapter: BaseAdapter() {
         return NORMAL_ROW
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    override fun getItemId(position: Int): Long = position.toLong()
 
     companion object {
 

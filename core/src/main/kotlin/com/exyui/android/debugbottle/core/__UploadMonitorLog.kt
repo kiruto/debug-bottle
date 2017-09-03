@@ -14,24 +14,25 @@ object __UploadMonitorLog {
     private val FORMAT = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault())
 
     private fun zipFile(): File {
-        var timeString = java.lang.Long.toString(System.currentTimeMillis())
-        try {
-            timeString = FORMAT.format(Date())
+        val timeString = try {
+            FORMAT.format(Date())
         } catch (e: Throwable) {
             Log.e(TAG, "zipFile: ", e)
+            System.currentTimeMillis().toString()
         }
 
-        val zippedFile = __LogWriter.generateTempZipFile("Monitor_looper_" + timeString)
-        __CanaryCoreMgr.context?.zipLogFile(__BlockCanaryInternals.logFiles, zippedFile)
-        __LogWriter.deleteLogFiles()
-        return zippedFile
+        return __LogWriter.generateTempZipFile("Monitor_looper_" + timeString).apply {
+            __CanaryCoreMgr.context?.zipLogFile(__BlockCanaryInternals.logFiles, this)
+            __LogWriter.deleteLogFiles()
+        }
     }
 
     fun forceZipLogAndUpload() {
         __HandlerThread.writeLogFileThreadHandler.post {
-            val file = zipFile()
-            if (file.exists()) {
-                __CanaryCoreMgr.context?.uploadLogFile(file)
+            zipFile().let {
+                if (it.exists()) {
+                    __CanaryCoreMgr.context?.uploadLogFile(it)
+                }
             }
         }
     }

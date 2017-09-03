@@ -34,29 +34,29 @@ class __QuickDialog : __FloatAnimatedDialog() {
     }
 
     override fun createView(): View {
-        val result = activity.layoutInflater.inflate(R.layout.__dialog_toggles, null)
-
-        val header = result.findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout
-        header.setAction {
-            if (togglesView sameAs currentPanel) {
-                container.show(mainView)
-                header.setActionIcon(R.drawable.__ic_settings_black_24dp)
-            } else {
-                container.show(togglesView)
-                header.setActionIcon(R.drawable.__ic_arrow_back_black_24dp)
+        return activity.layoutInflater.inflate(R.layout.__dialog_toggles, null).apply {
+            (findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout?)?.let { header ->
+                header.setAction {
+                    if (togglesView sameAs currentPanel) {
+                        container.show(mainView)
+                        header.setActionIcon(R.drawable.__ic_settings_black_24dp)
+                    } else {
+                        container.show(togglesView)
+                        header.setActionIcon(R.drawable.__ic_arrow_back_black_24dp)
+                    }
+                }
+                header.setClose { dismiss() }
             }
-        }
-        header.setClose { dismiss() }
-        result.findViewById(R.id.__dt_open).setOnClickListener { startDTDrawerActivity() }
-        result.findViewById(R.id.__dt_help).setOnClickListener { help() }
-        rootView = result as ViewGroup
-        bindViews()
-        isCancelable = true
+            findViewById(R.id.__dt_open).setOnClickListener { startDTDrawerActivity() }
+            findViewById(R.id.__dt_help).setOnClickListener { help() }
+            this@__QuickDialog.rootView = this as ViewGroup
+            bindViews()
+            isCancelable = true
 
-        // Dismiss dialog after click quick item
-        mainView.addOnItemClickListener { dismiss() }
-        container.show(mainView)
-        return result
+            // Dismiss dialog after click quick item
+            mainView.addOnItemClickListener { dismiss() }
+            container.show(mainView)
+        }
     }
 
     override fun onDestroyView() {
@@ -84,15 +84,16 @@ class __QuickDialog : __FloatAnimatedDialog() {
     }
 
     private fun ViewGroup.show(view: View) {
-        for (i in 0..childCount - 1) {
-            val child = getChildAt(i)
-            if (view sameAs child) {
-                child.visibility = View.VISIBLE
-                currentPanel = view
-            } else {
-                child.visibility = View.GONE
-            }
-        }
+        (0 until childCount)
+                .map { getChildAt(it) }
+                .forEach {
+                    if (view sameAs it) {
+                        it.visibility = View.VISIBLE
+                        currentPanel = view
+                    } else {
+                        it.visibility = View.GONE
+                    }
+                }
     }
 
     private infix fun View.sameAs(v: View?) = id == v?.id

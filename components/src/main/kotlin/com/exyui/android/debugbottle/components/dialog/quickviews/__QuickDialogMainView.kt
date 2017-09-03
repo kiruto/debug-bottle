@@ -22,12 +22,12 @@ class __QuickDialogMainView: ScrollView {
 
     private val rootChild by lazy { findViewById(R.id.__dt_content) as ViewGroup }
     private val emptyView by lazy {
-        val result = findViewById(R.id.__dt_empty)
-        result.setOnClickListener {
-            val url = "https://github.com/kiruto/debug-bottle/blob/1.0.1/demo/src/main/kotlin/me/chunyu/dev/yuriel/kotdebugtool/ContentInjector.kt"
-            (context as Activity).openInBrowser(url)
+        findViewById(R.id.__dt_empty).apply {
+            setOnClickListener {
+                val url = "https://github.com/kiruto/debug-bottle/blob/1.0.1/demo/src/main/kotlin/me/chunyu/dev/yuriel/kotdebugtool/ContentInjector.kt"
+                (context as Activity).openInBrowser(url)
+            }
         }
-        result
     }
     private val contents by lazy { findViewById(R.id.__dt_content) }
     private val cb:MutableList<(View) -> Unit> = mutableListOf()
@@ -75,17 +75,19 @@ class __QuickDialogMainView: ScrollView {
         for ((title, impl) in items) {
             if (!impl.shouldShowEntry(context as Activity)) continue
             //val current = __QuickDialogItemView(context)
-            val current = inflate(context, R.layout.__item_quick_dialog, null) as __QuickDialogItemView
-            current.title = title
-            current.content = impl.description()
-            current.setOnClickListener {
-                impl.run(context)
-                for (c in cb) {
-                    c.invoke(it)
+            (inflate(context, R.layout.__item_quick_dialog, null) as __QuickDialogItemView).apply {
+                this.title = title
+                content = impl.description()
+                setOnClickListener {
+                    impl.run(context)
+                    for (c in cb) {
+                        c.invoke(it)
+                    }
                 }
+                //result.add(current)
+                addView(this)
             }
-            //result.add(current)
-            addView(current)
+
         }
         //return result
     }

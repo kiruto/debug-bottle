@@ -48,14 +48,11 @@ internal object DialogsCollection {
                     .setView(content)
                     .setPositiveButton(R.string.__run) { dialog, _ ->
                         for ((k, v) in intentExtras) {
-                            if (v is Boolean) {
-                                intent!!.putExtra(k, v)
-                            } else if (v is Int) {
-                                intent!!.putExtra(k, v)
-                            } else if (v is Float) {
-                                intent!!.putExtra(k, v)
-                            } else {
-                                intent!!.putExtra(k, v.toString())
+                            when (v) {
+                                is Boolean -> intent!!.putExtra(k, v)
+                                is Int -> intent!!.putExtra(k, v)
+                                is Float -> intent!!.putExtra(k, v)
+                                else -> intent!!.putExtra(k, v.toString())
                             }
                         }
                         activity.startActivity(intent)
@@ -281,21 +278,21 @@ internal object DialogsCollection {
                         dialog.dismiss()
                         action?.updateSPViews()
                     }
-                    .setNegativeButton(R.string.__cancel) { dialog, view ->
+                    .setNegativeButton(R.string.__cancel) { dialog, _ ->
                         dialog.dismiss()
                     }
-                    .setPositiveButton(R.string.__save) { dialog, view ->
+                    .setPositiveButton(R.string.__save) { dialog, _ ->
                         try {
-                            val editor = sp?.edit()?: return@setPositiveButton
-                            when (value) {
-                                is Boolean -> {
-                                    editor.putBoolean(key, radio.checkedRadioButtonId == R.id.__dt_radio_true)
+                            sp?.edit()?.apply {
+                                when (value) {
+                                    is Boolean -> {
+                                        putBoolean(key, radio.checkedRadioButtonId == R.id.__dt_radio_true)
+                                    }
+                                    is Int -> putInt(key, editView.text.toString().toInt())
+                                    is Float -> putFloat(key, editView.text.toString().toFloat())
+                                    is String -> putString(key, editView.text.toString())
                                 }
-                                is Int -> editor.putInt(key, editView.text.toString().toInt())
-                                is Float -> editor.putFloat(key, editView.text.toString().toFloat())
-                                is String -> editor.putString(key, editView.text.toString())
-                            }
-                            editor.apply()
+                            }?.apply()?: return@setPositiveButton
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }

@@ -47,10 +47,10 @@ class __DisplayBlockFragment: __ContentFragment() {
 
         internal fun classSimpleName(className: String): String {
             val separator = className.lastIndexOf('.')
-            if (separator == -1) {
-                return className
+            return if (separator == -1) {
+                className
             } else {
-                return className.substring(separator + 1)
+                className.substring(separator + 1)
             }
         }
     }
@@ -71,7 +71,7 @@ class __DisplayBlockFragment: __ContentFragment() {
             mBlockStartTime = savedInstanceState.getString(SHOW_BLOCK_EXTRA_KEY)
         } else {
             val intent = context?.intent
-            if (intent?.hasExtra(SHOW_BLOCK_EXTRA)?: false) {
+            if (intent?.hasExtra(SHOW_BLOCK_EXTRA) == true) {
                 mBlockStartTime = intent?.getStringExtra(SHOW_BLOCK_EXTRA)
             }
         }
@@ -135,12 +135,12 @@ class __DisplayBlockFragment: __ContentFragment() {
     }
 
     override fun onBackPressed(): Boolean {
-        if (mBlockStartTime != null) {
+        return if (mBlockStartTime != null) {
             mBlockStartTime = null
             updateUi()
-            return true
+            true
         } else {
-            return super.onBackPressed()
+            super.onBackPressed()
         }
     }
 
@@ -188,7 +188,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         } else {
             val adapter = BlockListAdapter()
             mListView.adapter = adapter
-            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
                 mBlockStartTime = mBlockEntries[position].timeStart
                 updateUi()
             }
@@ -216,7 +216,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         } else {
             adapter = __BlockDetailAdapter()
             mListView.adapter = adapter
-            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> adapter.toggleRow(position) }
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ -> adapter.toggleRow(position) }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 context?.invalidateOptionsMenu()
                 //val actionBar = actionBar
@@ -241,31 +241,18 @@ class __DisplayBlockFragment: __ContentFragment() {
         if (TextUtils.isEmpty(startTime)) {
             return null
         }
-        for (block in mBlockEntries) {
-            if (block.timeStart.equals(startTime)) {
-                return block
-            }
-        }
-        return null
+        return mBlockEntries.firstOrNull { it.timeStart == startTime }
     }
 
-    private fun findViewById(@IdRes id: Int): View? {
-        return rootView?.findViewById(id)
-    }
+    private fun findViewById(@IdRes id: Int): View? = rootView?.findViewById(id)
 
     internal inner class BlockListAdapter : BaseAdapter() {
 
-        override fun getCount(): Int {
-            return mBlockEntries.size
-        }
+        override fun getCount(): Int = mBlockEntries.size
 
-        override fun getItem(position: Int): __Block {
-            return mBlockEntries[position]
-        }
+        override fun getItem(position: Int): __Block = mBlockEntries[position]
 
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
+        override fun getItemId(position: Int): Long = position.toLong()
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             var view = convertView
@@ -276,11 +263,10 @@ class __DisplayBlockFragment: __ContentFragment() {
             val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
             val block = getItem(position)
 
-            val index: String
-            if (position == 0 && mBlockEntries.size == mMaxStoredBlockCount) {
-                index = "MAX. "
+            val index: String = if (position == 0 && mBlockEntries.size == mMaxStoredBlockCount) {
+                "MAX. "
             } else {
-                index = "${mBlockEntries.size - position}. "
+                "${mBlockEntries.size - position}. "
             }
 
             val title = index + block.keyStackString + " " +
@@ -295,11 +281,7 @@ class __DisplayBlockFragment: __ContentFragment() {
     }
 
     internal class LoadBlocks(private var fragmentOrNull: __DisplayBlockFragment?) : Runnable {
-        private val mainHandler: Handler
-
-        init {
-            mainHandler = Handler(Looper.getMainLooper())
-        }
+        private val mainHandler: Handler = Handler(Looper.getMainLooper())
 
         override fun run() {
             val blocks = ArrayList<__Block>()
@@ -333,7 +315,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         companion object {
 
             val inFlight: MutableList<LoadBlocks> = ArrayList()
-            val backgroundExecutor: Executor = Executors.newSingleThreadExecutor()
+            private val backgroundExecutor: Executor = Executors.newSingleThreadExecutor()
 
             fun load(activity: __DisplayBlockFragment) {
                 val loadBlocks = LoadBlocks(activity)
@@ -390,15 +372,12 @@ class __DisplayBlockFragment: __ContentFragment() {
             return view
         }
 
-        private fun connectorViewType(position: Int): __DisplayLeakConnectorView.Type {
-            return if (position == 1)
-                __DisplayLeakConnectorView.Type.START
-            else
-                if (position == count - 1)
-                    __DisplayLeakConnectorView.Type.END
-                else
-                    __DisplayLeakConnectorView.Type.NODE
-        }
+        private fun connectorViewType(position: Int): __DisplayLeakConnectorView.Type =
+                when (position) {
+                    1 -> __DisplayLeakConnectorView.Type.START
+                    count - 1 -> __DisplayLeakConnectorView.Type.END
+                    else -> __DisplayLeakConnectorView.Type.NODE
+                }
 
         private fun elementToHtmlString(element: String?, position: Int, folding: Boolean): String {
             var htmlString = element?.replace(__Block.SEPARATOR.toRegex(), "<br>")
@@ -467,18 +446,16 @@ class __DisplayBlockFragment: __ContentFragment() {
             if (getItemViewType(position) == TOP_ROW) {
                 return null
             }
-            when (position) {
-                POSITION_BASIC -> return mBlock?.basicString
-                POSITION_TIME -> return mBlock?.timeString
-                POSITION_CPU -> return mBlock?.cpuString
+            return when (position) {
+                POSITION_BASIC -> mBlock?.basicString
+                POSITION_TIME -> mBlock?.timeString
+                POSITION_CPU -> mBlock?.cpuString
             //POSITION_THREAD_STACK,
-                else -> return mBlock?.threadStackEntries?.get(position - POSITION_THREAD_STACK)
+                else -> mBlock?.threadStackEntries?.get(position - POSITION_THREAD_STACK)
             }
         }
 
-        override fun getViewTypeCount(): Int {
-            return 2
-        }
+        override fun getViewTypeCount(): Int = 2
 
         override fun getItemViewType(position: Int): Int {
             if (position == 0) {
@@ -487,9 +464,7 @@ class __DisplayBlockFragment: __ContentFragment() {
             return NORMAL_ROW
         }
 
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
+        override fun getItemId(position: Int): Long = position.toLong()
 
         private val stackFoldPrefix: String
             get() {

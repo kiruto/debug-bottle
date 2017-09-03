@@ -37,20 +37,20 @@ class __TestingPreStartDialog : __FloatAnimatedDialog() {
 
     override fun createView(): View {
         __TestingRunnerBubble.destroy(activity)
-        val result = activity.layoutInflater.inflate(R.layout.__dialog_prestart_testing, null)
-
-        val header = result.findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout
-        header.setAction { openSettings() }
-        header.setClose { close() }
-        result.findViewById(R.id.__dt_apply_and_restart).setOnClickListener {
-            startTestingEnvironment()
-            DTInstaller.kill()
+        return activity.layoutInflater.inflate(R.layout.__dialog_prestart_testing, null).apply {
+            (findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout).let { header ->
+                header.setAction { openSettings() }
+                header.setClose { close() }
+            }
+            findViewById(R.id.__dt_apply_and_restart).setOnClickListener {
+                startTestingEnvironment()
+                DTInstaller.kill()
+            }
+            findViewById(R.id.__dt_run_test).setOnClickListener { startTestingEnvironment() }
+            isCancelable = false
+            this@__TestingPreStartDialog.rootView = this
+            bindViews()
         }
-        result.findViewById(R.id.__dt_run_test).setOnClickListener { startTestingEnvironment() }
-        isCancelable = false
-        rootView = result
-        bindViews()
-        return result
     }
 
     private fun bindViews() {
@@ -100,8 +100,9 @@ class __TestingPreStartDialog : __FloatAnimatedDialog() {
     }
 
     private fun openSettings() {
-        val intent = Intent(activity, DTDrawerActivity::class.java)
-        intent.putExtra(DTDrawerActivity.KEY_SELECTED, R.string.__dt_black_box_testing)
-        activity.startActivity(intent)
+        Intent(activity, DTDrawerActivity::class.java).apply {
+            putExtra(DTDrawerActivity.KEY_SELECTED, R.string.__dt_black_box_testing)
+            activity.startActivity(this)
+        }
     }
 }

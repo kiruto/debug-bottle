@@ -24,30 +24,14 @@ class DemoFragment : Fragment(), View.OnClickListener {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_main, null)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater?.inflate(R.layout.fragment_main, null)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val button1 = view.findViewById(R.id.button1) as Button
-        val button2 = view.findViewById(R.id.button2) as Button
-        val button3 = view.findViewById(R.id.button3) as Button
-        val button4 = view.findViewById(R.id.button4) as Button
-        val button5 = view.findViewById(R.id.button5) as Button
-        val button6 = view.findViewById(R.id.__read_me) as Button
-        val crashButton = view.findViewById(R.id.crash_button) as Button
-        val intro = view.findViewById(R.id.introduction) as Button
-
-        button1.setOnClickListener(this)
-        button2.setOnClickListener(this)
-        button3.setOnClickListener(this)
-        button4.setOnClickListener(this)
-        button5.setOnClickListener(this)
-        button6.setOnClickListener(this)
-        crashButton.setOnClickListener(this)
-        view.findViewById(R.id.launch_dt).setOnClickListener(this)
-        intro.setOnClickListener(this)
+        listOf(R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.__read_me,
+                R.id.crash_button, R.id.crash_button, R.id.introduction, R.id.launch_dt)
+                .forEach { view.findViewById(it).setOnClickListener(this) }
     }
 
     override fun onDestroyView() {
@@ -104,7 +88,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    fun startAsyncTask() {
+    private fun startAsyncTask() {
         // This async task is an anonymous class and therefore has a hidden reference to the outer
         // class MainActivity. If the activity gets destroyed before the task finishes (e.g. rotation),
         // the activity instance will leak.
@@ -137,9 +121,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
 
         private val DEMO_FRAGMENT = "DemoFragment"
 
-        fun newInstance(): DemoFragment {
-            return DemoFragment()
-        }
+        fun newInstance(): DemoFragment = DemoFragment()
 
         private fun compute(): Double {
             var result = 0.0

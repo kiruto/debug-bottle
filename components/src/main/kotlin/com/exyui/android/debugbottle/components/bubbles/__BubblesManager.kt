@@ -61,11 +61,7 @@ internal object __BubblesManager {
     }
 
     class Builder() {
-        private val bubblesManager: __BubblesManager
-
-        init {
-            this.bubblesManager = __BubblesManager
-        }
+        private val bubblesManager: __BubblesManager = __BubblesManager
 
         fun setInitializationCallback(listener: __OnInitializedCallback): Builder {
             bubblesManager.listener = listener
@@ -77,8 +73,6 @@ internal object __BubblesManager {
             return this
         }
 
-        fun build(): __BubblesManager {
-            return bubblesManager
-        }
+        fun build(): __BubblesManager = bubblesManager
     }
 }

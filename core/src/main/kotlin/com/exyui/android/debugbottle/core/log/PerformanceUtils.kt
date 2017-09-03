@@ -28,19 +28,18 @@ internal object PerformanceUtils {
     val numCores: Int
         get() {
             class CpuFilter : FileFilter {
-                override fun accept(pathname: File): Boolean {
-                    return Pattern.matches("cpu[0-9]", pathname.name)
-                }
+                override fun accept(pathname: File): Boolean =
+                        Pattern.matches("cpu[0-9]", pathname.name)
             }
 
             if (sCoreNum == 0) {
-                try {
+                sCoreNum = try {
                     val dir = File("/sys/devices/system/cpu/")
                     val files = dir.listFiles(CpuFilter())
-                    sCoreNum = files.size
+                    files.size
                 } catch (e: Exception) {
                     Log.e(TAG, "getNumCores exception", e)
-                    sCoreNum = 1
+                    1
                 }
 
             }

@@ -15,8 +15,8 @@ import kotlin.reflect.KClass
 internal abstract class DTDragFloatingViewMgr {
 
     protected var context: Context? = null
-    protected var windowMgr: WindowManager? = null
-    protected var floatingView: ViewGroup? = null
+    private var windowMgr: WindowManager? = null
+    private var floatingView: ViewGroup? = null
     abstract val title: String
     abstract val bindingService: KClass<out Service>
 
@@ -26,52 +26,52 @@ internal abstract class DTDragFloatingViewMgr {
     }
 
     fun showFloatingView(): FloatingViewHolder {
-        val wmParams = WindowManager.LayoutParams()
-        wmParams.type = WindowManager.LayoutParams.TYPE_PHONE
-        wmParams.format = PixelFormat.RGBA_8888
-        wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-        wmParams.gravity = Gravity.LEFT or Gravity.TOP
-        wmParams.x = 0
-        wmParams.y = 0
+        return WindowManager.LayoutParams().apply {
+            type = WindowManager.LayoutParams.TYPE_PHONE
+            format = PixelFormat.RGBA_8888
+            flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+            gravity = Gravity.LEFT or Gravity.TOP
+            x = 0
+            y = 0
 
-        wmParams.width = WindowManager.LayoutParams.WRAP_CONTENT
-        wmParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+            width = WindowManager.LayoutParams.WRAP_CONTENT
+            height = WindowManager.LayoutParams.WRAP_CONTENT
 
-        /*
-        wmParams.width = 200
-        wmParams.height = 80
-        */
+            /*
+            wmParams.width = 200
+            wmParams.height = 80
+            */
+        }.let {
+            val inflater = LayoutInflater.from(context?.applicationContext)
 
-        val inflater = LayoutInflater.from(context?.applicationContext)
-
-        val root = inflater.inflate(R.layout.__dt_float_layout, null) as ViewGroup
-        val action = root.findViewById(R.id.__dt_float_obj) as Button
-        val drag = root.findViewById(R.id.__dt_drag)
+            val root = inflater.inflate(R.layout.__dt_float_layout, null) as ViewGroup
+            val action = root.findViewById(R.id.__dt_float_obj) as Button
+            val drag = root.findViewById(R.id.__dt_drag)
 
 
-        windowMgr?.addView(root, wmParams)
-        floatingView = root
-        root.measure(View.MeasureSpec.makeMeasureSpec(0,
-                View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
-        drag.setOnTouchListener { v, event ->
-            wmParams.x = (event.rawX - action.measuredWidth / 2).toInt()
-            //Log.i(TAG, "RawX" + event.rawX)
-            //Log.i(TAG, "X" + event.rawX)
-            wmParams.y = (event.rawY - action.measuredHeight / 2 - 200).toInt()
-            //Log.i(TAG, "RawY" + event.rawX)
-            //Log.i(TAG, "Y" + event.rawY)
-            //刷新
-            windowMgr?.updateViewLayout(root, wmParams)
-            false
+            windowMgr?.addView(root, it)
+            floatingView = root
+            root.measure(View.MeasureSpec.makeMeasureSpec(0,
+                    View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
+            drag.setOnTouchListener { _, event ->
+                it.x = (event.rawX - action.measuredWidth / 2).toInt()
+                //Log.i(TAG, "RawX" + event.rawX)
+                //Log.i(TAG, "X" + event.rawX)
+                it.y = (event.rawY - action.measuredHeight / 2 - 200).toInt()
+                //Log.i(TAG, "RawY" + event.rawX)
+                //Log.i(TAG, "Y" + event.rawY)
+                //刷新
+                windowMgr?.updateViewLayout(root, it)
+                false
+            }
+            action.text = title
+
+            action.setOnClickListener { v ->
+                onClick(v)
+            }
+
+            FloatingViewHolder(root, drag, action)
         }
-
-        action.text = title
-
-        action.setOnClickListener { v ->
-            onClick(v)
-        }
-
-        return FloatingViewHolder(root, drag, action)
     }
 
     fun isFloatingWindowRunning(): Boolean {
@@ -87,12 +87,7 @@ internal abstract class DTDragFloatingViewMgr {
             return false
         }
 
-        for (i in 0..serviceList.size - 1) {
-            if (serviceList[i].service.className.equals(bindingService.java.name) == true) {
-                return true
-            }
-        }
-        return false
+        return (0 until serviceList.size).any { serviceList[it].service.className == bindingService.java.name }
     }
 
     fun releaseView() {

@@ -16,7 +16,7 @@ internal class __BubbleTrashLayout : __BubbleBaseLayout {
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr)
     constructor(context: Context, attr: AttributeSet, defStyleAttr: Int, defStyleRes: Int): super(context, attr, defStyleAttr, defStyleRes)
 
-    val VIBRATION_DURATION_IN_MS = 70L
+    private val VIBRATION_DURATION_IN_MS = 70L
     private var magnetismApplied = false
     private var attachedToWindow = false
 
@@ -53,8 +53,7 @@ internal class __BubbleTrashLayout : __BubbleBaseLayout {
     }
 
     fun vibrate() {
-        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibrator.vibrate(VIBRATION_DURATION_IN_MS)
+        (context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(VIBRATION_DURATION_IN_MS)
     }
 
     fun releaseMagnetism() {
@@ -66,9 +65,10 @@ internal class __BubbleTrashLayout : __BubbleBaseLayout {
 
     private fun playAnimation(animationResourceId: Int) {
         if (!isInEditMode) {
-            val animator = AnimatorInflater.loadAnimator(context, animationResourceId) as AnimatorSet
-            animator.setTarget(getChildAt(0))
-            animator.start()
+            (AnimatorInflater.loadAnimator(context, animationResourceId) as AnimatorSet).apply {
+                setTarget(getChildAt(0))
+                start()
+            }
         }
     }
 

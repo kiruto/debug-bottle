@@ -110,10 +110,10 @@ class __InjectorFragment: __ContentFragment() {
             TYPE_RUNNABLE -> builder.setMessage(R.string.__dt_runnable_injector_introduction)
             else -> builder
         }
-                .setPositiveButton(R.string.__dt_next) { dialog, witch ->
+                .setPositiveButton(R.string.__dt_next) { _, _ ->
                     showStepOne()
                 }
-                .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
+                .setNegativeButton(R.string.__dt_close) { _, _ -> }
                 .show()
     }
 
@@ -125,11 +125,9 @@ class __InjectorFragment: __ContentFragment() {
                 .setMessage(
                         if (null == packageName) getString(R.string.__dt_injector_step_one_no_package_message)
                         else getString(R.string.__dt_injector_step_one_message, packageName))
-                .setNegativeButton(R.string.__dt_close) { dialog, witch -> }
+                .setNegativeButton(R.string.__dt_close) { _, _ -> }
                 .show()
     }
 
-    private fun findViewById(@IdRes id: Int): View? {
-        return rootView?.findViewById(id)
-    }
+    private fun findViewById(@IdRes id: Int): View? = rootView?.findViewById(id)
 }

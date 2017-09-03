@@ -38,24 +38,26 @@ internal object __FloatFrame {
     fun start(context: Context) {
         if (null != rootView) return
         val app = context.applicationContext
-        val wmParams = WindowManager.LayoutParams()
-        wmParams.type = WindowManager.LayoutParams.TYPE_PHONE
-        wmParams.format = PixelFormat.RGBA_8888
-        wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-        wmParams.gravity = Gravity.RIGHT or Gravity.BOTTOM
-        wmParams.x = 0
-        wmParams.y = 0
+        WindowManager.LayoutParams().apply {
+            type = WindowManager.LayoutParams.TYPE_PHONE
+            format = PixelFormat.RGBA_8888
+            flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+            gravity = Gravity.RIGHT or Gravity.BOTTOM
+            x = 0
+            y = 0
 
-        wmParams.width = WindowManager.LayoutParams.WRAP_CONTENT
-        wmParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+            width = WindowManager.LayoutParams.WRAP_CONTENT
+            height = WindowManager.LayoutParams.WRAP_CONTENT
 
-        val inflater = LayoutInflater.from(app)
+            val inflater = LayoutInflater.from(app)
 
-        rootView = inflater.inflate(R.layout.__dt_float_frame, null) as ViewGroup
-        bindViews()
+            rootView = inflater.inflate(R.layout.__dt_float_frame, null) as ViewGroup
+            bindViews()
 
-        val mgr = app.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        mgr.addView(rootView, wmParams)
+            val mgr = app.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            mgr.addView(rootView, this)
+        }
+
 
         Handler().post(frameSetter)
         heartBeat = __DTHeartBeat()
@@ -65,12 +67,10 @@ internal object __FloatFrame {
         }
 
         __FrameRecorder.listener = {
-            if (it <= 16) {
-                statusView?.idle()
-            } else if (it <= 30) {
-                statusView?.warn()
-            } else {
-                statusView?.busy()
+            when {
+                it <= 16 -> statusView?.idle()
+                it <= 30 -> statusView?.warn()
+                else -> statusView?.busy()
             }
         }
     }

@@ -36,9 +36,7 @@ internal class LooperPrinter(
         }
     }
 
-    private fun isBlock(endTime: Long): Boolean {
-        return endTime - mStartTimeMillis > mBlockThresholdMillis
-    }
+    private fun isBlock(endTime: Long): Boolean = endTime - mStartTimeMillis > mBlockThresholdMillis
 
     private fun notifyBlockEvent(endTime: Long) {
         Log.d("BlockCanary", "notifyBlockEvent: $endTime - $mStartTimeMillis>$mBlockThresholdMillis")
