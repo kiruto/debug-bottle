@@ -44,7 +44,7 @@ internal class InjectableAdapter<out T>(private val injectable: Injectable<T>):
                 LayoutInflater.from(context).inflate(R.layout.__item_injector, parent, false)
         val h: Holder = if (null != v.tag) v.tag as Holder else {
             Holder().apply {
-                textView = v.findViewById(R.id.text_view) as TextView
+                textView = v.findViewById(R.id.text_view)
                 v.tag = this
             }
         }

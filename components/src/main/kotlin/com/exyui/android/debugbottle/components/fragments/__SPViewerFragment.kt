@@ -71,8 +71,8 @@ class __SPViewerFragment: __ContentFragment(), DialogsCollection.SPDialogAction 
             if (null == v) {
                 v = LayoutInflater.from(context).inflate(R.layout.__child_sp_values, parent, false)
                 holder = ChildHolder()
-                holder.titleView = v.findViewById(R.id.__child_title) as TextView
-                holder.contentView = v.findViewById(R.id.__child_content) as TextView
+                holder.titleView = v.findViewById(R.id.__child_title)
+                holder.contentView = v.findViewById(R.id.__child_content)
                 v.tag = holder
             } else {
                 holder = v.tag as ChildHolder
@@ -96,7 +96,7 @@ class __SPViewerFragment: __ContentFragment(), DialogsCollection.SPDialogAction 
             if (null == v) {
                 v = LayoutInflater.from(context).inflate(R.layout.__group_sp_files, parent, false)
                 holder = GroupHolder()
-                holder.titleView = v.findViewById(R.id.group_title) as TextView
+                holder.titleView = v.findViewById(R.id.group_title)
                 v.tag = holder
             } else {
                 holder = v.tag as GroupHolder

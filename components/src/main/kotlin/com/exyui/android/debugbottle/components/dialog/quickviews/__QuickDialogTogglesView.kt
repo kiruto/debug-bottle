@@ -93,7 +93,7 @@ class __QuickDialogTogglesView: ScrollView {
     private fun onReceiveBubbleIntent(context: Context, intent: Intent?) {
         when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
             __3DViewBubble.TAG -> {
-                val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
+                val bubble3DStatus = intent.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
                 view3DSwitcher?.isChecked = bubble3DStatus
             }
         }

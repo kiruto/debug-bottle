@@ -88,9 +88,9 @@ internal class DTListItemSwitch : LinearLayout {
 
     private fun bindViews() {
         inflate(context, R.layout.__custom_list_item_swicher, this)
-        titleView = findViewById(R.id.__dt_title) as TextView
-        contentView = findViewById(R.id.__dt_content) as TextView
-        switchView = findViewById(R.id.__dt_switcher) as SwitchCompat
+        titleView = findViewById(R.id.__dt_title)
+        contentView = findViewById(R.id.__dt_content)
+        switchView = findViewById(R.id.__dt_switcher)
     }
 
     private fun init(context: Context, attr: AttributeSet? = null, defStyleAttr: Int? = null, defStyleRes: Int? = null) {

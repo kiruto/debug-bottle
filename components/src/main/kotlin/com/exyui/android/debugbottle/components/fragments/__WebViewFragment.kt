@@ -31,8 +31,8 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
     private var urlBar: ViewGroup? = null
 
     companion object {
-        private val TAG = "__WebViewFragment"
-        private val URL = "url"
+        private const val TAG = "__WebViewFragment"
+        private const val URL = "url"
 
         fun newInstance(url: String): __WebViewFragment {
             return __WebViewFragment().apply {
@@ -45,22 +45,22 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        url = arguments.getString(URL)
+        url = arguments?.getString(URL)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.__fragment_web_view, container, false).apply {
-            webView = findViewById(R.id.__dt_web_view) as WebView
-            addressView = findViewById(R.id.__dt_address) as TextView
+            webView = findViewById(R.id.__dt_web_view)
+            addressView = findViewById(R.id.__dt_address)
             backView = findViewById(R.id.__dt_back)
             refreshView = findViewById(R.id.__dt_refresh)
-            urlBar = findViewById(R.id.__dt_url_bar) as ViewGroup
+            urlBar = findViewById(R.id.__dt_url_bar)
 
             addressView?.setOnClickListener(this@__WebViewFragment)
             backView?.setOnClickListener(this@__WebViewFragment)
             refreshView?.setOnClickListener(this@__WebViewFragment)
 
-            webView?.setWebViewClient(DTWebViewClient())
+            webView?.webViewClient = DTWebViewClient()
             webView?.settings?.javaScriptEnabled = true
             webView?.load(url)
 
@@ -119,7 +119,7 @@ class __WebViewFragment: __ContentFragment(), View.OnClickListener {
     }
 
     private fun copyUrlToClipboard() {
-        val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText(URL, url)
         clipboard.primaryClip = clip
         Toast.makeText(activity, R.string.__dt_copied, Toast.LENGTH_SHORT).show()

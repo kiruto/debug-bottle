@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components.floating.frame
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PixelFormat
@@ -14,6 +15,7 @@ import java.text.DecimalFormat
 /**
  * Created by yuriel on 9/30/16.
  */
+@SuppressLint("StaticFieldLeak")
 internal object __FloatFrame {
     private val TAG = "__FloatFrame"
 
@@ -87,8 +89,8 @@ internal object __FloatFrame {
     }
 
     private fun bindViews() {
-        frameView = rootView?.findViewById(R.id.__dt_frame) as TextView
-        statusView = rootView?.findViewById(R.id.__dt_status) as TextView
+        frameView = rootView?.findViewById(R.id.__dt_frame)
+        statusView = rootView?.findViewById(R.id.__dt_status)
     }
 
     private fun TextView.warn() {

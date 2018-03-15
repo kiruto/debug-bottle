@@ -38,15 +38,15 @@ class __TestingPreStartDialog : __FloatAnimatedDialog() {
     override fun createView(): View {
         __TestingRunnerBubble.destroy(activity)
         return activity.layoutInflater.inflate(R.layout.__dialog_prestart_testing, null).apply {
-            (findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout).let { header ->
+            findViewById<__FloatingDialogHeaderLayout>(R.id.__floating_header).let { header ->
                 header.setAction { openSettings() }
                 header.setClose { close() }
             }
-            findViewById(R.id.__dt_apply_and_restart).setOnClickListener {
+            findViewById<View>(R.id.__dt_apply_and_restart).setOnClickListener {
                 startTestingEnvironment()
                 DTInstaller.kill()
             }
-            findViewById(R.id.__dt_run_test).setOnClickListener { startTestingEnvironment() }
+            findViewById<View>(R.id.__dt_run_test).setOnClickListener { startTestingEnvironment() }
             isCancelable = false
             this@__TestingPreStartDialog.rootView = this
             bindViews()

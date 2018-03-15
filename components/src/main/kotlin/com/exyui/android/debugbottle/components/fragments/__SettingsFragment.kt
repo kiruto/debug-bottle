@@ -119,7 +119,7 @@ class __SettingsFragment: __ContentFragment() {
         Toast.makeText(context, R.string.__dt_need_restart_after_apply, Toast.LENGTH_LONG).show()
     }
 
-    private fun findViewById(@IdRes id: Int) = rootView?.findViewById(id)
+    private fun findViewById(@IdRes id: Int) = rootView?.findViewById<View>(id)
 
     private fun save() {
         DTSettings.blockThreshold = seekBar.progress.toLong()

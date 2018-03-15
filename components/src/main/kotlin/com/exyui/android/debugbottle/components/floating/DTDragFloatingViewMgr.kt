@@ -45,8 +45,8 @@ internal abstract class DTDragFloatingViewMgr {
             val inflater = LayoutInflater.from(context?.applicationContext)
 
             val root = inflater.inflate(R.layout.__dt_float_layout, null) as ViewGroup
-            val action = root.findViewById(R.id.__dt_float_obj) as Button
-            val drag = root.findViewById(R.id.__dt_drag)
+            val action = root.findViewById<Button>(R.id.__dt_float_obj)
+            val drag = root.findViewById<View>(R.id.__dt_drag)
 
 
             windowMgr?.addView(root, it)

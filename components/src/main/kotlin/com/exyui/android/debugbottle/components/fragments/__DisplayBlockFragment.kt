@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components.fragments
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -72,7 +73,7 @@ class __DisplayBlockFragment: __ContentFragment() {
         } else {
             val intent = context?.intent
             if (intent?.hasExtra(SHOW_BLOCK_EXTRA) == true) {
-                mBlockStartTime = intent?.getStringExtra(SHOW_BLOCK_EXTRA)
+                mBlockStartTime = intent.getStringExtra(SHOW_BLOCK_EXTRA)
             }
         }
         setHasOptionsMenu(true)
@@ -254,13 +255,14 @@ class __DisplayBlockFragment: __ContentFragment() {
 
         override fun getItemId(position: Int): Long = position.toLong()
 
+        @SuppressLint("StringFormatMatches")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             var view = convertView
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
-            val titleView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
-            val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
+            val titleView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
+            val timeView = view.findViewById<TextView>(R.id.__dt_canary_row_time)
             val block = getItem(position)
 
             val index: String = if (position == 0 && mBlockEntries.size == mMaxStoredBlockCount) {
@@ -346,13 +348,13 @@ class __DisplayBlockFragment: __ContentFragment() {
                 if (view == null) {
                     view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_ref_top_row, parent, false)
                 }
-                val textView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+                val textView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
                 textView.text = context.packageName
             } else {
                 if (view == null) {
                     view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_ref_row, parent, false)
                 }
-                val textView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+                val textView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
 
                 val isThreadStackEntry = position == POSITION_THREAD_STACK + 1
                 val element = getItem(position)
@@ -362,10 +364,10 @@ class __DisplayBlockFragment: __ContentFragment() {
                 }
                 textView.text = Html.fromHtml(htmlString)
 
-                val connectorView = view.findViewById(R.id.__dt_canary_row_connector) as __DisplayLeakConnectorView
+                val connectorView = view.findViewById<__DisplayLeakConnectorView>(R.id.__dt_canary_row_connector)
                 connectorView.setType(connectorViewType(position))
 
-                val moreDetailsView = view.findViewById(R.id.__dt_canary_row_more) as __MoreDetailsView
+                val moreDetailsView = view.findViewById<__MoreDetailsView>(R.id.__dt_canary_row_more)
                 moreDetailsView.setFolding(mFoldings[position])
             }
 
@@ -477,13 +479,13 @@ class __DisplayBlockFragment: __ContentFragment() {
 
         companion object {
 
-            private val TOP_ROW = 0
-            private val NORMAL_ROW = 1
+            private const val TOP_ROW = 0
+            private const val NORMAL_ROW = 1
 
-            private val POSITION_BASIC = 1
-            private val POSITION_TIME = 2
-            private val POSITION_CPU = 3
-            private val POSITION_THREAD_STACK = 4
+            private const val POSITION_BASIC = 1
+            private const val POSITION_TIME = 2
+            private const val POSITION_CPU = 3
+            private const val POSITION_THREAD_STACK = 4
         }
     }
 

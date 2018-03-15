@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import com.squareup.okhttp.Request
 import java.io.FileInputStream
 import java.io.IOException
@@ -19,27 +18,13 @@ import java.io.IOException
  * Created by yuriel on 8/9/16.
  */
 class DemoFragment : Fragment(), View.OnClickListener {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_main, null)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.fragment_main, null)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listOf(R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.__read_me,
                 R.id.crash_button, R.id.crash_button, R.id.introduction, R.id.launch_dt)
-                .forEach { view.findViewById(it).setOnClickListener(this) }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+                .forEach { view.findViewById<View>(it).setOnClickListener(this) }
     }
 
     override fun onClick(v: View) {
@@ -60,7 +45,7 @@ class DemoFragment : Fragment(), View.OnClickListener {
             }
             R.id.button4 -> {
                 startAsyncTask()
-                activity.finish()
+                activity?.finish()
             }
             R.id.button5 -> {
                 sendRequest()

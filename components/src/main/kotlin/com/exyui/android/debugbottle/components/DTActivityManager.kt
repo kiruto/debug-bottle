@@ -9,7 +9,7 @@ import kotlin.properties.Delegates
 internal object DTActivityManager {
     private var injected = false
 
-    var topActivity by Delegates.observable<Activity?>(null) { prop, old, new ->
+    var topActivity by Delegates.observable<Activity?>(null) { _, _, new ->
         if (!injected && new != null) {
             injected = DTInstaller.startInject()
         }

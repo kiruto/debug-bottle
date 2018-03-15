@@ -27,22 +27,22 @@ internal class HttpBlockDetailAdapter: BaseAdapter() {
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_ref_top_row, parent, false)
             }
-            val textView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            val textView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
             textView.text = context.packageName
         } else {
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_ref_row, parent, false)
             }
-            val textView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            val textView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
 
             val element = getItem(position)
             val htmlString = elementToHtmlString(element, position, mFoldings[position - 1])
             textView.text = Html.fromHtml(htmlString)
 
-            val connectorView = view.findViewById(R.id.__dt_canary_row_connector) as __DisplayLeakConnectorView
+            val connectorView = view.findViewById<__DisplayLeakConnectorView>(R.id.__dt_canary_row_connector)
             connectorView.setType(connectorViewType(position))
 
-            val moreDetailsView = view.findViewById(R.id.__dt_canary_row_more) as __MoreDetailsView
+            val moreDetailsView = view.findViewById<__MoreDetailsView>(R.id.__dt_canary_row_more)
             moreDetailsView.setFolding(mFoldings[position - 1])
         }
 
