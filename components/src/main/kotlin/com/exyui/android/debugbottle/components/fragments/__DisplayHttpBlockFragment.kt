@@ -66,7 +66,7 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
         } else {
             val intent = context?.intent
             if (intent?.hasExtra(SHOW_BLOCK_EXTRA) == true) {
-                mBlockStartTime = intent!!.getStringExtra(SHOW_BLOCK_EXTRA)
+                mBlockStartTime = intent.getStringExtra(SHOW_BLOCK_EXTRA)
             }
         }
 
@@ -249,8 +249,8 @@ class __DisplayHttpBlockFragment: __ContentFragment() {
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
-            val titleView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
-            val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
+            val titleView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
+            val timeView = view.findViewById<TextView>(R.id.__dt_canary_row_time)
             val block = getItem(position)
 
             val index: String = if (position == 0 && mBlockEntries.size == mMaxStoredBlockCount) {

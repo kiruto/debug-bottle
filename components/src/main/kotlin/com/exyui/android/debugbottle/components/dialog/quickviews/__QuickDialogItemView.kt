@@ -24,8 +24,8 @@ constructor(
         defStyleRes: Int = 0)
     : RelativeLayout(context, attr, defStyleAttr, defStyleRes) {
 
-    private val titleView by lazy { findViewById(R.id.__dt_title) as TextView }
-    private val contentView by lazy { findViewById(R.id.__dt_description) as TextView }
+    private val titleView by lazy { findViewById<TextView>(R.id.__dt_title)!! }
+    private val contentView by lazy { findViewById<TextView>(R.id.__dt_description)!! }
 
     var title: CharSequence
         set(value) {

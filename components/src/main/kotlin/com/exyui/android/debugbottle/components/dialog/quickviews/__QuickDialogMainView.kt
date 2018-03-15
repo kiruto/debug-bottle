@@ -1,12 +1,7 @@
 package com.exyui.android.debugbottle.components.dialog.quickviews
 
-import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -18,41 +13,21 @@ import com.exyui.android.debugbottle.components.openInBrowser
 /**
  * Created by yuriel on 10/13/16.
  */
-class __QuickDialogMainView: ScrollView {
+class __QuickDialogMainView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ScrollView(context, attrs, defStyleAttr) {
 
-    private val rootChild by lazy { findViewById(R.id.__dt_content) as ViewGroup }
+    private val rootChild by lazy { findViewById<ViewGroup>(R.id.__dt_content)!! }
     private val emptyView by lazy {
-        findViewById(R.id.__dt_empty).apply {
+        findViewById<View>(R.id.__dt_empty).apply {
             setOnClickListener {
                 val url = "https://github.com/kiruto/debug-bottle/blob/1.0.1/demo/src/main/kotlin/me/chunyu/dev/yuriel/kotdebugtool/ContentInjector.kt"
                 (context as Activity).openInBrowser(url)
             }
         }
     }
-    private val contents by lazy { findViewById(R.id.__dt_content) }
+    private val contents by lazy { findViewById<View>(R.id.__dt_content) }
     private val cb:MutableList<(View) -> Unit> = mutableListOf()
 
-    constructor(context: Context): super(context) {
-        init()
-    }
-
-    constructor(context: Context, attr: AttributeSet): super(context, attr) {
-        init()
-    }
-
-    constructor(context: Context, attr: AttributeSet, defStyleAttr: Int): super(context, attr, defStyleAttr) {
-        init()
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    constructor(context: Context,
-                attr: AttributeSet?,
-                defStyleAttr: Int,
-                defStyleRes: Int) : super(context, attr, defStyleAttr, defStyleRes) {
-        init()
-    }
-
-    private fun init() {
+    init {
         bindViews()
     }
 

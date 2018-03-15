@@ -18,7 +18,7 @@ import com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLa
 class __UnlockDialog: __FloatAnimatedDialog() {
 
     companion object {
-        val TAG = "__UnlockDialog"
+        const val TAG = "__UnlockDialog"
     }
 
     override val TAG = __UnlockDialog.TAG
@@ -27,12 +27,12 @@ class __UnlockDialog: __FloatAnimatedDialog() {
     private val code = generateCode().toString()
 
     private var rootView: ViewGroup? = null
-    private val numberView by lazy { rootView?.findViewById(R.id.__dt_number) as TextView }
-    private val inputView by lazy { rootView?.findViewById(R.id.__dt_input) as EditText }
+    private val numberView by lazy { rootView?.findViewById<TextView>(R.id.__dt_number)!! }
+    private val inputView by lazy { rootView?.findViewById<EditText>(R.id.__dt_input)!! }
 
     override fun createView(): View {
         return activity.layoutInflater.inflate(R.layout.__dialog_unlock, null).apply {
-            (findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout).let { header ->
+            findViewById<__FloatingDialogHeaderLayout>(R.id.__floating_header).let { header ->
                 header.setAction { Toast.makeText(activity, R.string.__dt_notification_locked, Toast.LENGTH_SHORT).show() }
                 header.setClose { dismiss() }
             }

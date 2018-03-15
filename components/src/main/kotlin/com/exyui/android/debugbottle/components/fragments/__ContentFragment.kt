@@ -50,11 +50,11 @@ open class __ContentFragment: Fragment() {
     protected fun registerBubbleStatusChangeReceiver() {
         val filter = IntentFilter()
         filter.addAction(__DTBubble.INTENT_ACTION)
-        activity.registerReceiver(bubbleStatusChangeReceiver, filter)
+        activity?.registerReceiver(bubbleStatusChangeReceiver, filter)
     }
 
     protected fun unregisterBubbleStatusChangeReceiver() {
-        activity.unregisterReceiver(bubbleStatusChangeReceiver)
+        activity?.unregisterReceiver(bubbleStatusChangeReceiver)
     }
 
     fun selectItemAtDrawer(@StringRes res: Int) {

@@ -1,8 +1,10 @@
 package com.exyui.android.debugbottle.components.bubbles.services
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.exyui.android.debugbottle.components.DTActivityManager
 import com.exyui.android.debugbottle.components.R
@@ -14,6 +16,7 @@ import com.exyui.android.debugbottle.components.widgets.__ScalpelFrameLayout
 /**
  * Created by yuriel on 9/23/16.
  */
+@SuppressLint("StaticFieldLeak")
 internal object __3DViewBubble:
         __DTBubble(__BubblesManager),
         __BubbleLayout.OnBubbleClickListener,
@@ -28,10 +31,6 @@ internal object __3DViewBubble:
         bubbleView.setOnBubbleRemoveListener(this)
         RunningFeatureMgr.add(RunningFeatureMgr.VIEW_3D_WINDOW)
         return bubbleView
-    }
-
-    override fun onDestroy(context: Context) {
-        super.onDestroy(context)
     }
 
     override fun isRunning() = RunningFeatureMgr.has(RunningFeatureMgr.VIEW_3D_WINDOW)
@@ -50,7 +49,7 @@ internal object __3DViewBubble:
     private fun attachActivityTo3DView(activity: Activity) {
         val layout: __ScalpelFrameLayout
         val decorView: ViewGroup = activity.window.decorView as ViewGroup
-        if (decorView.findViewById(R.id.__dt_scalpel_frame_layout) == null) {
+        if (decorView.findViewById<View>(R.id.__dt_scalpel_frame_layout) == null) {
             layout = __ScalpelFrameLayout(activity)
             layout.id = R.id.__dt_scalpel_frame_layout
             val rootView = decorView.getChildAt(0)
@@ -59,7 +58,7 @@ internal object __3DViewBubble:
             layout.addView(rootView)
             decorView.addView(layout)
         } else {
-            layout = decorView.findViewById(R.id.__dt_scalpel_frame_layout) as __ScalpelFrameLayout
+            layout = decorView.findViewById(R.id.__dt_scalpel_frame_layout)
         }
 
         if (!layout.isLayerInteractionEnabled) {

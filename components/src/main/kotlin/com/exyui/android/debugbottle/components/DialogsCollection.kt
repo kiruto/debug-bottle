@@ -1,5 +1,6 @@
 package com.exyui.android.debugbottle.components
 
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
@@ -67,14 +68,14 @@ internal object DialogsCollection {
         }
 
         private fun View.init() {
-            val content = findViewById(R.id.__dt_intent_content) as ViewGroup
-            val key = findViewById(R.id.__dt_intent_key) as TextView
+            val content = findViewById<ViewGroup>(R.id.__dt_intent_content)
+            val key = findViewById<TextView>(R.id.__dt_intent_key)
 
 
-            (findViewById(R.id.__dt_activity_name) as TextView).apply {
+            findViewById<TextView>(R.id.__dt_activity_name).apply {
                 text = intent?.component?.className?: ""
             }
-            (findViewById(R.id.__dt_title) as TextView).apply {
+            findViewById<TextView>(R.id.__dt_title).apply {
                 text = getString(R.string.__run_activity_with_intent)
             }
 
@@ -96,7 +97,7 @@ internal object DialogsCollection {
                 }
             }
 
-            val et = (findViewById(R.id.__dt_edit_text) as DebugToolEditText).apply {
+            val et = findViewById<DebugToolEditText>(R.id.__dt_edit_text).apply {
                 addTextChangedListener(object: TextWatcher {
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
                         if (key.text.isEmpty()) {
@@ -136,9 +137,10 @@ internal object DialogsCollection {
                 }
             }
 
-            (findViewById(R.id.__dt_edit_submit) as Button).setOnClickListener { et.putExtra() }
+            findViewById<Button>(R.id.__dt_edit_submit).setOnClickListener { et.putExtra() }
         }
 
+        @SuppressLint("SetTextI18n")
         private fun updateContentGroup(parent: ViewGroup) {
             parent.removeAllViews()
             val onDelClickListener = { v: View ->
@@ -149,19 +151,19 @@ internal object DialogsCollection {
             }
             for ((k, v) in intentExtras) {
                 val view = inflater.inflate(R.layout.__item_intents_content, parent, false)
-                (view.findViewById(R.id.__dt_delete)).apply {
+                view.findViewById<View>(R.id.__dt_delete).apply {
                     tag = Pair(k, v)
                     setOnClickListener(onDelClickListener)
                 }
-                (view.findViewById(R.id.__dt_intent_content_kv) as TextView).apply { text = "$k: $v" }
-                val anyBtn = view.findViewById(R.id.__dt_radio_any) as RadioButton
+                view.findViewById<TextView>(R.id.__dt_intent_content_kv).apply { text = "$k: $v" }
+                val anyBtn = view.findViewById<RadioButton>(R.id.__dt_radio_any)
 //                val stringBtn = view.findViewById(R.id.__dt_radio_string) as RadioButton
-                (view.findViewById(R.id.__dt_radio_group) as RadioGroup).apply {
+                view.findViewById<RadioGroup>(R.id.__dt_radio_group).apply {
                     visibility = View.VISIBLE
                     if (v !is String) {
                         check(R.id.__dt_radio_any)
                         anyBtn.text = v.javaClass.simpleName
-                        setOnCheckedChangeListener { radioGroup, id ->
+                        setOnCheckedChangeListener { _, id ->
                             when(id) {
                                 R.id.__dt_radio_any -> intentExtras.put(k, v)
                                 R.id.__dt_radio_string -> intentExtras.put(k, v.toString())
@@ -237,8 +239,8 @@ internal object DialogsCollection {
             if (null == sp || null == key) return null
             val content = inflater.inflate(R.layout.__dialog_sp_edit, null)
 
-            val editView = content.findViewById(R.id.__dt_sp_value) as TextView
-            val radio = content.findViewById(R.id.__dt_radio_group) as RadioGroup
+            val editView = content.findViewById<TextView>(R.id.__dt_sp_value)
+            val radio = content.findViewById<RadioGroup>(R.id.__dt_radio_group)
 
             var value: Any? = null
 
@@ -269,7 +271,7 @@ internal object DialogsCollection {
                 is Double -> editView.setRawInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL)
             }
 
-            (content.findViewById(R.id.__dt_sp_key) as TextView).apply { text = key }
+            content.findViewById<TextView>(R.id.__dt_sp_key).apply { text = key }
 
             return AlertDialog.Builder(activity)
                     .setView(content)

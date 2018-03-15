@@ -134,23 +134,23 @@ class __IntroductionFragment: Fragment() {
                 val block = v(R.id.__dt_enable_block_canary) as AppCompatCheckBox
                 val sniffer = v(R.id.__dt_enable_http_sniffer) as AppCompatCheckBox
 
-                bottle.setOnCheckedChangeListener { compoundButton, b ->
+                bottle.setOnCheckedChangeListener { _, b ->
                     DTSettings.bottleEnable = b
                 }
 
-                strict.setOnCheckedChangeListener { compoundButton, b ->
+                strict.setOnCheckedChangeListener { _, b ->
                     DTSettings.strictMode = b
                 }
 
-                leak.setOnCheckedChangeListener { compoundButton, b ->
+                leak.setOnCheckedChangeListener { _, b ->
                     DTSettings.leakCanaryEnable = b
                 }
 
-                block.setOnCheckedChangeListener { compoundButton, b ->
+                block.setOnCheckedChangeListener { _, b ->
                     DTSettings.blockCanaryEnable = b
                 }
 
-                sniffer.setOnCheckedChangeListener { compoundButton, b ->
+                sniffer.setOnCheckedChangeListener { _, b ->
                     DTSettings.networkSniff = b
                 }
             }
@@ -187,13 +187,13 @@ class __IntroductionFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!arguments.containsKey(BACKGROUND_COLOR))
+        if (arguments?.containsKey(BACKGROUND_COLOR) == false)
             throw RuntimeException("Fragment must contain a \"$BACKGROUND_COLOR\" argument!")
-        backgroundColor = arguments.getInt(BACKGROUND_COLOR)
+        backgroundColor = arguments?.getInt(BACKGROUND_COLOR)
 
-        if (!arguments.containsKey(PAGE))
+        if (arguments?.containsKey(PAGE) == false)
             throw RuntimeException("Fragment must contain a \"$PAGE\" argument!")
-        page = arguments.getInt(PAGE)
+        page = arguments?.getInt(PAGE)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

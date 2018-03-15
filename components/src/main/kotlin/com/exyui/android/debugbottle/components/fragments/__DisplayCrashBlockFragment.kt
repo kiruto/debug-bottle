@@ -244,9 +244,9 @@ class __DisplayCrashBlockFragment: __ContentFragment() {
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
-            val titleView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            val titleView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
             @Suppress("UNUSED_VARIABLE")
-            val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
+            val timeView = view.findViewById<TextView>(R.id.__dt_canary_row_time)
             val block = getItem(position)
 
             val index: String = if (position == 0 && mBlockEntries.size == mMaxStoredBlockCount) {

@@ -31,13 +31,13 @@ internal class __BlockDetailAdapter : BaseAdapter() {
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_ref_top_row, parent, false)
             }
-            val textView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            val textView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
             textView.text = context.packageName
         } else {
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.__dt_canary_ref_row, parent, false)
             }
-            val textView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
+            val textView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
 
             val isThreadStackEntry = position == POSITION_THREAD_STACK + 1
             val element = getItem(position)
@@ -47,10 +47,10 @@ internal class __BlockDetailAdapter : BaseAdapter() {
             }
             textView.text = Html.fromHtml(htmlString)
 
-            val connectorView = view.findViewById(R.id.__dt_canary_row_connector) as __DisplayLeakConnectorView
+            val connectorView = view.findViewById<__DisplayLeakConnectorView>(R.id.__dt_canary_row_connector)
             connectorView.setType(connectorViewType(position))
 
-            val moreDetailsView = view.findViewById(R.id.__dt_canary_row_more) as __MoreDetailsView
+            val moreDetailsView = view.findViewById<__MoreDetailsView>(R.id.__dt_canary_row_more)
             moreDetailsView.setFolding(mFoldings[position])
         }
 
@@ -58,13 +58,11 @@ internal class __BlockDetailAdapter : BaseAdapter() {
     }
 
     private fun connectorViewType(position: Int): __DisplayLeakConnectorView.Type {
-        return if (position == 1)
-            __DisplayLeakConnectorView.Type.START
-        else
-            if (position == count - 1)
-                __DisplayLeakConnectorView.Type.END
-            else
-                __DisplayLeakConnectorView.Type.NODE
+        return when (position) {
+            1 -> __DisplayLeakConnectorView.Type.START
+            count - 1 -> __DisplayLeakConnectorView.Type.END
+            else -> __DisplayLeakConnectorView.Type.NODE
+        }
     }
 
     private fun elementToHtmlString(element: String?, position: Int, folding: Boolean): String {
@@ -134,12 +132,12 @@ internal class __BlockDetailAdapter : BaseAdapter() {
         if (getItemViewType(position) == TOP_ROW) {
             return null
         }
-        when (position) {
-            POSITION_BASIC -> return mBlock?.basicString
-            POSITION_TIME -> return mBlock?.timeString
-            POSITION_CPU -> return mBlock?.cpuString
-            //POSITION_THREAD_STACK,
-            else -> return mBlock?.threadStackEntries?.get(position - POSITION_THREAD_STACK)
+        return when (position) {
+            POSITION_BASIC -> mBlock?.basicString
+            POSITION_TIME -> mBlock?.timeString
+            POSITION_CPU -> mBlock?.cpuString
+        //POSITION_THREAD_STACK,
+            else -> mBlock?.threadStackEntries?.get(position - POSITION_THREAD_STACK)
         }
     }
 
@@ -169,12 +167,12 @@ internal class __BlockDetailAdapter : BaseAdapter() {
 
     companion object {
 
-        private val TOP_ROW = 0
-        private val NORMAL_ROW = 1
+        private const val TOP_ROW = 0
+        private const val NORMAL_ROW = 1
 
-        private val POSITION_BASIC = 1
-        private val POSITION_TIME = 2
-        private val POSITION_CPU = 3
-        private val POSITION_THREAD_STACK = 4
+        private const val POSITION_BASIC = 1
+        private const val POSITION_TIME = 2
+        private const val POSITION_CPU = 3
+        private const val POSITION_THREAD_STACK = 4
     }
 }

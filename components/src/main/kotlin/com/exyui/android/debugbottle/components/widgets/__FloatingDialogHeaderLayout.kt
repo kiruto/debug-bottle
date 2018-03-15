@@ -47,8 +47,8 @@ internal class __FloatingDialogHeaderLayout : LinearLayout {
 
     private fun bindViews() {
         inflate(context, R.layout.__custom_floating_header, this)
-        titleView = findViewById(R.id.__dt_header_title) as TextView
-        actionView = findViewById(R.id.__dt_header_action) as ImageView
+        titleView = findViewById(R.id.__dt_header_title)
+        actionView = findViewById(R.id.__dt_header_action)
         closeView = findViewById(R.id.__dt_header_close)
     }
 

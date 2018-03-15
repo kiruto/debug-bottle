@@ -1,6 +1,5 @@
 package com.exyui.android.debugbottle.components.fragments
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
@@ -11,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.exyui.android.debugbottle.components.R
 import com.exyui.android.debugbottle.components.RunningFeatureMgr
 import com.exyui.android.debugbottle.components.bubbles.services.__DTBubble
@@ -28,20 +26,20 @@ class __TestSettingsFragment: __ContentFragment() {
     private lateinit var rootView: View
 
     private val testCtrlView: DTListItemSwitch by lazy {
-        (rootView.findViewById(R.id.__dt_testing_enable) as DTListItemSwitch).apply {
+        rootView.findViewById<DTListItemSwitch>(R.id.__dt_testing_enable).apply {
             isChecked = RunningFeatureMgr.has(RunningFeatureMgr.STRESS_TEST_RUNNER)
             setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    __TestingRunnerBubble.create(activity)
+                    __TestingRunnerBubble.create(activity!!)
                 } else {
-                    __TestingRunnerBubble.destroy(activity)
+                    __TestingRunnerBubble.destroy(activity!!)
                 }
             }
         }
     }
 
     private val showBlacklistView: ViewGroup by lazy {
-        (rootView.findViewById(R.id.__dt_show_list) as ViewGroup).apply {
+        rootView.findViewById<ViewGroup>(R.id.__dt_show_list).apply {
             setOnClickListener {
                 MonkeyBlackListDialog().show(childFragmentManager, TAG)
             }
@@ -67,7 +65,7 @@ class __TestSettingsFragment: __ContentFragment() {
     override fun onReceiveBubbleIntent(context: Context, intent: Intent?) {
         when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
             __TestingRunnerBubble.TAG -> {
-                val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
+                val bubble3DStatus = intent.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
                 testCtrlView.isChecked = bubble3DStatus
             }
         }
@@ -92,9 +90,7 @@ class __TestSettingsFragment: __ContentFragment() {
             }.create()
         }
 
-        @Suppress("OverridingDeprecatedMember")
-        override fun onAttach(context: Activity?) {
-            @Suppress("DEPRECATION")
+        override fun onAttach(context: Context?) {
             super.onAttach(context)
             context?.let { activityContext = it }
         }

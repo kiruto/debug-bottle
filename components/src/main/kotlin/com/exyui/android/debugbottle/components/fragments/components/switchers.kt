@@ -19,7 +19,7 @@ import com.exyui.android.debugbottle.ui.BlockCanary
  * Created by yuriel on 10/12/16.
  */
 internal fun View.networkSwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         isChecked = DTSettings.networkSniff
         setOnCheckedChangeListener { _, isChecked ->
             DTSettings.networkSniff = isChecked
@@ -28,7 +28,7 @@ internal fun View.networkSwitcher(@IdRes id: Int): DTListItemSwitch {
 }
 
 internal fun View.strictSwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         isChecked = DTSettings.strictMode
         setOnCheckedChangeListener { _, isChecked ->
             DTSettings.strictMode = isChecked
@@ -38,7 +38,7 @@ internal fun View.strictSwitcher(@IdRes id: Int): DTListItemSwitch {
 }
 
 internal fun View.view3DSwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         val activity = context as Activity
         isChecked = __3DViewBubble.isRunning()
         setOnCheckedChangeListener { _, isChecked ->
@@ -61,7 +61,7 @@ internal fun View.view3DSwitcher(@IdRes id: Int): DTListItemSwitch {
 }
 
 internal fun View.leakCanarySwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         isChecked = DTSettings.leakCanaryEnable
         setOnCheckedChangeListener { _, isChecked ->
             DTSettings.leakCanaryEnable = isChecked
@@ -71,21 +71,21 @@ internal fun View.leakCanarySwitcher(@IdRes id: Int): DTListItemSwitch {
 }
 
 internal fun View.blockCanarySwitcherCompat(@IdRes id: Int): SwitchCompat {
-    return (findViewById(id) as SwitchCompat).apply {
+    return findViewById<SwitchCompat>(id).apply {
         isChecked = DTSettings.blockCanaryEnable
         setOnCheckedChangeListener(::blockCanarySwitcherListener)
     }
 }
 
 internal fun View.blockCanarySwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         isChecked = DTSettings.blockCanaryEnable
         setOnCheckedChangeListener(::blockCanarySwitcherListener)
     }
 }
 
 internal fun View.bottleSwitch(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         isChecked = DTSettings.bottleEnable
         setOnCheckedChangeListener { _, isChecked ->
             DTSettings.bottleEnable = isChecked
@@ -95,7 +95,7 @@ internal fun View.bottleSwitch(@IdRes id: Int): DTListItemSwitch {
 }
 
 internal fun View.frameSwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         val activity = context as Activity
         isChecked = DTSettings.frameEnable
         setOnCheckedChangeListener { _, isChecked ->
@@ -110,7 +110,7 @@ internal fun View.frameSwitcher(@IdRes id: Int): DTListItemSwitch {
 }
 
 internal fun View.monkeyBlackListSwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         isChecked = DTSettings.monkeyBlacklist
         setOnCheckedChangeListener { _, isChecked ->
             DTSettings.monkeyBlacklist = isChecked
@@ -119,7 +119,7 @@ internal fun View.monkeyBlackListSwitcher(@IdRes id: Int): DTListItemSwitch {
 }
 
 internal fun View.notificationLockSwitcher(@IdRes id: Int): DTListItemSwitch {
-    return (findViewById(id) as DTListItemSwitch).apply {
+    return findViewById<DTListItemSwitch>(id).apply {
         isChecked = DTSettings.notificationLock
         setOnCheckedChangeListener { _, isChecked ->
             DTSettings.notificationLock = isChecked

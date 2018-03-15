@@ -1,21 +1,17 @@
 package com.exyui.android.debugbottle.components.fragments
 
 import android.Manifest
-import android.annotation.TargetApi
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
-import android.os.*
-import android.provider.Settings
+import android.os.Bundle
+import android.os.Process
 import android.support.annotation.IdRes
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
-import android.support.v7.widget.SwitchCompat
 import android.view.*
 import android.widget.TextView
 import com.exyui.android.debugbottle.components.*
@@ -76,9 +72,9 @@ class __StatusFragment: __ContentFragment() {
                     this.isChecked = false
                 } else {
                     if (isChecked) {
-                        __3DViewBubble.create(activity)
+                        __3DViewBubble.create(activity!!)
                     } else {
-                        __3DViewBubble.destroy(activity)
+                        __3DViewBubble.destroy(activity!!)
                     }
                 }
             }
@@ -91,9 +87,9 @@ class __StatusFragment: __ContentFragment() {
             setOnCheckedChangeListener { _, isChecked ->
                 DTSettings.frameEnable = isChecked
                 if (isChecked) {
-                    __FloatFrame.start(activity)
+                    __FloatFrame.start(activity!!)
                 } else {
-                    __FloatFrame.stop(activity)
+                    __FloatFrame.stop(activity!!)
                 }
             }
         }
@@ -165,7 +161,7 @@ class __StatusFragment: __ContentFragment() {
     override fun onReceiveBubbleIntent(context: Context, intent: Intent?) {
         when(intent?.extras?.getString(__DTBubble.KEY_TAG)) {
             __3DViewBubble.TAG -> {
-                val bubble3DStatus = intent?.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
+                val bubble3DStatus = intent.extras?.getBoolean(__DTBubble.KEY_IS_RUNNING)?: false
                 view3DSwitcher.isChecked = bubble3DStatus
             }
         }
@@ -175,14 +171,14 @@ class __StatusFragment: __ContentFragment() {
         menu.add(R.string.__dt_close)
                 .setIcon(R.drawable.__ic_close_black_24dp)
                 .setOnMenuItemClickListener {
-                    activity.finish()
+                    activity?.finish()
                     true
                 }
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
     }
 
     private fun showNeedPermissionsDialog() {
-        AlertDialog.Builder(context)
+        AlertDialog.Builder(context!!)
                 .setTitle(R.string.__dt_need_permissions)
                 .setMessage(R.string.__dt_permission_message)
                 .setNegativeButton(R.string.__dt_not_now) { _, _ -> }
@@ -193,7 +189,7 @@ class __StatusFragment: __ContentFragment() {
     }
 
     private fun showNeedEnableDialog() {
-        AlertDialog.Builder(context)
+        AlertDialog.Builder(context!!)
                 .setIcon(R.drawable.__dt_ic_bottle_24dp)
                 .setTitle(R.string.__dt_need_enable_dt)
                 .setMessage(R.string.__dt_enable_dt_message)
@@ -208,7 +204,7 @@ class __StatusFragment: __ContentFragment() {
     }
 
     private fun showNeedKillProcDialog() {
-        AlertDialog.Builder(context)
+        AlertDialog.Builder(context!!)
                 .setMessage(R.string.__dt_need_kill_proc)
                 .setNegativeButton(R.string.__dt_later) { _, _ -> }
                 .setPositiveButton(R.string.__dt_kill_process) { _, _ ->

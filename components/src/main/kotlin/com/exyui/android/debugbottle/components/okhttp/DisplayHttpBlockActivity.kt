@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
-import android.text.format.DateUtils
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -51,9 +50,9 @@ internal class DisplayHttpBlockActivity : Activity() {
     private val mBlockEntries: MutableList<HttpBlock> by lazy { ArrayList<HttpBlock>() }
     private var mBlockStartTime: String? = null
 
-    private val mListView by lazy { findViewById(R.id.__dt_canary_display_leak_list) as ListView }
-    private val mFailureView by lazy { findViewById(R.id.__dt_canary_display_leak_failure) as TextView }
-    private val mActionButton by lazy { findViewById(R.id.__dt_canary_action) as Button }
+    private val mListView by lazy { findViewById<ListView>(R.id.__dt_canary_display_leak_list)!! }
+    private val mFailureView by lazy { findViewById<TextView>(R.id.__dt_canary_display_leak_failure)!! }
+    private val mActionButton by lazy { findViewById<Button>(R.id.__dt_canary_action)!! }
     private val mMaxStoredBlockCount by lazy { resources.getInteger(R.integer.__block_canary_max_stored_count) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -182,7 +181,7 @@ internal class DisplayHttpBlockActivity : Activity() {
         } else {
             val adapter = BlockListAdapter()
             mListView.adapter = adapter
-            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
                 mBlockStartTime = mBlockEntries[position].timeStart.toString()
                 updateUi()
             }
@@ -210,7 +209,7 @@ internal class DisplayHttpBlockActivity : Activity() {
         } else {
             adapter = HttpBlockDetailAdapter()
             mListView.adapter = adapter
-            mListView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            mListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
                 adapter.toggleRow(position)
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -264,8 +263,8 @@ internal class DisplayHttpBlockActivity : Activity() {
             if (view == null) {
                 view = LayoutInflater.from(this@DisplayHttpBlockActivity).inflate(R.layout.__dt_canary_block_row, parent, false)
             }
-            val titleView = view!!.findViewById(R.id.__dt_canary_row_text) as TextView
-            val timeView = view.findViewById(R.id.__dt_canary_row_time) as TextView
+            val titleView = view!!.findViewById<TextView>(R.id.__dt_canary_row_text)
+            val timeView = view.findViewById<TextView>(R.id.__dt_canary_row_time)
             val block = getItem(position)
 
             val index: String

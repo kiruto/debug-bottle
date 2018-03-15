@@ -14,7 +14,7 @@ import com.exyui.android.debugbottle.components.widgets.__FloatingDialogHeaderLa
 class __QuickDialog : __FloatAnimatedDialog() {
 
     companion object {
-        val TAG = "__QuickDialog"
+        const val TAG = "__QuickDialog"
     }
     override val TAG = __QuickDialog.TAG
     override val title = R.string.__dt_bottle
@@ -22,20 +22,20 @@ class __QuickDialog : __FloatAnimatedDialog() {
     private var rootView: ViewGroup? = null
     private var currentPanel: View? = null
     private val container by lazy {
-        rootView?.findViewById(R.id.__dt_container) as ViewGroup
+        rootView?.findViewById<ViewGroup>(R.id.__dt_container)!!
     }
 
     private val mainView by lazy {
-        container.findViewById(R.id.__dt_quick_main) as __QuickDialogMainView
+        container.findViewById<__QuickDialogMainView>(R.id.__dt_quick_main)
     }
 
     private val togglesView by lazy {
-        container.findViewById(R.id.__dt_quick_toggle) as ViewGroup
+        container.findViewById<ViewGroup>(R.id.__dt_quick_toggle)
     }
 
     override fun createView(): View {
         return activity.layoutInflater.inflate(R.layout.__dialog_toggles, null).apply {
-            (findViewById(R.id.__floating_header) as __FloatingDialogHeaderLayout?)?.let { header ->
+            findViewById<__FloatingDialogHeaderLayout?>(R.id.__floating_header)?.let { header ->
                 header.setAction {
                     if (togglesView sameAs currentPanel) {
                         container.show(mainView)
@@ -47,8 +47,8 @@ class __QuickDialog : __FloatAnimatedDialog() {
                 }
                 header.setClose { dismiss() }
             }
-            findViewById(R.id.__dt_open).setOnClickListener { startDTDrawerActivity() }
-            findViewById(R.id.__dt_help).setOnClickListener { help() }
+            findViewById<View>(R.id.__dt_open).setOnClickListener { startDTDrawerActivity() }
+            findViewById<View>(R.id.__dt_help).setOnClickListener { help() }
             this@__QuickDialog.rootView = this as ViewGroup
             bindViews()
             isCancelable = true
@@ -57,10 +57,6 @@ class __QuickDialog : __FloatAnimatedDialog() {
             mainView.addOnItemClickListener { dismiss() }
             container.show(mainView)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     private fun bindViews() {

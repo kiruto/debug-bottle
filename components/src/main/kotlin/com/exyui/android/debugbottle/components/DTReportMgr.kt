@@ -41,7 +41,7 @@ internal abstract class DTReportMgr {
         get() {
             val f = detectedFileDirectory()
             if (f.exists() && f.isDirectory) {
-                return f.listFiles { dir, filename ->
+                return f.listFiles { _, filename ->
                     filename.endsWith(TYPE)
                 }
             }

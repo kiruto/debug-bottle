@@ -1,6 +1,5 @@
 package com.exyui.android.debugbottle.components
 
-import android.Manifest
 import android.app.ActivityManager
 import android.content.Intent
 import android.net.Uri
@@ -42,12 +41,12 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         resources.getStringArray(R.array.__dt_drawer_items)
     }
 
-    private val drawerLayout by lazy { findViewById(R.id.__dt_drawer_layout) as DrawerLayout }
+    private val drawerLayout by lazy { findViewById<DrawerLayout>(R.id.__dt_drawer_layout) }
 
-    private val drawerRoot by lazy { findViewById(R.id.__dt_drawer_root) as ViewGroup }
+    private val drawerRoot by lazy { findViewById<ViewGroup>(R.id.__dt_drawer_root) }
 
     private val drawerListView by lazy {
-        (findViewById(R.id.__dt_left_drawer) as ListView).apply {
+        findViewById<ListView>(R.id.__dt_left_drawer).apply {
             adapter = DrawerAdapter(titles)
             setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
                 selectItem(position)
@@ -55,16 +54,16 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
         }
     }
 
-    private val contentFrame by lazy { findViewById(R.id.__dt_content_frame) as ViewGroup }
+    private val contentFrame by lazy { findViewById<ViewGroup>(R.id.__dt_content_frame) }
 
     private val drawerToggle by lazy {
         object: ActionBarDrawerToggle(this, drawerLayout, R.string.__dt_drawer_open, R.string.__dt_drawer_close) {
-            override fun onDrawerOpened(drawerView: View?) {
+            override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
                 invalidateOptionsMenu() // creates call to onPrepareOptionsMenu()
             }
 
-            override fun onDrawerClosed(drawerView: View?) {
+            override fun onDrawerClosed(drawerView: View) {
                 super.onDrawerClosed(drawerView)
                 invalidateOptionsMenu() // creates call to onPrepareOptionsMenu()
             }
@@ -72,7 +71,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
     }
 
     private val infoLayout by lazy {
-        (findViewById(R.id.__dt_info) as ViewGroup).apply {
+        findViewById<ViewGroup>(R.id.__dt_info).apply {
             setOnClickListener {
                 AlertDialog.Builder(this@DTDrawerActivity)
                         .setIcon(R.drawable.__dt_ic_bottle_24dp)
@@ -91,7 +90,7 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
     }
 
     private val introLayout by lazy {
-        (findViewById(R.id.__dt_helper) as ViewGroup).apply {
+        findViewById<ViewGroup>(R.id.__dt_helper).apply {
             setOnClickListener {
 
                 // To start IntroductionActivity, need a AppCompatTheme.
@@ -336,8 +335,8 @@ internal class DTDrawerActivity : AppCompatActivity(), DialogsCollection.SPDialo
             val item = menu[position]
             (view?.let { view?.tag as ViewHolder }?: ViewHolder().apply {
                 view = LayoutInflater.from(this@DTDrawerActivity).inflate(R.layout.__item_drawer_menu, parent, false)
-                icon = view?.findViewById(R.id.__dt_icon) as ImageView
-                title = view?.findViewById(R.id.__dt_item_title) as TextView
+                icon = view?.findViewById<ImageView>(R.id.__dt_icon)
+                title = view?.findViewById<TextView>(R.id.__dt_item_title)
                 view?.tag = this
             }).apply {
                 icon?.setImageResource(item.icon)

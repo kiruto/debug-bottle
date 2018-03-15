@@ -38,7 +38,7 @@ class __InjectorFragment: __ContentFragment() {
     }
 
     private val type: Int by lazy {
-        arguments.getInt(TYPE, TYPE_ALL_ACTIVITIES)
+        arguments!!.getInt(TYPE, TYPE_ALL_ACTIVITIES)
     }
 
     private val adapter by lazy {

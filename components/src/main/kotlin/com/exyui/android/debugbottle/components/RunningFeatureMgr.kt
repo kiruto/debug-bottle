@@ -18,7 +18,7 @@ internal object RunningFeatureMgr {
     val FPS_DISPLAYER = 1 shl 8
     val MONKEY_BLACKLIST = 1 shl 9
 
-    private var flags by Delegates.observable(0) { prop, old, new ->
+    private var flags by Delegates.observable(0) { _, old, new ->
         Log.d("RunningFeatureMgr", "old: $old, new: $new")
     }
 

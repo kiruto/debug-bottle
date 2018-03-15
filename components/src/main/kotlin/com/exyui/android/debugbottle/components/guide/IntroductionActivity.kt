@@ -22,29 +22,29 @@ internal class IntroductionActivity : AppCompatActivity() {
     private var theme: Int? = null
 
     private val pagerView by lazy {
-        (findViewById(R.id.__dt_view_pager) as ViewPager).apply {
+        findViewById<ViewPager>(R.id.__dt_view_pager).apply {
             adapter = IntroductionAdapter(supportFragmentManager)
             setPageTransformer(false, IntroductionTransformer())
         }
     }
 
-    private val contentView by lazy { findViewById(R.id.__dt_content_view) as ViewGroup }
+    private val contentView by lazy { findViewById<ViewGroup>(R.id.__dt_content_view) }
 
-    private val backgroundView by lazy { findViewById(R.id.__dt_background) as View }
+    private val backgroundView by lazy { findViewById<View>(R.id.__dt_background) }
 
     private val iconApp by lazy {
-        (findViewById(R.id.__dt_icon_app) as ImageView).apply {
+        findViewById<ImageView>(R.id.__dt_icon_app).apply {
             setImageDrawable(applicationInfo.loadIcon(packageManager))
         }
     }
 
-    private val iconArrow by lazy { findViewById(R.id.__dt_icon_arrow) as ImageView }
+    private val iconArrow by lazy { findViewById<ImageView>(R.id.__dt_icon_arrow) }
 
-    private val iconBottle by lazy { findViewById(R.id.__dt_icon_bottle) as ImageView }
+    private val iconBottle by lazy { findViewById<ImageView>(R.id.__dt_icon_bottle) }
 
-    private val textView by lazy { findViewById(R.id.__dt_intro_text) as ViewGroup }
+    private val textView by lazy { findViewById<ViewGroup>(R.id.__dt_intro_text) }
 
-    private val nextView by lazy { findViewById(R.id.__dt_intro_next) as TextView }
+    private val nextView by lazy { findViewById<TextView>(R.id.__dt_intro_next) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,10 +67,6 @@ internal class IntroductionActivity : AppCompatActivity() {
         iconApp; iconArrow; iconBottle
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
     private inner class IntroductionTransformer: ViewPager.PageTransformer {
         private val TAG = "IntroductionTransformer"
 
@@ -90,7 +86,7 @@ internal class IntroductionActivity : AppCompatActivity() {
 
         var done: Boolean? = null
 
-        override fun transformPage(view: View?, position: Float) {
+        override fun transformPage(view: View, position: Float) {
             if (position <= -1.0f || position >= 1.0f) {
 
                 // The page is not visible. This is a good place to stop
@@ -101,7 +97,7 @@ internal class IntroductionActivity : AppCompatActivity() {
                 // The page is selected. This is a good time to reset Views
                 // after animations as you can't always count on the PageTransformer
                 // callbacks to match up perfectly.
-                val tag = view?.tag as FragmentPageTag?
+                val tag = view.tag as FragmentPageTag?
                 tag ?: return
                 backgroundView.setBackgroundColor(tag.color)
 
@@ -124,7 +120,7 @@ internal class IntroductionActivity : AppCompatActivity() {
 
             } else {
 
-                val tag = view?.tag as FragmentPageTag?
+                val tag = view.tag as FragmentPageTag?
                 tag?: return
                 if (position < 0) {
                     start = tag.color
@@ -144,10 +140,10 @@ internal class IntroductionActivity : AppCompatActivity() {
                     val color = calColor(start!!, end!!, per!!)
                     backgroundView.setBackgroundColor(color)
                     calAlpha(iconBottleFrom!!, iconBottleTo!!,
-                             iconArrowFrom!!, iconArrowTo!!,
-                             iconAppFrom!!, iconAppTo!!,
-                             textFrom!!, textTo!!,
-                             per!!)
+                            iconArrowFrom!!, iconArrowTo!!,
+                            iconAppFrom!!, iconAppTo!!,
+                            textFrom!!, textTo!!,
+                            per!!)
                 }
 
                 //Log.d(TAG, "$view: $position, $iconBottleFrom")
